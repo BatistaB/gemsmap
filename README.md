@@ -8,7 +8,7 @@
 <h3 align="center">An interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models</h3>
 
 <p align="center">
-  <img src="https://github.com/BatistaB/gemsmap/actions/workflows/ci.yml/badge.svg" alt="CI"> <a href="https://pypi.org/project/gemsmap/"><img src="https://img.shields.io/pypi/v/gemsmap?include_prereleases&label=PyPI" alt="PyPI"></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
+  <img src="https://github.com/BatistaB/gemsmap/actions/workflows/ci.yml/badge.svg" alt="CI"> <a href="https://pypi.org/project/gemsmap/"><img src="https://img.shields.io/pypi/v/gemsmap?include_prereleases&label=PyPI" alt="PyPI"></a> <a href="https://gemsmap.readthedocs.io/"><img src="https://readthedocs.org/projects/gemsmap/badge/?version=latest" alt="Documentation"></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
 </p>
 
 GEMs MAP is the visualization platform of genome-scale metabolic models (GEMs).
@@ -41,6 +41,9 @@ Everything runs on your computer. Other ways, without Python:
   double-click *Start GEMs MAP* (Windows `.bat`, macOS `.command`; Linux: `bash start-gemsmap-linux.sh`). The first
   start prepares Python and GEMs MAP inside that folder; `README-FIRST.txt` explains the rest.
 
+**Documentation and tutorial:** <https://gemsmap.readthedocs.io/> — installation, COBRAGUI, Maps, Templates and a
+[quick start tutorial](https://gemsmap.readthedocs.io/en/latest/tutorials/quick-start/).
+
 To report a problem, click **GEMs MAP &lt;version&gt;** in the COBRAGUI status bar, then *Copy diagnostics*, and paste it
 into a [new issue](https://github.com/BatistaB/gemsmap/issues/new/choose) (or run `gemsmap diagnose`).
 
@@ -56,7 +59,8 @@ npm run backend:test    # backend API tests (E. coli core)
 ```
 
 **Documentation:** the user guide (COBRAGUI, Maps, Templates, reference) is a MkDocs site in [`docs/`](docs/index.md),
-built by Read the Docs from [`.readthedocs.yaml`](.readthedocs.yaml). Preview it locally with
+published at <https://gemsmap.readthedocs.io/> by Read the Docs from [`.readthedocs.yaml`](.readthedocs.yaml) on every
+push to `main`. Preview it locally with
 `pip install -r docs/requirements.txt` and `mkdocs serve`; see [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md).
 
 ### The name and the logo

@@ -74,7 +74,7 @@ def cover(version: str, form_url: str, site: Path) -> str:
     <p>In COBRAGUI, click <b>GEMs MAP {html.escape(version)}</b> in the bottom bar, then <b>Copy diagnostics</b>, and paste
     it into the form or into an issue at <a href="https://github.com/BatistaB/gemsmap/issues">github.com/BatistaB/gemsmap/issues</a>,
     with what you did and what happened. A screenshot helps.</p>
-    <p class="small">Documentation and source code: github.com/BatistaB/gemsmap · MIT License. The screenshots in this guide
+    <p class="small">Documentation: gemsmap.readthedocs.io · Source code: github.com/BatistaB/gemsmap · MIT License. The screenshots in this guide
     come from the application itself; numbers in your run can differ slightly (alternative optima of pFBA).</p>
     </div></body></html>"""
 

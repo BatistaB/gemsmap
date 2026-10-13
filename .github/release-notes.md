@@ -15,6 +15,8 @@ With [uv](https://docs.astral.sh/uv/): `uvx gemsmap`.
 `bash start-gemsmap-linux.sh`). The first start needs the internet for a few minutes and prepares everything inside
 that folder. See `README-FIRST.txt` in the zip.
 
+Documentation and a step-by-step tutorial: https://gemsmap.readthedocs.io/
+
 ## What changed
 
 See [CHANGELOG.md](https://github.com/BatistaB/gemsmap/blob/main/CHANGELOG.md).

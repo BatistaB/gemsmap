@@ -35,6 +35,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/BatistaB/gemsmap"
+Documentation = "https://gemsmap.readthedocs.io/"
 Source = "https://github.com/BatistaB/gemsmap"
 Issues = "https://github.com/BatistaB/gemsmap/issues"
 Changelog = "https://github.com/BatistaB/gemsmap/blob/main/CHANGELOG.md"

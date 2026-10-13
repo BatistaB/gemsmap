@@ -46,7 +46,8 @@ OTHER WAYS TO INSTALL
 ---------------------
 With Python 3.10 or newer:   pip install gemsmap     then run:  gemsmap
 With uv:                     uvx gemsmap
-Documentation: https://github.com/BatistaB/gemsmap
+Documentation and tutorial: https://gemsmap.readthedocs.io/
+Source code: https://github.com/BatistaB/gemsmap
 
 TROUBLESHOOTING
 ---------------
