@@ -6,6 +6,9 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 ## [Unreleased]
 
 ### Added
+- The documentation is published at <https://gemsmap.readthedocs.io/> (Read the Docs, rebuilt on every push to
+  `main`): linked from the README (with a badge), the PyPI page (next release), the zip's README-FIRST.txt, the
+  release notes and the beta test guide.
 - `tools/docs/beta_guide_pdf.py`: the beta test guide as one PDF (cover, Installation, quick start), printed from the
   built documentation site.
 

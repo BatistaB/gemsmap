@@ -8,13 +8,14 @@
 <h3 align="center">An interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models</h3>
 
 <p align="center">
-  <img src="https://github.com/BatistaB/gemsmap/actions/workflows/ci.yml/badge.svg" alt="CI"> <a href="https://pypi.org/project/gemsmap/"><img src="https://img.shields.io/pypi/v/gemsmap?include_prereleases&label=PyPI" alt="PyPI"></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
+  <img src="https://github.com/BatistaB/gemsmap/actions/workflows/ci.yml/badge.svg" alt="CI"> <a href="https://pypi.org/project/gemsmap/"><img src="https://img.shields.io/pypi/v/gemsmap?include_prereleases&label=PyPI" alt="PyPI"></a> <a href="https://gemsmap.readthedocs.io/"><img src="https://readthedocs.org/projects/gemsmap/badge/?version=latest" alt="Documentation"></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
 </p>
 
 GEMs MAP takes a genome-scale metabolic model (GEM) from import to a publication-quality figure in one application.
 Explore and simulate the model with [COBRApy](https://opencobra.github.io/cobrapy/), compare conditions, then map
-the results onto editable pathway figures, without writing every step as code. It runs on your own computer, and
-your models are not uploaded anywhere.
+the results onto editable pathway figures, without writing every step as code.
+Think "Canva for metabolic networks" with COBRApy and pathway-style GEM semantics underneath.
+It runs on your own computer, and your models are not uploaded anywhere.
 
 <p align="center">
   <img src="docs/assets/images/maps-demo.png" alt="The Map Builder showing the built-in central carbon example: glycolysis, the oxidative pentose phosphate pathway and a circular TCA cycle, with flux-sampling density plots beside the reactions and a condition bar at the bottom." width="900">
@@ -68,7 +69,7 @@ Other ways, without Python:
   double-click *Start GEMs MAP* (Windows `.bat`, macOS `.command`; Linux: `bash start-gemsmap-linux.sh`). The first
   start prepares Python and GEMs MAP inside that folder; `README-FIRST.txt` explains the rest.
 
-Requirements, virtual environments and troubleshooting: [Installation guide](docs/getting-started/installation.md).
+Requirements, virtual environments and troubleshooting: [Installation guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/).
 
 ## Quick start
 
@@ -81,7 +82,7 @@ Requirements, virtual environments and troubleshooting: [Installation guide](doc
    the figure.
 
 To see a finished map first, choose **File → Open example** for the central carbon demo shown above.
-The [quick-start tutorial](docs/tutorials/quick-start.md) walks through all of this with *E. coli* iJO1366 in
+The [quick-start tutorial](https://gemsmap.readthedocs.io/en/latest/tutorials/quick-start/) walks through all of this with *E. coli* iJO1366 in
 about 45 minutes.
 
 ## Scientific principles
@@ -99,25 +100,25 @@ GEMs MAP aims to make results easy to read without changing what they mean:
   direction never get a fold change.
 - **Uncertain template matches wait for you**: an unresolved pathway slot is better than a wrong one.
 
-What these analyses can and cannot tell you is described in [Limitations](docs/reference/limitations.md).
+What these analyses can and cannot tell you is described in [Limitations](https://gemsmap.readthedocs.io/en/latest/reference/limitations/).
 
 ## Documentation
 
-The user guide is written in [`docs/`](docs/index.md) and built as a website with MkDocs:
+The user guide is published at **<https://gemsmap.readthedocs.io/>**:
 
 | | |
 |---|---|
-| [Getting started](docs/getting-started/index.md) | Overview, [installation](docs/getting-started/installation.md), [first look](docs/getting-started/first-look.md) |
-| [COBRAGUI](docs/cobra-gui/index.md) | Importing, exploring and editing models; [constraint-based analysis](docs/cobra-gui/constraint-based-analysis.md); results and comparison |
-| [Maps](docs/maps/index.md) | Drawing pathways, linking them to a model, displaying results, exporting figures |
-| [Templates](docs/templates/index.md) | The template library, identity matching, creating and sharing templates |
-| [Reference](docs/reference/index.md) | [Glossary](docs/reference/glossary.md), [FAQ](docs/reference/faq.md), [troubleshooting](docs/reference/troubleshooting.md), [limitations](docs/reference/limitations.md), [roadmap](docs/reference/roadmap.md) |
+| [Getting started](https://gemsmap.readthedocs.io/en/latest/getting-started/) | Overview, [installation](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/), [first look](https://gemsmap.readthedocs.io/en/latest/getting-started/first-look/) |
+| [COBRAGUI](https://gemsmap.readthedocs.io/en/latest/cobra-gui/) | Importing, exploring and editing models; [constraint-based analysis](https://gemsmap.readthedocs.io/en/latest/cobra-gui/constraint-based-analysis/); results and comparison |
+| [Maps](https://gemsmap.readthedocs.io/en/latest/maps/) | Drawing pathways, linking them to a model, displaying results, exporting figures |
+| [Templates](https://gemsmap.readthedocs.io/en/latest/templates/) | The template library, identity matching, creating and sharing templates |
+| [Reference](https://gemsmap.readthedocs.io/en/latest/reference/) | [Glossary](https://gemsmap.readthedocs.io/en/latest/reference/glossary/), [FAQ](https://gemsmap.readthedocs.io/en/latest/reference/faq/), [troubleshooting](https://gemsmap.readthedocs.io/en/latest/reference/troubleshooting/), [limitations](https://gemsmap.readthedocs.io/en/latest/reference/limitations/), [roadmap](https://gemsmap.readthedocs.io/en/latest/reference/roadmap/) |
 
 ## Project status
 
 GEMs MAP 0.3 is a beta. Model import and editing, FBA, pFBA, loopless FBA and FVA, result comparison, the Map
 Builder and template matching are implemented. Solver selection, flux sampling and gene knockouts are planned; see
-the [roadmap](docs/reference/roadmap.md). Changes between versions are listed in [CHANGELOG.md](CHANGELOG.md).
+the [roadmap](https://gemsmap.readthedocs.io/en/latest/reference/roadmap/). Changes between versions are listed in [CHANGELOG.md](CHANGELOG.md).
 
 Projects from version 0.2 and earlier, when the application was called *MetMap*, still open: `.metmap` projects,
 `*.metmap-template.json` templates and the browser storage of that version are carried over.
@@ -153,4 +154,4 @@ the universal tables of [BiGG Models](https://bigg.bio). GEMs MAP is an independ
 or endorsed by the COBRApy, BiGG, MetaNetX or KEGG teams.
 
 The logo is a gem cut from a metabolic network, coloured like a flux map ([brand guide](docs/brand/README.md)).
-How the project started: [the story of GEMs MAP](docs/history.md).
+How the project started: [the story of GEMs MAP](https://gemsmap.readthedocs.io/en/latest/history/).

@@ -28,11 +28,9 @@ Open `http://127.0.0.1:8000`; pages reload as you edit. Before committing, run t
 
 ## Publish on Read the Docs
 
-The repository already contains `.readthedocs.yaml` (Python 3.12, `mkdocs.yml`, `docs/requirements.txt`, build fails on warnings). Once the repository is on GitHub, GitLab or Bitbucket:
+The site is live at <https://gemsmap.readthedocs.io/> (project `gemsmap`, connected to `BatistaB/gemsmap`). Read the Docs reads `.readthedocs.yaml` (Python 3.12, `mkdocs.yml`, `docs/requirements.txt`, build fails on warnings) and rebuilds `latest` on every push to `main`; build logs are under *Builds* in the project's dashboard. Pull requests can get preview builds (*Settings → Pull request builds*).
 
-1. Sign in at [readthedocs.org](https://readthedocs.org) with the Git provider account and choose *Add project*.
-2. Select the repository; Read the Docs reads `.readthedocs.yaml` and builds the default branch.
-3. Builds then run on every push; pull requests can get preview builds (*Settings → Pull request builds*).
+To set it up again elsewhere: sign in at [readthedocs.org](https://readthedocs.org) with the Git provider account, choose *Add project* and select the repository.
 
 The canonical URL is not hard-coded: `mkdocs.yml` takes it from `READTHEDOCS_CANONICAL_URL`, which Read the Docs sets during each build.
 

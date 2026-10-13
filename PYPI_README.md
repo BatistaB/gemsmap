@@ -36,6 +36,10 @@ No Python at all? Each [release on GitHub](https://github.com/BatistaB/gemsmap/r
 `GEMsMAP-<version>.zip`: extract it and double-click *Start GEMs MAP*; the first start prepares everything inside
 that folder.
 
+## Documentation
+
+The user guide, with a step-by-step quick start tutorial: <https://gemsmap.readthedocs.io/>
+
 ## Feedback
 
 Source code, releases and the issue tracker: <https://github.com/BatistaB/gemsmap>. To report a problem, click
