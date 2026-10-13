@@ -2,3 +2,4 @@
 # Uses the local Microsoft Edge or Google Chrome, so `playwright install` is not needed.
 playwright==1.63.0
 pillow==12.3.0
+pypdf==6.20.1
