@@ -5,6 +5,10 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 
 ## [Unreleased]
 
+### Added
+- `tools/docs/beta_guide_pdf.py`: the beta test guide as one PDF (cover, Installation, quick start), printed from the
+  built documentation site.
+
 ## [0.3.0b1] — 2026-10-13
 
 First beta, and the first public version: installable with `pip install gemsmap`.
