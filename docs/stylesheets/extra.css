@@ -1,0 +1,287 @@
+/* GEMs MAP documentation theme — colours from docs/brand/README.md (ink, the logo's blue and red edges). */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700;800&display=swap");
+
+:root,
+[data-md-color-scheme="default"] {
+  --gm-ink: #1b1c20;
+  --gm-blue: #4745c4;
+  --gm-blue-strong: #1d1291;
+  --gm-red: #e63a40;
+  --gm-pale: #f4f4fb;
+  --gm-line: #e3e3ee;
+  --md-primary-fg-color: #ffffff;
+  --md-primary-fg-color--light: #ffffff;
+  --md-primary-fg-color--dark: #f4f4fb;
+  --md-primary-bg-color: var(--gm-ink);
+  --md-primary-bg-color--light: #1b1c20b3;
+  --md-accent-fg-color: var(--gm-blue);
+  --md-accent-fg-color--transparent: #4745c41a;
+  --md-typeset-a-color: var(--gm-blue);
+}
+
+[data-md-color-scheme="slate"] {
+  --gm-ink: #ededed;
+  --gm-blue: #8f8cff;
+  --gm-blue-strong: #b4b2ff;
+  --gm-red: #ff5c66;
+  --gm-pale: #22232b;
+  --gm-line: #34353f;
+  --md-hue: 240;
+  --md-default-bg-color: #16171c;
+  --md-primary-fg-color: #1b1c22;
+  --md-primary-fg-color--light: #1b1c22;
+  --md-primary-fg-color--dark: #131418;
+  --md-primary-bg-color: #ededed;
+  --md-primary-bg-color--light: #edededb3;
+  --md-accent-fg-color: var(--gm-blue);
+  --md-accent-fg-color--transparent: #8f8cff1f;
+  --md-typeset-a-color: var(--gm-blue);
+}
+
+/* header and tabs: light bar with a hairline, like the app's top bar */
+.md-header,
+.md-tabs {
+  border-bottom: 1px solid var(--gm-line);
+}
+.md-header {
+  box-shadow: none;
+}
+.md-header__button.md-logo img,
+.md-nav__button.md-logo img {
+  height: 1.7rem;
+}
+/* the logo on dark backgrounds uses the dark variant of the mark (brand guide: never invert) */
+[data-md-color-scheme="slate"] .md-logo img {
+  opacity: 0;
+}
+[data-md-color-scheme="slate"] .md-logo {
+  background: url("../assets/brand/gemsmap-mark-dark.svg") center / 1.7rem no-repeat;
+}
+.md-header__topic:first-child {
+  font-family: "Roboto Slab", Georgia, serif;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+.md-typeset h1 {
+  font-family: "Roboto Slab", Georgia, serif;
+  font-weight: 700;
+  color: var(--gm-ink);
+  letter-spacing: -0.01em;
+}
+.md-typeset h2 {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ home page hero */
+.gm-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.2rem;
+  margin: 0.4rem 0 1.6rem;
+}
+.md-typeset .gm-hero__logo {
+  max-width: min(19rem, 80%);
+  width: 100%;
+  margin: 0;
+}
+/* a section's own logo under its title (COBRAGUI) */
+.md-typeset .gm-section-logo {
+  display: block;
+  max-width: min(16rem, 70%);
+  margin: 0 0 1rem;
+}
+.md-typeset h1.gm-hero__tagline {
+  font-family: "Roboto Slab", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--gm-ink);
+  margin: 0;
+}
+@media screen and (max-width: 44.9375em) {
+  .md-typeset h1.gm-hero__tagline {
+    font-size: 1.2rem;
+  }
+}
+
+/* buttons: the header is white, so Material's "primary" colour is white too; buttons use the brand blue */
+.md-typeset .md-button {
+  color: var(--gm-blue);
+  border-color: var(--gm-blue);
+}
+.md-typeset .md-button--primary {
+  background-color: var(--gm-blue);
+  border-color: var(--gm-blue);
+  color: #ffffff;
+}
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+  background-color: var(--gm-blue-strong);
+  border-color: var(--gm-blue-strong);
+  color: #ffffff;
+}
+[data-md-color-scheme="slate"] .md-typeset .md-button--primary,
+[data-md-color-scheme="slate"] .md-typeset .md-button:focus,
+[data-md-color-scheme="slate"] .md-typeset .md-button:hover {
+  color: #16171c;
+}
+.md-typeset .gm-hero__lead {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 44rem;
+}
+.gm-hero__actions,
+.md-typeset .gm-hero__actions > p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+}
+.md-typeset .gm-hero__actions .md-button {
+  margin: 0;
+}
+
+/* screenshots: a thin frame, so white UI does not melt into the page */
+.md-typeset .gm-shot img,
+.md-typeset img.gm-shot {
+  border: 1px solid var(--gm-line);
+  border-radius: 6px;
+  box-shadow: 0 1px 2px #0000000d, 0 6px 18px #1b1c2014;
+}
+[data-md-color-scheme="slate"] .md-typeset .gm-shot img,
+[data-md-color-scheme="slate"] .md-typeset img.gm-shot {
+  box-shadow: none;
+}
+.md-typeset figure.gm-shot {
+  margin: 1.2rem auto 1.6rem;
+  max-width: 100%;
+}
+.md-typeset figure.gm-shot figcaption {
+  max-width: 44rem;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  color: var(--md-default-fg-color--light);
+}
+.md-typeset figure.gm-narrow img {
+  max-width: 22rem;
+}
+.md-typeset figure.gm-medium img {
+  max-width: 36rem;
+}
+
+/* numbered legends that go with annotated screenshots */
+.md-typeset ol.gm-callouts {
+  list-style: none;
+  counter-reset: gm;
+  margin-left: 0;
+  padding-left: 0;
+}
+.md-typeset ol.gm-callouts > li {
+  counter-increment: gm;
+  position: relative;
+  padding-left: 2rem;
+  margin-left: 0;
+}
+.md-typeset ol.gm-callouts > li::before {
+  content: counter(gm);
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 50%;
+  background: #4745c4;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.35rem;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------ maturity labels */
+.md-typeset .gm-badge {
+  display: inline-block;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  vertical-align: 0.1em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.md-typeset .gm-badge.implemented {
+  color: #136c3a;
+  background: #e6f6ec;
+  border-color: #bfe6cd;
+}
+.md-typeset .gm-badge.experimental {
+  color: #8a5300;
+  background: #fff4dc;
+  border-color: #f3d9a2;
+}
+.md-typeset .gm-badge.planned {
+  color: #4b4a8f;
+  background: #eeeefb;
+  border-color: #d5d4f2;
+}
+[data-md-color-scheme="slate"] .md-typeset .gm-badge.implemented {
+  color: #8fe0ad;
+  background: #133222;
+  border-color: #1f4d33;
+}
+[data-md-color-scheme="slate"] .md-typeset .gm-badge.experimental {
+  color: #ffd27a;
+  background: #3a2b0e;
+  border-color: #5a4316;
+}
+[data-md-color-scheme="slate"] .md-typeset .gm-badge.planned {
+  color: #c9c8ff;
+  background: #24234a;
+  border-color: #38376a;
+}
+
+/* "Where next" footer of each page */
+.md-typeset .gm-next {
+  margin-top: 2rem;
+  padding: 0.7rem 1rem;
+  border-left: 3px solid var(--gm-blue);
+  background: var(--gm-pale);
+  border-radius: 0 6px 6px 0;
+}
+.md-typeset .gm-next p {
+  margin: 0.2rem 0;
+}
+
+/* grid cards: a little more air */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid > .card {
+  border-radius: 8px;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  border-color: var(--gm-blue);
+}
+
+/* tables: compact, numbers aligned */
+.md-typeset table:not([class]) {
+  font-size: 0.7rem;
+}
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+  padding: 0.55em 0.9em;
+}
+
+/* conceptual diagrams (SVG files) carry their own light background, so colours keep their meaning
+   (red / blue = flux direction) in both schemes; never invert them */
+.md-typeset .gm-diagram {
+  display: block;
+  margin: 1.2rem auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+[data-md-color-scheme="slate"] .md-typeset .gm-diagram {
+  outline: 1px solid var(--gm-line);
+}

@@ -1,0 +1,6013 @@
+{
+ "format": "gemsmap-template",
+ "schema_version": "1.1.0",
+ "metadata": {
+  "id": "kegg-map00010",
+  "name": "Glycolysis / Gluconeogenesis (KEGG map00010)",
+  "description": "Embden–Meyerhof–Parnas glycolysis and gluconeogenesis with the branches KEGG map00010 draws: glucose-1P, the 2,3-bisphosphoglycerate shunt, non-phosphorylating GAPN, pyruvate fates (lactate, ethanol, acetate, acetyl-CoA) and the bacterial PTS route of aryl-β-glucosides. Derived from KEGG; drawn by GEMs MAP.",
+  "pathway": "Glycolysis / Gluconeogenesis",
+  "section": "KEGG-derived templates",
+  "template_version": "0.1.0",
+  "scope": {
+   "level": "universal",
+   "taxa": [],
+   "note": "Core steps are conserved; G6Pase, PPDK/PPS, PDC/ADH, GAPN and the aryl-β-glucoside PTS route are organism-specific. Compartments are left unspecified (KEGG gives none): the matcher decides them in each GEM."
+  },
+  "authors": [
+   "GEMs MAP AI curator (Claude)"
+  ],
+  "created": "2026-10-09T00:00:00Z",
+  "modified": "2026-10-09T18:53:12Z",
+  "license": "MIT (drawing and curation); identifiers and biology from KEGG, MetaNetX and BiGG",
+  "tags": [
+   "KEGG",
+   "map00010",
+   "glycolysis",
+   "gluconeogenesis",
+   "central carbon"
+  ],
+  "citations": [
+   {
+    "text": "Kanehisa M, Goto S. KEGG: Kyoto Encyclopedia of Genes and Genomes. Nucleic Acids Res 28:27-30 (2000)",
+    "doi": "10.1093/nar/28.1.27"
+   }
+  ],
+  "layout_kind": "vertical",
+  "review_status": "ai-generated",
+  "source": {
+   "reference": "KEGG",
+   "pathway_id": "map00010",
+   "pathway_name": "Glycolysis / Gluconeogenesis",
+   "url": "https://www.genome.jp/pathway/map00010",
+   "generation_method": "KEGG flat files + KGML (structure only) → curated biological graph → identities reconciled with MetaNetX (backend client) and the BiGG tables → hand-designed layout",
+   "generated_by": "tools/kegg/kegg_template.py",
+   "retrieved": "2026-10-09"
+  }
+ },
+ "biology": {
+  "compartments": [],
+  "entities": [
+   {
+    "id": "tpl_ent_001",
+    "name": "D-Glucose",
+    "short": "Glucose",
+    "formula": "C6H12O6",
+    "charge": 0,
+    "synonyms": [
+     "D-Glucopyranose",
+     "D-glucopyranose",
+     "D-glucose",
+     "Dextrose",
+     "Glc",
+     "Glucose",
+     "Grape sugar",
+     "dextrose",
+     "glucose"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00031"
+     ],
+     "chebi": [
+      "17634",
+      "4167",
+      "CHEBI:4167"
+     ],
+     "metanetx.chemical": [
+      "MNXM1364061"
+     ],
+     "bigg.metabolite": [
+      "glc_D",
+      "glc__D"
+     ],
+     "hmdb": [
+      "HMDB0000122",
+      "HMDB0304632"
+     ],
+     "seed.compound": [
+      "cpd00027"
+     ],
+     "metacyc.compound": [
+      "D-GLUCOSE",
+      "GLC"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00031; MetaNetX MNXM1364061; BiGG glc__D; GEMs MAP library 'D-glucose'"
+    },
+    "related": [
+     {
+      "note": "anomer of D-glucose",
+      "names": [
+       "alpha-D-glucose",
+       "beta-D-glucose",
+       "alpha-D-glucopyranose",
+       "beta-D-glucopyranose"
+      ],
+      "identifiers": {
+       "kegg.compound": [
+        "C00267",
+        "C00221"
+       ],
+       "chebi": [
+        "17925",
+        "15903"
+       ],
+       "bigg.metabolite": [
+        "glc__aD",
+        "glc__bD"
+       ],
+       "metacyc.compound": [
+        "ALPHA-GLUCOSE",
+        "GLC-D-BETA"
+       ]
+      }
+     }
+    ],
+    "library": "D-glucose",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00031",
+     "url": "https://www.kegg.jp/entry/C00031"
+    }
+   },
+   {
+    "id": "tpl_ent_002",
+    "name": "D-Glucose 6-phosphate",
+    "short": "Glucose-6P",
+    "formula": "C6H11O9P",
+    "charge": -2,
+    "synonyms": [
+     "D-glucopyranose 6-phosphate",
+     "D-glucose 6-phosphate",
+     "G6P",
+     "Glucose 6-phosphate",
+     "Robison ester",
+     "glucose 6-phosphate",
+     "glucose-6-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00092"
+     ],
+     "chebi": [
+      "14314",
+      "4170",
+      "61548",
+      "CHEBI:14314",
+      "CHEBI:4170",
+      "CHEBI:61548"
+     ],
+     "metanetx.chemical": [
+      "MNXM1364111"
+     ],
+     "bigg.metabolite": [
+      "g6p"
+     ],
+     "hmdb": [
+      "HMDB0001401",
+      "HMDB0001549",
+      "HMDB0006793"
+     ],
+     "metacyc.compound": [
+      "D-GLUCOSE-6-PHOSPHATE",
+      "D-glucopyranose-6-phosphate",
+      "GLC-6-P"
+     ],
+     "seed.compound": [
+      "cpd00079",
+      "cpd26836"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00092; MetaNetX MNXM1364111; BiGG g6p; GEMs MAP library 'D-glucose-6-phosphate'"
+    },
+    "related": [
+     {
+      "note": "anomer of D-glucose 6-phosphate",
+      "names": [
+       "alpha-D-glucose 6-phosphate",
+       "beta-D-glucose 6-phosphate"
+      ],
+      "identifiers": {
+       "kegg.compound": [
+        "C00668",
+        "C01172"
+       ],
+       "bigg.metabolite": [
+        "g6p_A",
+        "g6p_B"
+       ],
+       "metacyc.compound": [
+        "ALPHA-GLC-6-P",
+        "GLC-6-P-BETA"
+       ]
+      }
+     }
+    ],
+    "library": "D-glucose-6-phosphate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00092",
+     "url": "https://www.kegg.jp/entry/C00092"
+    }
+   },
+   {
+    "id": "tpl_ent_003",
+    "name": "D-Fructose 6-phosphate",
+    "short": "Fructose-6P",
+    "formula": "C6H11O9P",
+    "charge": -2,
+    "synonyms": [
+     "D-Fructose 6-phosphoric acid",
+     "D-fructose 6-phosphate",
+     "F6P",
+     "Neuberg ester",
+     "fructose 6-phosphate",
+     "fructose-6-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00085",
+      "C05345"
+     ],
+     "chebi": [
+      "15946",
+      "61527",
+      "CHEBI:15946",
+      "CHEBI:16084",
+      "CHEBI:57634",
+      "CHEBI:61527",
+      "CHEBI:61553"
+     ],
+     "metanetx.chemical": [
+      "MNXM1107898"
+     ],
+     "bigg.metabolite": [
+      "f6p"
+     ],
+     "hmdb": [
+      "HMDB0000124",
+      "HMDB0003971",
+      "HMDB0257695"
+     ],
+     "metacyc.compound": [
+      "CPD-18719",
+      "FRUCTOSE-6P"
+     ],
+     "seed.compound": [
+      "cpd00072",
+      "cpd19035"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00085; MetaNetX MNXM1107898; BiGG f6p; GEMs MAP library 'D-fructose-6-phosphate'"
+    },
+    "related": [
+     {
+      "note": "ring form of D-fructose 6-phosphate",
+      "names": [
+       "beta-D-fructose 6-phosphate",
+       "beta-D-fructofuranose 6-phosphate"
+      ],
+      "identifiers": {
+       "kegg.compound": [
+        "C05345"
+       ],
+       "chebi": [
+        "16084",
+        "57634"
+       ],
+       "bigg.metabolite": [
+        "f6p_B"
+       ]
+      }
+     }
+    ],
+    "library": "D-fructose-6-phosphate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00085",
+     "url": "https://www.kegg.jp/entry/C00085"
+    }
+   },
+   {
+    "id": "tpl_ent_004",
+    "name": "D-Fructose 1,6-bisphosphate",
+    "short": "Fructose-1,6P₂",
+    "formula": "C6H10O12P2",
+    "charge": -4,
+    "synonyms": [
+     "D-fructose 1,6-bisphosphate",
+     "F16BP",
+     "FBP",
+     "fructose 1,6-bisphosphate",
+     "fructose 1,6-diphosphate",
+     "fructose-1,6-bisphosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00354",
+      "C05378"
+     ],
+     "chebi": [
+      "32966",
+      "49299",
+      "CHEBI:16905",
+      "CHEBI:28013",
+      "CHEBI:32966",
+      "CHEBI:37736",
+      "CHEBI:49299"
+     ],
+     "metanetx.chemical": [
+      "MNXM1364229"
+     ],
+     "bigg.metabolite": [
+      "fdp"
+     ],
+     "hmdb": [
+      "HMDB0001058",
+      "HMDB0003973",
+      "HMDB0060444"
+     ],
+     "metacyc.compound": [
+      "FRUCTOSE-16-DIPHOSPHATE"
+     ],
+     "seed.compound": [
+      "cpd00290",
+      "cpd19036"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00354; MetaNetX MNXM1364229; BiGG fdp; GEMs MAP library 'D-fructose-1,6-bisphosphate'"
+    },
+    "related": [
+     {
+      "note": "ring form of D-fructose 1,6-bisphosphate",
+      "names": [
+       "beta-D-fructose 1,6-bisphosphate",
+       "beta-D-fructofuranose 1,6-bisphosphate"
+      ],
+      "identifiers": {
+       "kegg.compound": [
+        "C05378"
+       ],
+       "chebi": [
+        "28013"
+       ],
+       "bigg.metabolite": [
+        "fdp_B"
+       ]
+      }
+     }
+    ],
+    "library": "D-fructose-1,6-bisphosphate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00354",
+     "url": "https://www.kegg.jp/entry/C00354"
+    }
+   },
+   {
+    "id": "tpl_ent_005",
+    "name": "Dihydroxyacetone phosphate",
+    "short": "DHAP",
+    "formula": "C3H5O6P",
+    "charge": -2,
+    "synonyms": [
+     "3-Hydroxy-2-oxopropyl phosphate",
+     "DHAP",
+     "Dihydroxyacetone phosphate",
+     "dihydroxy-acetone phosphate",
+     "dihydroxyacetone phosphate",
+     "glycerone phosphate",
+     "glycerone-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00111"
+     ],
+     "chebi": [
+      "16108",
+      "57642",
+      "CHEBI:16108",
+      "CHEBI:57642"
+     ],
+     "metanetx.chemical": [
+      "MNXM77"
+     ],
+     "bigg.metabolite": [
+      "dhap"
+     ],
+     "hmdb": [
+      "HMDB0001473",
+      "HMDB0011735"
+     ],
+     "metacyc.compound": [
+      "DIHYDROXY-ACETONE-PHOSPHATE"
+     ],
+     "seed.compound": [
+      "cpd00095"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00111; MetaNetX MNXM77; BiGG dhap; GEMs MAP library 'dihydroxyacetone-phosphate'"
+    },
+    "library": "dihydroxyacetone-phosphate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00111",
+     "url": "https://www.kegg.jp/entry/C00111"
+    }
+   },
+   {
+    "id": "tpl_ent_006",
+    "name": "D-Glyceraldehyde 3-phosphate",
+    "short": "GAP",
+    "formula": "C3H5O6P",
+    "charge": -2,
+    "synonyms": [
+     "(2R)-2-Hydroxy-3-(phosphonooxy)-propanal",
+     "D-glyceraldehyde 3-phosphate",
+     "D-glyceraldehyde-3-phosphate",
+     "G3P",
+     "GAP",
+     "Glyceraldehyde 3-phosphate",
+     "glyceraldehyde 3-phosphate",
+     "glyceraldehyde-3-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00118"
+     ],
+     "chebi": [
+      "29052",
+      "59776",
+      "CHEBI:29052",
+      "CHEBI:59776"
+     ],
+     "metanetx.chemical": [
+      "MNXM1372045"
+     ],
+     "hmdb": [
+      "HMDB0001112"
+     ],
+     "metacyc.compound": [
+      "GAP"
+     ],
+     "seed.compound": [
+      "cpd00102"
+     ],
+     "bigg.metabolite": [
+      "g3p"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00118; MetaNetX MNXM1372045; BiGG g3p; GEMs MAP library 'D-glyceraldehyde-3-phosphate'"
+    },
+    "related": [
+     {
+      "note": "stereo-unspecified glyceraldehyde 3-phosphate",
+      "names": [
+       "glyceraldehyde 3-phosphate"
+      ],
+      "identifiers": {
+       "kegg.compound": [
+        "C00661"
+       ]
+      }
+     }
+    ],
+    "library": "D-glyceraldehyde-3-phosphate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00118",
+     "url": "https://www.kegg.jp/entry/C00118"
+    }
+   },
+   {
+    "id": "tpl_ent_007",
+    "name": "3-Phospho-D-glyceroyl phosphate",
+    "short": "1,3-BPG",
+    "formula": "C3H4O10P2",
+    "charge": -4,
+    "synonyms": [
+     "(R)-2-Hydroxy-3-(phosphonooxy)-1-monoanhydride with phosphoric propanoic acid",
+     "1,3-BPG",
+     "1,3-Bisphospho-D-glycerate",
+     "1,3-bisphospho-D-glycerate",
+     "1,3-bisphosphoglycerate",
+     "1,3-diphosphoglycerate",
+     "3-phospho-D-glyceroyl phosphate",
+     "D-Glycerate 1,3-diphosphate",
+     "glycerate 1,3-bisphosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00236"
+     ],
+     "chebi": [
+      "16001",
+      "57604",
+      "CHEBI:16001",
+      "CHEBI:57604"
+     ],
+     "metanetx.chemical": [
+      "MNXM1364464"
+     ],
+     "bigg.metabolite": [
+      "13dpg"
+     ],
+     "hmdb": [
+      "HMDB0001270",
+      "HMDB0062758"
+     ],
+     "metacyc.compound": [
+      "DPG"
+     ],
+     "seed.compound": [
+      "cpd00203"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00236; MetaNetX MNXM1364464; BiGG 13dpg; GEMs MAP library '1,3-bisphosphoglycerate'"
+    },
+    "library": "1,3-bisphosphoglycerate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00236",
+     "url": "https://www.kegg.jp/entry/C00236"
+    }
+   },
+   {
+    "id": "tpl_ent_008",
+    "name": "3-Phospho-D-glycerate",
+    "short": "3-PG",
+    "formula": "C3H4O7P",
+    "charge": -3,
+    "synonyms": [
+     "3-Phospho-(R)-glycerate",
+     "3-Phosphoglycerate",
+     "3-phospho-D-glycerate",
+     "3-phosphoglycerate",
+     "3-phosphoglyceric acid",
+     "3PG",
+     "D-Glycerate 3-phosphate",
+     "D-glycerate 3-phosphate",
+     "glycerate 3-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00197",
+      "C00597"
+     ],
+     "chebi": [
+      "17794",
+      "58272",
+      "CHEBI:17050",
+      "CHEBI:17794",
+      "CHEBI:57998",
+      "CHEBI:58272",
+      "CHEBI:88005"
+     ],
+     "metanetx.chemical": [
+      "MNXM727604"
+     ],
+     "bigg.metabolite": [
+      "3pg"
+     ],
+     "hmdb": [
+      "HMDB0000807",
+      "HMDB0060180"
+     ],
+     "metacyc.compound": [
+      "G3P"
+     ],
+     "seed.compound": [
+      "cpd00169",
+      "cpd30741"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00197; MetaNetX MNXM727604; BiGG 3pg; GEMs MAP library '3-phospho-D-glycerate'"
+    },
+    "library": "3-phospho-D-glycerate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00197",
+     "url": "https://www.kegg.jp/entry/C00197"
+    }
+   },
+   {
+    "id": "tpl_ent_009",
+    "name": "2-Phospho-D-glycerate",
+    "short": "2-PG",
+    "formula": "C3H4O7P",
+    "charge": -3,
+    "synonyms": [
+     "2-Phospho-(R)-glycerate",
+     "2-phospho-D-glycerate",
+     "2-phosphoglycerate",
+     "2-phosphoglyceric acid",
+     "2PG",
+     "D-Glycerate 2-phosphate",
+     "D-glycerate 2-phosphate",
+     "glycerate 2-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00631"
+     ],
+     "chebi": [
+      "17835",
+      "58289",
+      "CHEBI:17835",
+      "CHEBI:24344",
+      "CHEBI:58289",
+      "CHEBI:88350"
+     ],
+     "metanetx.chemical": [
+      "MNXM275"
+     ],
+     "bigg.metabolite": [
+      "2pg"
+     ],
+     "hmdb": [
+      "HMDB0000362",
+      "HMDB0003391",
+      "HMDB0062707",
+      "HMDB0304085"
+     ],
+     "metacyc.compound": [
+      "2-PG"
+     ],
+     "seed.compound": [
+      "cpd00482"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00631; MetaNetX MNXM275; BiGG 2pg; GEMs MAP library '2-phospho-D-glycerate'"
+    },
+    "library": "2-phospho-D-glycerate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00631",
+     "url": "https://www.kegg.jp/entry/C00631"
+    }
+   },
+   {
+    "id": "tpl_ent_010",
+    "name": "Phosphoenolpyruvate",
+    "short": "PEP",
+    "formula": "C3H2O6P",
+    "charge": -3,
+    "synonyms": [
+     "PEP",
+     "Phosphoenolpyruvic acid",
+     "phospho-enol-pyruvate",
+     "phosphoenolpyruvate",
+     "phosphoenolpyruvic acid"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00074"
+     ],
+     "chebi": [
+      "18021",
+      "58702",
+      "CHEBI:18021",
+      "CHEBI:44897",
+      "CHEBI:58702"
+     ],
+     "metanetx.chemical": [
+      "MNXM73"
+     ],
+     "bigg.metabolite": [
+      "pep"
+     ],
+     "hmdb": [
+      "HMDB0000263"
+     ],
+     "metacyc.compound": [
+      "PHOSPHO-ENOL-PYRUVATE"
+     ],
+     "seed.compound": [
+      "cpd00061"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00074; MetaNetX MNXM73; BiGG pep; GEMs MAP library 'phosphoenolpyruvate'"
+    },
+    "library": "phosphoenolpyruvate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00074",
+     "url": "https://www.kegg.jp/entry/C00074"
+    }
+   },
+   {
+    "id": "tpl_ent_011",
+    "name": "Pyruvate",
+    "short": "Pyruvate",
+    "formula": "C3H3O3",
+    "charge": -1,
+    "synonyms": [
+     "2-Oxopropanoate",
+     "2-Oxopropanoic acid",
+     "2-oxopropanoate",
+     "2-oxopropanoic acid",
+     "Pyr",
+     "Pyroracemic acid",
+     "Pyruvic acid",
+     "pyruvate",
+     "pyruvic acid"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00022"
+     ],
+     "chebi": [
+      "15361",
+      "32816",
+      "CHEBI:15361",
+      "CHEBI:177913",
+      "CHEBI:32816"
+     ],
+     "metanetx.chemical": [
+      "MNXM23"
+     ],
+     "bigg.metabolite": [
+      "pyr"
+     ],
+     "hmdb": [
+      "HMDB0000243"
+     ],
+     "metacyc.compound": [
+      "PYRUVATE"
+     ],
+     "seed.compound": [
+      "cpd00020"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00022; MetaNetX MNXM23; BiGG pyr; GEMs MAP library 'pyruvate'"
+    },
+    "library": "pyruvate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00022",
+     "url": "https://www.kegg.jp/entry/C00022"
+    }
+   },
+   {
+    "id": "tpl_ent_012",
+    "name": "Acetyl-CoA",
+    "short": "Acetyl-CoA",
+    "formula": "C23H34N7O17P3S",
+    "charge": -4,
+    "synonyms": [
+     "AcCoA",
+     "Acetyl coenzyme A",
+     "acetyl coenzyme A",
+     "acetyl-CoA",
+     "acetyl-coenzyme A"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00024"
+     ],
+     "chebi": [
+      "15351",
+      "57288",
+      "CHEBI:15351",
+      "CHEBI:57288"
+     ],
+     "metanetx.chemical": [
+      "MNXM1104266"
+     ],
+     "bigg.metabolite": [
+      "accoa"
+     ],
+     "hmdb": [
+      "HMDB0001206"
+     ],
+     "metacyc.compound": [
+      "ACETYL-COA"
+     ],
+     "seed.compound": [
+      "cpd00022"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00024; MetaNetX MNXM1104266; BiGG accoa; GEMs MAP library 'acetyl-CoA'"
+    },
+    "library": "acetyl-CoA",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00024",
+     "url": "https://www.kegg.jp/entry/C00024"
+    }
+   },
+   {
+    "id": "tpl_ent_013",
+    "name": "Oxaloacetate",
+    "short": "Oxaloacetate",
+    "formula": "C4H2O5",
+    "charge": -2,
+    "synonyms": [
+     "2-Oxobutanedioic acid",
+     "2-Oxosuccinic acid",
+     "2-oxosuccinate",
+     "OAA",
+     "Oxalacetic acid",
+     "Oxaloacetic acid",
+     "keto-Oxaloacetate",
+     "oxalacetate",
+     "oxaloacetate",
+     "oxaloacetic acid"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00036"
+     ],
+     "chebi": [
+      "16452",
+      "30744",
+      "CHEBI:16452",
+      "CHEBI:30744"
+     ],
+     "metanetx.chemical": [
+      "MNXM46"
+     ],
+     "bigg.metabolite": [
+      "oaa"
+     ],
+     "hmdb": [
+      "HMDB0000223"
+     ],
+     "metacyc.compound": [
+      "OXALACETIC_ACID"
+     ],
+     "seed.compound": [
+      "cpd00032"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00036; MetaNetX MNXM46; BiGG oaa; GEMs MAP library 'oxaloacetate'"
+    },
+    "library": "oxaloacetate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00036",
+     "url": "https://www.kegg.jp/entry/C00036"
+    }
+   },
+   {
+    "id": "tpl_ent_014",
+    "name": "L-Lactate",
+    "short": "L-Lactate",
+    "formula": "C3H5O3",
+    "charge": -1,
+    "synonyms": [
+     "(S)-lactate",
+     "(S)-lactic acid",
+     "L-Lactate",
+     "L-Lactic acid",
+     "L-lac",
+     "L-lactate",
+     "L-lactic acid"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00186"
+     ],
+     "chebi": [
+      "16651",
+      "422",
+      "CHEBI:16651",
+      "CHEBI:422"
+     ],
+     "metanetx.chemical": [
+      "MNXM1371363"
+     ],
+     "bigg.metabolite": [
+      "lac_L",
+      "lac__L"
+     ],
+     "hmdb": [
+      "HMDB0000190",
+      "HMDB0003328",
+      "HMDB0062492"
+     ],
+     "metacyc.compound": [
+      "CPD-24844",
+      "L-LACTATE"
+     ],
+     "seed.compound": [
+      "cpd00159"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00186; MetaNetX MNXM1371363; BiGG lac__L; GEMs MAP library 'L-lactate'"
+    },
+    "library": "L-lactate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00186",
+     "url": "https://www.kegg.jp/entry/C00186"
+    }
+   },
+   {
+    "id": "tpl_ent_015",
+    "name": "Acetaldehyde",
+    "short": "Acetaldehyde",
+    "formula": "C2H4O",
+    "charge": 0,
+    "synonyms": [
+     "Ethanal"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00084"
+     ],
+     "chebi": [
+      "CHEBI:15343"
+     ],
+     "metanetx.chemical": [
+      "MNXM75"
+     ],
+     "bigg.metabolite": [
+      "acald"
+     ],
+     "hmdb": [
+      "HMDB0000990"
+     ],
+     "metacyc.compound": [
+      "ACETALD"
+     ],
+     "seed.compound": [
+      "cpd00071"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00084; MetaNetX MNXM75; BiGG acald",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00084",
+     "url": "https://www.kegg.jp/entry/C00084"
+    }
+   },
+   {
+    "id": "tpl_ent_016",
+    "name": "Ethanol",
+    "short": "Ethanol",
+    "formula": "C2H6O",
+    "charge": 0,
+    "synonyms": [
+     "Ethyl alcohol",
+     "Methylcarbinol"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00469"
+     ],
+     "chebi": [
+      "CHEBI:16236",
+      "CHEBI:193043"
+     ],
+     "metanetx.chemical": [
+      "MNXM1108092"
+     ],
+     "bigg.metabolite": [
+      "etoh"
+     ],
+     "hmdb": [
+      "HMDB0000108"
+     ],
+     "metacyc.compound": [
+      "ETOH"
+     ],
+     "seed.compound": [
+      "cpd00363"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00469; MetaNetX MNXM1108092; BiGG etoh",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00469",
+     "url": "https://www.kegg.jp/entry/C00469"
+    }
+   },
+   {
+    "id": "tpl_ent_017",
+    "name": "Acetate",
+    "short": "Acetate",
+    "formula": "C2H3O2",
+    "charge": -1,
+    "synonyms": [
+     "Acetic acid",
+     "Ethanoic acid"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00033"
+     ],
+     "chebi": [
+      "CHEBI:15366",
+      "CHEBI:193049",
+      "CHEBI:30089"
+     ],
+     "metanetx.chemical": [
+      "MNXM26"
+     ],
+     "bigg.metabolite": [
+      "ac"
+     ],
+     "hmdb": [
+      "HMDB0000042"
+     ],
+     "metacyc.compound": [
+      "ACET",
+      "CPD-24335"
+     ],
+     "seed.compound": [
+      "cpd00029"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00033; MetaNetX MNXM26; BiGG ac",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00033",
+     "url": "https://www.kegg.jp/entry/C00033"
+    }
+   },
+   {
+    "id": "tpl_ent_018",
+    "name": "D-Glucose 1-phosphate",
+    "short": "Glucose-1P",
+    "formula": "C6H11O9P",
+    "charge": -2,
+    "synonyms": [
+     "Cori ester",
+     "D-Glucose alpha-1-phosphate",
+     "alpha-D-Glucose 1-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00103"
+     ],
+     "chebi": [
+      "CHEBI:29042",
+      "CHEBI:58601"
+     ],
+     "metanetx.chemical": [
+      "MNXM1364214"
+     ],
+     "hmdb": [
+      "HMDB0001306",
+      "HMDB0001586"
+     ],
+     "metacyc.compound": [
+      "GLC-1-P"
+     ],
+     "seed.compound": [
+      "cpd00089"
+     ],
+     "bigg.metabolite": [
+      "g1p"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00103; MetaNetX MNXM1364214; BiGG g1p",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00103",
+     "url": "https://www.kegg.jp/entry/C00103"
+    }
+   },
+   {
+    "id": "tpl_ent_019",
+    "name": "2,3-Bisphospho-D-glycerate",
+    "short": "2,3-BPG",
+    "formula": "C3H3O10P2",
+    "charge": -5,
+    "synonyms": [
+     "2,3-Diphospho-D-glycerate",
+     "D-Greenwald ester",
+     "DPG"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C01159",
+      "C03339"
+     ],
+     "chebi": [
+      "CHEBI:17720",
+      "CHEBI:19324",
+      "CHEBI:28907",
+      "CHEBI:58248"
+     ],
+     "metanetx.chemical": [
+      "MNXM892"
+     ],
+     "bigg.metabolite": [
+      "23dpg"
+     ],
+     "hmdb": [
+      "HMDB0001294"
+     ],
+     "metacyc.compound": [
+      "23-DIPHOSPHOGLYCERATE"
+     ],
+     "seed.compound": [
+      "cpd00853",
+      "cpd02119"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C01159; MetaNetX MNXM892; BiGG 23dpg",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C01159",
+     "url": "https://www.kegg.jp/entry/C01159"
+    }
+   },
+   {
+    "id": "tpl_ent_020",
+    "name": "Arbutin",
+    "short": "Arbutin",
+    "formula": "C12H16O7",
+    "charge": 0,
+    "synonyms": [
+     "Hydroquinone-O-beta-D-glucopyranoside",
+     "Ursin",
+     "Uvasol"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C06186"
+     ],
+     "chebi": [
+      "CHEBI:18305"
+     ],
+     "metanetx.chemical": [
+      "MNXM1371473"
+     ],
+     "bigg.metabolite": [
+      "arbt"
+     ],
+     "hmdb": [
+      "HMDB0029943"
+     ],
+     "metacyc.compound": [
+      "HYDROQUINONE-O-BETA-D-GLUCOPYRANOSIDE"
+     ],
+     "seed.compound": [
+      "cpd03696"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C06186; MetaNetX MNXM1371473; BiGG arbt",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C06186",
+     "url": "https://www.kegg.jp/entry/C06186"
+    }
+   },
+   {
+    "id": "tpl_ent_021",
+    "name": "Arbutin 6-phosphate",
+    "short": "Arbutin-6P",
+    "formula": "C12H15O10P",
+    "charge": -2,
+    "synonyms": [
+     "Arbutin-6P"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C06187"
+     ],
+     "chebi": [
+      "CHEBI:2807",
+      "CHEBI:60929"
+     ],
+     "metanetx.chemical": [
+      "MNXM2806"
+     ],
+     "bigg.metabolite": [
+      "arbt6p"
+     ],
+     "metacyc.compound": [
+      "CPD-1162"
+     ],
+     "seed.compound": [
+      "cpd03697"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C06187; MetaNetX MNXM2806; BiGG arbt6p",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C06187",
+     "url": "https://www.kegg.jp/entry/C06187"
+    }
+   },
+   {
+    "id": "tpl_ent_022",
+    "name": "Salicin",
+    "short": "Salicin",
+    "formula": "C13H18O7",
+    "charge": 0,
+    "synonyms": [
+     "Salicoside"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C01451"
+     ],
+     "chebi": [
+      "CHEBI:17814"
+     ],
+     "metanetx.chemical": [
+      "MNXM2561"
+     ],
+     "bigg.metabolite": [
+      "salcn"
+     ],
+     "hmdb": [
+      "HMDB0003546"
+     ],
+     "metacyc.compound": [
+      "CPD-1142"
+     ],
+     "seed.compound": [
+      "cpd01030"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C01451; MetaNetX MNXM2561; BiGG salcn",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C01451",
+     "url": "https://www.kegg.jp/entry/C01451"
+    }
+   },
+   {
+    "id": "tpl_ent_023",
+    "name": "Salicin 6-phosphate",
+    "short": "Salicin-6P",
+    "formula": "C13H17O10P",
+    "charge": -2,
+    "synonyms": [
+     "Salicin-6P"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C06188"
+     ],
+     "chebi": [
+      "CHEBI:64794",
+      "CHEBI:9003"
+     ],
+     "metanetx.chemical": [
+      "MNXM3356"
+     ],
+     "bigg.metabolite": [
+      "salcn6p"
+     ],
+     "metacyc.compound": [
+      "CPD-1181"
+     ],
+     "seed.compound": [
+      "cpd03698"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C06188; MetaNetX MNXM3356; BiGG salcn6p",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C06188",
+     "url": "https://www.kegg.jp/entry/C06188"
+    }
+   },
+   {
+    "id": "tpl_ent_024",
+    "name": "ATP",
+    "short": "ATP",
+    "formula": "C10H12N5O13P3",
+    "charge": -4,
+    "synonyms": [
+     "Adenosine 5'-triphosphate",
+     "adenosine 5'-triphosphate",
+     "adenosine triphosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00002"
+     ],
+     "chebi": [
+      "15422",
+      "30616",
+      "CHEBI:15422",
+      "CHEBI:237958",
+      "CHEBI:30616",
+      "CHEBI:57299"
+     ],
+     "metanetx.chemical": [
+      "MNXM3"
+     ],
+     "bigg.metabolite": [
+      "atp"
+     ],
+     "hmdb": [
+      "HMDB0000538"
+     ],
+     "metacyc.compound": [
+      "ATP"
+     ],
+     "seed.compound": [
+      "cpd00002"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00002; MetaNetX MNXM3; BiGG atp; GEMs MAP library 'ATP'"
+    },
+    "library": "ATP",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00002",
+     "url": "https://www.kegg.jp/entry/C00002"
+    }
+   },
+   {
+    "id": "tpl_ent_025",
+    "name": "ADP",
+    "short": "ADP",
+    "formula": "C10H12N5O10P2",
+    "charge": -3,
+    "synonyms": [
+     "Adenosine 5'-diphosphate",
+     "adenosine 5'-diphosphate",
+     "adenosine diphosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00008"
+     ],
+     "chebi": [
+      "16761",
+      "456216",
+      "CHEBI:16761",
+      "CHEBI:456216",
+      "CHEBI:87518"
+     ],
+     "metanetx.chemical": [
+      "MNXM40333"
+     ],
+     "bigg.metabolite": [
+      "adp"
+     ],
+     "hmdb": [
+      "HMDB0001341"
+     ],
+     "metacyc.compound": [
+      "ADP",
+      "ADP-GROUP"
+     ],
+     "seed.compound": [
+      "cpd00008",
+      "cpd22244"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00008; MetaNetX MNXM40333; BiGG adp; GEMs MAP library 'ADP'"
+    },
+    "library": "ADP",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00008",
+     "url": "https://www.kegg.jp/entry/C00008"
+    }
+   },
+   {
+    "id": "tpl_ent_026",
+    "name": "AMP",
+    "short": "AMP",
+    "formula": "C10H12N5O7P",
+    "charge": -2,
+    "synonyms": [
+     "5'-AMP",
+     "5'-Adenosine monophosphate",
+     "5'-Adenylic acid",
+     "Adenosine 5'-monophosphate",
+     "Adenosine 5'-phosphate",
+     "Adenylate",
+     "Adenylic acid"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00020"
+     ],
+     "chebi": [
+      "CHEBI:16027",
+      "CHEBI:40721",
+      "CHEBI:456215"
+     ],
+     "metanetx.chemical": [
+      "MNXM728294"
+     ],
+     "bigg.metabolite": [
+      "amp"
+     ],
+     "hmdb": [
+      "HMDB0000045"
+     ],
+     "metacyc.compound": [
+      "AMP",
+      "AMP-GROUP"
+     ],
+     "seed.compound": [
+      "cpd00018"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00020; MetaNetX MNXM728294; BiGG amp",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00020",
+     "url": "https://www.kegg.jp/entry/C00020"
+    }
+   },
+   {
+    "id": "tpl_ent_027",
+    "name": "NAD+",
+    "short": "NAD⁺",
+    "formula": "C21H26N7O14P2",
+    "charge": -1,
+    "synonyms": [
+     "DPN",
+     "Diphosphopyridine nucleotide",
+     "NAD",
+     "Nadide",
+     "Nicotinamide adenine dinucleotide",
+     "beta-NAD+",
+     "nicotinamide adenine dinucleotide",
+     "oxidized nicotinamide adenine dinucleotide"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00003"
+     ],
+     "chebi": [
+      "15846",
+      "57540",
+      "CHEBI:15846",
+      "CHEBI:44215",
+      "CHEBI:57540"
+     ],
+     "metanetx.chemical": [
+      "MNXM8"
+     ],
+     "bigg.metabolite": [
+      "nad"
+     ],
+     "hmdb": [
+      "HMDB0000902"
+     ],
+     "metacyc.compound": [
+      "NAD"
+     ],
+     "seed.compound": [
+      "cpd00003"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00003; MetaNetX MNXM8; BiGG nad; GEMs MAP library 'NAD+'"
+    },
+    "library": "NAD+",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00003",
+     "url": "https://www.kegg.jp/entry/C00003"
+    }
+   },
+   {
+    "id": "tpl_ent_028",
+    "name": "NADH",
+    "short": "NADH",
+    "formula": "C21H27N7O14P2",
+    "charge": -2,
+    "synonyms": [
+     "DPNH",
+     "Reduced nicotinamide adenine dinucleotide",
+     "reduced nicotinamide adenine dinucleotide"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00004"
+     ],
+     "chebi": [
+      "16908",
+      "57945",
+      "CHEBI:16908",
+      "CHEBI:57945"
+     ],
+     "metanetx.chemical": [
+      "MNXM10"
+     ],
+     "bigg.metabolite": [
+      "nadh"
+     ],
+     "hmdb": [
+      "HMDB0001487"
+     ],
+     "metacyc.compound": [
+      "NADH"
+     ],
+     "seed.compound": [
+      "cpd00004"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00004; MetaNetX MNXM10; BiGG nadh; GEMs MAP library 'NADH'"
+    },
+    "library": "NADH",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00004",
+     "url": "https://www.kegg.jp/entry/C00004"
+    }
+   },
+   {
+    "id": "tpl_ent_029",
+    "name": "NADP+",
+    "short": "NADP⁺",
+    "formula": "C21H25N7O17P3",
+    "charge": -3,
+    "synonyms": [
+     "NADP",
+     "Nicotinamide adenine dinucleotide phosphate",
+     "TPN",
+     "Triphosphopyridine nucleotide",
+     "beta-NADP+",
+     "beta-Nicotinamide adenine dinucleotide phosphate",
+     "nicotinamide adenine dinucleotide phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00006"
+     ],
+     "chebi": [
+      "18009",
+      "58349",
+      "CHEBI:18009",
+      "CHEBI:25523",
+      "CHEBI:44409",
+      "CHEBI:58349"
+     ],
+     "metanetx.chemical": [
+      "MNXM5"
+     ],
+     "bigg.metabolite": [
+      "nadp"
+     ],
+     "hmdb": [
+      "HMDB0000217",
+      "HMDB0304435"
+     ],
+     "metacyc.compound": [
+      "NADP"
+     ],
+     "seed.compound": [
+      "cpd00006"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00006; MetaNetX MNXM5; BiGG nadp; GEMs MAP library 'NADP+'"
+    },
+    "library": "NADP+",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00006",
+     "url": "https://www.kegg.jp/entry/C00006"
+    }
+   },
+   {
+    "id": "tpl_ent_030",
+    "name": "NADPH",
+    "short": "NADPH",
+    "formula": "C21H26N7O17P3",
+    "charge": -4,
+    "synonyms": [
+     "Reduced nicotinamide adenine dinucleotide phosphate",
+     "TPNH",
+     "reduced nicotinamide adenine dinucleotide phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00005"
+     ],
+     "chebi": [
+      "16474",
+      "57783",
+      "CHEBI:16474",
+      "CHEBI:57783"
+     ],
+     "metanetx.chemical": [
+      "MNXM738702"
+     ],
+     "bigg.metabolite": [
+      "nadph"
+     ],
+     "hmdb": [
+      "HMDB0000221",
+      "HMDB0000799",
+      "HMDB0006341"
+     ],
+     "metacyc.compound": [
+      "NADPH"
+     ],
+     "seed.compound": [
+      "cpd00005"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00005; MetaNetX MNXM738702; BiGG nadph; GEMs MAP library 'NADPH'"
+    },
+    "library": "NADPH",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00005",
+     "url": "https://www.kegg.jp/entry/C00005"
+    }
+   },
+   {
+    "id": "tpl_ent_031",
+    "name": "Orthophosphate",
+    "short": "Pᵢ",
+    "formula": "HO4P",
+    "charge": -2,
+    "synonyms": [
+     "Orthophosphoric acid",
+     "Phosphate",
+     "Phosphoric acid",
+     "Pi",
+     "inorganic phosphate",
+     "orthophosphate",
+     "phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00009"
+     ],
+     "chebi": [
+      "18367",
+      "26078",
+      "CHEBI:18367",
+      "CHEBI:26020",
+      "CHEBI:26078",
+      "CHEBI:35780",
+      "CHEBI:39745",
+      "CHEBI:43474"
+     ],
+     "metanetx.chemical": [
+      "MNXM9"
+     ],
+     "bigg.metabolite": [
+      "pi"
+     ],
+     "hmdb": [
+      "HMDB0000973",
+      "HMDB0001429",
+      "HMDB0002105",
+      "HMDB0002142",
+      "HMDB0005947"
+     ],
+     "seed.compound": [
+      "cpd00009",
+      "cpd27787"
+     ],
+     "metacyc.compound": [
+      "Pi"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00009; MetaNetX MNXM9; BiGG pi; GEMs MAP library 'phosphate'"
+    },
+    "library": "phosphate",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00009",
+     "url": "https://www.kegg.jp/entry/C00009"
+    }
+   },
+   {
+    "id": "tpl_ent_032",
+    "name": "Diphosphate",
+    "short": "PPᵢ",
+    "formula": "HO7P2",
+    "charge": -3,
+    "synonyms": [
+     "Diphosphoric acid",
+     "PPi",
+     "Pyrophosphate",
+     "Pyrophosphoric acid"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00013"
+     ],
+     "chebi": [
+      "CHEBI:18361",
+      "CHEBI:29888",
+      "CHEBI:33017",
+      "CHEBI:33019",
+      "CHEBI:45212"
+     ],
+     "metanetx.chemical": [
+      "MNXM11"
+     ],
+     "bigg.metabolite": [
+      "ppi"
+     ],
+     "hmdb": [
+      "HMDB0000250",
+      "HMDB0304340"
+     ],
+     "metacyc.compound": [
+      "PPI",
+      "PYROPHOSPHATE-GROUP"
+     ],
+     "seed.compound": [
+      "cpd00012",
+      "cpd27828"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00013; MetaNetX MNXM11; BiGG ppi",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00013",
+     "url": "https://www.kegg.jp/entry/C00013"
+    }
+   },
+   {
+    "id": "tpl_ent_033",
+    "name": "H2O",
+    "short": "H2O",
+    "formula": "H2O",
+    "charge": 0,
+    "synonyms": [
+     "Water",
+     "water"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00001"
+     ],
+     "chebi": [
+      "15377",
+      "CHEBI:15377",
+      "CHEBI:29374",
+      "CHEBI:29375",
+      "CHEBI:33806",
+      "CHEBI:33811",
+      "CHEBI:33813",
+      "CHEBI:41981"
+     ],
+     "metanetx.chemical": [
+      "WATER"
+     ],
+     "bigg.metabolite": [
+      "h2o"
+     ],
+     "hmdb": [
+      "HMDB0002111"
+     ],
+     "metacyc.compound": [
+      "WATER"
+     ],
+     "seed.compound": [
+      "cpd00001"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00001; MetaNetX WATER; BiGG h2o; GEMs MAP library 'H2O'"
+    },
+    "library": "H2O",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00001",
+     "url": "https://www.kegg.jp/entry/C00001"
+    }
+   },
+   {
+    "id": "tpl_ent_034",
+    "name": "CO2",
+    "short": "CO₂",
+    "formula": "CO2",
+    "charge": 0,
+    "synonyms": [
+     "Carbon dioxide",
+     "carbon dioxide"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00011"
+     ],
+     "chebi": [
+      "16526",
+      "CHEBI:139538",
+      "CHEBI:16526"
+     ],
+     "metanetx.chemical": [
+      "MNXM13"
+     ],
+     "bigg.metabolite": [
+      "co2"
+     ],
+     "hmdb": [
+      "HMDB0001967"
+     ],
+     "metacyc.compound": [
+      "CARBON-DIOXIDE"
+     ],
+     "seed.compound": [
+      "cpd00011"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00011; MetaNetX MNXM13; BiGG co2; GEMs MAP library 'CO2'"
+    },
+    "library": "CO2",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00011",
+     "url": "https://www.kegg.jp/entry/C00011"
+    }
+   },
+   {
+    "id": "tpl_ent_035",
+    "name": "Coenzyme A",
+    "short": "CoA",
+    "formula": "C21H32N7O16P3S",
+    "charge": -4,
+    "synonyms": [
+     "CoA-SH",
+     "Coenzyme A",
+     "coenzyme A"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00010"
+     ],
+     "chebi": [
+      "15346",
+      "57287",
+      "CHEBI:15346",
+      "CHEBI:57287"
+     ],
+     "metanetx.chemical": [
+      "MNXM727276"
+     ],
+     "bigg.metabolite": [
+      "coa"
+     ],
+     "hmdb": [
+      "HMDB0001423",
+      "HMDB0062184"
+     ],
+     "metacyc.compound": [
+      "CO-A",
+      "COA-GROUP"
+     ],
+     "seed.compound": [
+      "cpd00010"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG C00010; MetaNetX MNXM727276; BiGG coa; GEMs MAP library 'CoA'"
+    },
+    "library": "CoA",
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00010",
+     "url": "https://www.kegg.jp/entry/C00010"
+    }
+   },
+   {
+    "id": "tpl_ent_036",
+    "name": "Hydroquinone",
+    "short": "Hydroquinone",
+    "formula": "C6H6O2",
+    "charge": 0,
+    "synonyms": [
+     "1,4-Benzenediol",
+     "1,4-Dihydroxybenzene",
+     "4-Hydroxyphenol",
+     "Benzene-1,4-diol",
+     "Quinol",
+     "p-Benzenediol"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00530"
+     ],
+     "chebi": [
+      "CHEBI:17594"
+     ],
+     "metanetx.chemical": [
+      "MNXM376"
+     ],
+     "bigg.metabolite": [
+      "hqn"
+     ],
+     "hmdb": [
+      "HMDB0002434"
+     ],
+     "metacyc.compound": [
+      "HYDROQUINONE"
+     ],
+     "seed.compound": [
+      "cpd00415"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00530; MetaNetX MNXM376; BiGG hqn",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00530",
+     "url": "https://www.kegg.jp/entry/C00530"
+    }
+   },
+   {
+    "id": "tpl_ent_037",
+    "name": "Salicyl alcohol",
+    "short": "Salicyl alcohol",
+    "formula": "C7H8O2",
+    "charge": 0,
+    "synonyms": [
+     "2-(Hydroxymethyl)phenol",
+     "2-Hydroxybenzyl alcohol",
+     "Saligenin"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C02323"
+     ],
+     "chebi": [
+      "CHEBI:16464"
+     ],
+     "metanetx.chemical": [
+      "MNXM1855"
+     ],
+     "bigg.metabolite": [
+      "2hxmp"
+     ],
+     "hmdb": [
+      "HMDB0059709"
+     ],
+     "metacyc.compound": [
+      "CPD-173"
+     ],
+     "seed.compound": [
+      "cpd01553"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C02323; MetaNetX MNXM1855; BiGG 2hxmp",
+     "confidence": "high"
+    },
+    "provenance": {
+     "source": "KEGG",
+     "id": "C02323",
+     "url": "https://www.kegg.jp/entry/C02323"
+    }
+   },
+   {
+    "id": "tpl_ent_038",
+    "name": "Protein N(pi)-phospho-L-histidine",
+    "short": "P(π)-His-protein",
+    "formula": "C7H9N4O5P*2",
+    "charge": 0,
+    "synonyms": [
+     "Protein N-pros-phospho-L-histidine",
+     "Protein N-pros-phosphohistidine",
+     "Protein Npi-phospho-L-histidine"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C04261"
+     ],
+     "metanetx.chemical": [
+      "MNXM90093"
+     ],
+     "seed.compound": [
+      "cpd12508"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C04261; MetaNetX MNXM90093",
+     "confidence": "probable"
+    },
+    "generic": true,
+    "provenance": {
+     "source": "KEGG",
+     "id": "C04261",
+     "url": "https://www.kegg.jp/entry/C04261"
+    }
+   },
+   {
+    "id": "tpl_ent_039",
+    "name": "Protein N(tau)-phospho-L-histidine",
+    "short": "P(τ)-His-protein",
+    "formula": "C7H9N4O5P*2",
+    "charge": 0,
+    "synonyms": [
+     "Protein N-tele-phospho-L-histidine",
+     "Protein N-tele-phosphohistidine"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C04262"
+     ],
+     "metanetx.chemical": [
+      "MNXM93866"
+     ],
+     "seed.compound": [
+      "cpd12509"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C04262; MetaNetX MNXM93866",
+     "confidence": "probable"
+    },
+    "generic": true,
+    "provenance": {
+     "source": "KEGG",
+     "id": "C04262",
+     "url": "https://www.kegg.jp/entry/C04262"
+    }
+   },
+   {
+    "id": "tpl_ent_040",
+    "name": "Protein histidine",
+    "short": "His-protein",
+    "formula": "C7H8N4O2*2",
+    "charge": 0,
+    "synonyms": [
+     "Protein L-histidine",
+     "[Protein]-L-histidine"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00615"
+     ],
+     "metanetx.chemical": [
+      "MNXM3704"
+     ],
+     "metacyc.compound": [
+      "Protein-Histidines"
+     ],
+     "seed.compound": [
+      "cpd11712"
+     ]
+    },
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "note": "KEGG C00615; MetaNetX MNXM3704",
+     "confidence": "probable"
+    },
+    "generic": true,
+    "provenance": {
+     "source": "KEGG",
+     "id": "C00615",
+     "url": "https://www.kegg.jp/entry/C00615"
+    }
+   }
+  ],
+  "metabolites": [
+   {
+    "id": "tpl_met_001",
+    "entity": "tpl_ent_001",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_002",
+    "entity": "tpl_ent_002",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_003",
+    "entity": "tpl_ent_003",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_004",
+    "entity": "tpl_ent_004",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_005",
+    "entity": "tpl_ent_005",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_006",
+    "entity": "tpl_ent_006",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_007",
+    "entity": "tpl_ent_007",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_008",
+    "entity": "tpl_ent_008",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_009",
+    "entity": "tpl_ent_009",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_010",
+    "entity": "tpl_ent_010",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_011",
+    "entity": "tpl_ent_011",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_012",
+    "entity": "tpl_ent_012",
+    "compartment": null,
+    "level": "required"
+   },
+   {
+    "id": "tpl_met_013",
+    "entity": "tpl_ent_013",
+    "compartment": null,
+    "level": "recommended"
+   },
+   {
+    "id": "tpl_met_014",
+    "entity": "tpl_ent_014",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_015",
+    "entity": "tpl_ent_015",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_016",
+    "entity": "tpl_ent_016",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_017",
+    "entity": "tpl_ent_017",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_018",
+    "entity": "tpl_ent_018",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_019",
+    "entity": "tpl_ent_019",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_020",
+    "entity": "tpl_ent_020",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_021",
+    "entity": "tpl_ent_021",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_022",
+    "entity": "tpl_ent_022",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_023",
+    "entity": "tpl_ent_023",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_024",
+    "entity": "tpl_ent_024",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_025",
+    "entity": "tpl_ent_025",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_026",
+    "entity": "tpl_ent_026",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_027",
+    "entity": "tpl_ent_027",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_028",
+    "entity": "tpl_ent_028",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_029",
+    "entity": "tpl_ent_029",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_030",
+    "entity": "tpl_ent_030",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_031",
+    "entity": "tpl_ent_031",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_032",
+    "entity": "tpl_ent_032",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_033",
+    "entity": "tpl_ent_033",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_034",
+    "entity": "tpl_ent_034",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_035",
+    "entity": "tpl_ent_035",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_036",
+    "entity": "tpl_ent_036",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_037",
+    "entity": "tpl_ent_037",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_038",
+    "entity": "tpl_ent_038",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_039",
+    "entity": "tpl_ent_039",
+    "compartment": null,
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_040",
+    "entity": "tpl_ent_040",
+    "compartment": null,
+    "level": "optional"
+   }
+  ],
+  "reactions": [
+   {
+    "id": "tpl_rxn_001",
+    "name": "HK",
+    "canonicalName": "hexokinase / glucokinase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_001",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_025",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "2.7.1.1",
+     "2.7.1.2"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00299"
+     ],
+     "metanetx.reaction": [
+      "MNXR198694"
+     ],
+     "seed.reaction": [
+      "rxn00216",
+      "rxn34232"
+     ],
+     "metacyc.reaction": [
+      "GLUCOKIN-RXN"
+     ],
+     "rhea": [
+      "17825",
+      "17826",
+      "17827",
+      "17828"
+     ],
+     "bigg.reaction": [
+      "HEX1"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R00299 (represents map reactions R01786, R01600); MetaNetX MNXR198694; KEGG ID confirmed in the built-in template ('HEX')"
+    },
+    "hints": [
+     "HEX1",
+     "GLCpts",
+     "HXK"
+    ],
+    "variants": [
+     {
+      "name": "ADP-dependent glucokinase (α-D-glucose)",
+      "ec": [
+       "2.7.1.147"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R09085"
+       ]
+      },
+      "equation": "alpha-D-Glucose + ADP <=> alpha-D-Glucose 6-phosphate + AMP"
+     },
+     {
+      "name": "ADP-dependent glucokinase (β-D-glucose)",
+      "ec": [
+       "2.7.1.147"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R09086"
+       ]
+      },
+      "equation": "beta-D-Glucose + ADP <=> beta-D-Glucose 6-phosphate + AMP"
+     },
+     {
+      "name": "polyphosphate glucokinase (α-D-glucose)",
+      "ec": [
+       "2.7.1.63"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R02189"
+       ]
+      },
+      "equation": "Polyphosphate + alpha-D-Glucose <=> Polyphosphate + alpha-D-Glucose 6-phosphate"
+     },
+     {
+      "name": "polyphosphate glucokinase (β-D-glucose)",
+      "ec": [
+       "2.7.1.63"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R02187"
+       ]
+      },
+      "equation": "Polyphosphate + beta-D-Glucose <=> Polyphosphate + beta-D-Glucose 6-phosphate"
+     },
+     {
+      "name": "glucose PTS (EIIB^Glc)",
+      "ec": [
+       "2.7.1.199"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R02738"
+       ]
+      },
+      "equation": "Protein N(pi)-phospho-L-histidine + D-Glucose <=> Protein histidine + alpha-D-Glucose 6-phosphate",
+      "note": "group translocation; in GEMs a transport reaction from extracellular glucose with PEP → pyruvate"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00299",
+      "url": "https://www.kegg.jp/entry/R00299"
+     },
+     {
+      "source": "KEGG",
+      "id": "R01600",
+      "url": "https://www.kegg.jp/entry/R01600"
+     },
+     {
+      "source": "KEGG",
+      "id": "R01786",
+      "url": "https://www.kegg.jp/entry/R01786"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_002",
+    "name": "G6Pase",
+    "canonicalName": "glucose-6-phosphatase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_001",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_031",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "3.1.3.9",
+     "3.1.3.58"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00303"
+     ],
+     "metanetx.reaction": [
+      "MNXR198838"
+     ],
+     "seed.reaction": [
+      "rxn00220"
+     ],
+     "metacyc.reaction": [
+      "RXN66-526"
+     ],
+     "rhea": [
+      "16689",
+      "16690",
+      "16691",
+      "16692"
+     ],
+     "bigg.reaction": [
+      "G6PP"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00303 (represents map reactions R01788); MetaNetX MNXR198838"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00303",
+      "url": "https://www.kegg.jp/entry/R00303"
+     },
+     {
+      "source": "KEGG",
+      "id": "R01788",
+      "url": "https://www.kegg.jp/entry/R01788"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_003",
+    "name": "PGI",
+    "canonicalName": "glucose-6-phosphate isomerase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_003",
+      "coefficient": 1.0,
+      "main": true
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "5.3.1.9"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00771"
+     ],
+     "metanetx.reaction": [
+      "MNXR197738"
+     ],
+     "seed.reaction": [
+      "rxn00558",
+      "rxn33838",
+      "rxn34259",
+      "rxn37760"
+     ],
+     "bigg.reaction": [
+      "PGI"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R00771 (represents map reactions R13199); MetaNetX MNXR197738; BiGG links PGI1, PGI1c to this KEGG reaction but the participants differ — not used; KEGG ID confirmed in the built-in template ('PGI')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00771",
+      "url": "https://www.kegg.jp/entry/R00771"
+     },
+     {
+      "source": "KEGG",
+      "id": "R13199",
+      "url": "https://www.kegg.jp/entry/R13199"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_004",
+    "name": "PFK",
+    "canonicalName": "6-phosphofructokinase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_003",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_025",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "2.7.1.11"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00756"
+     ],
+     "metanetx.reaction": [
+      "MNXR145952"
+     ],
+     "seed.reaction": [
+      "rxn00545",
+      "rxn15493",
+      "rxn19015",
+      "rxn33754",
+      "rxn34257",
+      "rxn38002",
+      "rxn38003",
+      "rxn38004"
+     ],
+     "metacyc.reaction": [
+      "6PFRUCTPHOS-RXN"
+     ],
+     "rhea": [
+      "16109",
+      "16110",
+      "16111",
+      "16112"
+     ],
+     "bigg.reaction": [
+      "PFK"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R00756; MetaNetX MNXR145952; KEGG ID confirmed in the built-in template ('PFK')"
+    },
+    "variants": [
+     {
+      "name": "pyrophosphate-dependent PFK (PPi-PFK)",
+      "ec": [
+       "2.7.1.90"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R00764"
+       ]
+      },
+      "equation": "Diphosphate + D-Fructose 6-phosphate <=> Orthophosphate + D-Fructose 1,6-bisphosphate",
+      "note": "reversible; glycolysis and gluconeogenesis in plants and some protists and bacteria"
+     },
+     {
+      "name": "ADP-dependent PFK",
+      "ec": [
+       "2.7.1.146"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R05805"
+       ]
+      },
+      "equation": "ADP + D-Fructose 6-phosphate <=> AMP + D-Fructose 1,6-bisphosphate"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00756",
+      "url": "https://www.kegg.jp/entry/R00756"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_005",
+    "name": "FBPase",
+    "canonicalName": "fructose-1,6-bisphosphatase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_003",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_031",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "3.1.3.11"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00762"
+     ],
+     "metanetx.reaction": [
+      "MNXR147046"
+     ],
+     "seed.reaction": [
+      "rxn00549",
+      "rxn15494",
+      "rxn19684",
+      "rxn19685",
+      "rxn30665",
+      "rxn31218",
+      "rxn33589",
+      "rxn33591"
+     ],
+     "metacyc.reaction": [
+      "F16BDEPHOS-RXN"
+     ],
+     "rhea": [
+      "11064",
+      "11065",
+      "11066",
+      "11067"
+     ],
+     "bigg.reaction": [
+      "FBP"
+     ]
+    },
+    "level": "recommended",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00762; MetaNetX MNXR147046"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00762",
+      "url": "https://www.kegg.jp/entry/R00762"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_006",
+    "name": "FBA",
+    "canonicalName": "fructose-bisphosphate aldolase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_005",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_006",
+      "coefficient": 1.0,
+      "main": true
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "4.1.2.13"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01068"
+     ],
+     "metanetx.reaction": [
+      "MNXR153519"
+     ],
+     "seed.reaction": [
+      "rxn00786",
+      "rxn15116",
+      "rxn19683",
+      "rxn27851",
+      "rxn31335",
+      "rxn38097"
+     ],
+     "metacyc.reaction": [
+      "F16ALDOLASE-RXN"
+     ],
+     "rhea": [
+      "14729",
+      "14730",
+      "14731",
+      "14732"
+     ],
+     "bigg.reaction": [
+      "FBA"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R01068; MetaNetX MNXR153519; KEGG ID confirmed in the built-in template ('FBA')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01068",
+      "url": "https://www.kegg.jp/entry/R01068"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_007",
+    "name": "TPI",
+    "canonicalName": "triose-phosphate isomerase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_005",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_006",
+      "coefficient": 1.0,
+      "main": true
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "5.3.1.1"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01015"
+     ],
+     "metanetx.reaction": [
+      "MNXR146574"
+     ],
+     "seed.reaction": [
+      "rxn00747",
+      "rxn27386",
+      "rxn33035"
+     ],
+     "metacyc.reaction": [
+      "TRIOSEPISOMERIZATION-RXN"
+     ],
+     "rhea": [
+      "18585",
+      "18586",
+      "18587",
+      "18588"
+     ],
+     "bigg.reaction": [
+      "TPI"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R01015; MetaNetX MNXR146574; KEGG ID confirmed in the built-in template ('TPI')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01015",
+      "url": "https://www.kegg.jp/entry/R01015"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_008",
+    "name": "GAPDH",
+    "canonicalName": "glyceraldehyde-3-phosphate dehydrogenase (phosphorylating)",
+    "participants": [
+     {
+      "metabolite": "tpl_met_006",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_031",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_027",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_007",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_028",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "1.2.1.12",
+     "1.2.1.59"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01061"
+     ],
+     "metanetx.reaction": [
+      "MNXR191943"
+     ],
+     "seed.reaction": [
+      "rxn00781",
+      "rxn19762",
+      "rxn27871",
+      "rxn38113"
+     ],
+     "metacyc.reaction": [
+      "GAPOXNPHOSPHN-RXN"
+     ],
+     "rhea": [
+      "10300",
+      "10301",
+      "10302",
+      "10303"
+     ],
+     "bigg.reaction": [
+      "GAPD"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R01061; MetaNetX MNXR191943; KEGG ID confirmed in the built-in template ('GAPD')"
+    },
+    "variants": [
+     {
+      "name": "NADP-dependent GAPDH (GapB / GapC)",
+      "ec": [
+       "1.2.1.13",
+       "1.2.1.59"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R01063"
+       ]
+      },
+      "equation": "D-Glyceraldehyde 3-phosphate + Orthophosphate + NADP+ <=> 3-Phospho-D-glyceroyl phosphate + NADPH + H+"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01061",
+      "url": "https://www.kegg.jp/entry/R01061"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_009",
+    "name": "GAPN",
+    "canonicalName": "glyceraldehyde-3-phosphate dehydrogenase (non-phosphorylating)",
+    "participants": [
+     {
+      "metabolite": "tpl_met_006",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_029",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_030",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "1.2.1.9",
+     "1.2.1.90"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01058"
+     ],
+     "metanetx.reaction": [
+      "MNXR147145"
+     ],
+     "seed.reaction": [
+      "rxn00779"
+     ],
+     "metacyc.reaction": [
+      "1.2.1.9-RXN"
+     ],
+     "rhea": [
+      "14669",
+      "14670",
+      "14671",
+      "14672"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R01058; MetaNetX MNXR147145"
+    },
+    "variants": [
+     {
+      "name": "NAD-dependent GAPN",
+      "ec": [
+       "1.2.1.90"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R10860"
+       ]
+      },
+      "equation": "D-Glyceraldehyde 3-phosphate + NAD+ + H2O <=> 3-Phospho-D-glycerate + NADH + H+"
+     },
+     {
+      "name": "glyceraldehyde-3-phosphate:ferredoxin oxidoreductase (GAPOR, archaea)",
+      "ec": [
+       "1.2.7.6"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R07159"
+       ]
+      },
+      "equation": "D-Glyceraldehyde 3-phosphate + H2O + 2 Oxidized ferredoxin <=> 3-Phospho-D-glycerate + 2 H+ + 2 Reduced ferredoxin"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01058",
+      "url": "https://www.kegg.jp/entry/R01058"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_010",
+    "name": "PGK",
+    "canonicalName": "phosphoglycerate kinase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_007",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_025",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "2.7.2.3"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01512"
+     ],
+     "metanetx.reaction": [
+      "MNXR191159"
+     ],
+     "seed.reaction": [
+      "rxn01100",
+      "rxn20544",
+      "rxn35241",
+      "rxn38256",
+      "rxn38257"
+     ],
+     "metacyc.reaction": [
+      "PHOSGLYPHOS-RXN"
+     ],
+     "rhea": [
+      "14801",
+      "14802",
+      "14803",
+      "14804"
+     ],
+     "bigg.reaction": [
+      "PGK"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R01512; MetaNetX MNXR191159; KEGG ID confirmed in the built-in template ('PGK')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01512",
+      "url": "https://www.kegg.jp/entry/R01512"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_011",
+    "name": "BPGM",
+    "canonicalName": "bisphosphoglycerate mutase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_007",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_019",
+      "coefficient": 1.0,
+      "main": true
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "5.4.2.4"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01662"
+     ],
+     "metanetx.reaction": [
+      "MNXR191232"
+     ],
+     "seed.reaction": [
+      "rxn01216"
+     ],
+     "metacyc.reaction": [
+      "BISPHOSPHOGLYCERATE-MUTASE-RXN"
+     ],
+     "rhea": [
+      "17765",
+      "17766",
+      "17767",
+      "17768"
+     ],
+     "bigg.reaction": [
+      "DPGM"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R01662; MetaNetX MNXR191232"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01662",
+      "url": "https://www.kegg.jp/entry/R01662"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_012",
+    "name": "PGAM",
+    "canonicalName": "phosphoglycerate mutase, priming with 2,3-BPG",
+    "participants": [
+     {
+      "metabolite": "tpl_met_019",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_040",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_039",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "5.4.2.11"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01516"
+     ],
+     "metanetx.reaction": [
+      "MNXR107035"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "probable",
+     "note": "KEGG R01516; MetaNetX MNXR107035; BiGG links DPGase to this KEGG reaction but the participants differ — not used"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01516",
+      "url": "https://www.kegg.jp/entry/R01516"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_013",
+    "name": "MIPP1",
+    "canonicalName": "2,3-bisphosphoglycerate 3-phosphatase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_019",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_009",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_031",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "3.1.3.80"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R09532"
+     ],
+     "metanetx.reaction": [
+      "MNXR112951"
+     ],
+     "seed.reaction": [
+      "rxn16373",
+      "rxn21401"
+     ],
+     "metacyc.reaction": [
+      "RXN-11102"
+     ],
+     "rhea": [
+      "27381",
+      "27382",
+      "27383",
+      "27384"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R09532; MetaNetX MNXR112951"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R09532",
+      "url": "https://www.kegg.jp/entry/R09532"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_014",
+    "name": "PGAM",
+    "canonicalName": "phosphoglycerate mutase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_009",
+      "coefficient": 1.0,
+      "main": true
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "5.4.2.11",
+     "5.4.2.12"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01518"
+     ],
+     "metanetx.reaction": [
+      "MNXR102547"
+     ],
+     "seed.reaction": [
+      "rxn01106",
+      "rxn18917",
+      "rxn35234"
+     ],
+     "metacyc.reaction": [
+      "3PGAREARR-RXN",
+      "RXN-15513"
+     ],
+     "rhea": [
+      "15901",
+      "15902",
+      "15903",
+      "15904"
+     ],
+     "bigg.reaction": [
+      "PGM"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R01518; MetaNetX MNXR102547; KEGG ID confirmed in the built-in template ('PGM')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R01518",
+      "url": "https://www.kegg.jp/entry/R01518"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_015",
+    "name": "ENO",
+    "canonicalName": "enolase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_009",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_010",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "4.2.1.11"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00658"
+     ],
+     "metanetx.reaction": [
+      "MNXR97932"
+     ],
+     "seed.reaction": [
+      "rxn00459",
+      "rxn17748",
+      "rxn30576",
+      "rxn33498",
+      "rxn35218",
+      "rxn37952",
+      "rxn37953"
+     ],
+     "metacyc.reaction": [
+      "2PGADEHYDRAT-RXN"
+     ],
+     "rhea": [
+      "10164",
+      "10165",
+      "10166",
+      "10167"
+     ],
+     "bigg.reaction": [
+      "ENO"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R00658; MetaNetX MNXR97932; KEGG ID confirmed in the built-in template ('ENO')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00658",
+      "url": "https://www.kegg.jp/entry/R00658"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_016",
+    "name": "PK",
+    "canonicalName": "pyruvate kinase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_010",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_025",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "2.7.1.40"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00200"
+     ],
+     "metanetx.reaction": [
+      "MNXR103371"
+     ],
+     "seed.reaction": [
+      "rxn00148",
+      "rxn20509",
+      "rxn35242"
+     ],
+     "metacyc.reaction": [
+      "PEPDEPHOS-RXN"
+     ],
+     "rhea": [
+      "18157",
+      "18158",
+      "18159",
+      "18160"
+     ],
+     "bigg.reaction": [
+      "PYK"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R00200; MetaNetX MNXR103371; BiGG links PYK2 to this KEGG reaction but the participants differ — not used; KEGG ID confirmed in the built-in template ('PYK')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00200",
+      "url": "https://www.kegg.jp/entry/R00200"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_017",
+    "name": "PPDK",
+    "canonicalName": "pyruvate, phosphate dikinase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_031",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_010",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_026",
+      "coefficient": 1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_032",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "2.7.9.1"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00206"
+     ],
+     "metanetx.reaction": [
+      "MNXR103107"
+     ],
+     "seed.reaction": [
+      "rxn00151",
+      "rxn20655"
+     ],
+     "metacyc.reaction": [
+      "PYRUVATEORTHOPHOSPHATE-DIKINASE-RXN"
+     ],
+     "rhea": [
+      "10756",
+      "10757",
+      "10758",
+      "10759"
+     ],
+     "bigg.reaction": [
+      "PPDK"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00206; MetaNetX MNXR103107"
+    },
+    "variants": [
+     {
+      "name": "phosphoenolpyruvate synthase (PPS)",
+      "ec": [
+       "2.7.9.2"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R00199"
+       ]
+      },
+      "equation": "ATP + Pyruvate + H2O <=> AMP + Phosphoenolpyruvate + Orthophosphate",
+      "note": "ATP + pyruvate + H2O → AMP + PEP + Pi"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00206",
+      "url": "https://www.kegg.jp/entry/R00206"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_018",
+    "name": "PEPCK",
+    "canonicalName": "phosphoenolpyruvate carboxykinase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_013",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_010",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_025",
+      "coefficient": 1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_034",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "4.1.1.49"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00341"
+     ],
+     "metanetx.reaction": [
+      "MNXR103099"
+     ],
+     "seed.reaction": [
+      "rxn00247",
+      "rxn35519"
+     ],
+     "metacyc.reaction": [
+      "PEPCARBOXYKIN-RXN"
+     ],
+     "rhea": [
+      "18617",
+      "18618",
+      "18619",
+      "18620"
+     ],
+     "bigg.reaction": [
+      "PPCK"
+     ]
+    },
+    "level": "recommended",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00341; MetaNetX MNXR103099"
+    },
+    "variants": [
+     {
+      "name": "GTP-dependent PEPCK (animals)",
+      "ec": [
+       "4.1.1.32"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R00431"
+       ]
+      },
+      "equation": "GTP + Oxaloacetate <=> GDP + Phosphoenolpyruvate + CO2"
+     },
+     {
+      "name": "ITP-dependent PEPCK",
+      "ec": [
+       "4.1.1.32"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R00726"
+       ]
+      },
+      "equation": "ITP + Oxaloacetate <=> IDP + Phosphoenolpyruvate + CO2"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00341",
+      "url": "https://www.kegg.jp/entry/R00341"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_019",
+    "name": "LDH",
+    "canonicalName": "L-lactate dehydrogenase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_028",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_014",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_027",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "1.1.1.27"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00703"
+     ],
+     "metanetx.reaction": [
+      "MNXR101040"
+     ],
+     "seed.reaction": [
+      "rxn00499",
+      "rxn34239",
+      "rxn34240"
+     ],
+     "metacyc.reaction": [
+      "L-LACTATE-DEHYDROGENASE-RXN"
+     ],
+     "rhea": [
+      "23444",
+      "23445",
+      "23446",
+      "23447"
+     ],
+     "bigg.reaction": [
+      "LDH_L"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R00703; MetaNetX MNXR101040; KEGG ID confirmed in the built-in template ('LDH')"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00703",
+      "url": "https://www.kegg.jp/entry/R00703"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_020",
+    "name": "PDH",
+    "canonicalName": "pyruvate dehydrogenase complex",
+    "participants": [
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_035",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_027",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_012",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_034",
+      "coefficient": 1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_028",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "1.2.4.1",
+     "2.3.1.12",
+     "1.8.1.4"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00209"
+     ],
+     "metanetx.reaction": [
+      "MNXR188625"
+     ],
+     "seed.reaction": [
+      "rxn00154",
+      "rxn20656",
+      "rxn30418"
+     ],
+     "metacyc.reaction": [
+      "PYRUVDEH-RXN"
+     ],
+     "rhea": [
+      "28042",
+      "28043",
+      "28044",
+      "28045"
+     ],
+     "bigg.reaction": [
+      "PDH"
+     ]
+    },
+    "level": "required",
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "KEGG R00209 (represents map reactions R00014, R03270, R02569, R07618); MetaNetX MNXR188625; BiGG links GCC2cm, PDHcr, PDHe3hr to this KEGG reaction but the participants differ — not used; drawn as the overall reaction; KEGG draws the E1/E2/E3 steps through enzyme-bound lipoyl intermediates; KEGG ID confirmed in the built-in template ('PDH')"
+    },
+    "variants": [
+     {
+      "name": "pyruvate:ferredoxin oxidoreductase (PFOR, anaerobes)",
+      "ec": [
+       "1.2.7.1",
+       "1.2.7.11"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R01196"
+       ]
+      },
+      "equation": "2 Reduced ferredoxin + Acetyl-CoA + CO2 + 2 H+ <=> 2 Oxidized ferredoxin + Pyruvate + CoA"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00014",
+      "url": "https://www.kegg.jp/entry/R00014"
+     },
+     {
+      "source": "KEGG",
+      "id": "R00209",
+      "url": "https://www.kegg.jp/entry/R00209"
+     },
+     {
+      "source": "KEGG",
+      "id": "R02569",
+      "url": "https://www.kegg.jp/entry/R02569"
+     },
+     {
+      "source": "KEGG",
+      "id": "R03270",
+      "url": "https://www.kegg.jp/entry/R03270"
+     },
+     {
+      "source": "KEGG",
+      "id": "R07618",
+      "url": "https://www.kegg.jp/entry/R07618"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_021",
+    "name": "PDC",
+    "canonicalName": "pyruvate decarboxylase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_015",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_034",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "4.1.1.1"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00224"
+     ],
+     "metanetx.reaction": [
+      "MNXR103379"
+     ],
+     "seed.reaction": [
+      "rxn00168",
+      "rxn24132",
+      "rxn28118"
+     ],
+     "metacyc.reaction": [
+      "RXN-6161"
+     ],
+     "rhea": [
+      "45484",
+      "45485",
+      "45486",
+      "45487"
+     ],
+     "bigg.reaction": [
+      "PYRDC"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00224 (represents map reactions R00014, R00755); MetaNetX MNXR103379; drawn as the overall reaction; KEGG draws the two TPP-dependent half-reactions"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00014",
+      "url": "https://www.kegg.jp/entry/R00014"
+     },
+     {
+      "source": "KEGG",
+      "id": "R00224",
+      "url": "https://www.kegg.jp/entry/R00224"
+     },
+     {
+      "source": "KEGG",
+      "id": "R00755",
+      "url": "https://www.kegg.jp/entry/R00755"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_022",
+    "name": "ADH",
+    "canonicalName": "alcohol dehydrogenase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_015",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_028",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_016",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_027",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "1.1.1.1",
+     "1.1.1.71"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00754"
+     ],
+     "metanetx.reaction": [
+      "MNXR95725"
+     ],
+     "seed.reaction": [
+      "rxn00543",
+      "rxn27700",
+      "rxn30083",
+      "rxn38033",
+      "rxn38034"
+     ],
+     "metacyc.reaction": [
+      "ALCOHOL-DEHYDROG-RXN"
+     ],
+     "rhea": [
+      "25290",
+      "25291",
+      "25292",
+      "25293"
+     ],
+     "bigg.reaction": [
+      "ALCD2x"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00754; MetaNetX MNXR95725; BiGG links ALCD1 to this KEGG reaction but the participants differ — not used"
+    },
+    "variants": [
+     {
+      "name": "NADP-dependent ADH",
+      "ec": [
+       "1.1.1.2",
+       "1.1.1.71"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R00746"
+       ]
+      },
+      "equation": "Ethanol + NADP+ <=> Acetaldehyde + NADPH + H+"
+     },
+     {
+      "name": "quinone-dependent ADH (PQQ)",
+      "ec": [
+       "1.1.5.5"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R09479"
+       ]
+      },
+      "equation": "Ethanol + Ubiquinone <=> Acetaldehyde + Ubiquinol"
+     },
+     {
+      "name": "cytochrome c-dependent ADH",
+      "ec": [
+       "1.1.2.8"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R05198"
+       ]
+      },
+      "equation": "Ethanol + 2 Ferricytochrome c <=> 2 Ferrocytochrome c + Acetaldehyde + 2 H+"
+     },
+     {
+      "name": "cytochrome cL-dependent ADH (methylotrophs)",
+      "ec": [
+       "1.1.2.7"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R09127"
+       ]
+      },
+      "equation": "Ethanol + 2 Ferricytochrome cL <=> Acetaldehyde + 2 Ferrocytochrome cL + 2 H+"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00754",
+      "url": "https://www.kegg.jp/entry/R00754"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_023",
+    "name": "ALDH",
+    "canonicalName": "aldehyde dehydrogenase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_015",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_027",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_017",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_028",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "1.2.1.3",
+     "1.2.1.5"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00710"
+     ],
+     "metanetx.reaction": [
+      "MNXR95749"
+     ],
+     "seed.reaction": [
+      "rxn00506",
+      "rxn19123",
+      "rxn31362"
+     ],
+     "metacyc.reaction": [
+      "RXN66-3"
+     ],
+     "rhea": [
+      "25294",
+      "25295",
+      "25296",
+      "25297"
+     ],
+     "bigg.reaction": [
+      "ALDD2x"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00710; MetaNetX MNXR95749"
+    },
+    "variants": [
+     {
+      "name": "NADP-dependent ALDH",
+      "ec": [
+       "1.2.1.4",
+       "1.2.1.5",
+       "1.2.1.-"
+      ],
+      "identifiers": {
+       "kegg.reaction": [
+        "R00711"
+       ]
+      },
+      "equation": "Acetaldehyde + NADP+ + H2O <=> Acetate + NADPH + H+"
+     }
+    ],
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00710",
+      "url": "https://www.kegg.jp/entry/R00710"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_024",
+    "name": "ACS",
+    "canonicalName": "acetyl-CoA synthetase (AMP-forming)",
+    "participants": [
+     {
+      "metabolite": "tpl_met_017",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_035",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_012",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_026",
+      "coefficient": 1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_032",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "6.2.1.1"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00235"
+     ],
+     "metanetx.reaction": [
+      "MNXR190571"
+     ],
+     "seed.reaction": [
+      "rxn00175",
+      "rxn27659",
+      "rxn27660",
+      "rxn30338"
+     ],
+     "metacyc.reaction": [
+      "ACETATE--COA-LIGASE-RXN"
+     ],
+     "rhea": [
+      "23176",
+      "23177",
+      "23178",
+      "23179"
+     ],
+     "bigg.reaction": [
+      "ACS"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00235; MetaNetX MNXR190571"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00235",
+      "url": "https://www.kegg.jp/entry/R00235"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_025",
+    "name": "ACD",
+    "canonicalName": "acetyl-CoA synthetase (ADP-forming)",
+    "participants": [
+     {
+      "metabolite": "tpl_met_012",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_025",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_031",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_017",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_024",
+      "coefficient": 1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_035",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "6.2.1.13"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00229"
+     ],
+     "metanetx.reaction": [
+      "MNXR106436"
+     ],
+     "seed.reaction": [
+      "rxn00172",
+      "rxn27657",
+      "rxn27658",
+      "rxn31758"
+     ],
+     "metacyc.reaction": [
+      "ACETATE--COA-LIGASE-ADP-FORMING-RXN"
+     ],
+     "rhea": [
+      "15081",
+      "15082",
+      "15083",
+      "15084"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00229; MetaNetX MNXR106436"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00229",
+      "url": "https://www.kegg.jp/entry/R00229"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_026",
+    "name": "PGM",
+    "canonicalName": "phosphoglucomutase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_018",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": 1.0,
+      "main": true
+     }
+    ],
+    "reversible": true,
+    "ec": [
+     "5.4.2.2",
+     "5.4.2.5"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R08639"
+     ],
+     "metanetx.reaction": [
+      "MNXR145962"
+     ],
+     "seed.reaction": [
+      "rxn00704",
+      "rxn15773",
+      "rxn33867"
+     ],
+     "metacyc.reaction": [
+      "PHOSPHOGLUCMUT-RXN",
+      "RXN-16999"
+     ],
+     "bigg.reaction": [
+      "PGMT"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R08639 (represents map reactions R00959); MetaNetX MNXR145962; BiGG links PGCM, PGMTh to this KEGG reaction but the participants differ — not used"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00959",
+      "url": "https://www.kegg.jp/entry/R00959"
+     },
+     {
+      "source": "KEGG",
+      "id": "R08639",
+      "url": "https://www.kegg.jp/entry/R08639"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_027",
+    "name": "G1Pase",
+    "canonicalName": "glucose-1-phosphatase",
+    "participants": [
+     {
+      "metabolite": "tpl_met_018",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_001",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_031",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "3.1.3.10"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R00947"
+     ],
+     "metanetx.reaction": [
+      "MNXR106760"
+     ],
+     "seed.reaction": [
+      "rxn15095"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R00947; MetaNetX MNXR106760"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R00947",
+      "url": "https://www.kegg.jp/entry/R00947"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_028",
+    "name": "PTS",
+    "canonicalName": "arbutin PTS (EIIBC^Arb)",
+    "participants": [
+     {
+      "metabolite": "tpl_met_020",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_038",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_021",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_040",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "2.7.1.-"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R05132"
+     ],
+     "metanetx.reaction": [
+      "MNXR109343"
+     ],
+     "seed.reaction": [
+      "rxn06860"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "probable",
+     "note": "KEGG R05132; MetaNetX MNXR109343"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R05132",
+      "url": "https://www.kegg.jp/entry/R05132"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_029",
+    "name": "BglA",
+    "canonicalName": "6-phospho-β-glucosidase (arbutin 6-phosphate)",
+    "participants": [
+     {
+      "metabolite": "tpl_met_021",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_036",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "3.2.1.86"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R05133"
+     ],
+     "metanetx.reaction": [
+      "MNXR109344"
+     ],
+     "seed.reaction": [
+      "rxn03481"
+     ],
+     "metacyc.reaction": [
+      "RXN0-5295"
+     ],
+     "rhea": [
+      "28510",
+      "28511",
+      "28512",
+      "28513"
+     ],
+     "bigg.reaction": [
+      "AB6PGH_1"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R05133; MetaNetX MNXR109344"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R05133",
+      "url": "https://www.kegg.jp/entry/R05133"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_030",
+    "name": "PTS",
+    "canonicalName": "salicin PTS",
+    "participants": [
+     {
+      "metabolite": "tpl_met_022",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_038",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_023",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_040",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "2.7.1.-"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R04394"
+     ],
+     "metanetx.reaction": [
+      "MNXR108864"
+     ],
+     "seed.reaction": [
+      "rxn06678"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "probable",
+     "note": "KEGG R04394; MetaNetX MNXR108864"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R04394",
+      "url": "https://www.kegg.jp/entry/R04394"
+     }
+    ]
+   },
+   {
+    "id": "tpl_rxn_031",
+    "name": "BglB",
+    "canonicalName": "6-phospho-β-glucosidase (salicin 6-phosphate)",
+    "participants": [
+     {
+      "metabolite": "tpl_met_023",
+      "coefficient": -1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_033",
+      "coefficient": -1.0,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": 1.0,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_037",
+      "coefficient": 1.0,
+      "main": false
+     }
+    ],
+    "reversible": false,
+    "ec": [
+     "3.2.1.86"
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R05134"
+     ],
+     "metanetx.reaction": [
+      "MNXR109345"
+     ],
+     "seed.reaction": [
+      "rxn03482"
+     ],
+     "metacyc.reaction": [
+      "RXN0-5297"
+     ],
+     "rhea": [
+      "33127",
+      "33128",
+      "33129",
+      "33130"
+     ],
+     "bigg.reaction": [
+      "6PHBG2"
+     ]
+    },
+    "level": "optional",
+    "identity": {
+     "status": "suggested",
+     "source": "ai",
+     "confidence": "high",
+     "note": "KEGG R05134; MetaNetX MNXR109345"
+    },
+    "provenance": [
+     {
+      "source": "KEGG",
+      "id": "R05134",
+      "url": "https://www.kegg.jp/entry/R05134"
+     }
+    ]
+   }
+  ],
+  "connectors": [
+   {
+    "id": "tpl_port_001",
+    "metabolite": "tpl_met_018",
+    "direction": "in",
+    "target": {
+     "pathway": "Starch and sucrose metabolism"
+    }
+   },
+   {
+    "id": "tpl_port_002",
+    "metabolite": "tpl_met_002",
+    "direction": "out",
+    "target": {
+     "pathway": "Pentose phosphate pathway",
+     "template": "kegg-map00030"
+    }
+   },
+   {
+    "id": "tpl_port_003",
+    "metabolite": "tpl_met_013",
+    "direction": "in",
+    "target": {
+     "pathway": "Citrate cycle (TCA cycle)",
+     "template": "kegg-map00020"
+    }
+   },
+   {
+    "id": "tpl_port_004",
+    "metabolite": "tpl_met_012",
+    "direction": "out",
+    "target": {
+     "pathway": "Citrate cycle (TCA cycle)",
+     "template": "kegg-map00020"
+    }
+   }
+  ]
+ },
+ "layout": {
+  "nodes": [
+   {
+    "id": "tpl_node_001",
+    "metabolite": "tpl_met_001",
+    "x": -90,
+    "y": 0,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_002",
+    "metabolite": "tpl_met_002",
+    "x": -90,
+    "y": 100,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_003",
+    "metabolite": "tpl_met_003",
+    "x": -90,
+    "y": 200,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_004",
+    "metabolite": "tpl_met_004",
+    "x": -90,
+    "y": 300,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_005",
+    "metabolite": "tpl_met_006",
+    "x": 0,
+    "y": 400,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_006",
+    "metabolite": "tpl_met_007",
+    "x": 0,
+    "y": 500,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_007",
+    "metabolite": "tpl_met_008",
+    "x": 0,
+    "y": 600,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_008",
+    "metabolite": "tpl_met_009",
+    "x": 0,
+    "y": 700,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_009",
+    "metabolite": "tpl_met_010",
+    "x": 0,
+    "y": 800,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_010",
+    "metabolite": "tpl_met_011",
+    "x": 0,
+    "y": 900,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_011",
+    "metabolite": "tpl_met_012",
+    "x": 0,
+    "y": 1030,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_012",
+    "metabolite": "tpl_met_005",
+    "x": -180,
+    "y": 400,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_013",
+    "metabolite": "tpl_met_019",
+    "x": -200,
+    "y": 600,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_014",
+    "metabolite": "tpl_met_018",
+    "x": -320,
+    "y": 50,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_015",
+    "metabolite": "tpl_met_013",
+    "x": 240,
+    "y": 750,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_016",
+    "metabolite": "tpl_met_014",
+    "x": -210,
+    "y": 900,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_017",
+    "metabolite": "tpl_met_015",
+    "x": 250,
+    "y": 980,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_018",
+    "metabolite": "tpl_met_016",
+    "x": 450,
+    "y": 980,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_019",
+    "metabolite": "tpl_met_017",
+    "x": 250,
+    "y": 1100,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_020",
+    "metabolite": "tpl_met_020",
+    "x": -710,
+    "y": -110,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_021",
+    "metabolite": "tpl_met_021",
+    "x": -540,
+    "y": -110,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_022",
+    "metabolite": "tpl_met_022",
+    "x": -710,
+    "y": -30,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_023",
+    "metabolite": "tpl_met_023",
+    "x": -540,
+    "y": -30,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_024",
+    "metabolite": "tpl_met_002",
+    "x": -360,
+    "y": -110,
+    "shape": "label"
+   },
+   {
+    "id": "tpl_node_025",
+    "metabolite": "tpl_met_024",
+    "x": -70.3,
+    "y": 34.0,
+    "attach": {
+     "reaction": "tpl_rxn_001",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_026",
+    "metabolite": "tpl_met_025",
+    "x": -70.3,
+    "y": 66.0,
+    "attach": {
+     "reaction": "tpl_rxn_001",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_027",
+    "metabolite": "tpl_met_024",
+    "x": -70.3,
+    "y": 234.0,
+    "attach": {
+     "reaction": "tpl_rxn_004",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_028",
+    "metabolite": "tpl_met_025",
+    "x": -70.3,
+    "y": 266.0,
+    "attach": {
+     "reaction": "tpl_rxn_004",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_029",
+    "metabolite": "tpl_met_031",
+    "x": 16.6,
+    "y": 434.0,
+    "attach": {
+     "reaction": "tpl_rxn_008",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_030",
+    "metabolite": "tpl_met_027",
+    "x": 21.8,
+    "y": 422.0,
+    "attach": {
+     "reaction": "tpl_rxn_008",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_031",
+    "metabolite": "tpl_met_028",
+    "x": 22.2,
+    "y": 466.0,
+    "attach": {
+     "reaction": "tpl_rxn_008",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_032",
+    "metabolite": "tpl_met_025",
+    "x": 19.7,
+    "y": 534.0,
+    "attach": {
+     "reaction": "tpl_rxn_010",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_033",
+    "metabolite": "tpl_met_024",
+    "x": 19.7,
+    "y": 566.0,
+    "attach": {
+     "reaction": "tpl_rxn_010",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_034",
+    "metabolite": "tpl_met_025",
+    "x": -19.7,
+    "y": 834.0,
+    "attach": {
+     "reaction": "tpl_rxn_016",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_035",
+    "metabolite": "tpl_met_024",
+    "x": -19.7,
+    "y": 866.0,
+    "attach": {
+     "reaction": "tpl_rxn_016",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_036",
+    "metabolite": "tpl_met_035",
+    "x": 19.2,
+    "y": 949.0,
+    "attach": {
+     "reaction": "tpl_rxn_020",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_037",
+    "metabolite": "tpl_met_027",
+    "x": 21.8,
+    "y": 933.0,
+    "attach": {
+     "reaction": "tpl_rxn_020",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_038",
+    "metabolite": "tpl_met_034",
+    "x": 19.7,
+    "y": 981.0,
+    "attach": {
+     "reaction": "tpl_rxn_020",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_039",
+    "metabolite": "tpl_met_028",
+    "x": 22.2,
+    "y": 997.0,
+    "attach": {
+     "reaction": "tpl_rxn_020",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_040",
+    "metabolite": "tpl_met_031",
+    "x": 1.6,
+    "y": 26.0,
+    "attach": {
+     "reaction": "tpl_rxn_002",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_041",
+    "metabolite": "tpl_met_031",
+    "x": 1.6,
+    "y": 226.0,
+    "attach": {
+     "reaction": "tpl_rxn_005",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_042",
+    "metabolite": "tpl_met_024",
+    "x": 79.7,
+    "y": 866.0,
+    "attach": {
+     "reaction": "tpl_rxn_017",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_043",
+    "metabolite": "tpl_met_031",
+    "x": 76.6,
+    "y": 882.0,
+    "attach": {
+     "reaction": "tpl_rxn_017",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_044",
+    "metabolite": "tpl_met_026",
+    "x": 79.7,
+    "y": 834.0,
+    "attach": {
+     "reaction": "tpl_rxn_017",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_045",
+    "metabolite": "tpl_met_032",
+    "x": 79.2,
+    "y": 818.0,
+    "attach": {
+     "reaction": "tpl_rxn_017",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_046",
+    "metabolite": "tpl_met_024",
+    "x": 146.4,
+    "y": 776.8,
+    "attach": {
+     "reaction": "tpl_rxn_018",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_047",
+    "metabolite": "tpl_met_025",
+    "x": 96.5,
+    "y": 787.2,
+    "attach": {
+     "reaction": "tpl_rxn_018",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_048",
+    "metabolite": "tpl_met_034",
+    "x": 69.0,
+    "y": 792.9,
+    "attach": {
+     "reaction": "tpl_rxn_018",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_049",
+    "metabolite": "tpl_met_029",
+    "x": 139.3,
+    "y": 476.0,
+    "attach": {
+     "reaction": "tpl_rxn_009",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_050",
+    "metabolite": "tpl_met_030",
+    "x": 139.8,
+    "y": 524.0,
+    "attach": {
+     "reaction": "tpl_rxn_009",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_051",
+    "metabolite": "tpl_met_031",
+    "x": -82.0,
+    "y": 663.1,
+    "attach": {
+     "reaction": "tpl_rxn_013",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_052",
+    "metabolite": "tpl_met_031",
+    "x": -184.5,
+    "y": 13.6,
+    "attach": {
+     "reaction": "tpl_rxn_027",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_053",
+    "metabolite": "tpl_met_028",
+    "x": -76.8,
+    "y": 916.0,
+    "attach": {
+     "reaction": "tpl_rxn_019",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_054",
+    "metabolite": "tpl_met_027",
+    "x": -132.8,
+    "y": 916.0,
+    "attach": {
+     "reaction": "tpl_rxn_019",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_055",
+    "metabolite": "tpl_met_034",
+    "x": 146.8,
+    "y": 954.7,
+    "attach": {
+     "reaction": "tpl_rxn_021",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_056",
+    "metabolite": "tpl_met_028",
+    "x": 321.8,
+    "y": 964.0,
+    "attach": {
+     "reaction": "tpl_rxn_022",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_057",
+    "metabolite": "tpl_met_027",
+    "x": 377.8,
+    "y": 964.0,
+    "attach": {
+     "reaction": "tpl_rxn_022",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_058",
+    "metabolite": "tpl_met_027",
+    "x": 271.8,
+    "y": 1024.0,
+    "attach": {
+     "reaction": "tpl_rxn_023",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_059",
+    "metabolite": "tpl_met_028",
+    "x": 272.2,
+    "y": 1056.0,
+    "attach": {
+     "reaction": "tpl_rxn_023",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_060",
+    "metabolite": "tpl_met_024",
+    "x": 161.9,
+    "y": 1027.2,
+    "attach": {
+     "reaction": "tpl_rxn_024",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_061",
+    "metabolite": "tpl_met_035",
+    "x": 188.2,
+    "y": 1034.7,
+    "attach": {
+     "reaction": "tpl_rxn_024",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_062",
+    "metabolite": "tpl_met_026",
+    "x": 113.1,
+    "y": 1013.5,
+    "attach": {
+     "reaction": "tpl_rxn_024",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_063",
+    "metabolite": "tpl_met_032",
+    "x": 86.8,
+    "y": 1006.3,
+    "attach": {
+     "reaction": "tpl_rxn_024",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_064",
+    "metabolite": "tpl_met_025",
+    "x": 88.1,
+    "y": 1102.8,
+    "attach": {
+     "reaction": "tpl_rxn_025",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_065",
+    "metabolite": "tpl_met_031",
+    "x": 69.1,
+    "y": 1096.7,
+    "attach": {
+     "reaction": "tpl_rxn_025",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_066",
+    "metabolite": "tpl_met_024",
+    "x": 136.9,
+    "y": 1116.5,
+    "attach": {
+     "reaction": "tpl_rxn_025",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_067",
+    "metabolite": "tpl_met_035",
+    "x": 163.2,
+    "y": 1123.7,
+    "attach": {
+     "reaction": "tpl_rxn_025",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_068",
+    "metabolite": "tpl_met_038",
+    "x": -675.3,
+    "y": -126.0,
+    "attach": {
+     "reaction": "tpl_rxn_028",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_069",
+    "metabolite": "tpl_met_040",
+    "x": -585.6,
+    "y": -126.0,
+    "attach": {
+     "reaction": "tpl_rxn_028",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_070",
+    "metabolite": "tpl_met_038",
+    "x": -675.3,
+    "y": -46.0,
+    "attach": {
+     "reaction": "tpl_rxn_030",
+     "side": "in"
+    }
+   },
+   {
+    "id": "tpl_node_071",
+    "metabolite": "tpl_met_040",
+    "x": -585.6,
+    "y": -46.0,
+    "attach": {
+     "reaction": "tpl_rxn_030",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_072",
+    "metabolite": "tpl_met_036",
+    "x": -407.5,
+    "y": -126.0,
+    "attach": {
+     "reaction": "tpl_rxn_029",
+     "side": "out"
+    }
+   },
+   {
+    "id": "tpl_node_073",
+    "metabolite": "tpl_met_037",
+    "x": -414.2,
+    "y": -93.8,
+    "attach": {
+     "reaction": "tpl_rxn_031",
+     "side": "out"
+    }
+   }
+  ],
+  "ports": [
+   {
+    "id": "tpl_node_074",
+    "connector": "tpl_port_001",
+    "x": -510,
+    "y": 50,
+    "from": "tpl_node_014"
+   },
+   {
+    "id": "tpl_node_075",
+    "connector": "tpl_port_002",
+    "x": 170,
+    "y": 130,
+    "from": "tpl_node_002"
+   },
+   {
+    "id": "tpl_node_076",
+    "connector": "tpl_port_003",
+    "x": 420,
+    "y": 750,
+    "from": "tpl_node_015"
+   },
+   {
+    "id": "tpl_node_077",
+    "connector": "tpl_port_004",
+    "x": 0,
+    "y": 1150,
+    "from": "tpl_node_011"
+   }
+  ],
+  "reactions": [
+   {
+    "reaction": "tpl_rxn_001",
+    "sources": [
+     "tpl_node_001"
+    ],
+    "targets": [
+     "tpl_node_002"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_003",
+    "sources": [
+     "tpl_node_002"
+    ],
+    "targets": [
+     "tpl_node_003"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_004",
+    "sources": [
+     "tpl_node_003"
+    ],
+    "targets": [
+     "tpl_node_004"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_006",
+    "sources": [
+     "tpl_node_004"
+    ],
+    "targets": [
+     "tpl_node_012",
+     "tpl_node_005"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_007",
+    "sources": [
+     "tpl_node_012"
+    ],
+    "targets": [
+     "tpl_node_005"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_008",
+    "sources": [
+     "tpl_node_005"
+    ],
+    "targets": [
+     "tpl_node_006"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_010",
+    "sources": [
+     "tpl_node_006"
+    ],
+    "targets": [
+     "tpl_node_007"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_014",
+    "sources": [
+     "tpl_node_007"
+    ],
+    "targets": [
+     "tpl_node_008"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_015",
+    "sources": [
+     "tpl_node_008"
+    ],
+    "targets": [
+     "tpl_node_009"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_016",
+    "sources": [
+     "tpl_node_009"
+    ],
+    "targets": [
+     "tpl_node_010"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_020",
+    "sources": [
+     "tpl_node_010"
+    ],
+    "targets": [
+     "tpl_node_011"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_002",
+    "sources": [
+     "tpl_node_002"
+    ],
+    "targets": [
+     "tpl_node_001"
+    ],
+    "routing": "curved",
+    "bend": 75,
+    "label_offset": {
+     "x": 33.3,
+     "y": 0.0
+    }
+   },
+   {
+    "reaction": "tpl_rxn_005",
+    "sources": [
+     "tpl_node_004"
+    ],
+    "targets": [
+     "tpl_node_003"
+    ],
+    "routing": "curved",
+    "bend": 75,
+    "label_offset": {
+     "x": 33.3,
+     "y": 0.0
+    }
+   },
+   {
+    "reaction": "tpl_rxn_017",
+    "sources": [
+     "tpl_node_010"
+    ],
+    "targets": [
+     "tpl_node_009"
+    ],
+    "routing": "curved",
+    "bend": 60,
+    "label_offset": {
+     "x": 26.5,
+     "y": 0.0
+    }
+   },
+   {
+    "reaction": "tpl_rxn_018",
+    "sources": [
+     "tpl_node_015"
+    ],
+    "targets": [
+     "tpl_node_009"
+    ],
+    "routing": "curved",
+    "bend": 25,
+    "label_flip": true,
+    "label_offset": {
+     "x": 3.4,
+     "y": 16.2
+    }
+   },
+   {
+    "reaction": "tpl_rxn_009",
+    "sources": [
+     "tpl_node_005"
+    ],
+    "targets": [
+     "tpl_node_007"
+    ],
+    "routing": "curved",
+    "bend": 115,
+    "label_flip": true,
+    "label_offset": {
+     "x": 26.3,
+     "y": -0.0
+    }
+   },
+   {
+    "reaction": "tpl_rxn_011",
+    "sources": [
+     "tpl_node_006"
+    ],
+    "targets": [
+     "tpl_node_013"
+    ],
+    "routing": "curved",
+    "bend": 22,
+    "label_offset": {
+     "x": -8.7,
+     "y": -17.3
+    }
+   },
+   {
+    "reaction": "tpl_rxn_012",
+    "sources": [
+     "tpl_node_013"
+    ],
+    "targets": [
+     "tpl_node_007"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_013",
+    "sources": [
+     "tpl_node_013"
+    ],
+    "targets": [
+     "tpl_node_008"
+    ],
+    "routing": "curved",
+    "bend": 22,
+    "label_offset": {
+     "x": -8.9,
+     "y": 17.8
+    }
+   },
+   {
+    "reaction": "tpl_rxn_026",
+    "sources": [
+     "tpl_node_014"
+    ],
+    "targets": [
+     "tpl_node_002"
+    ],
+    "routing": "curved",
+    "bend": 24,
+    "label_flip": true,
+    "label_offset": {
+     "x": 3.6,
+     "y": -16.6
+    }
+   },
+   {
+    "reaction": "tpl_rxn_027",
+    "sources": [
+     "tpl_node_014"
+    ],
+    "targets": [
+     "tpl_node_001"
+    ],
+    "routing": "curved",
+    "bend": 24,
+    "label_flip": true,
+    "label_offset": {
+     "x": -3.8,
+     "y": -17.3
+    }
+   },
+   {
+    "reaction": "tpl_rxn_019",
+    "sources": [
+     "tpl_node_010"
+    ],
+    "targets": [
+     "tpl_node_016"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_021",
+    "sources": [
+     "tpl_node_010"
+    ],
+    "targets": [
+     "tpl_node_017"
+    ],
+    "routing": "curved",
+    "bend": 26,
+    "label_offset": {
+     "x": -5.5,
+     "y": 17.1
+    }
+   },
+   {
+    "reaction": "tpl_rxn_022",
+    "sources": [
+     "tpl_node_017"
+    ],
+    "targets": [
+     "tpl_node_018"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_023",
+    "sources": [
+     "tpl_node_017"
+    ],
+    "targets": [
+     "tpl_node_019"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_024",
+    "sources": [
+     "tpl_node_019"
+    ],
+    "targets": [
+     "tpl_node_011"
+    ],
+    "routing": "curved",
+    "bend": 28,
+    "label_offset": {
+     "x": 4.8,
+     "y": -17.0
+    }
+   },
+   {
+    "reaction": "tpl_rxn_025",
+    "sources": [
+     "tpl_node_011"
+    ],
+    "targets": [
+     "tpl_node_019"
+    ],
+    "routing": "curved",
+    "bend": 28,
+    "label_offset": {
+     "x": -4.5,
+     "y": 16.2
+    }
+   },
+   {
+    "reaction": "tpl_rxn_028",
+    "sources": [
+     "tpl_node_020"
+    ],
+    "targets": [
+     "tpl_node_021"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_030",
+    "sources": [
+     "tpl_node_022"
+    ],
+    "targets": [
+     "tpl_node_023"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_029",
+    "sources": [
+     "tpl_node_021"
+    ],
+    "targets": [
+     "tpl_node_024"
+    ],
+    "routing": "straight",
+    "label_flip": true
+   },
+   {
+    "reaction": "tpl_rxn_031",
+    "sources": [
+     "tpl_node_023"
+    ],
+    "targets": [
+     "tpl_node_024"
+    ],
+    "routing": "curved",
+    "bend": 20,
+    "label_offset": {
+     "x": 7.5,
+     "y": 16.9
+    }
+   }
+  ],
+  "groups": [
+   {
+    "id": "tpl_grp_001",
+    "kind": "pathway",
+    "title": "Aryl-β-D-glucosides (PTS, bacteria)",
+    "nodes": [
+     "tpl_node_020",
+     "tpl_node_021",
+     "tpl_node_022",
+     "tpl_node_023",
+     "tpl_node_024"
+    ]
+   }
+  ],
+  "labels": [
+   {
+    "id": "tpl_lbl_001",
+    "x": -730,
+    "y": -200,
+    "text": "Glycolysis / Gluconeogenesis",
+    "size": 16,
+    "weight": 700,
+    "kind": "title"
+   },
+   {
+    "id": "tpl_lbl_002",
+    "x": -730,
+    "y": -180,
+    "text": "derived from KEGG map00010 · drawn by GEMs MAP",
+    "size": 10,
+    "weight": 400,
+    "italic": true,
+    "kind": "text"
+   },
+   {
+    "id": "tpl_lbl_003",
+    "x": -270,
+    "y": 550,
+    "text": "2,3-BPG shunt",
+    "size": 11,
+    "weight": 600,
+    "italic": true,
+    "kind": "text"
+   },
+   {
+    "id": "tpl_lbl_004",
+    "x": 300,
+    "y": 930,
+    "text": "Fermentation",
+    "size": 11,
+    "weight": 600,
+    "italic": true,
+    "kind": "text"
+   }
+  ]
+ }
+}

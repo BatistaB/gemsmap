@@ -1,0 +1,4 @@
+# Screenshot capture for the documentation (tools/docs/capture_screenshots.py).
+# Uses the local Microsoft Edge or Google Chrome, so `playwright install` is not needed.
+playwright==1.63.0
+pillow==12.3.0

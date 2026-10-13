@@ -1,0 +1,46 @@
+# Dependencies & builds
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Documentation build (mkdocs build) and its environment
+site/
+.venv-docs/
+
+# Python backend
+backend/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local tooling / editors / OS
+.claude/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.env
+.env.*
+
+# Private data: kept on disk, never versioned. Unpublished models, maps and results go in my_projects/
+# (open them with File > Open project). Personal patterns belong in .git/info/exclude, which is never committed.
+my_projects/
+public/projects/
+tests/*.gemsmap
+tests/*.metmap
+tests/analysis_test/
+
+# Local test inputs and scratch files (BiGG exports, templates saved while testing)
+tests/*.biggr.*
+tests/*-template.json
+
+# Generated test fixtures (tools/templates/make_fixtures.py)
+tests/fixtures/
+
+# Python package build (tools/release/build.py): compiled interface, archives, build folders
+backend/gemsmap/web/
+/release/
+/build/
+*.egg-info/

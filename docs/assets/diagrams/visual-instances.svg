@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 364" width="840" height="364" role="img" aria-labelledby="t d">
+  <title id="t">Visual copies, model metabolites and chemical identity</title>
+  <desc id="d">Two drawings of ATP beside the HEX1 and PFK arrows both refer to the model metabolite atp_c. The product of ATP synthase in the mitochondrion refers to atp_m. Both model metabolites are the same chemical entity, ATP (KEGG C00002), in different compartments.</desc>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3a3a3a"/>
+    </marker>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8582dc"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif; fill: #1b1c20; }
+    .h { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; fill: #6b6f7a; }
+    .lbl { font-size: 12px; }
+    .rx { font-size: 11px; fill: #2b3fb8; font-weight: 600; }
+    .mono { font-family: "JetBrains Mono", Consolas, monospace; font-size: 13px; font-weight: 700; }
+    .sub { font-size: 11.5px; fill: #4b4f5a; }
+    .cap { font-size: 12px; fill: #4b4f5a; }
+    .edge { stroke: #3a3a3a; stroke-width: 2; fill: none; }
+    .link { stroke: #8582dc; stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+  </style>
+  <rect x="0" y="0" width="840" height="364" rx="12" fill="#ffffff"/>
+  <text x="28" y="34" class="h">MAP · VISUAL LAYER</text>
+  <text x="430" y="34" class="h">MODEL · GEM</text>
+  <text x="656" y="34" class="h">BIOCHEMISTRY</text>
+
+  <!-- HEX1: glucose -> glucose 6-phosphate, ATP drawn beside the arrow -->
+  <circle cx="60" cy="98" r="6" fill="#1b1c20"/><text x="48" y="122" class="lbl">glc__D</text>
+  <circle cx="290" cy="98" r="6" fill="#1b1c20"/><text x="276" y="122" class="lbl">g6p</text>
+  <line x1="68" y1="98" x2="280" y2="98" class="edge" marker-end="url(#ah)"/>
+  <text x="150" y="122" class="rx">HEX1</text>
+  <path d="M150,72 C162,72 168,90 176,97" class="edge" stroke-width="1.4"/>
+  <circle cx="142" cy="70" r="5" fill="#4745c4"/><text x="104" y="66" class="lbl" fill="#4745c4">ATP</text>
+
+  <!-- PFK: fructose 6-phosphate -> fructose 1,6-bisphosphate, ATP drawn beside the arrow -->
+  <circle cx="60" cy="188" r="6" fill="#1b1c20"/><text x="50" y="212" class="lbl">f6p</text>
+  <circle cx="290" cy="188" r="6" fill="#1b1c20"/><text x="280" y="212" class="lbl">fdp</text>
+  <line x1="68" y1="188" x2="280" y2="188" class="edge" marker-end="url(#ah)"/>
+  <text x="155" y="212" class="rx">PFK</text>
+  <path d="M150,162 C162,162 168,180 176,187" class="edge" stroke-width="1.4"/>
+  <circle cx="142" cy="160" r="5" fill="#4745c4"/><text x="104" y="156" class="lbl" fill="#4745c4">ATP</text>
+
+  <!-- ATP synthase in the mitochondrion: ATP is a main node here -->
+  <rect x="28" y="244" width="300" height="56" rx="10" fill="#fef9ef" stroke="#f1d9a6"/>
+  <text x="38" y="260" class="sub">mitochondrion</text>
+  <circle cx="60" cy="280" r="6" fill="#1b1c20"/><text x="74" y="284" class="lbl">adp</text>
+  <circle cx="290" cy="280" r="6" fill="#4745c4"/><text x="256" y="268" class="lbl" fill="#4745c4">ATP</text>
+  <line x1="104" y1="280" x2="280" y2="280" class="edge" marker-end="url(#ah)"/>
+  <text x="150" y="296" class="rx">ATP synthase</text>
+
+  <!-- model metabolites -->
+  <rect x="420" y="98" width="190" height="62" rx="9" fill="#f6f7f9" stroke="#d4d7dd"/>
+  <text x="436" y="124" class="mono">atp_c</text>
+  <text x="436" y="145" class="sub">ATP · cytosol</text>
+  <rect x="420" y="232" width="190" height="62" rx="9" fill="#f6f7f9" stroke="#d4d7dd"/>
+  <text x="436" y="258" class="mono">atp_m</text>
+  <text x="436" y="279" class="sub">ATP · mitochondrion</text>
+
+  <!-- chemical entity -->
+  <rect x="650" y="152" width="164" height="86" rx="10" fill="#ffffff" stroke="#4745c4" stroke-width="2"/>
+  <text x="666" y="180" font-size="15" font-weight="700">ATP</text>
+  <text x="666" y="201" class="sub">KEGG C00002</text>
+  <text x="666" y="221" class="sub">one chemical entity</text>
+
+  <!-- references -->
+  <path d="M146,64 C260,40 360,96 418,120" class="link" marker-end="url(#ad)"/>
+  <path d="M146,154 C250,150 360,140 418,132" class="link" marker-end="url(#ad)"/>
+  <path d="M296,276 C350,276 380,266 418,264" class="link" marker-end="url(#ad)"/>
+  <path d="M612,130 C632,140 636,170 648,180" class="link" marker-end="url(#ad)"/>
+  <path d="M612,262 C632,252 636,222 648,212" class="link" marker-end="url(#ad)"/>
+
+  <text x="28" y="330" class="cap">Two ATP drawings on the map are visual copies of one model metabolite (atp_c). A compartment makes a different model</text>
+  <text x="28" y="346" class="cap">metabolite (atp_m) of the same chemical. Data always attach to the model metabolite, never to a drawing.</text>
+</svg>

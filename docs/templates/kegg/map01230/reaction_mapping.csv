@@ -1,0 +1,32 @@
+step,kegg,represents,variants,ec,metanetx,metanetx_candidates,bigg,bigg_candidates,bigg_rejected,modelseed,rhea,metacyc,reversible,status,equation
+Glycolysis,M00001,,,,,,,,,,,,,summary,"Glycolysis (Embden-Meyerhof pathway), glucose => pyruvate"
+PGAM · ENO,R01518;R00658,,,,,,,,,,,,,summary,"D-phosphoglycerate 2,3-phosphomutase / 2-phospho-D-glycerate hydro-lyase (phosphoenolpyruvate-forming)"
+PK,R00200,,,2.7.1.40,MNXR103371,MNXR103371,PYK,PYK;PYK_h;PYKf;PYKm,PYK2,rxn00148;rxn20509;rxn35242,18157;18158;18159;18160,PEPDEPHOS-RXN,False,confirmed,ATP + Pyruvate <=> ADP + Phosphoenolpyruvate
+SerA·C·B,M00020,,,,,,,,,,,,,summary,"Serine biosynthesis, glycerate-3P => serine"
+SHMT,R00945,,,2.1.2.1,MNXR188117,MNXR188117,GHMT2r,GHMT2r;GHMT2rc;GHMT2rm,,rxn00692;rxn19870;rxn27914;rxn30686;rxn33977;rxn38130,15481;15482;15483;15484,,True,suggested (high),"5,10-Methylenetetrahydrofolate + Glycine + H2O <=> Tetrahydrofolate + L-Serine"
+CysE·K,M00021,,,,,,,,,,,,,summary,"Cysteine biosynthesis, serine => cysteine"
+Shikimate pathway,M00022,,,,,,,,,,,,,summary,"Shikimate pathway, phosphoenolpyruvate + erythrose-4P => chorismate"
+Phe pathway,M00024,,,,,,,,,,,,,summary,"Phenylalanine biosynthesis, chorismate => phenylpyruvate => phenylalanine"
+Tyr pathway,M00025,,,,,,,,,,,,,summary,"Tyrosine biosynthesis, chorismate => HPP => tyrosine"
+Trp pathway,M00023,,,,,,,,,,,,,summary,"Tryptophan biosynthesis, chorismate => tryptophan"
+ALT,R00258,,,2.6.1.2,MNXR95698,MNXR95698,ALATA_L,ALATA_L;ALATA_Lm,,rxn00191;rxn27697;rxn27698;rxn31211;rxn38028;rxn38029,19453;19454;19455;19456,ALANINE-AMINOTRANSFERASE-RXN;RXN-13698,True,suggested (high),L-Alanine + 2-Oxoglutarate <=> Pyruvate + L-Glutamate
+IlvBN·C·D,M00019,,,,,,,,,,,,,summary,"Valine/isoleucine biosynthesis, pyruvate => valine / 2-oxobutanoate => isoleucine"
+BCAT,R01214,,,2.6.1.6;2.6.1.42,MNXR96230,MNXR96230,VALTA,BCTA_val_h;VALTA;VALTAim,,rxn00903;rxn19242;rxn27739;rxn33935;rxn38055,24813;24814;24815;24816,BRANCHED-CHAINAMINOTRANSFERVAL-RXN,True,suggested (high),L-Valine + 2-Oxoglutarate <=> 3-Methyl-2-oxobutanoic acid + L-Glutamate
+Leu pathway,M00432,,,,,,,,,,,,,summary,"Leucine biosynthesis, 2-oxoisovalerate => 2-oxoisocaproate"
+PC,R00344,,,6.4.1.1,MNXR102391,MNXR102391,PC,PC;PCm,,rxn00250;rxn28116,20844;20845;20846;20847,PYRUVATE-CARBOXYLASE-RXN,False,suggested (high),ATP + Pyruvate + HCO3- <=> ADP + Orthophosphate + Oxaloacetate
+AST,R00355,,,2.6.1.1,MNXR192556,MNXR192556,ASPTA,ASPATh;ASPTA;ASPTAm;ASPTAp,,rxn00260;rxn27719;rxn27720;rxn30355,21824;21825;21826;21827,ASPAMINOTRANS-RXN;RXN-13697,True,suggested (high),L-Aspartate + 2-Oxoglutarate <=> Oxaloacetate + L-Glutamate
+ASNS,R00578,,,6.3.5.4,MNXR153021,MNXR153021,ASNS1,ASNS1,,rxn00416;rxn32227;rxn38046,12228;12229;12230;12231,ASNSYNB-RXN,False,suggested (high),ATP + L-Aspartate + L-Glutamine + H2O <=> AMP + Diphosphate + L-Asparagine + L-Glutamate
+AK · ASD,R00480;R02291,,,,,,,,,,,,,summary,ATP:L-aspartate 4-phosphotransferase / L-aspartate-4-semialdehyde:NADP+ oxidoreductase (phosphorylating)
+DAP pathway,M00016,,,,,,,,,,,,,summary,"Lysine biosynthesis, succinyl-DAP pathway, aspartate => lysine"
+HSD,R01775,,,1.1.1.3,MNXR100734,MNXR100734,HSDy,HSDH;HSDy,,rxn01302;rxn27932,15761;15762;15763;15764,,False,suggested (high),L-Homoserine + NADP+ <=> L-Aspartate 4-semialdehyde + NADPH + H+
+ThrB·C,M00018,,,,,,,,,,,,,summary,"Threonine biosynthesis, aspartate => homoserine => threonine"
+Met pathway,M00017,,,,,,,,,,,,,summary,"Methionine biosynthesis, aspartate => homoserine => methionine"
+Ile pathway,M00570,,,,,,,,,,,,,summary,"Isoleucine biosynthesis, threonine => 2-oxobutanoate => isoleucine"
+TCA cycle,M00010,,,,,,,,,,,,,summary,"Citrate cycle, first carbon oxidation, oxaloacetate => 2-oxoglutarate"
+GDH,R00248,,,1.4.1.3;1.4.1.4;1.4.1.13,MNXR100086,MNXR100086,GLUDy_1,GDH_nadp;GLUDy_1;GLUDym,,rxn00184;rxn27887;rxn30023;rxn33943;rxn34794,11612;11613;11614;11615,GLUTDEHYD-RXN;RXN-20084,,suggested (high),L-Glutamate + NADP+ + H2O <=> 2-Oxoglutarate + Ammonia + NADPH + H+
+GS,R00253,,,6.3.1.2,MNXR100024,MNXR100024,GLNS,GALh;GALm;GLNS,,rxn00187;rxn19835;rxn19836;rxn30022;rxn33952;rxn33953;rxn34791;rxn34792,16169;16170;16171;16172,GLUTAMINESYN-RXN,False,suggested (high),ATP + L-Glutamate + Ammonia <=> ADP + Orthophosphate + L-Glutamine
+ProB·A·C,M00015,,,,,,,,,,,,,summary,"Proline biosynthesis, glutamate => proline"
+Arg pathway,M00028;M00844,,,,,,,,,,,,,summary,"Ornithine biosynthesis, glutamate => ornithine / Arginine biosynthesis, ornithine => arginine"
+AAA pathway,M00030,,,,,,,,,,,,,summary,"Lysine biosynthesis, AAA pathway, 2-oxoglutarate => 2-aminoadipate => lysine"
+PRPS,R01049,,,2.7.6.1,MNXR189826,MNXR189826,PRPPS,PRPPS;PRPPSig;RPDPK,,rxn00770;rxn15108;rxn33995;rxn35356;rxn38273,15609;15610;15611;15612,,False,suggested (high),ATP + D-Ribose 5-phosphate <=> AMP + 5-Phospho-alpha-D-ribose 1-diphosphate
+His pathway,M00026,,,,,,,,,,,,,summary,"Histidine biosynthesis, PRPP => histidine"

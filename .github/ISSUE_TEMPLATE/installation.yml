@@ -1,0 +1,43 @@
+name: Installation report
+description: Tell us how installing or starting GEMs MAP went, whether it worked or not
+labels: [installation]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for testing GEMs MAP. Reports of installations that worked are useful too.
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options: [It worked, It worked after a problem (described below), It did not work]
+    validations:
+      required: true
+  - type: dropdown
+    id: method
+    attributes:
+      label: How did you install it?
+      options: [pip install gemsmap, uvx gemsmap / uv, Zip on Windows, Zip on macOS, Zip on Linux, From the source code, Other]
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Operating system and version
+      placeholder: Windows 11, macOS 15 (Apple M2), Ubuntu 24.04...
+    validations:
+      required: true
+  - type: input
+    id: time
+    attributes:
+      label: About how long did the installation take?
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: The steps you took and anything unexpected. Screenshots help.
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: If GEMs MAP starts, click "GEMs MAP <version>" in the COBRAGUI status bar, then "Copy diagnostics", and paste it here. Otherwise paste the output of `gemsmap diagnose`, or the messages of the window where it failed.
+      render: text

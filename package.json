@@ -1,0 +1,43 @@
+{
+  "name": "gemsmap",
+  "version": "0.3.0-beta.1",
+  "private": true,
+  "description": "GEMs MAP — an interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models (COBRAGUI for COBRApy, publication-quality pathway maps)",
+  "license": "MIT",
+  "author": "Bruno Batista <bruno.batista.biotec@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --noEmit",
+    "test": "node tools/run-ts-tests.mjs",
+    "test:fixtures": "node -e \"require('child_process').spawnSync(process.platform==='win32'?'backend/.venv/Scripts/python.exe':'backend/.venv/bin/python',['tools/templates/make_fixtures.py'],{stdio:'inherit'})\"",
+    "template:qc": "node tools/templates/run.mjs qc_template",
+    "template:render": "node tools/templates/run.mjs render_template",
+    "preview": "vite preview",
+    "backend": "node backend/start.cjs",
+    "backend:setup": "python backend/setup_env.py",
+    "backend:test": "node -e \"require('child_process').spawnSync(process.platform==='win32'?'backend/.venv/Scripts/python.exe':'backend/.venv/bin/python',['-m','pytest','-q','backend/tests'],{stdio:'inherit',cwd:process.cwd(),env:{...process.env,PYTHONPATH:'backend'}})\"",
+    "release:build": "python tools/release/build.py",
+    "release:smoke": "python tools/release/smoke_test.py",
+    "bigg:data": "node -e \"require('child_process').spawnSync(process.platform==='win32'?'backend/.venv/Scripts/python.exe':'backend/.venv/bin/python',['tools/bigg/install_bigg_data.py',...process.argv.slice(1)],{stdio:'inherit'})\" --",
+    "kegg:template": "node -e \"require('child_process').spawnSync(process.platform==='win32'?'backend/.venv/Scripts/python.exe':'backend/.venv/bin/python',['tools/kegg/kegg_template.py',...process.argv.slice(1)],{stdio:'inherit'})\" --"
+  },
+  "dependencies": {
+    "fuse.js": "^7.5.0",
+    "gifenc": "^1.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

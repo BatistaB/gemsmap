@@ -1,0 +1,11 @@
+# <type>(<scope>): <summary in imperative, ≤ 72 chars>
+#
+# types:  feat fix perf refactor docs test build ci chore revert
+# scopes: lab map backend bridge data tools ui docs deps
+#
+# Body (optional): what changed and WHY. Wrap at 72 columns.
+# Mention scientific behaviour changes explicitly (e.g. "FVA now ...").
+#
+# Footer (optional):
+#   BREAKING CHANGE: <what breaks, e.g. .gemsmap format or API route>
+#   Refs: #12

@@ -1,0 +1,20 @@
+name: Feature request
+description: A new analysis, view or figure capability
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Scientific need
+      description: What question should this help answer?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+  - type: textarea
+    id: science
+    attributes:
+      label: Scientific considerations
+      description: Method assumptions, units, numerical tolerances, how results should be interpreted.

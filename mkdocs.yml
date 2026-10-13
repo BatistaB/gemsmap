@@ -1,0 +1,157 @@
+# GEMs MAP documentation — MkDocs + Material for MkDocs, built by Read the Docs (.readthedocs.yaml).
+# Local preview:  pip install -r docs/requirements.txt  &&  mkdocs serve
+# Release check:  mkdocs build --strict
+site_name: GEMs MAP
+site_description: An Interactive Workbench for Genome-Scale Metabolic Models
+site_author: Bruno Batista
+# Read the Docs sets the canonical URL of each build; it stays empty in local builds.
+site_url: !ENV [READTHEDOCS_CANONICAL_URL, ""]
+copyright: GEMs MAP is released under the MIT License. Documentation © the GEMs MAP authors.
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  language: en
+  logo: assets/brand/gemsmap-mark-light.svg
+  favicon: assets/brand/favicon.svg
+  icon:
+    repo: fontawesome/brands/git-alt
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to system preference
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tooltips
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+# Maintainer notes kept in docs/ for the repository, not part of the website. MkDocs also excludes a
+# /templates/ folder by default (reserved for theme overrides); here it holds the Templates pages, so it is re-included.
+exclude_docs: |
+  !/templates/
+  PUBLISHING.md
+  brand/README.md
+
+# Generated per-template reports: linked from the Templates pages, intentionally not in the navigation.
+not_in_nav: |
+  templates/kegg/**
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - getting-started/index.md
+      - Installation: getting-started/installation.md
+      - First look: getting-started/first-look.md
+  - COBRAGUI:
+      - cobra-gui/index.md
+      - Importing models: cobra-gui/importing-models.md
+      - Exploring a model: cobra-gui/exploring-models.md
+      - Medium, bounds and objective: cobra-gui/constraints.md
+      - Editing the model structure: cobra-gui/editing-models.md
+      - Constraint-based analysis: cobra-gui/constraint-based-analysis.md
+      - Metabolite analysis: cobra-gui/metabolite-analysis.md
+      - Results, comparison and export: cobra-gui/results-and-export.md
+  - Maps:
+      - maps/index.md
+      - Canvas and side panels: maps/canvas-and-side-panel.md
+      - Drawing pathways: maps/drawing-pathways.md
+      - Linking a map to a model: maps/mapping-model-elements.md
+      - Displaying and comparing results: maps/displaying-and-comparing-results.md
+      - Saving and exporting: maps/saving-and-exporting.md
+  - Templates:
+      - templates/index.md
+      - Template library: templates/template-library.md
+      - Identity and matching: templates/identity-and-matching.md
+      - Creating templates: templates/creating-templates.md
+      - Sharing and reuse: templates/sharing-and-reuse.md
+      - AI-assisted templates: templates/ai-assisted-templates.md
+  - Tutorials:
+      - tutorials/index.md
+      - "Quick start: from model to map": tutorials/quick-start.md
+  - Reference:
+      - reference/index.md
+      - Glossary: reference/glossary.md
+      - FAQ: reference/faq.md
+      - Troubleshooting: reference/troubleshooting.md
+      - Limitations: reference/limitations.md
+      - Roadmap: reference/roadmap.md
+      - About the examples: reference/examples.md
+      - Technical notes:
+          - Pathway templates and the mapping engine: TEMPLATES.md
+          - Template Builder: TEMPLATE_BUILDER.md
+          - Metabolite annotation curation: METABOLITE_ANALYSIS.md
+      - Contributing to the docs: CONTRIBUTING.md
+  - History: history.md

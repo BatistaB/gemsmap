@@ -1,0 +1,55 @@
+# The installable GEMs MAP package (pip install gemsmap): the COBRAGUI backend plus the built web interface.
+# Build it with tools/release/build.py, which compiles the interface into backend/gemsmap/web/ from a clean copy of the
+# tracked files first. Development does not use this file: npm run dev + npm run backend (see CONTRIBUTING.md).
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gemsmap"
+dynamic = ["version"]
+description = "GEMs MAP: an interactive workbench for genome-scale metabolic models (COBRApy analyses, editable metabolic maps, identity-aware pathway templates)"
+readme = "PYPI_README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Bruno Batista" }]
+requires-python = ">=3.10"
+keywords = ["genome-scale metabolic model", "GEM", "COBRApy", "flux balance analysis", "metabolic map", "systems biology"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Web Environment",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Topic :: Scientific/Engineering :: Visualization",
+]
+# keep in step with backend/requirements.txt (the development environment)
+dependencies = [
+  "cobra>=0.29",
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.29",
+  "python-multipart>=0.0.9",
+  "scipy>=1.11",
+]
+
+[project.urls]
+Homepage = "https://github.com/BatistaB/gemsmap"
+Source = "https://github.com/BatistaB/gemsmap"
+Issues = "https://github.com/BatistaB/gemsmap/issues"
+Changelog = "https://github.com/BatistaB/gemsmap/blob/main/CHANGELOG.md"
+
+[project.scripts]
+gemsmap = "gemsmap.cli:main"
+
+[tool.hatch.version]
+path = "backend/gemsmap/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["backend/gemsmap", "backend/cobragui"]
+# the compiled interface is git-ignored, so it is listed explicitly
+artifacts = ["backend/gemsmap/web/**"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["backend/gemsmap", "backend/cobragui", "LICENSE", "PYPI_README.md", "pyproject.toml"]
+artifacts = ["backend/gemsmap/web/**"]

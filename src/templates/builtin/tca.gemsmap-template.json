@@ -1,0 +1,1525 @@
+{
+ "format": "gemsmap-template",
+ "schema_version": "1.0.0",
+ "metadata": {
+  "id": "tca",
+  "name": "TCA cycle",
+  "description": "Krebs cycle with acetyl-CoA entry, drawn as a circle.",
+  "pathway": "Tricarboxylic acid cycle",
+  "section": "Central carbon",
+  "template_version": "2.0.0",
+  "scope": {
+   "level": "universal",
+   "taxa": [],
+   "note": "Mitochondrial in eukaryotes, cytosolic in prokaryotes."
+  },
+  "authors": [
+   "GEMs MAP"
+  ],
+  "created": "2026-10-02T00:00:00.000Z",
+  "modified": "2026-10-08T00:00:00.000Z",
+  "license": "MIT",
+  "tags": [
+   "central carbon",
+   "TCA",
+   "Krebs cycle"
+  ],
+  "citations": [],
+  "layout_kind": "circular"
+ },
+ "biology": {
+  "compartments": [
+   {
+    "id": "mitochondria",
+    "fallback": [
+     "cytosol",
+     "intracellular"
+    ],
+    "note": "The TCA cycle is mitochondrial in eukaryotes; prokaryote-like models run it in the cytoplasm."
+   }
+  ],
+  "entities": [
+   {
+    "id": "tpl_ent_001",
+    "name": "Acetyl-CoA",
+    "short": "accoa",
+    "formula": "C23H38N7O17P3S",
+    "synonyms": [
+     "acetyl-CoA",
+     "acetyl coenzyme A",
+     "acetyl-coenzyme A",
+     "AcCoA"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00024"
+     ],
+     "chebi": [
+      "15351",
+      "57288"
+     ],
+     "bigg.metabolite": [
+      "accoa"
+     ],
+     "seed.compound": [
+      "cpd00022"
+     ],
+     "metacyc.compound": [
+      "ACETYL-COA"
+     ],
+     "hmdb": [
+      "HMDB0001206"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "acetyl-CoA"
+   },
+   {
+    "id": "tpl_ent_002",
+    "name": "Citrate",
+    "short": "cit",
+    "formula": "C6H8O7",
+    "synonyms": [
+     "citrate",
+     "citric acid",
+     "2-hydroxypropane-1,2,3-tricarboxylate",
+     "Cit"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00158"
+     ],
+     "chebi": [
+      "16947",
+      "30769"
+     ],
+     "bigg.metabolite": [
+      "cit"
+     ],
+     "seed.compound": [
+      "cpd00137"
+     ],
+     "metacyc.compound": [
+      "CIT"
+     ],
+     "hmdb": [
+      "HMDB0000094"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "citrate"
+   },
+   {
+    "id": "tpl_ent_003",
+    "name": "Isocitrate",
+    "short": "icit",
+    "formula": "C6H8O7",
+    "synonyms": [
+     "isocitrate",
+     "isocitric acid",
+     "D-threo-isocitrate",
+     "threo-Ds-isocitrate",
+     "(2R,3S)-isocitrate",
+     "D-isocitrate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00311"
+     ],
+     "chebi": [
+      "16087",
+      "30887"
+     ],
+     "bigg.metabolite": [
+      "icit"
+     ],
+     "seed.compound": [
+      "cpd00260"
+     ],
+     "metacyc.compound": [
+      "THREO-DS-ISO-CITRATE"
+     ],
+     "hmdb": [
+      "HMDB0000193"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "isocitrate"
+   },
+   {
+    "id": "tpl_ent_004",
+    "name": "2-Oxoglutarate",
+    "short": "akg",
+    "formula": "C5H6O5",
+    "synonyms": [
+     "2-oxoglutarate",
+     "alpha-ketoglutarate",
+     "2-ketoglutarate",
+     "oxoglutarate",
+     "2-oxoglutaric acid",
+     "alpha-ketoglutaric acid",
+     "AKG",
+     "2-oxopentanedioate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00026"
+     ],
+     "chebi": [
+      "16810",
+      "30915"
+     ],
+     "bigg.metabolite": [
+      "akg"
+     ],
+     "seed.compound": [
+      "cpd00024"
+     ],
+     "metacyc.compound": [
+      "2-KETOGLUTARATE"
+     ],
+     "hmdb": [
+      "HMDB0000208"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "2-oxoglutarate"
+   },
+   {
+    "id": "tpl_ent_005",
+    "name": "Succinyl-CoA",
+    "short": "succoa",
+    "formula": "C25H40N7O19P3S",
+    "synonyms": [
+     "succinyl-CoA",
+     "succinyl coenzyme A",
+     "succinyl-coenzyme A",
+     "SucCoA"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00091"
+     ],
+     "chebi": [
+      "15380",
+      "57292"
+     ],
+     "bigg.metabolite": [
+      "succoa"
+     ],
+     "seed.compound": [
+      "cpd00078"
+     ],
+     "metacyc.compound": [
+      "SUC-COA"
+     ],
+     "hmdb": [
+      "HMDB0001022"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "succinyl-CoA"
+   },
+   {
+    "id": "tpl_ent_006",
+    "name": "Succinate",
+    "short": "succ",
+    "formula": "C4H6O4",
+    "synonyms": [
+     "succinate",
+     "succinic acid",
+     "butanedioate",
+     "butanedioic acid",
+     "Succ"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00042"
+     ],
+     "chebi": [
+      "26806",
+      "30031",
+      "15741"
+     ],
+     "bigg.metabolite": [
+      "succ"
+     ],
+     "seed.compound": [
+      "cpd00036"
+     ],
+     "metacyc.compound": [
+      "SUC"
+     ],
+     "hmdb": [
+      "HMDB0000254"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "succinate"
+   },
+   {
+    "id": "tpl_ent_007",
+    "name": "Fumarate",
+    "short": "fum",
+    "formula": "C4H4O4",
+    "synonyms": [
+     "fumarate",
+     "fumaric acid",
+     "trans-butenedioate",
+     "(E)-butenedioate",
+     "Fum"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00122"
+     ],
+     "chebi": [
+      "29806",
+      "18012"
+     ],
+     "bigg.metabolite": [
+      "fum"
+     ],
+     "seed.compound": [
+      "cpd00106"
+     ],
+     "metacyc.compound": [
+      "FUM"
+     ],
+     "hmdb": [
+      "HMDB0000134"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "fumarate"
+   },
+   {
+    "id": "tpl_ent_008",
+    "name": "L-Malate",
+    "short": "mal_L",
+    "formula": "C4H6O5",
+    "synonyms": [
+     "L-malate",
+     "(S)-malate",
+     "L-malic acid",
+     "(S)-malic acid",
+     "Mal"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00149"
+     ],
+     "chebi": [
+      "15589",
+      "30797"
+     ],
+     "bigg.metabolite": [
+      "mal__L",
+      "mal_L"
+     ],
+     "seed.compound": [
+      "cpd00130"
+     ],
+     "metacyc.compound": [
+      "MAL"
+     ],
+     "hmdb": [
+      "HMDB0000156"
+     ]
+    },
+    "related": [
+     {
+      "note": "stereo-unspecified malate",
+      "names": [
+       "malate",
+       "malic acid"
+      ],
+      "identifiers": {
+       "kegg.compound": [
+        "C00711"
+       ]
+      }
+     }
+    ],
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "L-malate"
+   },
+   {
+    "id": "tpl_ent_009",
+    "name": "Oxaloacetate",
+    "short": "oaa",
+    "formula": "C4H4O5",
+    "synonyms": [
+     "oxaloacetate",
+     "oxaloacetic acid",
+     "oxalacetate",
+     "2-oxosuccinate",
+     "OAA"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00036"
+     ],
+     "chebi": [
+      "16452",
+      "30744"
+     ],
+     "bigg.metabolite": [
+      "oaa"
+     ],
+     "seed.compound": [
+      "cpd00032"
+     ],
+     "metacyc.compound": [
+      "OXALACETIC_ACID"
+     ],
+     "hmdb": [
+      "HMDB0000223"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "oxaloacetate"
+   },
+   {
+    "id": "tpl_ent_010",
+    "name": "H2O",
+    "short": "h2o",
+    "formula": "H2O",
+    "synonyms": [
+     "H2O",
+     "water"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00001"
+     ],
+     "chebi": [
+      "15377"
+     ],
+     "bigg.metabolite": [
+      "h2o"
+     ],
+     "seed.compound": [
+      "cpd00001"
+     ],
+     "metacyc.compound": [
+      "WATER"
+     ],
+     "hmdb": [
+      "HMDB0002111"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "H2O"
+   },
+   {
+    "id": "tpl_ent_011",
+    "name": "Coenzyme A",
+    "short": "coa",
+    "formula": "C21H36N7O16P3S",
+    "synonyms": [
+     "CoA",
+     "coenzyme A",
+     "CoA-SH"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00010"
+     ],
+     "chebi": [
+      "15346",
+      "57287"
+     ],
+     "bigg.metabolite": [
+      "coa"
+     ],
+     "seed.compound": [
+      "cpd00010"
+     ],
+     "metacyc.compound": [
+      "CO-A"
+     ],
+     "hmdb": [
+      "HMDB0001423"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "CoA"
+   },
+   {
+    "id": "tpl_ent_012",
+    "name": "NAD+",
+    "short": "nad",
+    "formula": "C21H28N7O14P2",
+    "synonyms": [
+     "NAD+",
+     "NAD",
+     "nicotinamide adenine dinucleotide",
+     "oxidized nicotinamide adenine dinucleotide"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00003"
+     ],
+     "chebi": [
+      "15846",
+      "57540"
+     ],
+     "bigg.metabolite": [
+      "nad"
+     ],
+     "seed.compound": [
+      "cpd00003"
+     ],
+     "metacyc.compound": [
+      "NAD"
+     ],
+     "hmdb": [
+      "HMDB0000902"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "NAD+"
+   },
+   {
+    "id": "tpl_ent_013",
+    "name": "CO2",
+    "short": "co2",
+    "formula": "CO2",
+    "synonyms": [
+     "CO2",
+     "carbon dioxide"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00011"
+     ],
+     "chebi": [
+      "16526"
+     ],
+     "bigg.metabolite": [
+      "co2"
+     ],
+     "seed.compound": [
+      "cpd00011"
+     ],
+     "metacyc.compound": [
+      "CARBON-DIOXIDE"
+     ],
+     "hmdb": [
+      "HMDB0001967"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "CO2"
+   },
+   {
+    "id": "tpl_ent_014",
+    "name": "NADH",
+    "short": "nadh",
+    "formula": "C21H29N7O14P2",
+    "synonyms": [
+     "NADH",
+     "reduced nicotinamide adenine dinucleotide"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00004"
+     ],
+     "chebi": [
+      "16908",
+      "57945"
+     ],
+     "bigg.metabolite": [
+      "nadh"
+     ],
+     "seed.compound": [
+      "cpd00004"
+     ],
+     "metacyc.compound": [
+      "NADH"
+     ],
+     "hmdb": [
+      "HMDB0001487"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "NADH"
+   },
+   {
+    "id": "tpl_ent_015",
+    "name": "ADP",
+    "short": "adp",
+    "formula": "C10H15N5O10P2",
+    "synonyms": [
+     "ADP",
+     "adenosine 5'-diphosphate",
+     "adenosine diphosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00008"
+     ],
+     "chebi": [
+      "16761",
+      "456216"
+     ],
+     "bigg.metabolite": [
+      "adp"
+     ],
+     "seed.compound": [
+      "cpd00008"
+     ],
+     "metacyc.compound": [
+      "ADP"
+     ],
+     "hmdb": [
+      "HMDB0001341"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "ADP"
+   },
+   {
+    "id": "tpl_ent_016",
+    "name": "Orthophosphate",
+    "short": "pi",
+    "formula": "H3PO4",
+    "synonyms": [
+     "phosphate",
+     "orthophosphate",
+     "Pi",
+     "inorganic phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00009"
+     ],
+     "chebi": [
+      "18367",
+      "26078"
+     ],
+     "bigg.metabolite": [
+      "pi"
+     ],
+     "seed.compound": [
+      "cpd00009"
+     ],
+     "metacyc.compound": [
+      "Pi"
+     ],
+     "hmdb": [
+      "HMDB0001429"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "phosphate"
+   },
+   {
+    "id": "tpl_ent_017",
+    "name": "ATP",
+    "short": "atp",
+    "formula": "C10H16N5O13P3",
+    "synonyms": [
+     "ATP",
+     "adenosine 5'-triphosphate",
+     "adenosine triphosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00002"
+     ],
+     "chebi": [
+      "15422",
+      "30616"
+     ],
+     "bigg.metabolite": [
+      "atp"
+     ],
+     "seed.compound": [
+      "cpd00002"
+     ],
+     "metacyc.compound": [
+      "ATP"
+     ],
+     "hmdb": [
+      "HMDB0000538"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "ATP"
+   },
+   {
+    "id": "tpl_ent_018",
+    "name": "Ubiquinone",
+    "short": "q",
+    "synonyms": [
+     "ubiquinone",
+     "coenzyme Q",
+     "quinone"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00399"
+     ],
+     "chebi": [
+      "16389"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "ubiquinone"
+   },
+   {
+    "id": "tpl_ent_019",
+    "name": "Ubiquinol",
+    "short": "qh2",
+    "synonyms": [
+     "ubiquinol",
+     "reduced coenzyme Q"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00390"
+     ],
+     "chebi": [
+      "17976"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "ubiquinol"
+   }
+  ],
+  "metabolites": [
+   {
+    "id": "tpl_met_001",
+    "entity": "tpl_ent_001",
+    "compartment": "mitochondria",
+    "level": "required",
+    "ungrouped": true,
+    "aliases": [
+     "accoa"
+    ]
+   },
+   {
+    "id": "tpl_met_002",
+    "entity": "tpl_ent_002",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "cit"
+    ]
+   },
+   {
+    "id": "tpl_met_003",
+    "entity": "tpl_ent_003",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "icit"
+    ]
+   },
+   {
+    "id": "tpl_met_004",
+    "entity": "tpl_ent_004",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "akg"
+    ]
+   },
+   {
+    "id": "tpl_met_005",
+    "entity": "tpl_ent_005",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "succoa"
+    ]
+   },
+   {
+    "id": "tpl_met_006",
+    "entity": "tpl_ent_006",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "succ"
+    ]
+   },
+   {
+    "id": "tpl_met_007",
+    "entity": "tpl_ent_007",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "fum"
+    ]
+   },
+   {
+    "id": "tpl_met_008",
+    "entity": "tpl_ent_008",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "mal"
+    ]
+   },
+   {
+    "id": "tpl_met_009",
+    "entity": "tpl_ent_009",
+    "compartment": "mitochondria",
+    "level": "required",
+    "aliases": [
+     "oaa"
+    ]
+   },
+   {
+    "id": "tpl_met_010",
+    "entity": "tpl_ent_010",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_011",
+    "entity": "tpl_ent_011",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_012",
+    "entity": "tpl_ent_012",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_013",
+    "entity": "tpl_ent_013",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_014",
+    "entity": "tpl_ent_014",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_015",
+    "entity": "tpl_ent_015",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_016",
+    "entity": "tpl_ent_016",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_017",
+    "entity": "tpl_ent_017",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_018",
+    "entity": "tpl_ent_018",
+    "compartment": "mitochondria",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_019",
+    "entity": "tpl_ent_019",
+    "compartment": "mitochondria",
+    "level": "optional"
+   }
+  ],
+  "reactions": [
+   {
+    "id": "tpl_rxn_001",
+    "name": "CS",
+    "canonicalName": "citrate synthase",
+    "reversible": false,
+    "ec": [
+     "2.3.3.1",
+     "2.3.3.16",
+     "2.3.3.3"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_009",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_001",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_010",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "CS"
+     ],
+     "kegg.reaction": [
+      "R00351"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "CS",
+     "CSm"
+    ],
+    "aliases": [
+     "CS"
+    ]
+   },
+   {
+    "id": "tpl_rxn_002",
+    "name": "ACONT",
+    "canonicalName": "aconitate hydratase",
+    "reversible": true,
+    "ec": [
+     "4.2.1.3"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_003",
+      "coefficient": 1,
+      "main": true
+     }
+    ],
+    "identifiers": {
+     "kegg.reaction": [
+      "R01324"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "ACONT",
+     "ACONTa",
+     "ACONTm"
+    ],
+    "aliases": [
+     "ACONT"
+    ]
+   },
+   {
+    "id": "tpl_rxn_003",
+    "name": "ICDH",
+    "canonicalName": "isocitrate dehydrogenase",
+    "reversible": false,
+    "ec": [
+     "1.1.1.41",
+     "1.1.1.42"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_003",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_012",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_013",
+      "coefficient": 1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_014",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "ICDHyr"
+     ],
+     "kegg.reaction": [
+      "R00709"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "ICDHyr",
+     "ICDHy",
+     "ICDHxm"
+    ],
+    "aliases": [
+     "ICDH"
+    ]
+   },
+   {
+    "id": "tpl_rxn_004",
+    "name": "AKGDH",
+    "canonicalName": "2-oxoglutarate dehydrogenase complex",
+    "reversible": false,
+    "ec": [
+     "1.2.4.2",
+     "1.2.1.105"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_012",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_005",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_013",
+      "coefficient": 1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_014",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "AKGDH"
+     ],
+     "kegg.reaction": [
+      "R08549"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "AKGDH",
+     "AKGDm"
+    ],
+    "aliases": [
+     "AKGDH"
+    ]
+   },
+   {
+    "id": "tpl_rxn_005",
+    "name": "SUCOAS",
+    "canonicalName": "succinyl-CoA synthetase",
+    "reversible": true,
+    "ec": [
+     "6.2.1.4",
+     "6.2.1.5"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_005",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_015",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_016",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_006",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_017",
+      "coefficient": 1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_011",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "SUCOAS"
+     ],
+     "kegg.reaction": [
+      "R00405"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "SUCOAS",
+     "SUCOASm"
+    ],
+    "aliases": [
+     "SUCOAS"
+    ]
+   },
+   {
+    "id": "tpl_rxn_006",
+    "name": "SDH",
+    "canonicalName": "succinate dehydrogenase",
+    "reversible": false,
+    "ec": [
+     "1.3.5.1",
+     "1.3.5.4"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_006",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_018",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_007",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_019",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "SUCDi"
+     ],
+     "kegg.reaction": [
+      "R02164"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "SUCDi",
+     "SUCD1",
+     "SUCD1m",
+     "SDH"
+    ],
+    "aliases": [
+     "SDH"
+    ]
+   },
+   {
+    "id": "tpl_rxn_007",
+    "name": "FUM",
+    "canonicalName": "fumarate hydratase",
+    "reversible": true,
+    "ec": [
+     "4.2.1.2"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_007",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_010",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": 1,
+      "main": true
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "FUM"
+     ],
+     "kegg.reaction": [
+      "R01082"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "FUM",
+     "FUMm"
+    ],
+    "aliases": [
+     "FUM"
+    ]
+   },
+   {
+    "id": "tpl_rxn_008",
+    "name": "MDH",
+    "canonicalName": "malate dehydrogenase",
+    "reversible": true,
+    "ec": [
+     "1.1.1.37"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_012",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_009",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_014",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "MDH"
+     ],
+     "kegg.reaction": [
+      "R00342"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "MDH",
+     "MDHm"
+    ],
+    "aliases": [
+     "MDH"
+    ]
+   }
+  ],
+  "connectors": [
+   {
+    "id": "tpl_port_001",
+    "metabolite": "tpl_met_001",
+    "direction": "in",
+    "target": {
+     "template": "glycolysis",
+     "pathway": "Glycolysis"
+    }
+   }
+  ]
+ },
+ "layout": {
+  "nodes": [
+   {
+    "id": "tpl_node_001",
+    "metabolite": "tpl_met_001",
+    "x": -140,
+    "y": 10,
+    "label_pos": "top"
+   },
+   {
+    "id": "tpl_node_002",
+    "metabolite": "tpl_met_002",
+    "x": 0,
+    "y": -5,
+    "label_pos": "top"
+   },
+   {
+    "id": "tpl_node_003",
+    "metabolite": "tpl_met_003",
+    "x": 67,
+    "y": 23,
+    "label_pos": "right"
+   },
+   {
+    "id": "tpl_node_004",
+    "metabolite": "tpl_met_004",
+    "x": 95,
+    "y": 90,
+    "label_pos": "right"
+   },
+   {
+    "id": "tpl_node_005",
+    "metabolite": "tpl_met_005",
+    "x": 67,
+    "y": 157,
+    "label_pos": "right"
+   },
+   {
+    "id": "tpl_node_006",
+    "metabolite": "tpl_met_006",
+    "x": 0,
+    "y": 185,
+    "label_pos": "bottom"
+   },
+   {
+    "id": "tpl_node_007",
+    "metabolite": "tpl_met_007",
+    "x": -67,
+    "y": 157,
+    "label_pos": "left"
+   },
+   {
+    "id": "tpl_node_008",
+    "metabolite": "tpl_met_008",
+    "x": -95,
+    "y": 90,
+    "label_pos": "left"
+   },
+   {
+    "id": "tpl_node_009",
+    "metabolite": "tpl_met_009",
+    "x": -67,
+    "y": 23,
+    "label_pos": "left"
+   }
+  ],
+  "ports": [],
+  "reactions": [
+   {
+    "reaction": "tpl_rxn_001",
+    "sources": [
+     "tpl_node_009",
+     "tpl_node_001"
+    ],
+    "targets": [
+     "tpl_node_002"
+    ],
+    "routing": "curved",
+    "bend": -12
+   },
+   {
+    "reaction": "tpl_rxn_002",
+    "sources": [
+     "tpl_node_002"
+    ],
+    "targets": [
+     "tpl_node_003"
+    ],
+    "routing": "curved",
+    "bend": -12
+   },
+   {
+    "reaction": "tpl_rxn_003",
+    "sources": [
+     "tpl_node_003"
+    ],
+    "targets": [
+     "tpl_node_004"
+    ],
+    "routing": "curved",
+    "bend": -12
+   },
+   {
+    "reaction": "tpl_rxn_004",
+    "sources": [
+     "tpl_node_004"
+    ],
+    "targets": [
+     "tpl_node_005"
+    ],
+    "routing": "curved",
+    "bend": -12
+   },
+   {
+    "reaction": "tpl_rxn_005",
+    "sources": [
+     "tpl_node_005"
+    ],
+    "targets": [
+     "tpl_node_006"
+    ],
+    "routing": "curved",
+    "bend": -12
+   },
+   {
+    "reaction": "tpl_rxn_006",
+    "sources": [
+     "tpl_node_006"
+    ],
+    "targets": [
+     "tpl_node_007"
+    ],
+    "routing": "curved",
+    "bend": -12
+   },
+   {
+    "reaction": "tpl_rxn_007",
+    "sources": [
+     "tpl_node_007"
+    ],
+    "targets": [
+     "tpl_node_008"
+    ],
+    "routing": "curved",
+    "bend": -12
+   },
+   {
+    "reaction": "tpl_rxn_008",
+    "sources": [
+     "tpl_node_008"
+    ],
+    "targets": [
+     "tpl_node_009"
+    ],
+    "routing": "curved",
+    "bend": -12
+   }
+  ],
+  "groups": [],
+  "labels": []
+ }
+}

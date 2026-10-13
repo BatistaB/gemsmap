@@ -1,0 +1,886 @@
+{
+ "format": "gemsmap-template",
+ "schema_version": "1.0.0",
+ "metadata": {
+  "id": "ppp",
+  "name": "Pentose phosphate (oxidative)",
+  "description": "Oxidative pentose phosphate pathway: glucose 6-phosphate → ribulose 5-phosphate, ribose 5-phosphate and xylulose 5-phosphate.",
+  "pathway": "Pentose phosphate pathway, oxidative branch",
+  "section": "Central carbon",
+  "template_version": "2.0.0",
+  "scope": {
+   "level": "universal",
+   "taxa": [],
+   "note": "Conserved; cytosolic."
+  },
+  "authors": [
+   "GEMs MAP"
+  ],
+  "created": "2026-10-02T00:00:00.000Z",
+  "modified": "2026-10-08T00:00:00.000Z",
+  "license": "MIT",
+  "tags": [
+   "central carbon",
+   "pentose phosphate",
+   "NADPH"
+  ],
+  "citations": [],
+  "layout_kind": "branched"
+ },
+ "biology": {
+  "compartments": [
+   {
+    "id": "cytosol",
+    "fallback": [
+     "intracellular"
+    ]
+   }
+  ],
+  "entities": [
+   {
+    "id": "tpl_ent_001",
+    "name": "D-Glucose 6-phosphate",
+    "short": "g6p",
+    "formula": "C6H13O9P",
+    "synonyms": [
+     "glucose 6-phosphate",
+     "D-glucose 6-phosphate",
+     "glucose-6-phosphate",
+     "G6P",
+     "D-glucopyranose 6-phosphate",
+     "Robison ester"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00092"
+     ],
+     "chebi": [
+      "14314",
+      "4170",
+      "61548"
+     ],
+     "bigg.metabolite": [
+      "g6p"
+     ],
+     "seed.compound": [
+      "cpd00079"
+     ],
+     "metacyc.compound": [
+      "GLC-6-P",
+      "D-GLUCOSE-6-PHOSPHATE"
+     ],
+     "hmdb": [
+      "HMDB0001401"
+     ]
+    },
+    "related": [
+     {
+      "note": "anomer of D-glucose 6-phosphate",
+      "names": [
+       "alpha-D-glucose 6-phosphate",
+       "beta-D-glucose 6-phosphate"
+      ],
+      "identifiers": {
+       "kegg.compound": [
+        "C00668",
+        "C01172"
+       ],
+       "bigg.metabolite": [
+        "g6p_A",
+        "g6p_B"
+       ],
+       "metacyc.compound": [
+        "ALPHA-GLC-6-P",
+        "GLC-6-P-BETA"
+       ]
+      }
+     }
+    ],
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "D-glucose-6-phosphate"
+   },
+   {
+    "id": "tpl_ent_002",
+    "name": "6-Phospho-D-glucono-1,5-lactone",
+    "short": "6pgl",
+    "formula": "C6H11O9P",
+    "synonyms": [
+     "6-phospho-D-glucono-1,5-lactone",
+     "6-phosphogluconolactone",
+     "6-O-phosphono-D-glucono-1,5-lactone",
+     "D-glucono-1,5-lactone 6-phosphate",
+     "6-phosphoglucono-delta-lactone",
+     "6PGL"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C01236"
+     ],
+     "chebi": [
+      "16938",
+      "57955"
+     ],
+     "bigg.metabolite": [
+      "6pgl"
+     ],
+     "seed.compound": [
+      "cpd00911"
+     ],
+     "metacyc.compound": [
+      "D-6-P-GLUCONO-DELTA-LACTONE"
+     ],
+     "hmdb": [
+      "HMDB0001127"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "6-phosphogluconolactone"
+   },
+   {
+    "id": "tpl_ent_003",
+    "name": "6-Phospho-D-gluconate",
+    "short": "6pgc",
+    "formula": "C6H13O10P",
+    "synonyms": [
+     "6-phospho-D-gluconate",
+     "6-phosphogluconate",
+     "6-phosphogluconic acid",
+     "D-gluconate 6-phosphate",
+     "6PG"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00345"
+     ],
+     "chebi": [
+      "48928",
+      "58759"
+     ],
+     "bigg.metabolite": [
+      "6pgc"
+     ],
+     "seed.compound": [
+      "cpd00284"
+     ],
+     "metacyc.compound": [
+      "CPD-2961"
+     ],
+     "hmdb": [
+      "HMDB0001316"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "6-phospho-D-gluconate"
+   },
+   {
+    "id": "tpl_ent_004",
+    "name": "D-Ribulose 5-phosphate",
+    "short": "ru5p_D",
+    "formula": "C5H11O8P",
+    "synonyms": [
+     "D-ribulose 5-phosphate",
+     "ribulose 5-phosphate",
+     "ribulose-5-phosphate",
+     "Ru5P"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00199"
+     ],
+     "chebi": [
+      "17363",
+      "58121"
+     ],
+     "bigg.metabolite": [
+      "ru5p__D",
+      "ru5p_D"
+     ],
+     "seed.compound": [
+      "cpd00171"
+     ],
+     "metacyc.compound": [
+      "RIBULOSE-5P"
+     ],
+     "hmdb": [
+      "HMDB0000618"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "D-ribulose-5-phosphate"
+   },
+   {
+    "id": "tpl_ent_005",
+    "name": "D-Ribose 5-phosphate",
+    "short": "r5p",
+    "formula": "C5H11O8P",
+    "synonyms": [
+     "D-ribose 5-phosphate",
+     "ribose 5-phosphate",
+     "ribose-5-phosphate",
+     "R5P",
+     "alpha-D-ribose 5-phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00117"
+     ],
+     "chebi": [
+      "17797",
+      "78346"
+     ],
+     "bigg.metabolite": [
+      "r5p"
+     ],
+     "seed.compound": [
+      "cpd00101"
+     ],
+     "metacyc.compound": [
+      "RIBOSE-5P"
+     ],
+     "hmdb": [
+      "HMDB0001548"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "D-ribose-5-phosphate"
+   },
+   {
+    "id": "tpl_ent_006",
+    "name": "D-Xylulose 5-phosphate",
+    "short": "xu5p_D",
+    "formula": "C5H11O8P",
+    "synonyms": [
+     "D-xylulose 5-phosphate",
+     "xylulose 5-phosphate",
+     "xylulose-5-phosphate",
+     "Xu5P"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00231"
+     ],
+     "chebi": [
+      "16332",
+      "57737"
+     ],
+     "bigg.metabolite": [
+      "xu5p__D",
+      "xu5p_D"
+     ],
+     "seed.compound": [
+      "cpd00198"
+     ],
+     "metacyc.compound": [
+      "XYLULOSE-5-PHOSPHATE"
+     ],
+     "hmdb": [
+      "HMDB0000868"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "D-xylulose-5-phosphate"
+   },
+   {
+    "id": "tpl_ent_007",
+    "name": "NADP+",
+    "short": "nadp",
+    "formula": "C21H29N7O17P3",
+    "synonyms": [
+     "NADP+",
+     "NADP",
+     "nicotinamide adenine dinucleotide phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00006"
+     ],
+     "chebi": [
+      "18009",
+      "58349"
+     ],
+     "bigg.metabolite": [
+      "nadp"
+     ],
+     "seed.compound": [
+      "cpd00006"
+     ],
+     "metacyc.compound": [
+      "NADP"
+     ],
+     "hmdb": [
+      "HMDB0000217"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "NADP+"
+   },
+   {
+    "id": "tpl_ent_008",
+    "name": "NADPH",
+    "short": "nadph",
+    "formula": "C21H30N7O17P3",
+    "synonyms": [
+     "NADPH",
+     "reduced nicotinamide adenine dinucleotide phosphate"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00005"
+     ],
+     "chebi": [
+      "16474",
+      "57783"
+     ],
+     "bigg.metabolite": [
+      "nadph"
+     ],
+     "seed.compound": [
+      "cpd00005"
+     ],
+     "metacyc.compound": [
+      "NADPH"
+     ],
+     "hmdb": [
+      "HMDB0000221"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "NADPH"
+   },
+   {
+    "id": "tpl_ent_009",
+    "name": "H2O",
+    "short": "h2o",
+    "formula": "H2O",
+    "synonyms": [
+     "H2O",
+     "water"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00001"
+     ],
+     "chebi": [
+      "15377"
+     ],
+     "bigg.metabolite": [
+      "h2o"
+     ],
+     "seed.compound": [
+      "cpd00001"
+     ],
+     "metacyc.compound": [
+      "WATER"
+     ],
+     "hmdb": [
+      "HMDB0002111"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "H2O"
+   },
+   {
+    "id": "tpl_ent_010",
+    "name": "CO2",
+    "short": "co2",
+    "formula": "CO2",
+    "synonyms": [
+     "CO2",
+     "carbon dioxide"
+    ],
+    "identifiers": {
+     "kegg.compound": [
+      "C00011"
+     ],
+     "chebi": [
+      "16526"
+     ],
+     "bigg.metabolite": [
+      "co2"
+     ],
+     "seed.compound": [
+      "cpd00011"
+     ],
+     "metacyc.compound": [
+      "CARBON-DIOXIDE"
+     ],
+     "hmdb": [
+      "HMDB0001967"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+    },
+    "library": "CO2"
+   }
+  ],
+  "metabolites": [
+   {
+    "id": "tpl_met_001",
+    "entity": "tpl_ent_001",
+    "compartment": "cytosol",
+    "level": "required",
+    "aliases": [
+     "g6p"
+    ]
+   },
+   {
+    "id": "tpl_met_002",
+    "entity": "tpl_ent_002",
+    "compartment": "cytosol",
+    "level": "required",
+    "aliases": [
+     "6pgl"
+    ]
+   },
+   {
+    "id": "tpl_met_003",
+    "entity": "tpl_ent_003",
+    "compartment": "cytosol",
+    "level": "required",
+    "aliases": [
+     "6pgc"
+    ]
+   },
+   {
+    "id": "tpl_met_004",
+    "entity": "tpl_ent_004",
+    "compartment": "cytosol",
+    "level": "required",
+    "aliases": [
+     "ru5p"
+    ]
+   },
+   {
+    "id": "tpl_met_005",
+    "entity": "tpl_ent_005",
+    "compartment": "cytosol",
+    "level": "required",
+    "aliases": [
+     "r5p"
+    ]
+   },
+   {
+    "id": "tpl_met_006",
+    "entity": "tpl_ent_006",
+    "compartment": "cytosol",
+    "level": "required",
+    "aliases": [
+     "xu5p"
+    ]
+   },
+   {
+    "id": "tpl_met_007",
+    "entity": "tpl_ent_007",
+    "compartment": "cytosol",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_008",
+    "entity": "tpl_ent_008",
+    "compartment": "cytosol",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_009",
+    "entity": "tpl_ent_009",
+    "compartment": "cytosol",
+    "level": "optional"
+   },
+   {
+    "id": "tpl_met_010",
+    "entity": "tpl_ent_010",
+    "compartment": "cytosol",
+    "level": "optional"
+   }
+  ],
+  "reactions": [
+   {
+    "id": "tpl_rxn_001",
+    "name": "G6PDH",
+    "canonicalName": "glucose-6-phosphate dehydrogenase",
+    "reversible": false,
+    "ec": [
+     "1.1.1.49",
+     "1.1.1.363"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_001",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_007",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "G6PDH2r"
+     ],
+     "kegg.reaction": [
+      "R00835"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "G6PDH2r",
+     "G6PDH"
+    ],
+    "aliases": [
+     "G6PDH"
+    ]
+   },
+   {
+    "id": "tpl_rxn_002",
+    "name": "PGL",
+    "canonicalName": "6-phosphogluconolactonase",
+    "reversible": false,
+    "ec": [
+     "3.1.1.31"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_002",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_009",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_003",
+      "coefficient": 1,
+      "main": true
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "PGL"
+     ],
+     "kegg.reaction": [
+      "R02035"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "PGL"
+    ],
+    "aliases": [
+     "PGL"
+    ]
+   },
+   {
+    "id": "tpl_rxn_003",
+    "name": "GND",
+    "canonicalName": "6-phosphogluconate dehydrogenase (decarboxylating)",
+    "reversible": false,
+    "ec": [
+     "1.1.1.44",
+     "1.1.1.351"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_003",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_007",
+      "coefficient": -1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": 1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_010",
+      "coefficient": 1,
+      "main": false
+     },
+     {
+      "metabolite": "tpl_met_008",
+      "coefficient": 1,
+      "main": false
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "GND"
+     ],
+     "kegg.reaction": [
+      "R01528"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "GND"
+    ],
+    "aliases": [
+     "GND"
+    ]
+   },
+   {
+    "id": "tpl_rxn_004",
+    "name": "RPI",
+    "canonicalName": "ribose-5-phosphate isomerase",
+    "reversible": true,
+    "ec": [
+     "5.3.1.6"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_005",
+      "coefficient": 1,
+      "main": true
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "RPI"
+     ],
+     "kegg.reaction": [
+      "R01056"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "RPI"
+    ],
+    "aliases": [
+     "RPI"
+    ]
+   },
+   {
+    "id": "tpl_rxn_005",
+    "name": "RPE",
+    "canonicalName": "ribulose-phosphate 3-epimerase",
+    "reversible": true,
+    "ec": [
+     "5.1.3.1"
+    ],
+    "level": "required",
+    "participants": [
+     {
+      "metabolite": "tpl_met_004",
+      "coefficient": -1,
+      "main": true
+     },
+     {
+      "metabolite": "tpl_met_006",
+      "coefficient": 1,
+      "main": true
+     }
+    ],
+    "identifiers": {
+     "bigg.reaction": [
+      "RPE"
+     ],
+     "kegg.reaction": [
+      "R01529"
+     ]
+    },
+    "identity": {
+     "status": "confirmed",
+     "source": "builtin",
+     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+    },
+    "hints": [
+     "RPE"
+    ],
+    "aliases": [
+     "RPE"
+    ]
+   }
+  ],
+  "connectors": [
+   {
+    "id": "tpl_port_001",
+    "metabolite": "tpl_met_001",
+    "direction": "in",
+    "target": {
+     "template": "glycolysis",
+     "pathway": "Glycolysis"
+    }
+   }
+  ]
+ },
+ "layout": {
+  "nodes": [
+   {
+    "id": "tpl_node_001",
+    "metabolite": "tpl_met_001",
+    "x": 0,
+    "y": 60
+   },
+   {
+    "id": "tpl_node_002",
+    "metabolite": "tpl_met_002",
+    "x": -120,
+    "y": 60,
+    "label_pos": "top"
+   },
+   {
+    "id": "tpl_node_003",
+    "metabolite": "tpl_met_003",
+    "x": -220,
+    "y": 60,
+    "label_pos": "top"
+   },
+   {
+    "id": "tpl_node_004",
+    "metabolite": "tpl_met_004",
+    "x": -220,
+    "y": 150,
+    "label_pos": "left"
+   },
+   {
+    "id": "tpl_node_005",
+    "metabolite": "tpl_met_005",
+    "x": -280,
+    "y": 228,
+    "label_pos": "left"
+   },
+   {
+    "id": "tpl_node_006",
+    "metabolite": "tpl_met_006",
+    "x": -160,
+    "y": 228
+   }
+  ],
+  "ports": [],
+  "reactions": [
+   {
+    "reaction": "tpl_rxn_001",
+    "sources": [
+     "tpl_node_001"
+    ],
+    "targets": [
+     "tpl_node_002"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_002",
+    "sources": [
+     "tpl_node_002"
+    ],
+    "targets": [
+     "tpl_node_003"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_003",
+    "sources": [
+     "tpl_node_003"
+    ],
+    "targets": [
+     "tpl_node_004"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_004",
+    "sources": [
+     "tpl_node_004"
+    ],
+    "targets": [
+     "tpl_node_005"
+    ],
+    "routing": "straight"
+   },
+   {
+    "reaction": "tpl_rxn_005",
+    "sources": [
+     "tpl_node_004"
+    ],
+    "targets": [
+     "tpl_node_006"
+    ],
+    "routing": "straight"
+   }
+  ],
+  "groups": [],
+  "labels": []
+ }
+}

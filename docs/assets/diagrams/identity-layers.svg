@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 430" width="860" height="430" role="img" aria-labelledby="t d">
+  <title id="t">Four layers of metabolite identity</title>
+  <desc id="d">A template slot means D-glucose 6-phosphate in the cytosol and carries database identifiers (KEGG C00092, BiGG g6p, ModelSEED cpd00079). The matcher finds the corresponding model metabolite in each GEM: g6p_c in a BiGG-style model, cpd00079_c0 in a ModelSEED model, C00092[c] in a KEGG-based model. The display label G6P on the figure is not an identity.</desc>
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4745c4"/>
+    </marker>
+  </defs>
+  <style>
+    text { font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif; fill: #1b1c20; }
+    .h { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; fill: #6b6f7a; }
+    .t { font-size: 14px; font-weight: 700; }
+    .s { font-size: 12px; fill: #4b4f5a; }
+    .mono { font-family: "JetBrains Mono", Consolas, monospace; font-size: 13px; font-weight: 700; }
+    .num { font-size: 12px; font-weight: 700; fill: #ffffff; }
+    .k { font-size: 12.5px; font-weight: 700; }
+    .v { font-size: 12px; fill: #4b4f5a; }
+    .m { stroke: #4745c4; stroke-width: 1.6; fill: none; }
+  </style>
+  <rect x="0" y="0" width="860" height="430" rx="12" fill="#ffffff"/>
+
+  <text x="28" y="34" class="h">ON THE FIGURE</text>
+  <text x="196" y="34" class="h">IN THE TEMPLATE</text>
+  <text x="596" y="34" class="h">IN EACH GEM</text>
+
+  <!-- label on the figure -->
+  <circle cx="60" cy="118" r="8" fill="#1b1c20"/>
+  <text x="76" y="123" font-size="15" font-weight="600">G6P</text>
+  <text x="28" y="158" class="s">display label</text>
+  <text x="28" y="174" class="s">(editable text)</text>
+  <line x1="112" y1="118" x2="190" y2="118" stroke="#c4c7cc" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- template slot -->
+  <rect x="196" y="56" width="330" height="140" rx="10" fill="#f4f4fb" stroke="#4745c4" stroke-width="2"/>
+  <text x="214" y="84" class="t">D-glucose 6-phosphate @ cytosol</text>
+  <text x="214" y="106" class="s">compartment-qualified identity of the slot</text>
+  <text x="214" y="134" class="k">KEGG</text><text x="262" y="134" class="v">C00092</text>
+  <text x="330" y="134" class="k">BiGG</text><text x="374" y="134" class="v">g6p</text>
+  <text x="214" y="156" class="k">ModelSEED</text><text x="296" y="156" class="v">cpd00079</text>
+  <text x="214" y="182" class="s">+ synonyms, formula, related forms (anomers)</text>
+
+  <!-- three GEMs -->
+  <rect x="596" y="52" width="236" height="44" rx="8" fill="#f6f7f9" stroke="#d4d7dd"/>
+  <text x="610" y="79" class="mono">g6p_c</text><text x="690" y="79" class="s">BiGG-style model</text>
+  <rect x="596" y="104" width="236" height="44" rx="8" fill="#f6f7f9" stroke="#d4d7dd"/>
+  <text x="610" y="131" class="mono">cpd00079_c0</text><text x="726" y="131" class="s">ModelSEED</text>
+  <rect x="596" y="156" width="236" height="44" rx="8" fill="#f6f7f9" stroke="#d4d7dd"/>
+  <text x="610" y="183" class="mono">C00092[c]</text><text x="708" y="183" class="s">KEGG-based</text>
+  <path d="M528,110 C560,100 570,80 594,76" class="m" marker-end="url(#a2)"/>
+  <path d="M528,126 C556,126 570,126 594,126" class="m" marker-end="url(#a2)"/>
+  <path d="M528,142 C560,150 570,174 594,178" class="m" marker-end="url(#a2)"/>
+  <text x="538" y="216" class="s" text-anchor="middle">matcher</text>
+
+  <!-- legend of the four layers -->
+  <line x1="28" y1="236" x2="832" y2="236" stroke="#e3e3ee"/>
+  <circle cx="40" cy="266" r="11" fill="#4745c4"/><text x="40" y="270" class="num" text-anchor="middle">1</text>
+  <text x="60" y="263" class="k">Display label</text>
+  <text x="60" y="281" class="v">What a reader sees ("G6P", "glucose-6-P"). Chosen for the figure; never used to identify anything.</text>
+  <circle cx="40" cy="310" r="11" fill="#4745c4"/><text x="40" y="314" class="num" text-anchor="middle">2</text>
+  <text x="60" y="307" class="k">Model ID</text>
+  <text x="60" y="325" class="v">g6p_c, cpd00079_c0, C00092[c]: unique inside one GEM only. Data files and results bind to these IDs.</text>
+  <circle cx="40" cy="354" r="11" fill="#4745c4"/><text x="40" y="358" class="num" text-anchor="middle">3</text>
+  <text x="60" y="351" class="k">Cross-database identifier</text>
+  <text x="60" y="369" class="v">KEGG, ChEBI, BiGG, ModelSEED, MetaNetX… Shared between models, when the model's annotation contains them.</text>
+  <circle cx="40" cy="398" r="11" fill="#4745c4"/><text x="40" y="402" class="num" text-anchor="middle">4</text>
+  <text x="60" y="395" class="k">Compartment-qualified identity</text>
+  <text x="60" y="413" class="v">The chemical in a place (D-glucose 6-phosphate @ cytosol): what a template slot stands for, and what a model metabolite is.</text>
+</svg>

@@ -1,0 +1,162 @@
+name: Release
+
+# Builds and tests the installable files; publishes them when a version tag (v0.3.0b1, v0.3.0, ...) is pushed.
+#   build        wheel + sdist (for PyPI) and GEMsMAP-<version>.zip, from the commit (tools/release/build.py)
+#   test-pip     installs the wheel with pip on Linux, Windows and macOS, Python 3.10 / 3.12 / 3.14, and runs the
+#                smoke test (interface served, health, textbook FBA)
+#   test-zip     extracts the zip and runs its launcher's first start on the three systems, then the smoke test
+#   publish-pypi uploads wheel + sdist to PyPI with Trusted Publishing (no password or token stored anywhere)
+#   github-release  creates a draft GitHub release with the files; a person reviews and publishes it
+# On main, the workflow runs build and tests only (when the packaging changes), so problems show before a tag.
+on:
+  push:
+    tags: ["v*", "!v0.1*", "!v0.2*"]
+    branches: [main]
+    paths: ["pyproject.toml", "backend/gemsmap/**", "tools/release/**", ".github/workflows/release.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install build twine
+      - id: version
+        name: Package version (and the tag must match it)
+        run: |
+          v=$(python -c "import re; print(re.search(r'__version__ = \"([^\"]+)\"', open('backend/gemsmap/__init__.py').read()).group(1))")
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_REF" == refs/tags/* && "$GITHUB_REF_NAME" != "v$v" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match the package version $v"; exit 1
+          fi
+      - run: python tools/release/build.py
+      - run: python -m twine check --strict release/*.whl release/*.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release
+          path: release/
+          if-no-files-found: error
+
+  test-pip:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.12", "3.14"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: release
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: pip install the wheel in a new environment
+        shell: bash
+        run: |
+          python -m venv "$RUNNER_TEMP/env"
+          if [ -x "$RUNNER_TEMP/env/bin/python" ]; then PY="$RUNNER_TEMP/env/bin/python"; else PY="$RUNNER_TEMP/env/Scripts/python.exe"; fi
+          "$PY" -m pip install --disable-pip-version-check release/*.whl
+          echo "PY=$PY" >> "$GITHUB_ENV"
+      - name: Smoke test
+        shell: bash
+        env:
+          COBRAGUI_CACHE: ${{ runner.temp }}/cache/models
+        run: python tools/release/smoke_test.py --python "$PY" --expect-version "${{ needs.build.outputs.version }}"
+
+  test-zip:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: release
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: First start from the zip (macOS, Linux)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/zip test" && cd "$RUNNER_TEMP/zip test" && unzip -q "$GITHUB_WORKSPACE"/release/GEMsMAP-*.zip
+          D="$(ls -d "$RUNNER_TEMP/zip test"/GEMsMAP-*)"
+          if [ "$RUNNER_OS" = macOS ]; then "$D/Start GEMs MAP (macOS).command" --setup-only; else bash "$D/start-gemsmap-linux.sh" --setup-only; fi
+          echo "ZPY=$D/runtime/env/bin/python" >> "$GITHUB_ENV"
+      - name: First start from the zip (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $base = Join-Path $env:RUNNER_TEMP 'zip test'
+          New-Item -ItemType Directory -Force $base | Out-Null
+          Expand-Archive -Path (Get-Item release\GEMsMAP-*.zip).FullName -DestinationPath $base
+          $d = (Get-ChildItem $base -Directory | Select-Object -First 1).FullName
+          & "$d\Start GEMs MAP (Windows).bat" --setup-only
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          "ZPY=$d\runtime\env\Scripts\python.exe" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+      - name: Smoke test
+        shell: bash
+        env:
+          COBRAGUI_CACHE: ${{ runner.temp }}/cache/models
+        run: python tools/release/smoke_test.py --python "$ZPY" --expect-version "${{ needs.build.outputs.version }}"
+
+  publish-pypi:
+    needs: [build, test-pip, test-zip]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/gemsmap/
+    permissions:
+      id-token: write  # Trusted Publishing
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: release
+      - name: Only the PyPI files (wheel and sdist)
+        run: mkdir dist && cp release/*.whl release/*.tar.gz dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+
+  github-release:
+    needs: [build, publish-pypi]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: release
+          path: release
+      - name: Draft release with the files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          (cd release && sha256sum * > SHA256SUMS.txt)
+          sed "s/{{VERSION}}/$VERSION/g" .github/release-notes.md > "$RUNNER_TEMP/notes.md"
+          pre=""; if [[ "$VERSION" =~ (a|b|rc)[0-9]+$ ]]; then pre="--prerelease"; fi
+          gh release create "$GITHUB_REF_NAME" release/* --draft $pre --title "GEMs MAP $VERSION" --notes-file "$RUNNER_TEMP/notes.md"
