@@ -26,13 +26,9 @@ Choose one way. If you already use Python, take **pip**; if you have never insta
     pip install gemsmap
     ```
 
-    The first installation downloads COBRApy and the scientific libraries, a few hundred MB, and can take several minutes. Ideally install GEMs MAP in an environment of its own (a [venv](https://docs.python.org/3/library/venv.html) or a conda environment), so its libraries do not interfere with other projects:
+    Install GEMs MAP in a Python environment of its own (a [venv](https://docs.python.org/3/library/venv.html) or a conda environment), so its libraries do not interfere with other projects. **Never created one?** Follow [Step by step: install with pip](#step-by-step-install-with-pip) below: it explains each command and what you should see, and takes about ten minutes.
 
-    ```bash
-    python -m venv gemsmap-env
-    ```
-
-    Then activate it (`gemsmap-env\Scripts\activate` on Windows, `source gemsmap-env/bin/activate` on macOS and Linux) and run `pip install gemsmap`. Activate it again whenever you want to start GEMs MAP.
+    The first installation downloads COBRApy and the scientific libraries, a few hundred MB, and can take several minutes.
 
 === "uv (no Python needed)"
 
@@ -71,6 +67,200 @@ Choose one way. If you already use Python, take **pip**; if you have never insta
     ```
 
     Then, in two terminals, `npm run backend` (the COBRApy backend on port 8765) and `npm run dev` (the interface on http://localhost:5173, which forwards `/api` to the backend). See `CONTRIBUTING.md` in the repository for tests and conventions.
+
+## Step by step: install with pip
+
+This section is for anyone who has not used a terminal or a Python environment before. It installs GEMs MAP with pip in a **virtual environment**: a folder with its own copy of Python and its own libraries. GEMs MAP and its scientific libraries go into that folder instead of the Python of your system, so they cannot conflict with other projects, and deleting the folder removes everything. You create the environment once; afterwards you only activate it.
+
+Choose your system in any of the tabs below; the other tabs on this page follow your choice. Type or paste each command, press ++enter++, and wait until the terminal is ready for the next one.
+
+### 1. Open a terminal
+
+=== "Windows"
+
+    Press the ++windows++ key, type **PowerShell** and press ++enter++. The commands for Windows on this page are for PowerShell.
+
+=== "macOS"
+
+    Open **Terminal**: press ++cmd+space++, type **Terminal** and press ++enter++ (or *Applications → Utilities → Terminal*).
+
+=== "Linux"
+
+    Open your distribution's terminal, often with ++ctrl+alt+t++.
+
+### 2. Check that Python is installed
+
+=== "Windows"
+
+    ```powershell
+    python --version
+    ```
+
+    You should see a version from **Python 3.10** to **3.14**, for example `Python 3.14.2`.
+
+    - If the command is not found, or the Microsoft Store opens, Python is not installed: download it from [python.org](https://www.python.org/downloads/), and on the first screen of the installer tick **Add python.exe to PATH**. Then close PowerShell, open it again and repeat this step.
+    - Some installations have the `py` launcher instead of `python`, or both. If only `py --version` works, use `py` instead of `python` in step 4. After step 5, `python` always works.
+
+=== "macOS"
+
+    ```bash
+    python3 --version
+    ```
+
+    You should see a version from **Python 3.10** to **3.14**, for example `Python 3.14.2`. If the command is not found, or the version is older, install Python from [python.org](https://www.python.org/downloads/).
+
+=== "Linux"
+
+    ```bash
+    python3 --version
+    ```
+
+    You should see a version from **Python 3.10** to **3.14**, for example `Python 3.12.3`. If your distribution has an older Python, the [uv installation](#install) is the easiest way: it brings its own Python.
+
+### 3. Create a folder for GEMs MAP
+
+=== "Windows"
+
+    ```powershell
+    mkdir $HOME\gemsmap
+    cd $HOME\gemsmap
+    ```
+
+    This makes a folder `gemsmap` in your user folder and moves the terminal into it; PowerShell answers the first command with a short table describing the new folder. Any other folder works too, for example `D:\gemsmap` on a second drive: use that path in both commands.
+
+=== "macOS"
+
+    ```bash
+    mkdir ~/gemsmap
+    cd ~/gemsmap
+    ```
+
+    This makes a folder `gemsmap` in your home folder and moves the terminal into it. Any other folder works too.
+
+=== "Linux"
+
+    ```bash
+    mkdir ~/gemsmap
+    cd ~/gemsmap
+    ```
+
+    This makes a folder `gemsmap` in your home folder and moves the terminal into it. Any other folder works too.
+
+The line where you type now ends with the folder's name, for example `PS C:\Users\you\gemsmap>`. That is how you can always tell where the terminal is.
+
+### 4. Create the environment
+
+=== "Windows"
+
+    ```powershell
+    python -m venv .venv
+    ```
+
+    It takes a few seconds and **prints nothing** when it works. Check with `dir`: the folder now contains a folder `.venv`.
+
+=== "macOS"
+
+    ```bash
+    python3 -m venv .venv
+    ```
+
+    It takes a few seconds and **prints nothing** when it works. Check with `ls -a`: the folder now contains a folder `.venv` (Finder hides folders whose name starts with a dot).
+
+=== "Linux"
+
+    ```bash
+    python3 -m venv .venv
+    ```
+
+    It takes a few seconds and **prints nothing** when it works. Check with `ls -a`: the folder now contains a folder `.venv`.
+
+    On Ubuntu and Debian, an error saying *ensurepip is not available* means the venv module is missing. Install it with `sudo apt install python3-venv`, delete the half-made folder with `rm -rf .venv`, and repeat this step.
+
+### 5. Activate the environment
+
+=== "Windows"
+
+    ```powershell
+    .\.venv\Scripts\Activate.ps1
+    ```
+
+    If PowerShell answers in red that *running scripts is disabled on this system*, allow scripts for this window only, then activate again:
+
+    ```powershell
+    Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+    .\.venv\Scripts\Activate.ps1
+    ```
+
+    If it asks you to confirm, type the letter shown for *Yes* and press ++enter++. The setting ends when you close the window and changes nothing else on your computer. In the Command Prompt (`cmd`) instead of PowerShell, activate with `.venv\Scripts\activate.bat`.
+
+=== "macOS"
+
+    ```bash
+    source .venv/bin/activate
+    ```
+
+=== "Linux"
+
+    ```bash
+    source .venv/bin/activate
+    ```
+
+The line where you type now starts with **`(.venv)`**, for example `(.venv) PS C:\Users\you\gemsmap>`. While it is there, the environment is active: `python` and `pip` are the ones inside `.venv`, and everything you install goes there. The activation lasts until you close the terminal (or type `deactivate`).
+
+### 6. Update pip
+
+pip is the program that installs Python packages. A current pip finds the right files for your system faster and with fewer problems:
+
+```bash
+python -m pip install --upgrade pip
+```
+
+### 7. Install GEMs MAP
+
+```bash
+pip install gemsmap
+```
+
+pip downloads GEMs MAP and the scientific libraries it needs (COBRApy, NumPy, SciPy, pandas…), a few hundred MB. It can take several minutes and prints many lines. Wait until the line with `(.venv)` comes back. One of the last lines starts with **`Successfully installed`** and lists the installed packages, `gemsmap` among them, with its version, for example `gemsmap-0.3.0b1`.
+
+### 8. Check and start
+
+```bash
+gemsmap diagnose
+gemsmap
+```
+
+`gemsmap diagnose` prints the versions of GEMs MAP, Python and COBRApy and the solvers it found. `gemsmap` starts GEMs MAP and opens it in your browser: see [Start](#start) below. Keep the terminal open while you work, and press ++ctrl+c++ in it to stop GEMs MAP.
+
+### Next time
+
+The environment is already there: open a terminal, go to the folder, activate, start.
+
+=== "Windows"
+
+    ```powershell
+    cd $HOME\gemsmap
+    .\.venv\Scripts\Activate.ps1
+    gemsmap
+    ```
+
+=== "macOS"
+
+    ```bash
+    cd ~/gemsmap
+    source .venv/bin/activate
+    gemsmap
+    ```
+
+=== "Linux"
+
+    ```bash
+    cd ~/gemsmap
+    source .venv/bin/activate
+    gemsmap
+    ```
+
+To update GEMs MAP later, activate the environment and run `pip install --upgrade gemsmap` (see [Update](#update)). To remove it, close GEMs MAP and delete the `gemsmap` folder: the environment and everything installed in it go with it. Your data are kept separately (see [Where your data are](#where-your-data-are)).
 
 ## Start
 

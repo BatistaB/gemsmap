@@ -27,6 +27,9 @@ gemsmap
 `gemsmap` starts the application and opens it in your browser at <http://127.0.0.1:8765>. Keep the window open
 while you work; press Ctrl+C to stop. Everything runs on your computer: your models are not uploaded anywhere.
 
+Ideally install GEMs MAP in a Python environment of its own. New to that? The
+[step-by-step guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/#step-by-step-install-with-pip) explains each command on Windows, macOS and Linux.
+
 Without Python, install [uv](https://docs.astral.sh/uv/) and run `uvx gemsmap`.
 
 Other commands: `gemsmap diagnose` (versions and folders, for bug reports), `gemsmap bigg-data` (optional BiGG

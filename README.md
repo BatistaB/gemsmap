@@ -69,7 +69,10 @@ Other ways, without Python:
   double-click *Start GEMs MAP* (Windows `.bat`, macOS `.command`; Linux: `bash start-gemsmap-linux.sh`). The first
   start prepares Python and GEMs MAP inside that folder; `README-FIRST.txt` explains the rest.
 
-Requirements, virtual environments and troubleshooting: [Installation guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/).
+**New to Python environments?** Install GEMs MAP in an environment of its own, so its libraries cannot interfere
+with other projects. The [step-by-step guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/#step-by-step-install-with-pip) shows how on Windows, macOS and
+Linux: create a folder, create the environment, activate it, update pip, install and start.
+Requirements and troubleshooting: [Installation guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/).
 
 ## Quick start
 

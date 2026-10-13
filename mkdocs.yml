@@ -51,6 +51,7 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.tabs.link
     - content.tooltips
 
 extra_css:

@@ -9,12 +9,65 @@ This tutorial walks through GEMs MAP from start to finish with a real genome-sca
 | | |
 | --- | --- |
 | **Time** | about 45 minutes |
-| **You need** | GEMs MAP running with its backend ([Installation](../getting-started/installation.md)) and an internet connection to download the model |
+| **You need** | GEMs MAP installed and running ([Before you start](#before-you-start-install-gems-map), below) and an internet connection to download the model |
 | **Model** | *Escherichia coli* str. K-12 substr. MG1655, **iJO1366** (Orth *et al.*, 2011): 2,583 reactions, 1,805 metabolites, 1,367 genes |
 | **You will learn** | COBRAGUI: import, explore, medium, pFBA, results, comparison, subsystem figures · Map Builder: datasets, templates, mappings, plots, collapsing, connected reactions, routes |
 
 !!! warning "Your numbers may differ slightly"
     The growth rates in this tutorial are reproducible. Individual fluxes and the counts derived from them can change a little between runs, because a model usually has many equally optimal flux distributions and pFBA returns one of them (see [Constraint-based analysis](../cobra-gui/constraint-based-analysis.md#fba-flux-balance-analysis)). If you see, for example, 26 instead of 30 reactions *activated from zero*, nothing is wrong.
+
+## Before you start: install GEMs MAP
+
+GEMs MAP is installed with pip in a **Python environment of its own**: a folder with its own copy of Python and its own libraries, so GEMs MAP cannot interfere with your other projects, and deleting the folder removes it. You need Python 3.10 or newer. The whole sequence is: open a terminal, **make a folder**, **create the environment** in it, **activate** it, **update pip**, **install** GEMs MAP and **start** it.
+
+=== "Windows"
+
+    In **PowerShell** (press the ++windows++ key, type *PowerShell*, press ++enter++), one line at a time:
+
+    ```powershell
+    mkdir $HOME\gemsmap
+    cd $HOME\gemsmap
+    python -m venv .venv
+    .\.venv\Scripts\Activate.ps1
+    python -m pip install --upgrade pip
+    pip install gemsmap
+    gemsmap
+    ```
+
+=== "macOS"
+
+    In **Terminal**, one line at a time:
+
+    ```bash
+    mkdir ~/gemsmap
+    cd ~/gemsmap
+    python3 -m venv .venv
+    source .venv/bin/activate
+    python -m pip install --upgrade pip
+    pip install gemsmap
+    gemsmap
+    ```
+
+=== "Linux"
+
+    In a terminal, one line at a time:
+
+    ```bash
+    mkdir ~/gemsmap
+    cd ~/gemsmap
+    python3 -m venv .venv
+    source .venv/bin/activate
+    python -m pip install --upgrade pip
+    pip install gemsmap
+    gemsmap
+    ```
+
+After the activation, the line where you type starts with `(.venv)`. The installation downloads a few hundred MB and can take several minutes. The last command opens GEMs MAP in your browser; keep the terminal open while you work through the tutorial.
+
+If a command fails, or you want to know what each one does and what you should see, follow [Step by step: install with pip](../getting-started/installation.md#step-by-step-install-with-pip). It also covers the most common surprises: `py` instead of `python` on Windows, PowerShell refusing to run the activation script, and the missing venv module on Ubuntu. If you prefer not to install Python, the [Installation](../getting-started/installation.md#install) page has two other ways (uv and a double-click zip).
+
+!!! tip "Already installed?"
+    Open a terminal, go to the folder, activate the environment and start: `cd $HOME\gemsmap`, `.\.venv\Scripts\Activate.ps1`, `gemsmap` on Windows; `cd ~/gemsmap`, `source .venv/bin/activate`, `gemsmap` on macOS and Linux.
 
 ---
 
