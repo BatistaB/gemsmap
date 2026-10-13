@@ -11,10 +11,10 @@
   <img src="https://github.com/BatistaB/gemsmap/actions/workflows/ci.yml/badge.svg" alt="CI"> <a href="https://pypi.org/project/gemsmap/"><img src="https://img.shields.io/pypi/v/gemsmap?include_prereleases&label=PyPI" alt="PyPI"></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
 </p>
 
-GEMs MAP is the visualization platform of a PhD project on genome-scale metabolic models (GEMs).
+GEMs MAP is the visualization platform of genome-scale metabolic models (GEMs).
 It takes a model from import to a publication-quality figure in one application:
 explore and simulate it with COBRApy, compare conditions, then map the results onto pathway figures.
-Think "Figma for metabolic networks" with COBRApy and Escher-style GEM semantics underneath.
+Think "Canva for metabolic networks" with COBRApy and pathway-style GEM semantics underneath.
 
 The app has two workspaces, switched at the top left:
 
