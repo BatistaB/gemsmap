@@ -1,24 +1,27 @@
 # Troubleshooting
 
+## Installation and start
+
+`gemsmap diagnose` prints the versions, the solvers and the data folder; paste its output into any [report](https://github.com/BatistaB/gemsmap/issues/new/choose).
+
+- **`gemsmap` is not recognized / command not found.** The folder where pip puts commands is not on your PATH, or the environment where you installed GEMs MAP is not active. Run `python -m gemsmap` instead, or activate the environment first.
+- **`pip` says *externally-managed-environment*** (Ubuntu, Debian and other Linux systems), or **`python -m venv` says *ensurepip is not available***. The system Python does not allow installing packages for everyone. Use [uv](../getting-started/installation.md#install) (`uv tool install gemsmap`), or install the venv module (`sudo apt install python3-venv`) and use a virtual environment.
+- **pip finds no matching version, or says it *requires a different Python***. GEMs MAP needs Python 3.10 or newer. Use a newer Python, or uv, which brings its own.
+- **Port 8765 is in use.** Another program, or another GEMs MAP, uses it. If it is GEMs MAP, `gemsmap` just opens the browser on it. Otherwise start on another port: `gemsmap --port 8766` (the Map Builder autosave belongs to the address, so prefer one port).
+- **The page does not open by itself.** Open http://127.0.0.1:8765 in your browser; `gemsmap --no-browser` never opens it.
+- **Zip on Windows: *the path of this folder is too long***. Move the extracted folder somewhere short, such as `C:\GEMsMAP`, and start again.
+- **Zip on Windows: *Windows protected your PC***. Click *More info*, then *Run anyway*.
+- **Zip on macOS: the *.command* file cannot be opened.** macOS blocks files downloaded from the internet the first time: right-click it, choose *Open*, then *Open*.
+- **Zip: the first start stopped half-way** (no internet, the computer went to sleep). Start again; it resumes. If it keeps failing, delete the `runtime` folder inside the extracted folder and start again.
+
 ## COBRAGUI says "Backend offline"
 
-The status bar shows *Backend offline — retry* instead of the COBRApy version, and the start screen shows *COBRApy backend is not running*.
+The status bar shows *Backend offline — retry* instead of the COBRApy version, and the start screen shows *COBRApy backend is not running*. The backend stops when the window where `gemsmap` runs is closed.
 
-1. Start the backend in a terminal and leave it running:
+1. Start GEMs MAP again (`gemsmap`, or *Start GEMs MAP* in the zip folder) and keep its window open.
+2. Click *Retry connection*.
 
-    ```bash
-    npm run backend
-    ```
-
-2. The first time, create its environment first:
-
-    ```bash
-    npm run backend:setup
-    ```
-
-3. Click *Retry connection*. If the backend runs on another port, start the interface with `VITE_COBRA_API` pointing to it (see [Installation](../getting-started/installation.md#configuration)).
-
-If `npm run backend` warns that `backend/.venv` was not found, it falls back to the system Python, which usually lacks COBRApy: run `npm run backend:setup`.
+In a development checkout, the backend is `npm run backend` (the first time, `npm run backend:setup` creates its environment). If it warns that `backend/.venv` was not found, it falls back to the system Python, which usually lacks COBRApy: run `npm run backend:setup`. If the backend runs on another port, start the interface with `VITE_COBRA_API` pointing to it (see [Installation](../getting-started/installation.md#configuration)).
 
 ## A model does not import
 

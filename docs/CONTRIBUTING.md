@@ -114,7 +114,7 @@ When the tutorial text quotes a number (growth rates, counts, fluxes), take it f
 
 | Last audit | Commit | Notes |
 | --- | --- | --- |
-| 13 Oct 2026 | `v0.3.0b1` | First public version. The site was written and audited on the earlier, local development history (10 to 13 October 2026: first version, COBRAGUI rename, redrawn brand, clean start-up, the C / V / mouse-wheel habit) and describes version 0.3.0b1. |
+| 13 Oct 2026 | `v0.3.0b1` | First public version. The site was written and audited on the earlier, local development history (10 to 13 October 2026: first version, COBRAGUI rename, redrawn brand, clean start-up, the C / V / mouse-wheel habit) and describes version 0.3.0b1, including the installation with pip, uv or the zip. |
 
 When revisiting the docs:
 

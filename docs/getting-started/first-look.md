@@ -1,6 +1,6 @@
 # First look
 
-GEMs MAP opens in **COBRAGUI**. The switcher at the top left moves between the three workspaces; each keeps its state while you work in another.
+Start GEMs MAP with the `gemsmap` command (or *Start GEMs MAP* in the zip folder; see [Installation](installation.md)). It opens in your browser, in **COBRAGUI**. The switcher at the top left moves between the three workspaces; each keeps its state while you work in another.
 
 ## COBRAGUI
 

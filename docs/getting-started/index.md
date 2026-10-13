@@ -1,6 +1,6 @@
 # Overview
 
-GEMs MAP is a desktop-style web application for working with **genome-scale metabolic models** (GEMs). It runs on your own computer: a browser interface talks to a local Python service that holds the models and runs [COBRApy](https://opencobra.github.io/cobrapy/).
+GEMs MAP is a desktop-style web application for working with **genome-scale metabolic models** (GEMs). It runs on your own computer: one command, `gemsmap`, starts a local Python server that holds the models, runs [COBRApy](https://opencobra.github.io/cobrapy/) and serves the interface to your browser.
 
 ## Three workspaces
 
@@ -23,9 +23,10 @@ flowchart LR
         ST[("Browser storage<br/>autosave, sessions,<br/>your templates")]
     end
     subgraph Local["Your computer"]
-        BE["COBRApy backend<br/>FastAPI · 127.0.0.1:8765"]
+        BE["GEMs MAP server (gemsmap)<br/>COBRApy · FastAPI · 127.0.0.1:8765"]
         CA[("Model cache<br/>MetaNetX cache<br/>BiGG tables")]
     end
+    BE -->|"serves the interface"| UI
     UI <-->|"HTTP /api"| BE
     UI --- ST
     BE --- CA
@@ -33,9 +34,9 @@ flowchart LR
 ```
 
 - **All flux computations run in Python, on your computer.** The browser never computes fluxes. The backend listens on `127.0.0.1` only.
-- **The Map Builder and the template matcher run in the browser.** You can draw maps and apply templates without the backend; the backend is needed for COBRAGUI and for online identity searches.
+- **The Map Builder and the template matcher run in the browser.** Drawing maps and applying templates happen there; the server's COBRApy part is needed for COBRAGUI and for online identity searches.
 - **Network access is limited to identifier services.** The metabolite analysis queries MetaNetX, and the template identity search queries KEGG and ChEBI (resolved through MetaNetX). Answers are cached locally. The BiGG tables are downloaded once with an explicit command and then used offline; GEMs MAP does not call the BiGG API.
-- **Imported model files are copied to a local cache** (on Windows, `%LOCALAPPDATA%\cobragui\models`), so a restarted backend reloads them. The original file is never modified.
+- **Imported model files are copied to a local cache** (`%LOCALAPPDATA%\cobragui\models` on Windows, `~/.cache/cobragui/models` on macOS and Linux), so a restarted server reloads them. The original file is never modified.
 
 ## What you need to know first
 
