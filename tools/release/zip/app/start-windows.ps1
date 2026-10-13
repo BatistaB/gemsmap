@@ -38,11 +38,20 @@ if (-not (Test-Path $ready)) {
   $uvDir = Join-Path $rt 'uv'
   $uv = Join-Path $uvDir 'uv.exe'
   if (-not (Test-Path $uv)) {
+    New-Item -ItemType Directory -Force $rt | Out-Null
+    $installer = Join-Path $rt 'uv-installer.ps1'
     try {
       [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-      $env:UV_UNMANAGED_INSTALL = $uvDir
-      Invoke-RestMethod 'https://astral.sh/uv/{{UV_VERSION}}/install.ps1' | Invoke-Expression
+      Invoke-WebRequest -UseBasicParsing 'https://astral.sh/uv/{{UV_VERSION}}/install.ps1' -OutFile $installer
     } catch { Fail "downloading uv failed (check the internet connection): $_" }
+    # the official installer, in its own process (it may end its process), into runtime\uv without touching PATH
+    $env:UV_UNMANAGED_INSTALL = $uvDir
+    $ErrorActionPreference = 'Continue'
+    & powershell -NoProfile -ExecutionPolicy Bypass -File $installer
+    $code = $LASTEXITCODE
+    $ErrorActionPreference = 'Stop'
+    Remove-Item $installer -ErrorAction SilentlyContinue
+    if ($code -ne 0) { Fail "installing uv failed (installer exit code $code)" }
     if (-not (Test-Path $uv)) {
       $hit = Get-ChildItem -Path $uvDir -Recurse -Filter 'uv.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
       if ($hit) { $uv = $hit.FullName } else { Fail "uv was downloaded but not found in $uvDir" }
