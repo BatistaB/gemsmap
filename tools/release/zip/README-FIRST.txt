@@ -18,8 +18,8 @@ window open while you work; close it (or press Ctrl+C) to stop GEMs MAP.
 FIRST START
 -----------
 The first start needs the internet and takes a few minutes. It prepares
-everything inside this folder, in "runtime": the uv tool (if you do not have
-it), Python {{PYTHON}}, the scientific libraries (COBRApy, NumPy, SciPy...) and
+everything inside this folder, in "runtime": its own copy of the uv tool,
+Python {{PYTHON}}, the scientific libraries (COBRApy, NumPy, SciPy...) and
 GEMs MAP. Nothing is installed anywhere else on your computer. Later starts take
 a few seconds and work without the internet (except the metabolite analysis,
 which looks identifiers up in MetaNetX).

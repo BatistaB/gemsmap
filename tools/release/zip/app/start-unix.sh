@@ -1,12 +1,12 @@
 #!/bin/bash
 # GEMs MAP {{VERSION}} for macOS and Linux, started by "Start GEMs MAP (macOS).command" or start-gemsmap-linux.sh.
-# The first start prepares a private environment in runtime/ next to this app/ folder: uv (if it is not installed),
+# The first start prepares a private environment in runtime/ next to this app/ folder: its own copy of uv (pinned),
 # Python {{PYTHON}} and GEMs MAP with its libraries. Nothing is installed elsewhere; delete the folder to remove it.
 # Options are passed to gemsmap (for example --port 8766); --setup-only prepares the environment and stops.
 APP="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(dirname "$APP")"
 RT="$ROOT/runtime"
-export UV_PYTHON_INSTALL_DIR="$RT/python" UV_CACHE_DIR="$RT/cache" UV_PYTHON_PREFERENCE=only-managed
+export UV_PYTHON_INSTALL_DIR="$RT/python" UV_CACHE_DIR="$RT/cache" UV_PYTHON_PREFERENCE=only-managed UV_PYTHON_DOWNLOADS=automatic
 PY="$RT/env/bin/python"
 READY="$RT/ready-{{VERSION}}"
 
@@ -30,18 +30,19 @@ if [ ! -f "$READY" ]; then
   echo "  $RT"
   echo "This downloads Python and the scientific libraries once (a few hundred MB) and can take a few minutes."
   echo
-  UV="$(command -v uv || true)"
-  if [ -z "$UV" ]; then
-    UV="$RT/uv/uv"
-    if [ ! -x "$UV" ]; then
-      command -v curl >/dev/null 2>&1 || fail "the first start needs curl to download uv"
-      curl -LsSf "https://astral.sh/uv/{{UV_VERSION}}/install.sh" | env UV_UNMANAGED_INSTALL="$RT/uv" sh || fail "downloading uv failed (check the internet connection)"
-      [ -x "$UV" ] || UV="$(find "$RT/uv" -type f -name uv 2>/dev/null | head -n 1)"
-      [ -n "$UV" ] && [ -x "$UV" ] || fail "uv was downloaded but not found in $RT/uv"
-    fi
+  # always the pinned uv in runtime/uv: a uv installed elsewhere may be another version, or configured differently
+  echo "[1/3] Getting uv {{UV_VERSION}}"
+  UV="$RT/uv/uv"
+  if [ ! -x "$UV" ]; then
+    command -v curl >/dev/null 2>&1 || fail "the first start needs curl to download uv"
+    curl -LsSf "https://astral.sh/uv/{{UV_VERSION}}/install.sh" | env UV_UNMANAGED_INSTALL="$RT/uv" sh || fail "downloading uv failed (check the internet connection)"
+    [ -x "$UV" ] || UV="$(find "$RT/uv" -type f -name uv 2>/dev/null | head -n 1)"
+    [ -n "$UV" ] && [ -x "$UV" ] || fail "uv was downloaded but not found in $RT/uv"
   fi
   rm -rf "$RT/env"
+  echo "[2/3] Getting Python {{PYTHON}}"
   "$UV" venv --quiet --python {{PYTHON}} "$RT/env" || fail "creating the Python environment failed"
+  echo "[3/3] Installing GEMs MAP and its libraries"
   "$UV" pip install --quiet --python "$PY" "$APP/{{WHEEL}}" || fail "installing GEMs MAP failed (check the internet connection)"
   date > "$READY"
   echo "GEMs MAP is installed in this folder."

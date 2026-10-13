@@ -77,7 +77,13 @@ jobs:
         shell: bash
         env:
           COBRAGUI_CACHE: ${{ runner.temp }}/cache/models
-        run: python tools/release/smoke_test.py --python "$PY" --expect-version "${{ needs.build.outputs.version }}"
+        run: |
+          set +e  # keep going after a failure, to publish its output as an annotation
+          python tools/release/smoke_test.py --python "$PY" --expect-version "${{ needs.build.outputs.version }}" 2>&1 | tee "$RUNNER_TEMP/smoke.log"
+          rc=${PIPESTATUS[0]}
+          # the end of the output as a public annotation (job logs need a login to read)
+          if [ "$rc" -ne 0 ]; then echo "::error title=Smoke test failed::$(tail -n 40 "$RUNNER_TEMP/smoke.log" | python .github/annotate.py)"; fi
+          exit "$rc"
 
   test-zip:
     needs: build
@@ -101,7 +107,11 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/zip test" && cd "$RUNNER_TEMP/zip test" && unzip -q "$GITHUB_WORKSPACE"/release/GEMsMAP-*.zip
           D="$(ls -d "$RUNNER_TEMP/zip test"/GEMsMAP-*)"
-          if [ "$RUNNER_OS" = macOS ]; then "$D/Start GEMs MAP (macOS).command" --setup-only; else bash "$D/start-gemsmap-linux.sh" --setup-only; fi
+          if [ "$RUNNER_OS" = macOS ]; then L="$D/Start GEMs MAP (macOS).command"; else L="$D/start-gemsmap-linux.sh"; fi
+          set +e  # keep going after a failure, to publish its output as an annotation
+          "$L" --setup-only < /dev/null 2>&1 | tee "$RUNNER_TEMP/zip.log"
+          rc=${PIPESTATUS[0]}
+          if [ "$rc" -ne 0 ]; then echo "::error title=Zip first start failed::$(tail -n 40 "$RUNNER_TEMP/zip.log" | python "$GITHUB_WORKSPACE/.github/annotate.py")"; exit "$rc"; fi
           echo "ZPY=$D/runtime/env/bin/python" >> "$GITHUB_ENV"
       - name: First start from the zip (Windows)
         if: runner.os == 'Windows'
@@ -111,14 +121,25 @@ jobs:
           New-Item -ItemType Directory -Force $base | Out-Null
           Expand-Archive -Path (Get-Item release\GEMsMAP-*.zip).FullName -DestinationPath $base
           $d = (Get-ChildItem $base -Directory | Select-Object -First 1).FullName
-          & "$d\Start GEMs MAP (Windows).bat" --setup-only
-          if ($LASTEXITCODE -ne 0) { exit 1 }
+          $log = Join-Path $env:RUNNER_TEMP 'zip.log'
+          & "$d\Start GEMs MAP (Windows).bat" --setup-only *>&1 | Tee-Object -FilePath $log
+          $rc = $LASTEXITCODE
+          if ($rc -ne 0) {
+            $msg = (Get-Content $log -Tail 40) -join "`n" | python .github/annotate.py
+            Write-Output "::error title=Zip first start failed (exit $rc)::$msg"
+            exit 1
+          }
           "ZPY=$d\runtime\env\Scripts\python.exe" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
       - name: Smoke test
         shell: bash
         env:
           COBRAGUI_CACHE: ${{ runner.temp }}/cache/models
-        run: python tools/release/smoke_test.py --python "$ZPY" --expect-version "${{ needs.build.outputs.version }}"
+        run: |
+          set +e  # keep going after a failure, to publish its output as an annotation
+          python tools/release/smoke_test.py --python "$ZPY" --expect-version "${{ needs.build.outputs.version }}" 2>&1 | tee "$RUNNER_TEMP/smoke.log"
+          rc=${PIPESTATUS[0]}
+          if [ "$rc" -ne 0 ]; then echo "::error title=Smoke test failed::$(tail -n 40 "$RUNNER_TEMP/smoke.log" | python .github/annotate.py)"; fi
+          exit "$rc"
 
   publish-pypi:
     needs: [build, test-pip, test-zip]

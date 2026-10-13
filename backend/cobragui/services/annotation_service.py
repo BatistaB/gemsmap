@@ -487,7 +487,8 @@ def decide(m: dict, inputs: Optional[list[dict]], names: list[str], info: dict, 
         top, nxt = ranked[0], (ranked[1] if len(ranked) > 1 else None)
         ns_top, ns_next = len(support[top["mnx"]]), (len(support[nxt["mnx"]]) if nxt else 0)
         v_top, v_next = nvotes[top["mnx"]], (nvotes[nxt["mnx"]] if nxt else 0)
-        dropped = f" Ignored (different formula): {', '.join(f'{c['mnx']} {c['name']} {c['formula']}' for c in excluded[:3])}." if excluded else ""
+        ignored = ", ".join(f"{c['mnx']} {c['name']} {c['formula']}" for c in excluded[:3])  # no nested quotes: Python 3.10
+        dropped = f" Ignored (different formula): {ignored}." if excluded else ""
         others = "; ".join(f"{c['mnx']} ({c['name']}) via {', '.join(c['via'][:3])}" for c in ranked[1:4])
         if one:
             chosen, status, reason = one, "confident", f"All annotated identifiers point to {one['mnx']}{note}.{dropped}"
