@@ -21,6 +21,9 @@ npm run backend:test
 
 `npm run build` must also pass before a release. CI (`.github/workflows/ci.yml`) runs the same checks.
 
+How the code is organised (interface layers, backend services, tests) is described in
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
 ## Branches
 
 - `main` — always builds and passes tests. Releases are tagged here (`v0.3.0`, …).

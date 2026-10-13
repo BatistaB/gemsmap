@@ -150,6 +150,7 @@ nav:
       - Roadmap: reference/roadmap.md
       - About the examples: reference/examples.md
       - Technical notes:
+          - Architecture: ARCHITECTURE.md
           - Pathway templates and the mapping engine: TEMPLATES.md
           - Template Builder: TEMPLATE_BUILDER.md
           - Metabolite annotation curation: METABOLITE_ANALYSIS.md
