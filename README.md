@@ -152,12 +152,6 @@ docs/           documentation site (MkDocs, Read the Docs) and technical notes
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and commit conventions, and
 [CHANGELOG.md](CHANGELOG.md) for the release history.
 
-### Private data
-
-Keep unpublished models, projects and results in `my_projects/` (open projects with **File → Open project…**):
-the folder is git-ignored, and release builds contain only files that git tracks. Personal ignore patterns belong
-in `.git/info/exclude`, which is never committed. The app itself ships only the central-carbon example
-(**File → Open example**).
 
 ## The 5-minute workflow
 
