@@ -32,21 +32,39 @@ without manual matching.
 
 ## What it does
 
-The application has three workspaces that share the same model and data:
+The application has three workspaces that share the same model and data, switched at the top left of the window.
 
-- **COBRAGUI** (COBRA graphical user interface): import SBML, COBRA JSON or MATLAB models; explore metabolites,
-  reactions and genes; set the medium, bounds and objective; run FBA, pFBA, loopless FBA or FVA; compare results
-  and export them. Metabolite identifiers can be curated against MetaNetX.
-- **Map Builder**: draw or insert pathways, bind them to the model, map fluxes to arrow width and colour, switch
-  between conditions or show their differences (Δ, log₂FC), add small linked plots, and export SVG, PNG, PDF or an
-  animated GIF.
-- **Templates**: reusable pathway layouts (central carbon metabolism, glycolysis, TCA cycle, pentose phosphate
-  pathway, …) that describe biological identity rather than model IDs. A matcher finds what each molecule is
-  called in your GEM and asks you to review uncertain cases.
+### COBRAGUI: explore and simulate the model
+
+The COBRA graphical user interface. Import SBML, COBRA JSON or MATLAB models; explore metabolites, reactions and
+genes; set the medium, bounds and objective; run FBA, pFBA, loopless FBA or FVA; compare results and export them.
+Metabolite identifiers can be curated against MetaNetX. [More about COBRAGUI](https://gemsmap.readthedocs.io/en/latest/cobra-gui/)
 
 <p align="center">
   <img src="docs/assets/images/cobra-gui-compare.png" alt="COBRAGUI comparing two pFBA results of E. coli iML1515, aerobic and anaerobic: the configuration differences come first, then reactions classified as changed, activated from zero, direction reversal or inactivated to zero, with flux A, flux B, delta and log2 fold change." width="900">
-  <br><sub>COBRAGUI comparing two pFBA results of <i>E. coli</i> iML1515 (with and without oxygen).</sub>
+  <br><sub>Comparing two pFBA results of <i>E. coli</i> iML1515, with and without oxygen: reactions are classified before any fold change is taken.</sub>
+</p>
+
+### Map Builder: turn results into pathway figures
+
+Draw or insert pathways, bind them to the model, map fluxes to arrow width and colour, switch between conditions or
+show their differences (Δ, log₂FC), add small linked plots, and export SVG, PNG, PDF or an animated GIF.
+[More about the Map Builder](https://gemsmap.readthedocs.io/en/latest/maps/)
+
+<p align="center">
+  <img src="docs/assets/images/maps-iml1515-pfba.png" alt="The Map Builder with the global central carbon metabolism template drawn for E. coli iML1515 and coloured by a pFBA result: glycolysis, the oxidative pentose phosphate pathway and a circular TCA cycle, with arrow width and colour encoding flux, a legend, and the template gallery on the left." width="900">
+  <br><sub>The central carbon metabolism template drawn for <i>E. coli</i> iML1515, with arrow width and colour taken from a pFBA result.</sub>
+</p>
+
+### Templates: one pathway layout for any GEM
+
+Reusable pathway layouts (central carbon metabolism, glycolysis, TCA cycle, pentose phosphate pathway, …) that
+describe biological identity rather than model IDs. A matcher finds what each molecule is called in your GEM and
+asks you to review uncertain cases. [More about templates](https://gemsmap.readthedocs.io/en/latest/templates/)
+
+<p align="center">
+  <img src="docs/assets/images/templates-design-mode.png" alt="The Templates workspace in Template Design Mode showing the TCA cycle template: each node is a biological identity, marked with a green check when confirmed, and the side panels show completeness (19 of 19 metabolites and 8 of 8 reactions identified) and the template metadata." width="900">
+  <br><sub>The TCA cycle template in the template editor: every node is a confirmed biological identity, not a model ID.</sub>
 </p>
 
 ## Install
