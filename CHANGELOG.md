@@ -12,6 +12,18 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 - `tools/docs/beta_guide_pdf.py`: the beta test guide as one PDF (cover, Installation, quick start), printed from the
   built documentation site.
 
+### Changed
+- **Installation guide for beginners:** *Step by step: install with pip* on the Installation page walks through
+  opening a terminal, checking Python, making a folder, creating and activating a virtual environment, updating
+  pip, installing and starting GEMs MAP, with Windows / macOS / Linux tabs (linked, so one choice applies to the
+  whole site) and what each step should print. The quick start tutorial opens with the same sequence; the
+  troubleshooting page covers `python` missing on Windows and PowerShell blocking the activation script.
+- **README** rewritten for people arriving at the project: what GEMs MAP is and why it exists, screenshots,
+  installation, a quick start, its scientific principles, links to the documentation, project status, help and
+  contributing. Maintainer notes (private-data handling, backend modules and routes, project layout) moved out of
+  it: private-data rules stay in `CONTRIBUTING.md`, the code organisation is in the new technical note
+  `docs/ARCHITECTURE.md` (updated with every current backend service and route group).
+
 ## [0.3.0b1] — 2026-10-13
 
 First beta, and the first public version: installable with `pip install gemsmap`.

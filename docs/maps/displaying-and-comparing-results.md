@@ -29,6 +29,8 @@ Data reach a map as **datasets**. A dataset holds one or more **conditions** (co
 | Long format | `reaction,condition,value` (repeated rows) | Samples per condition, for distributions such as flux sampling or replicates |
 | Result JSON | exported by COBRAGUI | Conditions of the COBRA datasets |
 
+Small sample files in the first two shapes are in the repository, under `public/examples/`: `pfba_4conditions.csv`, `fva_2conditions.csv` and `timecourse.csv`.
+
 CSV, TSV and semicolon-separated files are recognised, and lines starting with `#` are ignored. A first column called *metabolite*, *compound* or *species* makes a metabolite dataset; otherwise GEMs MAP decides by which IDs match the model. IDs are matched to the model leniently: case is ignored, and compartment suffixes and `M_`/`R_` prefixes are tolerated. The dataset shows how many IDs matched (*n % matched*). Clicking it opens the import report, where each unmatched ID can be mapped to a model ID by hand; if almost nothing matches, the report says the file was probably made for a different model.
 
 !!! note "Sampling data"
