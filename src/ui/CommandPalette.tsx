@@ -9,6 +9,7 @@ import { THEMES } from '../viz/presets';
 import { openFile } from './files';
 import { lab, useLab } from '../lab/store';
 import { LabPalette } from '../lab/ui/LabPalette';
+import { UI_SCALE_COMMANDS } from './uiScale';
 
 interface Cmd { id: string; label: string; group: string; hint?: string; run: () => void }
 
@@ -51,6 +52,7 @@ export function commands(): Cmd[] {
     { id: 'fit', group: 'View', label: 'Fit all', hint: 'F', run: () => a.fitAll() },
     { id: 'particles', group: 'View', label: 'Toggle flux particles', run: () => a.setAnimation({ particles: !s.animation.particles }) },
     { id: 'play', group: 'View', label: 'Play / pause condition animation', run: () => a.setAnimation({ playing: !s.animation.playing }) },
+    ...UI_SCALE_COMMANDS,
     { id: 'rxn-ids', group: 'Labels', label: 'Show reaction IDs', run: () => a.setStyle({ reactionLabel: 'id' }) },
     { id: 'rxn-names', group: 'Labels', label: 'Show reaction names', run: () => a.setStyle({ reactionLabel: 'name' }) },
     { id: 'met-ids', group: 'Labels', label: 'Show metabolite IDs', run: () => a.setStyle({ metaboliteLabel: 'id' }) },

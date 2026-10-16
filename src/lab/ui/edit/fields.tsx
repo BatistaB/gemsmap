@@ -1,6 +1,7 @@
 /** Small building blocks of the structural editor forms. */
 import { useState, type ReactNode } from 'react';
 import { Icon } from '../../../ui/icons';
+import { rem } from '../../../ui/uiScale';
 import type { EditReport } from '../../editTypes';
 import type { Annotation } from '../../types';
 
@@ -66,7 +67,7 @@ export function ReportList({ report, local = [], skipWarn }: { report: EditRepor
 export function EditorModal({ title, onClose, children, width = 720, footer }: { title: ReactNode; onClose: () => void; children: ReactNode; width?: number; footer?: ReactNode }) {
   return (
     <div className="modal-backdrop" onKeyDown={(e) => { if (e.key === 'Escape') { e.stopPropagation(); onClose(); } }}>
-      <div className="modal lab-modal ed-modal" style={{ width }} role="dialog" aria-label={typeof title === 'string' ? title : undefined}>
+      <div className="modal lab-modal ed-modal" style={{ width: rem(width) }} role="dialog" aria-label={typeof title === 'string' ? title : undefined}>
         <div className="modal-head"><span>{title}</span><button className="icon-btn" title="Close (Esc)" onClick={onClose}><Icon name="x" size={14} /></button></div>
         <div className="modal-body ed-body">{children}</div>
         {footer && <div className="ed-foot">{footer}</div>}

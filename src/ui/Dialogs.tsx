@@ -10,6 +10,7 @@ import { Icon } from './icons';
 import { RoutesPanel } from './Routes';
 import { TemplateMappingDialog } from './TemplateMapping';
 import { IdentityDialog } from './templates/IdentityDialog';
+import { rem } from './uiScale';
 
 export function Modal({ title, children, onClose, width = 480 }: { title: string; children: React.ReactNode; onClose: () => void; width?: number }) {
   useEffect(() => {
@@ -19,7 +20,7 @@ export function Modal({ title, children, onClose, width = 480 }: { title: string
   }, [onClose]);
   return (
     <div className="modal-backdrop" onPointerDown={onClose}>
-      <div className="modal" style={{ width }} onPointerDown={(e) => e.stopPropagation()}>
+      <div className="modal" style={{ width: rem(width) }} onPointerDown={(e) => e.stopPropagation()}>
         <div className="modal-head"><span>{title}</span><button className="icon-btn" onClick={onClose}><Icon name="x" size={14} /></button></div>
         <div className="modal-body">{children}</div>
       </div>
@@ -348,7 +349,7 @@ function HelpDialog() {
     ['P', 'Add plot to selected reaction(s)'], ['Ctrl K', 'Command palette'], ['Ctrl Z / Ctrl Shift Z', 'Undo / redo'], ['Ctrl C / V / D', 'Copy / paste / duplicate'],
     ['Ctrl G', 'Group as pathway'], ['Ctrl A', 'Select all'], ['Del', 'Delete'], ['L', 'Lock selection (skipped by clicks; hold 3 s to unlock)'], ['Arrows (+Shift)', 'Nudge 1 (10) units'],
     ['Shift + drag', 'Constrain to 0° / 45° / 90°'], ['Alt + drag', 'Ignore smart guides'], ['F / Shift F', 'Fit all / fit selection'], ['[ / ]', 'Previous / next condition'],
-    ['Double-click canvas', 'Add metabolite'], ['Drag outer ring of a node', 'Draw reaction (drop on empty = new slot)'], ['Double-click label', 'Edit text'],
+    ['Double-click canvas', 'Add metabolite'], ['Drag outer ring of a node', 'Draw reaction (drop on empty = new slot)'], ['Double-click label', 'Edit text'], ['Ctrl Alt + / − / 0', 'Interface size: larger / smaller / 100 %'],
   ];
   return (
     <Modal title="Keyboard shortcuts" onClose={close} width={520}>

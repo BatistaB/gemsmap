@@ -4,6 +4,10 @@ import { openFile } from './files';
 import { handleLabKey } from '../lab/shortcuts';
 import { useLab } from '../lab/store';
 import { exportOpenTemplate, pickTemplateFile, saveDesign } from './templates/templateFiles';
+import { setUiScale, stepUiScale } from './uiScale';
+
+const UI_SIZE_CODES: Record<string, 1 | -1 | 0> = { Equal: 1, NumpadAdd: 1, Minus: -1, NumpadSubtract: -1, Digit0: 0, Numpad0: 0 };
+const UI_SIZE_KEYS: Record<string, 1 | -1 | 0> = { '=': 1, '+': 1, '-': -1, '0': 0 };
 
 export function installShortcuts() {
   window.addEventListener('keydown', (e) => {
@@ -15,6 +19,14 @@ export function installShortcuts() {
     const mod = e.ctrlKey || e.metaKey;
     const k = e.key.toLowerCase();
     if (mod && k === 'k') { e.preventDefault(); useStore.setState({ paletteOpen: !s.paletteOpen }); return; }
+    // interface size, in every workspace: Ctrl Alt + / − / 0, by key position first (on layouts where Ctrl Alt
+    // is AltGr the key types another character), then by character
+    const size = mod && e.altKey ? (UI_SIZE_CODES[e.code] ?? UI_SIZE_KEYS[e.key]) : undefined;
+    if (size !== undefined) {
+      e.preventDefault();
+      if (size === 0) setUiScale(1); else stepUiScale(size);
+      return;
+    }
     if (s.dialog || s.paletteOpen) return;
     if (useLab.getState().workspace === 'lab') { handleLabKey(e); return; }
     // Templates workspace: the editor keys only while a template is open; file keys act on the template

@@ -5,6 +5,8 @@
  * and the UI weights in step with it. In the UI the strokes are heavier (an optical size) so the
  * network still reads at 20–30 px.
  */
+import { rem } from './uiScale';
+
 const NODES: Record<string, [number, number]> = { A: [-90, 0], B: [0, 0], C: [90, 0], D: [-157, 77], E: [-75, 77], F: [75, 77], G: [157, 77], H: [0, 250] };
 // pale edges first, so the strong ones and the girdle lie on top
 const EDGES: [string, string][] = [
@@ -24,7 +26,7 @@ export function BrandMark({ width = 26 }: { width?: number }) {
     return <line key={k} x1={x1} y1={y1} x2={x2} y2={y2} stroke={stroke} strokeWidth={strokeWidth} strokeLinecap="round" />;
   };
   return (
-    <svg width={width} height={(width * H) / W} viewBox={`${-157 - w.r} ${-w.r} ${W} ${H}`} aria-hidden="true">
+    <svg width={rem(width)} height={rem((width * H) / W)} viewBox={`${-157 - w.r} ${-w.r} ${W} ${H}`} aria-hidden="true">
       {EDGES.map(([k, c]) => line(k, c, w.edge))}
       {GIRDLE.map((k) => line(k, '#000', w.girdle))}
       {Object.entries(NODES).map(([k, [x, y]]) => <circle key={k} cx={x} cy={y} r={w.r - w.ring / 2} fill="#262626" stroke="#000" strokeWidth={w.ring} />)}

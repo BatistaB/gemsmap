@@ -534,7 +534,7 @@ export function Canvas() {
       )}
       {hold && (
         <div className="hold-ring" style={{ left: hold.x, top: hold.y }} title="Keep holding to unlock">
-          <svg width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" className="hold-track" /><circle cx="17" cy="17" r="14" className="hold-progress" /></svg>
+          <svg width="2.125rem" height="2.125rem" viewBox="0 0 34 34"><circle cx="17" cy="17" r="14" className="hold-track" /><circle cx="17" cy="17" r="14" className="hold-progress" /></svg>
           <span>unlock</span>
         </div>
       )}

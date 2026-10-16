@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Icon } from '../../ui/icons';
+import { rem } from '../../ui/uiScale';
 import { fnum, STATUS_LABEL } from '../format';
 import { lab, refKey, useLab } from '../store';
 import type { ApiErrorInfo, EntityRef, LabReaction, SolverStatus } from '../types';
@@ -69,7 +70,7 @@ export function Star({ r, size = 14 }: { r: EntityRef; size?: number }) {
   const on = useLab((s) => s.favorites.includes(refKey(r)));
   return (
     <button type="button" className={`star ${on ? 'on' : ''}`} title={on ? 'Remove from favorites' : 'Add to favorites'} onClick={(e) => { e.stopPropagation(); lab.toggleFavorite(r); }}>
-      <svg width={size} height={size} viewBox="0 0 24 24" fill={on ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={1.6} strokeLinejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" /></svg>
+      <svg width={rem(size)} height={rem(size)} viewBox="0 0 24 24" fill={on ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={1.6} strokeLinejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z" /></svg>
     </button>
   );
 }

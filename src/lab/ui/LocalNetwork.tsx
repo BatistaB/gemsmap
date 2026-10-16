@@ -6,6 +6,7 @@
  */
 import { useMemo, useState } from 'react';
 import { isCurrency } from '../../model/currency';
+import { rem } from '../../ui/uiScale';
 import { L, lab, useLab } from '../store';
 import type { EntityRef } from '../types';
 import { Seg } from './common';
@@ -119,7 +120,7 @@ export function LocalNetwork({ center }: { center: EntityRef }) {
         </div>
       </div>
       {g.nodes.length <= 1 ? <div className="muted small">No non-cofactor neighbours.</div> : (
-        <svg className="localnet-svg" viewBox={vb} style={{ height: Math.min(340, g.h + 40) }}>
+        <svg className="localnet-svg" viewBox={vb} style={{ height: rem(Math.min(340, g.h + 40)) }}>
           <defs><marker id="ln-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor" /></marker></defs>
           {g.edges.map((e, i) => {
             const a = pos.get(e.a)!, b = pos.get(e.b)!;

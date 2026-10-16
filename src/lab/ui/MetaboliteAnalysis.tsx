@@ -6,6 +6,7 @@
  */
 import { useEffect, useMemo, useState } from 'react';
 import { Icon } from '../../ui/icons';
+import { rem } from '../../ui/uiScale';
 import { lab, useLab } from '../store';
 import type { AnnotationItem, AnnotationStatusKind, CurationSummary, MnxCandidate } from '../types';
 import { ErrorCard, SectionHead, Seg, Toggle, useDebounced } from './common';
@@ -172,7 +173,7 @@ export function MetaboliteAnalysis() {
             <div className="row gap">
               <Seg value={filter} options={['review', 'confident', 'unmapped', 'curated', 'all'] as const} onChange={setFilter}
                 labels={{ review: `Needs review (${reviewLeft})`, confident: `Confident (${a.summary.confident})`, unmapped: `Unmapped (${a.summary.unmapped})`, curated: `Curated (${cur?.accepted ?? 0})`, all: 'All' }} />
-              <input className="input" style={{ width: 200 }} placeholder="Filter id, name, MNX…" value={q} onChange={(e) => setQ(e.target.value)} />
+              <input className="input" style={{ width: rem(200) }} placeholder="Filter id, name, MNX…" value={q} onChange={(e) => setQ(e.target.value)} />
             </div>
             <div className="ann-table">
               <VirtualTable rows={rows} cols={cols} rowKey={(r) => r.id} active={active} onRowClick={(r) => setActive(r.id)} onKeyNav={(r) => setActive(r.id)}

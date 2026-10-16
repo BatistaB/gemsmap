@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useStore } from '../../store/store';
 import { Icon } from '../../ui/icons';
+import { rem } from '../../ui/uiScale';
 import { sendComparisonToMap, sendResultToMap, type ResultMappingChoice } from '../bridge';
 import { fbounds } from '../format';
 import { L, lab, useLab } from '../store';
@@ -46,7 +47,7 @@ function VisualizeResult({ id, close }: { id: string; close: () => void }) {
   return (
     <>
       <Head title="Visualize result in the Map Builder" close={close} />
-      <div className="modal-body" style={{ width: 520 }}>
+      <div className="modal-body" style={{ width: rem(520) }}>
         <div><b>Dataset:</b> {r.name} <span className="muted small">· {r.metadata.methodLabel} · state {r.metadata.state.name}</span></div>
         <div className="muted small">{covered ? `${covered} reactions of this result are already drawn on the map.` : 'No reaction of this result is on the map yet.'} Only the data are sent — no reaction is drawn. Model ids are preserved, so the arrows already on the map bind by themselves; to draw a specific reaction use <b>Add to map</b> (Explorer, Inspector or right-click).</div>
         <div className="insp-sub">Suggested mappings</div>
@@ -82,7 +83,7 @@ function VisualizeComparison({ close }: { close: () => void }) {
   return (
     <>
       <Head title="Visualize comparison" close={close} />
-      <div className="modal-body" style={{ width: 520 }}>
+      <div className="modal-body" style={{ width: rem(520) }}>
         <div><b>{b.name}</b> <span className="muted">vs reference</span> <b>{a.name}</b></div>
         <div className="insp-sub">Suggested mappings</div>
         <div className="map-sugg">
@@ -106,7 +107,7 @@ function ConfirmBlock({ rids, close }: { rids: string[]; close: () => void }) {
   return (
     <>
       <Head title={`Block ${rids.length} reaction${rids.length > 1 ? 's' : ''}?`} close={close} />
-      <div className="modal-body" style={{ width: 480 }}>
+      <div className="modal-body" style={{ width: rem(480) }}>
         <div>Bounds will be set to <span className="mono">[0, 0]</span> in state <b>{st.name}</b>. This is recorded as one modification and can be undone.</div>
         <div className="block-list">
           {rids.slice(0, 14).map((id) => { const r = index.rxn.get(id)!; return <div key={id} className="kv small"><span className="mono">{id}</span><span className="mono">{fbounds(L.bounds(st, r))} → [0, 0]</span></div>; })}
@@ -129,7 +130,7 @@ function ExportModel({ close }: { close: () => void }) {
   return (
     <>
       <Head title="Save as model" close={close} />
-      <div className="modal-body" style={{ width: 460 }}>
+      <div className="modal-body" style={{ width: rem(460) }}>
         <div>Writes a <b>new</b> model file from <span className="mono">{model.filename}</span> with state <b>{st.name}</b> applied ({Object.keys(st.bounds).length} bound changes{st.objective ? ', objective changed' : ''}). The imported file is never modified.</div>
         {editCount > 0 && <div className="note small">Includes the <b>{editCount}</b> structural edit{editCount > 1 ? 's' : ''} (reactions / metabolites added, changed or removed), listed in the model notes.</div>}
         {curated > 0 && <div className="note small">Includes the metabolite curation: <b>{curated}</b> metabolites with MetaNetX cross-references added{formulas ? <>, <b>{formulas}</b> formulas filled</> : null}. SBML writes them as MIRIAM annotations.</div>}

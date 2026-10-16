@@ -253,7 +253,7 @@ function ExplainPanel() {
   const d = ex.data;
   const max = d ? Math.max(1e-12, ...d.rows.map((r) => Math.abs(r.delta ?? 0))) : 1;
   return (
-    <div className="explain" style={{ width: pw.width }}>
+    <div className="explain" style={{ width: pw.css }}>
       <ResizeHandle panel={pw} edge="left" />
       <div className="pane-scroll explain-scroll">
       <div className="row between"><div className="insp-sub">Why did {d?.name ?? ex.metabolite} turnover {d && (d.delta ?? 0) < 0 ? 'decrease' : 'change'}?</div><button className="icon-btn tiny" onClick={() => useLab.setState({ explain: null })}><Icon name="x" size={11} /></button></div>

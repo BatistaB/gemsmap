@@ -24,7 +24,7 @@ export function LabInspector() {
   if (!open || !index) return null;
   const cur = nav.stack[nav.index];
   return (
-    <aside className="lab-inspector" style={{ width: pw.width }}>
+    <aside className="lab-inspector" style={{ width: pw.css }}>
       <ResizeHandle panel={pw} edge="left" />
       <div className="li-nav">
         <button className="icon-btn" title="Back (Alt ←)" disabled={nav.index <= 0} onClick={lab.back}><Icon name="chevL" size={15} /></button>

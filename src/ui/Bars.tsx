@@ -12,6 +12,22 @@ import { pickModelFile } from '../lab/ui/Overview';
 import { openTemplate } from '../templates/design/session';
 import { emptyTemplate } from '../templates/format/schema';
 import { exportOpenTemplate, pickTemplateFile, saveDesign } from './templates/templateFiles';
+import { setUiScale, stepUiScale, UI_SCALES, uiScaleLabel, useUi } from './uiScale';
+
+/** File menu row: the interface size steps without closing the menu, so the effect is seen at once. */
+function InterfaceSize() {
+  const scale = useUi((s) => s.scale);
+  return (
+    <div className="dd-row" title="Size of panels, menus and text (Ctrl Alt + / Ctrl Alt − / Ctrl Alt 0). The map and its exports do not change.">
+      <span>Interface size</span>
+      <span className="dd-steps">
+        <button aria-label="Smaller interface" onClick={() => stepUiScale(-1)} disabled={scale <= UI_SCALES[0]}>−</button>
+        <button className="dd-val" title="Back to 100 %" onClick={() => setUiScale(1)}>{uiScaleLabel(scale)}</button>
+        <button aria-label="Larger interface" onClick={() => stepUiScale(1)} disabled={scale >= UI_SCALES[UI_SCALES.length - 1]}>+</button>
+      </span>
+    </div>
+  );
+}
 
 function IconBtn({ icon, title, onClick, on, disabled }: { icon: string; title: string; onClick: () => void; on?: boolean; disabled?: boolean }) {
   return <button className={`icon-btn ${on ? 'on' : ''}`} title={title} onClick={onClick} disabled={disabled}><Icon name={icon} size={16} /></button>;
@@ -57,6 +73,7 @@ export function TopBar() {
               {designing && item('Export figure of the template…', () => useStore.setState({ dialog: { kind: 'export' } }))}
               <div className="dd-sep" />
               {item('Go to the Map Builder', () => useLab.setState({ workspace: 'map' }))}
+              <InterfaceSize />
               {item('Keyboard shortcuts', () => useStore.setState({ dialog: { kind: 'help' } }), '?')}
             </div>
           )}
@@ -74,6 +91,7 @@ export function TopBar() {
               {item('Export figure…', () => useStore.setState({ dialog: { kind: 'export' } }), 'Ctrl E')}
               {item('Download model as COBRA JSON', () => import('../model/importers').then(async (m) => { const s = useStore.getState(); if (!s.model) return a.toast('No model loaded'); (await import('../export/export')).download(`${s.model.id}.json`, m.toCobraJson(s.model), 'application/json'); }))}
               <div className="dd-sep" />
+              <InterfaceSize />
               {item('Keyboard shortcuts', () => useStore.setState({ dialog: { kind: 'help' } }), '?')}
             </div>
           )}

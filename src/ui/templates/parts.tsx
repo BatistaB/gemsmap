@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import type { Completeness, IdentifierTable, IdentityState, IdentityStatus, Provenance, TemplateFile, TemplateMetadata } from '../../templates/format/schema';
 import { NS_LABEL, normalizeXref, type Namespace } from '../../templates/mapping/identifiers';
+import { rem } from '../uiScale';
 
 export const IDENTITY_META: Record<IdentityStatus, { icon: string; label: string; cls: string; help: string }> = {
   confirmed: { icon: '✓', label: 'Confirmed', cls: 'confirmed', help: 'Chosen or reviewed by a person' },
@@ -94,7 +95,7 @@ export function TemplatePreview({ f, w = 220, h = 130 }: { f: TemplateFile; w?: 
   // cofactors drawn beside their arrows are details, not part of the preview
   const nodes = f.layout.nodes.filter((n) => !n.attach);
   const pts = [...nodes, ...f.layout.ports];
-  if (!pts.length) return <svg width={w} height={h} className="tpl-preview"><text x={w / 2} y={h / 2} textAnchor="middle" fontSize={11} fill="#8d90a0">empty</text></svg>;
+  if (!pts.length) return <svg width={rem(w)} height={rem(h)} viewBox={`0 0 ${w} ${h}`} className="tpl-preview"><text x={w / 2} y={h / 2} textAnchor="middle" fontSize={11} fill="#8d90a0">empty</text></svg>;
   const xs = pts.map((n) => n.x), ys = pts.map((n) => n.y);
   const x0 = Math.min(...xs), y0 = Math.min(...ys), bw = Math.max(...xs) - x0 || 1, bh = Math.max(...ys) - y0 || 1;
   const pad = 12, k = Math.min((w - 2 * pad) / bw, (h - 2 * pad) / bh, 1.2);
@@ -102,7 +103,7 @@ export function TemplatePreview({ f, w = 220, h = 130 }: { f: TemplateFile; w?: 
   const at = new Map(pts.map((n) => [n.id, n]));
   const status = new Map(f.biology.metabolites.map((m) => [m.id, f.biology.entities.find((e) => e.id === m.entity)?.identity.status ?? 'unresolved']));
   return (
-    <svg width={w} height={h} className="tpl-preview">
+    <svg width={rem(w)} height={rem(h)} viewBox={`0 0 ${w} ${h}`} className="tpl-preview">
       {f.layout.reactions.map((r, i) => r.sources.flatMap((s) => r.targets.map((t) => {
         const a = at.get(s), b = at.get(t);
         if (!a || !b) return null;

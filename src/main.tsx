@@ -6,12 +6,17 @@ import { emptyProject } from './store/project';
 import { useStore } from './store/store';
 import { App } from './ui/App';
 import { installShortcuts } from './ui/shortcuts';
+import { installUiScale } from './ui/uiScale';
+import { installAutoCollapse } from './ui/autoCollapse';
 import './styles.css';
 import './lab/lab.css';
 import './ui/templates/templates.css';
 import { loadTemplateLibrary } from './templates/library/registry';
 import './templates/design/session';
 import { lab } from './lab/store';
+
+// before anything renders, so the remembered interface size never flashes at 100 %
+installUiScale();
 
 async function boot() {
   await storageReady;
@@ -23,6 +28,7 @@ async function boot() {
   startAutosave();
   installShortcuts();
   lab.boot();
+  installAutoCollapse();
   if (import.meta.env.DEV) {
     (window as unknown as { gemsmap: typeof useStore }).gemsmap = useStore;
     import('./lab/store').then((m) => { (window as unknown as { gemsmapLab: unknown }).gemsmapLab = { useLab: m.useLab, lab: m.lab }; });

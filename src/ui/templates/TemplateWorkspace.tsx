@@ -112,7 +112,7 @@ function DesignLeftPanel() {
   };
   if (!open) return null;
   return (
-    <aside className="panel left tpl-left" style={{ width: pw.width }}>
+    <aside className="panel left tpl-left" style={{ width: pw.css }}>
       <ResizeHandle panel={pw} edge="right" />
       <SectionsBar api={folds} />
       <div className="panel-scroll" ref={folds.ref}>

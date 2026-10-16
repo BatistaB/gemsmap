@@ -60,7 +60,7 @@ export function CobraGui() {
 }
 
 function LabSidebar() {
-  const pw = usePanelWidth('lab-side', 188, 52, 420);
+  const pw = usePanelWidth('lab-side', 188, 52, 420, { narrow: [1100, 52] }); // icons only on narrow windows
   const section = useLab((s) => s.section);
   const results = useLab((s) => s.results);
   const favorites = useLab((s) => s.favorites);
@@ -68,7 +68,7 @@ function LabSidebar() {
   const index = useLab((s) => s.index)!;
   const running = useLab((s) => s.running);
   return (
-    <nav className={`lab-side ${pw.width < 110 ? 'compact' : ''}`} style={{ width: pw.width }}>
+    <nav className={`lab-side ${pw.width < 110 ? 'compact' : ''}`} style={{ width: pw.css }}>
       <ResizeHandle panel={pw} edge="right" />
       <div className="pane-scroll ls-scroll">
       <div className="ls-group">

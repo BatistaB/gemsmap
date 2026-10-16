@@ -38,7 +38,7 @@ export function Results() {
   }
   return (
     <div className="results-layout">
-      <div className="result-list" style={{ width: pw.width }}>
+      <div className="result-list" style={{ width: pw.css }}>
         <ResizeHandle panel={pw} edge="right" />
         <div className="pane-scroll">
         <div className="rl-head row between"><span>Results · {results.length}</span><button className="btn small" title="Import results (JSON, CSV, TSV) — e.g. from another model" onClick={pickResultFiles}><Icon name="import" size={11} /> Import</button></div>

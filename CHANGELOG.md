@@ -11,8 +11,23 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
   release notes and the beta test guide.
 - `tools/docs/beta_guide_pdf.py`: the beta test guide as one PDF (cover, Installation, quick start), printed from the
   built documentation site.
+- **Interface size** for small and large screens: File → *Interface size* (80–175 %), `Ctrl Alt +` / `Ctrl Alt −` /
+  `Ctrl Alt 0`, or the command palette. It scales panels, menus, tables, dialogs and text in every workspace and is
+  remembered per browser; the map, its figures and exports do not change. The browser's default font size is
+  respected too. The stylesheets are now in rem (`src/ui/uiScale.ts`), and the window breakpoints are container
+  queries, so they follow the chosen size.
 
 ### Changed
+- **Side panels fit the window.** Until a panel is dragged, it takes its usual width but at most 22 % of the window;
+  a dragged width is kept, capped at 40 % of the window. Dragging and double-click-to-reset work as before. On a
+  1366×768 laptop with Windows at 125 % the map now gets 56 % of the width instead of 49 %.
+- **Narrow windows hide side panels** and bring them back when the window widens (the Map Builder and Template
+  Builder inspector below 1000 px, their left panel below 760 px, the COBRAGUI inspector below 1150 px; the COBRAGUI
+  sidebar shows icons only below 1100 px). A panel the user opens or closes stays that way; a one-time notice says
+  how to reopen them.
+- **Minimum text size 11 px** (at 100 %): labels, tags, hints and badges that were 8.5–10.5 px are now 11 px.
+- The minimap never covers more than a fifth of the map's width or a quarter of its height; the File menu no longer
+  wraps its items.
 - **Installation guide for beginners:** *Step by step: install with pip* on the Installation page walks through
   opening a terminal, checking Python, making a folder, creating and activating a virtual environment, updating
   pip, installing and starting GEMs MAP, with Windows / macOS / Linux tabs (linked, so one choice applies to the
@@ -23,6 +38,9 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
   contributing. Maintainer notes (private-data handling, backend modules and routes, project layout) moved out of
   it: private-data rules stay in `CONTRIBUTING.md`, the code organisation is in the new technical note
   `docs/ARCHITECTURE.md` (updated with every current backend service and route group).
+
+### Fixed
+- The narrow-window rules for the side panels never applied (the remembered panel width always won).
 
 ## [0.3.0b1] — 2026-10-13
 

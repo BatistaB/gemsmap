@@ -17,6 +17,7 @@ import { L, lab, useLab, type SubsysView } from '../store';
 import { metricValue, subsystemCompare, subsystemLabel, subsystemStats, type SubsysCompare, type SubsysStat } from '../subsystems';
 import type { CompareRow, SimulationResult } from '../types';
 import { ResizeHandle, usePanelWidth } from '../../ui/Resizer';
+import { uiPx } from '../../ui/uiScale';
 import { RangeBar, Seg, Toggle } from './common';
 import { CATEGORICAL, FigurePaper, type FigGroup, type FigInput, type FigSeries } from './SubsystemFigure';
 
@@ -35,7 +36,7 @@ function useTip() {
     onMouseMove: (e: React.MouseEvent) => setTip({ x: e.clientX, y: e.clientY, body }),
     onMouseLeave: () => setTip(null),
   });
-  const node = tip ? <div className="ss-tip" style={{ left: Math.min(tip.x + 14, window.innerWidth - 260), top: tip.y + 14 }}>{tip.body}</div> : null;
+  const node = tip ? <div className="ss-tip" style={{ left: Math.min(tip.x + 14, window.innerWidth - uiPx(260)), top: tip.y + 14 }}>{tip.body}</div> : null;
   return { on, node };
 }
 
@@ -130,7 +131,7 @@ export function SubsystemResults({ r }: { r: SimulationResult }) {
 
   return (
     <div className="ss-layout">
-      <div className="ss-overview" style={{ width: pw.width, display: v.wide && v.view !== 'list' && selected.length ? 'none' : undefined }}>
+      <div className="ss-overview" style={{ width: pw.css, display: v.wide && v.view !== 'list' && selected.length ? 'none' : undefined }}>
         <ResizeHandle panel={pw} edge="right" />
         <div className="ss-ov-head">
           <div className="search-box"><Icon name="search" size={13} /><input placeholder="Filter subsystems…" value={q} onChange={(e) => setQ(e.target.value)} /></div>
@@ -294,7 +295,7 @@ export function SubsystemCompareView() {
 
   return (
     <div className="ss-layout cmp">
-      <div className="ss-overview" style={{ width: pw.width, display: v.wide && v.view !== 'list' && selected.length ? 'none' : undefined }}>
+      <div className="ss-overview" style={{ width: pw.css, display: v.wide && v.view !== 'list' && selected.length ? 'none' : undefined }}>
         <ResizeHandle panel={pw} edge="right" />
         <div className="ss-ov-head">
           <div className="search-box"><Icon name="search" size={13} /><input placeholder="Filter subsystems…" value={q} onChange={(e) => setQ(e.target.value)} /></div>

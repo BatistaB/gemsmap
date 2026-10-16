@@ -14,6 +14,7 @@ import { Icon } from './icons';
 import { fetchPublic, openFile } from './files';
 import { ResizeHandle, usePanelWidth } from './Resizer';
 import { useCollapsibleSections } from './Collapsible';
+import { rem } from './uiScale';
 
 const TOOLS: { id: Tool; icon: string; label: string; key: string }[] = [
   { id: 'select', icon: 'select', label: 'Select', key: 'V' },
@@ -50,7 +51,7 @@ export function LeftPanel() {
   }, [open]);
   if (!open) return null;
   return (
-    <aside className="panel left" style={{ width: pw.width }}>
+    <aside className="panel left" style={{ width: pw.css }}>
       <ResizeHandle panel={pw} edge="right" />
       <div className="tabs" role="tablist" ref={tabsRef}>
         {(['elements', 'model', 'data'] as const).map((t, i) => (
@@ -75,7 +76,7 @@ function TemplateMini({ t }: { t: MapTemplate }) {
   const P = (x: number, y: number) => [(x - x0) * k + 4 + (52 - w * k) / 2, (y - y0) * k + 4 + (36 - h * k) / 2];
   const byKey = new Map(t.nodes.map((n) => [n.key, n]));
   return (
-    <svg width={60} height={44} className="tpl-mini">
+    <svg width={rem(60)} height={rem(44)} viewBox="0 0 60 44" className="tpl-mini">
       {t.reactions.map((r, i) => {
         const a = byKey.get(r.sources[0]), b = byKey.get(r.targets[0]);
         if (!a || !b) return null;

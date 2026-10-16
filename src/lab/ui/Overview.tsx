@@ -33,7 +33,7 @@ function ImportScreen() {
         onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); setOver(true); }}
         onDragLeave={() => setOver(false)}
         onDrop={(e) => { e.preventDefault(); e.stopPropagation(); setOver(false); const f = e.dataTransfer.files[0]; if (f) lab.importFile(f); }}>
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3"><circle cx="6" cy="6" r="2.5" /><circle cx="18" cy="8" r="2.5" /><circle cx="9" cy="18" r="2.5" /><path d="M8.3 7l7.3 1M16.8 10.3l-6.4 5.6" /></svg>
+        <svg width="2.75rem" height="2.75rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3"><circle cx="6" cy="6" r="2.5" /><circle cx="18" cy="8" r="2.5" /><circle cx="9" cy="18" r="2.5" /><path d="M8.3 7l7.3 1M16.8 10.3l-6.4 5.6" /></svg>
         <div className="empty-title">Drop a metabolic model here</div>
         <div className="muted">SBML · COBRA JSON · MATLAB .mat</div>
         <button className="btn primary" disabled={backend.status !== 'online' || !!busy} onClick={pickModelFile}><Icon name="import" size={14} /> Import model</button>

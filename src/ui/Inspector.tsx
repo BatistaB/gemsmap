@@ -35,7 +35,7 @@ export function Inspector() {
     else body = <DocumentInspector />;
   } else if (selection.length > 1) body = <MultiInspector />;
   else body = <DocumentInspector />;
-  return <aside className="panel right" style={{ width: pw.width }}><ResizeHandle panel={pw} edge="left" /><SectionsBar api={folds} /><div className="panel-scroll" ref={folds.ref}>{body}</div></aside>;
+  return <aside className="panel right" style={{ width: pw.css }}><ResizeHandle panel={pw} edge="left" /><SectionsBar api={folds} /><div className="panel-scroll" ref={folds.ref}>{body}</div></aside>;
 }
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {

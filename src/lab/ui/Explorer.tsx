@@ -335,7 +335,7 @@ function SubsystemBrowser() {
     lab.setSelection('reactions', all ? sel.filter((r) => !drop.has(r)) : [...sel, ...rids.filter((r) => !selSet.has(r))]);
   };
   return (
-    <div className="subsys" style={{ width: pw.width }}>
+    <div className="subsys" style={{ width: pw.css }}>
       <ResizeHandle panel={pw} edge="right" />
       <input className="input tiny" placeholder="Subsystems…" value={q} onChange={(e) => setQ(e.target.value)} />
       {nSelSubs > 0 && <div className="subsys-selnote small muted">{nSelSubs} subsystem{nSelSubs > 1 ? 's' : ''} selected · {sel.length} reactions</div>}

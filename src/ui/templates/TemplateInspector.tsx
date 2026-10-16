@@ -56,7 +56,7 @@ export function TemplateInspector() {
     else body = <TemplateSection f={design} />;
   } else if (selection.length > 1) body = <MultiInspector />;
   else body = <TemplateSection f={design} />;
-  return <aside className="panel right tpl-insp" style={{ width: pw.width }}><ResizeHandle panel={pw} edge="left" /><SectionsBar api={folds} /><div className="panel-scroll" ref={folds.ref}>{body}</div></aside>;
+  return <aside className="panel right tpl-insp" style={{ width: pw.css }}><ResizeHandle panel={pw} edge="left" /><SectionsBar api={folds} /><div className="panel-scroll" ref={folds.ref}>{body}</div></aside>;
 }
 
 // ------------------------------------------------------------ metabolite

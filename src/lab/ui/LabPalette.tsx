@@ -11,6 +11,7 @@ import { L, lab, useLab } from '../store';
 import type { LabSection, Method } from '../types';
 import { pickResultFiles } from './importResults';
 import { pickModelFile } from './Overview';
+import { UI_SCALE_COMMANDS } from '../../ui/uiScale';
 
 interface Cmd { id: string; label: string; group: string; hint?: string; run: () => void }
 
@@ -46,8 +47,9 @@ function labCommands(): Cmd[] {
     { id: 'to-map', group: 'Go to', label: 'Switch to Map Builder', run: () => lab.setWorkspace('map') },
     { id: 'log', group: 'View', label: 'Show activity log', run: () => useLab.setState({ logOpen: true }) },
     { id: 'inspector', group: 'View', label: 'Toggle inspector', run: () => useLab.setState({ inspectorOpen: !s.inspectorOpen }) },
+    ...UI_SCALE_COMMANDS,
   ];
-  return hasModel ? cmds : cmds.filter((c) => ['import', 'to-map'].includes(c.id));
+  return hasModel ? cmds : cmds.filter((c) => ['import', 'to-map'].includes(c.id) || c.id.startsWith('ui-'));
 }
 
 type Item = { type: 'hit'; hit: Hit } | { type: 'cmd'; cmd: Cmd };

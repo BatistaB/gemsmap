@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { uiPx } from './uiScale';
 import { equationString } from '../model/currency';
 import type { MetabolicModel } from '../model/types';
 
@@ -19,7 +20,7 @@ export function ReactionChip({ rid, model, metId, onCanvas, open, onToggle, onAc
     const b = ref.current.getBoundingClientRect();
     const panel = ref.current.closest('.panel')?.getBoundingClientRect();
     // card's right edge sits 10px left of the panel; vertically aligned with the chip
-    setPos({ right: window.innerWidth - (panel?.left ?? b.left) + 10, top: Math.max(8, Math.min(b.top - 12, window.innerHeight - 260)) });
+    setPos({ right: window.innerWidth - (panel?.left ?? b.left) + 10, top: Math.max(8, Math.min(b.top - 12, window.innerHeight - uiPx(260))) });
     const close = (e: KeyboardEvent) => { if (e.key === 'Escape') onToggle(); };
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);

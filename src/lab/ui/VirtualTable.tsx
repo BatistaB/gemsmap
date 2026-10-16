@@ -1,10 +1,11 @@
 import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import type { SortSpec } from '../types';
+import { rem, useUi } from '../../ui/uiScale';
 
 export interface Col<T> {
   key: string;
   label: ReactNode;
-  /** px number or any CSS grid track ("minmax(160px, 2fr)"). */
+  /** design px number or any CSS grid track ("minmax(160px, 2fr)"); both follow the interface size. */
   width: number | string;
   align?: 'left' | 'right' | 'center';
   render: (row: T) => ReactNode;
@@ -16,6 +17,7 @@ interface Props<T> {
   rows: T[];
   cols: Col<T>[];
   rowKey: (r: T) => string;
+  /** design px */
   rowHeight?: number;
   sort?: SortSpec | null;
   onSort?: (key: string) => void;
@@ -42,11 +44,14 @@ export function VirtualTable<T>({ rows, cols, rowKey, rowHeight = 24, sort, onSo
     setHeight(el.clientHeight);
     return () => ro.disconnect();
   }, []);
-  const template = cols.map((c) => (typeof c.width === 'number' ? `${c.width}px` : c.width)).join(' ');
-  const minWidth = cols.reduce((a, c) => a + (typeof c.width === 'number' ? c.width : 160), 0);
-  const headH = 26;
-  const start = Math.max(0, Math.floor((scroll - headH) / rowHeight) - 6);
-  const end = Math.min(rows.length, Math.ceil((scroll + height) / rowHeight) + 6);
+  // the interface size scales the rows: positions are computed in screen pixels, sizes written in rem
+  const factor = useUi((s) => s.factor);
+  const template = cols.map((c) => (typeof c.width === 'number' ? rem(c.width) : c.width.replace(/(\d*\.?\d+)px/g, (_, n) => rem(+n)))).join(' ');
+  const minWidth = rem(cols.reduce((a, c) => a + (typeof c.width === 'number' ? c.width : 160), 0));
+  const headH = 26 * factor;
+  const rowH = rowHeight * factor;
+  const start = Math.max(0, Math.floor((scroll - headH) / rowH) - 6);
+  const end = Math.min(rows.length, Math.ceil((scroll + height) / rowH) + 6);
   const activeIndex = active ? rows.findIndex((r) => rowKey(r) === active) : -1;
 
   const onKey = (e: React.KeyboardEvent) => {
@@ -56,7 +61,7 @@ export function VirtualTable<T>({ rows, cols, rowKey, rowHeight = 24, sort, onSo
     onKeyNav(rows[i], i);
     const el = ref.current;
     if (el) {
-      const top = i * rowHeight, bottom = top + rowHeight + headH;
+      const top = i * rowH, bottom = top + rowH + headH;
       if (top < el.scrollTop) el.scrollTop = top;
       else if (bottom > el.scrollTop + el.clientHeight) el.scrollTop = bottom - el.clientHeight;
     }
@@ -77,13 +82,13 @@ export function VirtualTable<T>({ rows, cols, rowKey, rowHeight = 24, sort, onSo
             );
           })}
         </div>
-        <div className="vt-body" style={{ height: rows.length * rowHeight }}>
+        <div className="vt-body" style={{ height: rows.length * rowH }}>
           {rows.slice(start, end).map((r, i) => {
             const k = rowKey(r);
             const idx = start + i;
             return (
               <div key={k} className={`vt-row ${selected?.has(k) ? 'sel' : ''} ${active === k ? 'active' : ''} ${rowClass?.(r) ?? ''}`}
-                style={{ top: idx * rowHeight, height: rowHeight, gridTemplateColumns: template }}
+                style={{ top: idx * rowH, height: rowH, gridTemplateColumns: template }}
                 onClick={(e) => { if (!(e.target as HTMLElement).closest('input, select, textarea, button')) onRowClick?.(r, e, idx); }}
                 onDoubleClick={(e) => { const col = (e.target as HTMLElement).closest('[data-col]')?.getAttribute('data-col'); if (col) onRowDoubleClick?.(r, col, e); }}
                 onContextMenu={(e) => { if (onContextMenu) { e.preventDefault(); onContextMenu(r, e); } }}>

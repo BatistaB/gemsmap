@@ -1,3 +1,5 @@
+import { rem } from './uiScale';
+
 const P: Record<string, string> = {
   select: 'M5 3l12 8-5.5 1.2L14 18l-2.2 1-2.6-5.7L5 17z',
   metabolite: 'M12 12m-5 0a5 5 0 1 0 10 0a5 5 0 1 0-10 0',
@@ -58,11 +60,12 @@ const P: Record<string, string> = {
   more: 'M6 12h.01M12 12h.01M18 12h.01',
 };
 
+/** `size` in design px: the icon follows the interface size. */
 export function Icon({ name, size = 16, stroke = 1.6, fill }: { name: keyof typeof P | string; size?: number; stroke?: number; fill?: boolean }) {
   const d = P[name] ?? P.more;
   const filled = fill ?? (name === 'metabolite' || name === 'play' || name === 'stop');
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={name === 'slot' ? '3 2.5' : undefined} aria-hidden>
+    <svg width={rem(size)} height={rem(size)} viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={name === 'slot' ? '3 2.5' : undefined} aria-hidden>
       <path d={d} />
     </svg>
   );
