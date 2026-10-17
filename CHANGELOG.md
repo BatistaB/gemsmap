@@ -6,6 +6,7 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 ## [Unreleased]
 
 ### Added
+- Every COBRAGUI table sorts by clicking a column title, including the Medium table and the metabolite analysis table (click again to reverse, a third time for the original order).
 - The documentation is published at <https://gemsmap.readthedocs.io/> (Read the Docs, rebuilt on every push to
   `main`): linked from the README (with a badge), the PyPI page (next release), the zip's README-FIRST.txt, the
   release notes and the beta test guide.

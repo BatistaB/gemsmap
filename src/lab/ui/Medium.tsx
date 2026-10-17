@@ -71,17 +71,17 @@ export function MediumEditor() {
   }, [table, show, dq]);
 
   const cols: Col<MediumRow>[] = [
-    { key: 'in', label: 'In', width: 34, sortable: false, align: 'center', render: (r) => <input type="checkbox" checked={r.inMedium} disabled={!!busy || r.kind !== 'exchange'} title={r.kind !== 'exchange' ? `${r.kind} reactions are not part of COBRApy's medium — edit their bounds in the inspector` : r.inMedium ? 'Remove from medium (uptake 0)' : 'Allow uptake'} onClick={(e) => e.stopPropagation()} onChange={() => toggle(r)} /> },
-    { key: 'name', label: 'Compound', width: 'minmax(150px, 2fr)', render: (r) => <span className="ellipsis strong" title={r.metaboliteName}>{r.metaboliteName || r.metabolite || '—'}</span> },
-    { key: 'formula', label: 'Formula', width: 90, render: (r) => <span className="mono ellipsis">{r.formula ?? ''}</span> },
-    { key: 'exchange', label: 'Exchange', width: 'minmax(120px, 1.2fr)', render: (r) => <span className="mono ellipsis">{r.reaction}{r.kind !== 'exchange' && <span className="tag">{r.kind}</span>}</span> },
-    { key: 'uptake', label: <span>Max uptake <span className="muted">({FLUX_UNIT})</span></span>, width: 190, align: 'right', render: (r) => (
+    { key: 'in', label: 'In', width: 34, align: 'center', title: 'In the medium (uptake allowed)', sortValue: (r) => (r.inMedium ? 1 : 0), render: (r) => <input type="checkbox" checked={r.inMedium} disabled={!!busy || r.kind !== 'exchange'} title={r.kind !== 'exchange' ? `${r.kind} reactions are not part of COBRApy's medium — edit their bounds in the inspector` : r.inMedium ? 'Remove from medium (uptake 0)' : 'Allow uptake'} onClick={(e) => e.stopPropagation()} onChange={() => toggle(r)} /> },
+    { key: 'name', label: 'Compound', width: 'minmax(150px, 2fr)', sortValue: (r) => r.metaboliteName || r.metabolite, render: (r) => <span className="ellipsis strong" title={r.metaboliteName}>{r.metaboliteName || r.metabolite || '—'}</span> },
+    { key: 'formula', label: 'Formula', width: 90, sortValue: (r) => r.formula, render: (r) => <span className="mono ellipsis">{r.formula ?? ''}</span> },
+    { key: 'exchange', label: 'Exchange', width: 'minmax(120px, 1.2fr)', sortValue: (r) => r.reaction, render: (r) => <span className="mono ellipsis">{r.reaction}{r.kind !== 'exchange' && <span className="tag">{r.kind}</span>}</span> },
+    { key: 'uptake', label: <span>Max uptake <span className="muted">({FLUX_UNIT})</span></span>, width: 190, align: 'right', sortValue: (r) => (r.uptakeUnbounded ? Infinity : r.uptakeMax), render: (r) => (
       r.kind === 'exchange'
         ? <NumberInput className="cell-edit med-in" allowEmpty value={r.uptakeUnbounded ? null : r.uptakeMax} placeholder="∞" onCommit={(v) => setUptake(r, v)} title="Maximum uptake rate; Enter to apply" />
         : <span className="mono">{r.uptakeUnbounded ? '∞' : fnum(r.uptakeMax)}</span>
     ) },
-    { key: 'secretion', label: 'Max secretion', width: 100, align: 'right', render: (r) => <span className="mono muted">{r.secretionMax == null ? '∞' : fnum(r.secretionMax)}</span> },
-    { key: 'orig', label: 'Model file', width: 110, align: 'right', title: 'Uptake limit in the imported model', render: (r) => {
+    { key: 'secretion', label: 'Max secretion', width: 100, align: 'right', sortValue: (r) => r.secretionMax ?? Infinity, render: (r) => <span className="mono muted">{r.secretionMax == null ? '∞' : fnum(r.secretionMax)}</span> },
+    { key: 'orig', label: 'Model file', width: 110, align: 'right', title: 'Uptake limit in the imported model', sortValue: (r) => r.originalUptakeMax, render: (r) => {
       const changed = (r.originalUptakeMax ?? -1) !== (r.uptakeMax ?? -1) && !(r.uptakeUnbounded && r.originalUptakeMax == null);
       return <span className={`mono small ${changed ? 'modified' : 'muted'}`}>{changed ? `${fnum(r.originalUptakeMax)} → ${r.uptakeUnbounded ? '∞' : fnum(r.uptakeMax)}` : fnum(r.originalUptakeMax)}</span>;
     } },

@@ -131,13 +131,13 @@ export function MetaboliteAnalysis() {
   const reviewLeft = a ? a.items.filter((it) => it.status === 'doubt' && !decision(cur, it.id)).length : 0;
 
   const cols: Col<AnnotationItem>[] = [
-    { key: 'status', label: '', width: 74, render: (r) => <span className={`ann-st ${STATUS[r.status].cls}`} title={STATUS[r.status].hint}>{STATUS[r.status].label}</span> },
-    { key: 'id', label: 'Metabolite', width: 'minmax(110px, 1fr)', render: (r) => <span className="mono ellipsis" title={r.id}>{r.id}</span> },
-    { key: 'name', label: 'Name', width: 'minmax(140px, 2fr)', render: (r) => <span className="ellipsis" title={r.name}>{r.name}</span> },
-    { key: 'comp', label: 'Comp.', width: 54, render: (r) => <span className="muted">{r.compartment}</span> },
-    { key: 'mnx', label: 'MetaNetX', width: 'minmax(150px, 2fr)', render: (r) => r.proposal ? <span className="ellipsis" title={r.candidates[0]?.name ?? ''}><span className="mono">{r.proposal.mnx}</span> <span className="muted">{r.candidates.find((c) => c.mnx === r.proposal!.mnx)?.name}</span></span> : <span className="muted">—</span> },
-    { key: 'add', label: '+IDs', width: 48, align: 'right', render: (r) => <span className="mono">{r.proposal ? Object.values(r.proposal.add).reduce((n, v) => n + v.length, 0) : ''}</span>, title: 'Cross-references that would be added' },
-    { key: 'dec', label: 'Model', width: 92, render: (r) => { const d = decision(cur, r.id); return d === 'auto' || d === 'user' ? <span className="ok small">✓ curated{d === 'auto' ? ' (auto)' : ''}</span> : d === 'kept' ? <span className="muted small">kept original</span> : <span className="muted small">—</span>; } },
+    { key: 'status', label: 'Status', width: 74, sortValue: (r) => STATUS[r.status].label, render: (r) => <span className={`ann-st ${STATUS[r.status].cls}`} title={STATUS[r.status].hint}>{STATUS[r.status].label}</span> },
+    { key: 'id', label: 'Metabolite', width: 'minmax(110px, 1fr)', sortValue: (r) => r.id, render: (r) => <span className="mono ellipsis" title={r.id}>{r.id}</span> },
+    { key: 'name', label: 'Name', width: 'minmax(140px, 2fr)', sortValue: (r) => r.name, render: (r) => <span className="ellipsis" title={r.name}>{r.name}</span> },
+    { key: 'comp', label: 'Comp.', width: 54, sortValue: (r) => r.compartment, render: (r) => <span className="muted">{r.compartment}</span> },
+    { key: 'mnx', label: 'MetaNetX', width: 'minmax(150px, 2fr)', sortValue: (r) => r.proposal?.mnx, render: (r) => r.proposal ? <span className="ellipsis" title={r.candidates[0]?.name ?? ''}><span className="mono">{r.proposal.mnx}</span> <span className="muted">{r.candidates.find((c) => c.mnx === r.proposal!.mnx)?.name}</span></span> : <span className="muted">—</span> },
+    { key: 'add', label: '+IDs', width: 48, align: 'right', sortValue: (r) => (r.proposal ? Object.values(r.proposal.add).reduce((n, v) => n + v.length, 0) : null), render: (r) => <span className="mono">{r.proposal ? Object.values(r.proposal.add).reduce((n, v) => n + v.length, 0) : ''}</span>, title: 'Cross-references that would be added' },
+    { key: 'dec', label: 'Model', width: 92, sortValue: (r) => decision(cur, r.id), render: (r) => { const d = decision(cur, r.id); return d === 'auto' || d === 'user' ? <span className="ok small">✓ curated{d === 'auto' ? ' (auto)' : ''}</span> : d === 'kept' ? <span className="muted small">kept original</span> : <span className="muted small">—</span>; } },
   ];
 
   return (

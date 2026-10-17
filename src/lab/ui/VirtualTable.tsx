@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { SortSpec } from '../types';
 import { rem, useUi } from '../../ui/uiScale';
 
@@ -10,6 +10,8 @@ export interface Col<T> {
   align?: 'left' | 'right' | 'center';
   render: (row: T) => ReactNode;
   sortable?: boolean;
+  /** Value to sort by when the table sorts itself (no `onSort` given). null / undefined sort last. */
+  sortValue?: (row: T) => number | string | boolean | null | undefined;
   title?: string;
 }
 
@@ -31,8 +33,41 @@ interface Props<T> {
   empty?: ReactNode;
 }
 
-/** Fixed-row-height virtualized grid: only visible rows are in the DOM, so 10k rows stay instant. */
-export function VirtualTable<T>({ rows, cols, rowKey, rowHeight = 24, sort, onSort, selected, active, onRowClick, onRowDoubleClick, onContextMenu, onKeyNav, rowClass, empty }: Props<T>) {
+const cmp = (a: unknown, b: unknown) => (typeof a === 'string' || typeof b === 'string'
+  ? String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: 'base' })
+  : Number(a) - Number(b));
+
+/**
+ * Fixed-row-height virtualized grid: only visible rows are in the DOM, so 10k rows stay instant.
+ * Sorting: with `onSort` the caller sorts the rows; without it the table sorts by each column's
+ * `sortValue` (click: sort, again: reverse, third click: original order).
+ */
+export function VirtualTable<T>({ rows: input, cols, rowKey, rowHeight = 24, sort: outerSort, onSort: outerOnSort, selected, active, onRowClick, onRowDoubleClick, onContextMenu, onKeyNav, rowClass, empty }: Props<T>) {
+  const [ownSort, setOwnSort] = useState<SortSpec | null>(null);
+  const self = !outerOnSort;
+  const sort = self ? ownSort : outerSort;
+  const onSort = self
+    ? (k: string) => {
+      const col = cols.find((c) => c.key === k);
+      if (!col?.sortValue) return;
+      // numbers start high → low, text A → Z
+      const first = input.map((r) => col.sortValue!(r)).find((v) => v != null && v !== '');
+      const dir0 = typeof first === 'string' ? 'asc' : 'desc';
+      setOwnSort((c) => (c?.key !== k ? { key: k, dir: dir0 } : c.dir === dir0 ? { key: k, dir: dir0 === 'asc' ? 'desc' : 'asc' } : null));
+    }
+    : outerOnSort;
+  const rows = useMemo(() => {
+    const col = self && ownSort ? cols.find((c) => c.key === ownSort.key) : undefined;
+    if (!col?.sortValue) return input;
+    const sign = ownSort!.dir === 'asc' ? 1 : -1;
+    const val = col.sortValue;
+    return input.map((r, i) => ({ r, i, v: val(r) })).sort((a, b) => {
+      const na = a.v == null || a.v === '', nb = b.v == null || b.v === '';
+      if (na || nb) return na === nb ? a.i - b.i : na ? 1 : -1;
+      return sign * cmp(a.v, b.v) || a.i - b.i;
+    }).map((x) => x.r);
+  }, [input, cols, self, ownSort]);
+  const canSort = (c: Col<T>) => c.sortable !== false && (self ? !!c.sortValue : !!outerOnSort);
   const ref = useRef<HTMLDivElement>(null);
   const [scroll, setScroll] = useState(0);
   const [height, setHeight] = useState(500);
@@ -74,8 +109,8 @@ export function VirtualTable<T>({ rows, cols, rowKey, rowHeight = 24, sort, onSo
           {cols.map((c) => {
             const on = sort?.key === c.key;
             return (
-              <div key={c.key} className={`vt-th ${c.align ?? ''} ${c.sortable !== false && onSort ? 'sortable' : ''} ${on ? 'on' : ''}`} title={c.title}
-                onClick={() => c.sortable !== false && onSort?.(c.key)}>
+              <div key={c.key} className={`vt-th ${c.align ?? ''} ${canSort(c) ? 'sortable' : ''} ${on ? 'on' : ''}`} title={c.title}
+                onClick={() => canSort(c) && onSort?.(c.key)}>
                 <span className="ellipsis">{c.label}</span>
                 {on && <span className="vt-sort">{sort!.dir === 'asc' ? '↑' : '↓'}</span>}
               </div>
