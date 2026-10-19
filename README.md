@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-<h3 align="center">An interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models</h3>
+<h3 align="center">An interactive workbench that links constraint-based analysis, identity-aware pathway templates and editable canvas maps of genome-scale metabolic models</h3>
 
 <p align="center">
   <img src="https://github.com/BatistaB/gemsmap/actions/workflows/ci.yml/badge.svg" alt="CI"> <a href="https://pypi.org/project/gemsmap/"><img src="https://img.shields.io/pypi/v/gemsmap?include_prereleases&label=PyPI" alt="PyPI"></a> <a href="https://gemsmap.readthedocs.io/"><img src="https://readthedocs.org/projects/gemsmap/badge/?version=latest" alt="Documentation"></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
