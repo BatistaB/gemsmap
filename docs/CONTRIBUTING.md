@@ -113,6 +113,7 @@ When the tutorial text quotes a number (growth rates, counts, fluxes), take it f
 | Last audit | Commit | Notes |
 | --- | --- | --- |
 | 13 Oct 2026 | `v0.3.0b1` | First public version. The site was written and audited on the earlier, local development history (10 to 13 October 2026: first version, COBRAGUI rename, redrawn brand, clean start-up, the C / V / mouse-wheel habit) and describes version 0.3.0b1, including the installation with pip, uv or the zip. |
+| 22 Oct 2026 | `5a7f0d6` | Interface size, side panels that fit the window and narrow-window rules (*First look*); sorting the Medium and metabolite analysis tables by column; one identity for a compound in every compartment (*Metabolite analysis*, *Identity and matching*); templates drafted with an LLM instead of an "AI curator" (pages updated with that commit; `templates-library.png` recaptured). The step-by-step pip install (`7f88baa`) and the Read the Docs links were already in place. |
 
 When revisiting the docs:
 

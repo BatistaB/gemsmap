@@ -121,6 +121,7 @@ Press ++question++ in the Map Builder for the list.
 | ++f++ / ++shift+f++ | Fit all / fit selection |
 | ++bracket-left++ / ++bracket-right++ | Previous / next condition |
 | ++ctrl+s++ / ++ctrl+o++ / ++ctrl+e++ | Save project / open project / export figure |
+| ++ctrl+alt+plus++ / ++ctrl+alt+minus++ / ++ctrl+alt+0++ | [Interface size](../getting-started/first-look.md#fit-the-interface-to-your-screen): larger / smaller / 100 % (every workspace) |
 | Double-click canvas | Add a metabolite |
 | Drag a node's outer ring | Draw a reaction (drop on empty canvas: new slot) |
 | Double-click a label | Edit the text |

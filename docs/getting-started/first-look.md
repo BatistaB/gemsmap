@@ -49,6 +49,21 @@ The third workspace lists the pathway templates and opens them in Template Desig
 
 Continue with [Templates](../templates/index.md).
 
+## Fit the interface to your screen
+
+- **File → Interface size** makes panels, menus, tables, dialogs and text smaller or larger, from 80 % to 175 %, in every workspace. ++ctrl+alt+plus++ and ++ctrl+alt+minus++ do the same, ++ctrl+alt+0++ returns to 100 %, and the command palette has *Interface size: larger*, *smaller* and *100 %*. The choice is remembered per browser. The map, its figures and its exports do not change.
+- **Side panels** open at their usual width, but never wider than about a fifth of the window. Drag a panel's edge to make it wider (up to 40 % of the window); a double-click on the edge resets it.
+- **In a narrow window** the side panels hide themselves to leave room for the work, and come back when the window is wider. A one-time notice says how to reopen them: the panel buttons in the top bar always work. A panel you open or close yourself stays that way.
+
+| Panel | Hidden when the window is narrower than |
+| --- | --- |
+| Map Builder and Template Builder inspector | 1,000 px |
+| Map Builder and Template Builder left panel | 760 px |
+| COBRAGUI inspector (it reopens when you open an entity) | 1,150 px |
+| COBRAGUI sidebar (shows icons only) | 1,100 px |
+
+These widths are at 100 %; a larger interface size hides the panels sooner, a smaller one later. On a small laptop, a smaller interface size keeps the panels open; on a large monitor, a larger one makes everything easier to read.
+
 ## Getting help inside the app
 
 - ++ctrl+k++ opens the command palette in every workspace: search the model, the figure or the commands.

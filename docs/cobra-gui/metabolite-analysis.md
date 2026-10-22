@@ -105,7 +105,15 @@ The **Metabolite analysis** section answers a different question: *which chemica
 
 Formulas are compared on heavy atoms only, because protonation states differ between databases. A candidate whose composition conflicts with the model formula is set aside, but still listed.
 
-**What is written.** With *Apply confident matches* on, confident matches add the missing cross-references to the metabolite annotation under COBRApy/identifiers.org keys (`metanetx.chemical`, `kegg.compound`, `chebi`, `bigg.metabolite`, `seed.compound`, `metacyc.compound`, `hmdb`, `inchikey`, …). With *Fill missing formulas* on, a formula and charge are added **only where the model has none**; these MetaNetX values are at pH 7.3. For *Review* cases you decide: accept a candidate or *Keep original*. Existing values are never removed or rewritten, every accepted match can be undone, and *Revert all* restores the original annotation.
+**What is written.** With *Apply confident matches* on, confident matches add the missing cross-references to the metabolite annotation under COBRApy/identifiers.org keys (`metanetx.chemical`, `kegg.compound`, `chebi`, `bigg.metabolite`, `seed.compound`, `metacyc.compound`, `hmdb`, `inchikey`, …). With *Fill missing formulas* on, a formula and charge are added **only where the model has none**; these MetaNetX values are at pH 7.3. For *Review* cases you decide: accept a candidate or *Keep original*. Existing values are never removed or rewritten, every accepted match can be undone, and *Revert all* restores the original annotation. Click a column title to sort the table; click again to reverse, and a third time for the original order.
+
+**The same compound in other compartments.** `pyr_c`, `pyr_m` and `pyr_e` are three metabolites of the model but one chemical, so a decision about the identity of one of them is meant for all of them. GEMs MAP recognises these siblings conservatively:
+
+- the same ID once the compartment part is removed (`pyr_c`, `M_pyr_c`, `pyr[c]`, ModelSEED `cpd00020_c0`) **and** a compatible name;
+- for numbered IDs without a compartment part (yeast-GEM `s_1399`, `s_1401`), the same name without its compartment tag ("pyruvate [cytoplasm]");
+- never two siblings in one compartment: if two metabolites of one compartment look the same, no group is formed.
+
+The *Comp.* column shows siblings as `c +2` (hover for their IDs). When you select a metabolite, the panel lists *Same compound in other compartments* with a checkbox for each. *Apply*, *Keep original* and *Undo* act on the selected metabolite and every checked sibling, and the buttons show how many, for example *Apply MNXM23 (+2)*. A sibling whose own identifiers point to another chemical, or that is already curated as another one, starts unchecked and shows why (⚠).
 
 **Where it goes.** Accepted matches form a **curation layer** stored next to the model in the backend cache and re-applied whenever the model is loaded. *Export curated model* (or *Save as model*) writes them into a new file, as SBML MIRIAM annotations, with a provenance note. The imported file is unchanged. MetaNetX answers are cached locally for 90 days, so only the first analysis of a model needs the internet. For iML1515 the first analysis took about 35 seconds while preparing these pages; repeating it took about 3 seconds.
 

@@ -87,6 +87,14 @@ Your decisions are stored as `entity @ compartment → model metabolite` (or *ab
 - saved in the browser and inside `.gemsmap` projects;
 - reported as stale for an entry whose metabolite no longer exists after a model change.
 
+### The same entity in other compartments
+
+A template can draw one entity in several compartments, for example pyruvate in the cytosol and in the mitochondrion. When you choose a model metabolite for one of these slots, in the review dialog or in the inspector, GEMs MAP also maps the other compartments to the [same compound](../cobra-gui/metabolite-analysis.md#curating-identifiers-with-metanetx) in the model: choosing `pyr_c` maps the mitochondrial slot to `pyr_m`. Such slots are confirmed with the method *same compound as pyr_c*.
+
+- A slot you chose yourself, or one mapped with high confidence, is never changed this way.
+- In the review dialog, changing or clearing a choice also undoes the slots that followed it.
+- The siblings are saved in the mapping profile too, so another template that draws pyruvate in the mitochondrion of the same model finds `pyr_m` already confirmed.
+
 *Export report* in the review dialog writes every mapping with its evidence, method and software versions as JSON, for the methods section of a paper.
 
 <div class="gm-next" markdown>
