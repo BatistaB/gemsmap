@@ -307,7 +307,7 @@ interface Work {
   expected: ResolvedCompartment;
   base: (Omit<Candidate, 'topologyFactor' | 'score' | 'confidence' | 'summary'> & { parts: string[] })[];
   ranked: Candidate[];
-  forced?: { metId: ID | null; method: Method };
+  forced?: { metId: ID | null; method: Method; via?: ID };
   staleProfile?: string;
 }
 
@@ -349,7 +349,7 @@ export function mapTemplate(spec: PathwayTemplateSpec, model: MetabolicModel, op
     else {
       const pe = opts.profile?.entries[profileKey(entity.id, expected.expected)];
       if (pe) {
-        if (pe.metaboliteId === null || model.metabolites[pe.metaboliteId]) w.forced = { metId: pe.metaboliteId, method: 'saved profile' };
+        if (pe.metaboliteId === null || model.metabolites[pe.metaboliteId]) w.forced = { metId: pe.metaboliteId, method: 'saved profile', via: pe.via };
         else w.staleProfile = `Saved mapping ${pe.metaboliteId} is no longer in this model`;
       }
     }
@@ -466,8 +466,10 @@ function assign(work: Work[]): Map<string, { status: MappingStatus; chosen?: Can
     if (w.forced.metId === null) { out.set(w.slot.slot, { status: 'absent', reason: `Marked as absent from this model (${w.forced.method})` }); continue; }
     const c = w.ranked.find((x) => x.metId === w.forced!.metId);
     if (!c) continue;
-    const chosen = { ...c, method: w.forced.method, evidence: [{ channel: 'user' as const, ok: true, text: w.forced.method === 'user choice' ? 'Chosen by the user' : 'Confirmed earlier for this model (mapping profile)' }, ...c.evidence] };
-    out.set(w.slot.slot, { status: 'confirmed', chosen, reason: w.forced.method === 'user choice' ? 'Chosen by the user' : 'Confirmed earlier for this model' });
+    const why = w.forced.method === 'user choice' ? 'Chosen by the user'
+      : w.forced.via ? `Same compound as ${w.forced.via}, chosen for this model in another compartment` : 'Confirmed earlier for this model (mapping profile)';
+    const chosen = { ...c, method: w.forced.method, evidence: [{ channel: 'user' as const, ok: true, text: why }, ...c.evidence] };
+    out.set(w.slot.slot, { status: 'confirmed', chosen, reason: w.forced.method === 'user choice' ? 'Chosen by the user' : w.forced.via ? `Same compound as ${w.forced.via} (other compartment)` : 'Confirmed earlier for this model' });
     used.set(c.metId, w.slot.slot);
   }
   const order = work.filter((w) => !out.has(w.slot.slot)).sort((a, b) => (b.ranked[0]?.score ?? 0) - (a.ranked[0]?.score ?? 0));

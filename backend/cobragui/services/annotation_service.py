@@ -614,7 +614,11 @@ def _refresh(entry: registry.ModelEntry, ids: Iterable[str]) -> list[dict]:
 
 
 def apply(entry: registry.ModelEntry, choices: list[dict], source: str = "user") -> dict:
-    """choices: [{id, mnx?, fillFormula?}] — mnx defaults to the analysis proposal."""
+    """choices: [{id, mnx?, fillFormula?, like?}] — mnx defaults to the analysis proposal.
+
+    like = id of the same compound in another compartment (pyr_c for pyr_m): its candidate is used when
+    this metabolite's own analysis did not list the chosen chemical (e.g. it was unmapped).
+    """
     analysis = load_json(entry.id, "annotation")
     if not analysis:
         raise ScienceError("No annotation analysis", "Run the metabolite analysis first.")
@@ -632,6 +636,9 @@ def apply(entry: registry.ModelEntry, choices: list[dict], source: str = "user")
                 _revert_one(met, old)
             want = ch.get("mnx") or (it.get("proposal") or {}).get("mnx")
             cand = next((c for c in it.get("candidates", []) if c["mnx"] == want), None)
+            like = by_id.get(ch.get("like") or "")
+            if not cand and like:
+                cand = next((c for c in like.get("candidates", []) if c["mnx"] == want), None)
             if not cand:
                 continue
             try:
@@ -642,6 +649,7 @@ def apply(entry: registry.ModelEntry, choices: list[dict], source: str = "user")
             merge_bigg(info, [want], big)
             c = {"mnx": want, "added": _additions(cand, info, annotation_xrefs(met.annotation), big), "source": source,
                  "status": it["status"], "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                 **({"like": like["id"]} if like else {}),
                  "original": {"formula": met.formula or None, "charge": met.charge if isinstance(met.charge, (int, float)) else None}}
             if ch.get("fillFormula", True) and not met.formula and cand.get("formula"):
                 c["formula"], c["charge"] = cand["formula"], cand.get("charge")

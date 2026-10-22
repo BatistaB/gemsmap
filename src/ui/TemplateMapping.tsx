@@ -18,6 +18,8 @@ import { entityOf } from '../templates/mapping/library';
 import { findSlot } from '../templates/pathways';
 import { indexModel } from '../templates/mapping/modelIndex';
 import { loadProfile, saveProfile, withEntry } from '../templates/mapping/profile';
+import { siblingsByCompartment, withSiblingEntries } from '../templates/mapping/siblings';
+import type { CanonicalCompartment } from '../templates/mapping/compartments';
 import type { PathwayTemplateSpec } from '../templates/spec';
 import type { NodeGlyph } from '../viz/types';
 import { Modal } from './Dialogs';
@@ -75,6 +77,8 @@ export function TemplateMappingDialog({ templateId, at, onClose }: { templateId:
   const spec = specById(templateId);
   const model = useStore((s) => s.model);
   const [overrides, setOverrides] = useState<Record<string, string | null>>({});
+  /** slot → the slot whose choice it follows (same entity, other compartment) */
+  const [followed, setFollowed] = useState<Record<string, string>>({});
   const [showAll, setShowAll] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
   const res = useTemplateMapping(spec, model, overrides);
@@ -87,7 +91,28 @@ export function TemplateMappingDialog({ templateId, at, onClose }: { templateId:
   const auto = res.slots.filter((s) => s.status === 'auto_high' || s.status === 'confirmed');
   const shown = showAll ? res.slots : review;
   const choose = (slot: string, id: string | null | undefined) => {
-    setOverrides((o) => { const n = { ...o }; if (id === undefined) delete n[slot]; else n[slot] = id; return n; });
+    // the same entity in other compartments follows a positive choice (pyr_c → pyr_m, pyr_e), unless it was
+    // chosen by hand or mapped with high confidence; it is undone together with the choice it followed
+    const me = res.slots.find((x) => x.slot.slot === slot);
+    const sib = id && me ? siblingsByCompartment(model, id) : new Map<CanonicalCompartment, string>();
+    const follow: Record<string, string> = {};
+    for (const o of res.slots) {
+      if (!me || o.slot.slot === slot || o.entity.id !== me.entity.id || o.expected.expected === me.expected.expected) continue;
+      if ((o.slot.slot in overrides && followed[o.slot.slot] !== slot) || o.status === 'auto_high' || (o.status === 'confirmed' && !(o.slot.slot in overrides))) continue;
+      const to = o.expected.expected ? sib.get(o.expected.expected) : undefined;
+      if (to) follow[o.slot.slot] = to;
+    }
+    setOverrides((o) => {
+      const n = { ...o };
+      for (const [k, v] of Object.entries(followed)) if (v === slot) delete n[k];
+      if (id === undefined) delete n[slot]; else n[slot] = id;
+      return { ...n, ...follow };
+    });
+    setFollowed((f) => {
+      const n = Object.fromEntries(Object.entries(f).filter(([k, v]) => v !== slot && k !== slot));
+      for (const k of Object.keys(follow)) n[k] = slot;
+      return n;
+    });
   };
   const create = () => {
     // user choices made here become part of this model's mapping profile
@@ -95,7 +120,10 @@ export function TemplateMappingDialog({ templateId, at, onClose }: { templateId:
     let prof = loadProfile(ix.fingerprint);
     for (const s of res.slots) {
       if (!(s.slot.slot in overrides)) continue;
-      prof = withEntry(prof, { fingerprint: ix.fingerprint, id: model.id, name: model.name }, { entity: s.entity.id, compartment: s.expected.expected, metaboliteId: overrides[s.slot.slot], templateId: spec.id, templateVersion: spec.version });
+      const e = { entity: s.entity.id, compartment: s.expected.expected, metaboliteId: overrides[s.slot.slot], templateId: spec.id, templateVersion: spec.version };
+      prof = withEntry(prof, { fingerprint: ix.fingerprint, id: model.id, name: model.name }, e);
+      // other templates find the same compound in the other compartments of this model
+      if (e.metaboliteId && !followed[s.slot.slot]) prof = withSiblingEntries(prof, model, { ...e, metaboliteId: e.metaboliteId }).profile;
     }
     if (prof) saveProfile(prof);
     A().instantiatePathway(spec, res, at);
@@ -115,6 +143,12 @@ export function TemplateMappingDialog({ templateId, at, onClose }: { templateId:
       </div>
       <div className="muted small">{res.context.summary}. Expected compartment: <b>{spec.compartmentSummary}</b>. Structure in the model only — not evidence of flux.</div>
       {res.notes.map((n) => <div key={n} className="tm-note">{n}</div>)}
+      {Object.keys(followed).length > 0 && (
+        <div className="tm-note">Same compound, other compartment: {Object.entries(followed).map(([k, from]) => {
+          const a = res.slots.find((x) => x.slot.slot === k), b = res.slots.find((x) => x.slot.slot === from);
+          return <span key={k}><b>{a?.entity.name}</b> {a?.expected.expected ? COMPARTMENT_LABEL[a.expected.expected] : ''} → <span className="mono">{overrides[k]}</span> (follows <span className="mono">{b && overrides[from]}</span>) </span>;
+        })}</div>
+      )}
       <div className="row between">
         <div className="seg">
           <button className={!showAll ? 'on' : ''} onClick={() => setShowAll(false)}>Needs review ({review.length})</button>

@@ -18,6 +18,8 @@ export interface ProfileEntry {
   templateId: string;
   templateVersion: string;
   confirmedAt: string;
+  /** Set when the entry was derived from the same compound chosen in another compartment (that metabolite's id). */
+  via?: ID;
 }
 
 export interface ModelMappingProfile {

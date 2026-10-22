@@ -128,6 +128,8 @@ class AnnotationChoice(Camel):
     id: str
     mnx: Optional[str] = None
     fill_formula: bool = True
+    # same compound in another compartment: take the MetaNetX candidate chosen for that metabolite
+    like: Optional[str] = None
 
 
 class AnnotationApplyRequest(Camel):

@@ -13,6 +13,7 @@ import type { CanonicalCompartment } from '../templates/mapping/compartments';
 import type { TemplateMapping } from '../templates/mapping/engine';
 import { indexModel } from '../templates/mapping/modelIndex';
 import { loadProfile, mergeProfileIntoStorage, saveProfile, withEntry, withoutEntry } from '../templates/mapping/profile';
+import { siblingsByCompartment, withSiblingEntries } from '../templates/mapping/siblings';
 import type { PathwayTemplateSpec } from '../templates/spec';
 import { reconcile } from '../templates/design/convert';
 import type { TemplateFile } from '../templates/format/schema';
@@ -662,9 +663,25 @@ function createActions(set: Set, get: Get) {
       const t = n.template;
       const status = mid ? 'confirmed' : mid === null ? 'absent' : 'unresolved';
       const nodes = { ...s.doc.nodes, [nodeId]: { ...n, metaboliteId: mid ?? undefined, template: { ...t, status, method: mid ? 'user choice' : undefined, score: undefined } } } as VisualDoc['nodes'];
+      const touched = new globalThis.Set<ID>([nodeId]);
+      // the same entity drawn in other compartments takes the same compound there (pyr_c chosen → pyr_m, pyr_e),
+      // unless that node was confirmed or mapped with high confidence already
+      const follow: string[] = [];
+      if (mid) {
+        const sib = siblingsByCompartment(s.model, mid);
+        for (const o of Object.values(nodes)) {
+          const ot = o.template;
+          if (o.id === nodeId || !ot || ot.entity !== t.entity || ot.compartment === t.compartment || ot.status === 'confirmed' || ot.status === 'auto_high' || ot.status === 'absent') continue;
+          const to = sib.get(ot.compartment as CanonicalCompartment);
+          if (!to) continue;
+          nodes[o.id] = { ...o, metaboliteId: to, template: { ...ot, status: 'confirmed', method: `same compound as ${mid}`, score: undefined } };
+          touched.add(o.id);
+          follow.push(to);
+        }
+      }
       const reactions = { ...s.doc.reactions };
       for (const g of Object.values(reactions)) {
-        if (!g.sources.includes(nodeId) && !g.targets.includes(nodeId)) continue;
+        if (![...g.sources, ...g.targets].some((x) => touched.has(x))) continue;
         const c: ReactionGlyph = { ...g, reactionId: undefined, lumped: undefined, reversedToModel: undefined };
         bindReactionGlyph(c, nodes, s.model);
         reactions[g.id] = c;
@@ -674,9 +691,15 @@ function createActions(set: Set, get: Get) {
       const prev = loadProfile(ix.fingerprint);
       const comp = t.compartment as CanonicalCompartment | null;
       if (mid === undefined) { if (prev) saveProfile(withoutEntry(prev, t.entity, comp)); }
-      else saveProfile(withEntry(prev, { fingerprint: ix.fingerprint, id: s.model.id, name: s.model.name }, { entity: t.entity, compartment: comp, metaboliteId: mid, templateId: t.templateId, templateVersion: t.templateVersion }));
+      else {
+        const e = { entity: t.entity, compartment: comp, metaboliteId: mid, templateId: t.templateId, templateVersion: t.templateVersion };
+        let prof = withEntry(prev, { fingerprint: ix.fingerprint, id: s.model.id, name: s.model.name }, e);
+        if (mid) prof = withSiblingEntries(prof, s.model, { ...e, metaboliteId: mid }).profile;
+        saveProfile(prof);
+      }
       const what = n.label ?? t.slot;
-      toast(mid ? `${what} → ${mid} (saved for ${s.model.name})` : mid === null ? `${what} marked as absent from ${s.model.name}` : `${what}: mapping cleared`);
+      toast(mid ? `${what} → ${mid} (saved for ${s.model.name})${follow.length ? ` · also ${follow.join(', ')} (same compound, other compartment${follow.length > 1 ? 's' : ''})` : ''}`
+        : mid === null ? `${what} marked as absent from ${s.model.name}` : `${what}: mapping cleared`);
     },
     /** Confirm every provisional (medium-confidence) template mapping on the canvas. */
     confirmProvisional: () => {

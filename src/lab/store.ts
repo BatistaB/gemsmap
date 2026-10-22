@@ -751,11 +751,11 @@ export const lab = {
       set({ annotationError: errInfo(e) });
     }
   },
-  async curate(kind: 'apply' | 'reject' | 'revert', arg: { id: string; mnx?: string; fillFormula?: boolean }[] | string[] | null) {
+  async curate(kind: 'apply' | 'reject' | 'revert', arg: { id: string; mnx?: string; fillFormula?: boolean; like?: string }[] | string[] | null) {
     const m = get().model;
     if (!m) return;
     try {
-      const r = kind === 'apply' ? await api.applyAnnotation(m.id, arg as { id: string; mnx?: string; fillFormula?: boolean }[])
+      const r = kind === 'apply' ? await api.applyAnnotation(m.id, arg as { id: string; mnx?: string; fillFormula?: boolean; like?: string }[])
         : kind === 'reject' ? await api.rejectAnnotation(m.id, arg as string[])
         : await api.revertAnnotation(m.id, arg as string[] | null);
       lab.patchMetabolites(r.metabolites);

@@ -93,7 +93,7 @@ export const api = {
   annotation: (id: string, full = true) => request<AnnotationState>(`/models/${id}/annotation${full ? '' : '?full=false'}`),
   analyzeAnnotation: (id: string, opts: { useNames: boolean; autoApply: boolean; fillFormulas: boolean }) =>
     request<AnnotationJob>(`/models/${id}/annotation/analyze`, json('POST', opts)),
-  applyAnnotation: (id: string, items: { id: string; mnx?: string; fillFormula?: boolean }[]) =>
+  applyAnnotation: (id: string, items: { id: string; mnx?: string; fillFormula?: boolean; like?: string }[]) =>
     request<{ curation: CurationSummary; metabolites: LabMetabolite[] }>(`/models/${id}/annotation/apply`, json('POST', { items })),
   rejectAnnotation: (id: string, ids: string[]) =>
     request<{ curation: CurationSummary; metabolites: LabMetabolite[] }>(`/models/${id}/annotation/reject`, json('POST', { ids })),

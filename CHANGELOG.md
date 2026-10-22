@@ -6,6 +6,14 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 ## [Unreleased]
 
 ### Added
+- **One identity for a compound in every compartment.** The same compound in other compartments (pyr_c, pyr_m, pyr_e; also
+  M_ prefixes, ModelSEED cpd…_c0, ids[c], and numbered ids with the same name) is recognised conservatively (same base id
+  and a compatible name; never two of them in one compartment).
+  - COBRAGUI → Metabolite analysis: the panel lists the siblings with a checkbox each; Apply / Keep original / Undo act on
+    all checked ones (a sibling whose own identifiers point elsewhere starts unchecked). The table shows "c +2".
+  - Map Builder → template match: choosing a model metabolite for a slot also maps the same entity in the other
+    compartments (review dialog and inspector), never over a choice made by hand or a high-confidence mapping, and saves
+    them in the model's mapping profile so other templates reuse them ("same compound as pyr_c").
 - Every COBRAGUI table sorts by clicking a column title, including the Medium table and the metabolite analysis table (click again to reverse, a third time for the original order).
 - The documentation is published at <https://gemsmap.readthedocs.io/> (Read the Docs, rebuilt on every push to
   `main`): linked from the README (with a badge), the PyPI page (next release), the zip's README-FIRST.txt, the

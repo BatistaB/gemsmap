@@ -173,6 +173,24 @@ def test_analyze_apply_export_revert(fake_mnx):
     assert "metanetx.chemical" not in glc["annotation"]
 
 
+def test_apply_same_compound_in_another_compartment(fake_mnx):
+    """A choice made for pyr_c can be applied to its sibling even when the sibling's own analysis listed no candidate."""
+    mid = client.post("/api/models/examples/textbook").json()["id"]
+    client.post(f"/api/models/{mid}/annotation/analyze", json={"autoApply": False, "fillFormulas": True})
+    j = wait_done(mid)
+    items = {it["id"]: it for it in j["analysis"]["items"]}
+    assert any(c["mnx"] == "MNXM_PYR" for c in items["pyr_c"]["candidates"])
+    target = next(i for i, it in items.items() if not it["candidates"] and it["status"] != "skipped")
+    # without `like` the chemical is not among the target's candidates: nothing is applied
+    r = client.post(f"/api/models/{mid}/annotation/apply", json={"items": [{"id": target, "mnx": "MNXM_PYR"}]}).json()
+    assert target not in r["curation"]["entries"]
+    r = client.post(f"/api/models/{mid}/annotation/apply", json={"items": [
+        {"id": "pyr_c", "mnx": "MNXM_PYR"}, {"id": target, "mnx": "MNXM_PYR", "like": "pyr_c"}]}).json()
+    e = r["curation"]["entries"]
+    assert e["pyr_c"]["mnx"] == "MNXM_PYR" and e[target]["mnx"] == "MNXM_PYR"
+    client.post(f"/api/models/{mid}/annotation/revert", json={"ids": None})
+
+
 # ----------------------------------------------------------------------------- BiGG local tables (offline enrichment)
 
 def _bigg_index():

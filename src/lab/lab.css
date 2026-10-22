@@ -600,3 +600,11 @@ body.resizing-col, body.resizing-col * { cursor: col-resize !important; user-sel
 .fig-paper svg { display: block; width: 100%; height: auto; }
 .fig-size { padding-left: 0.25rem; }
 .fig-row .seg { flex: none; width: auto; }
+
+/* same compound in other compartments (metabolite analysis) */
+.ann-sib { color: var(--accent); font-weight: 600; }
+.ann-sibs { display: flex; flex-direction: column; gap: 0.25rem; }
+.ann-sib-row { display: grid; grid-template-columns: auto minmax(0, auto) auto auto minmax(0, 1fr); gap: 0.5rem; align-items: center; font-size: 0.75rem; padding: 0.1875rem 0.25rem; border-radius: 0.3125rem; }
+.ann-sib-row:hover { background: var(--bg-2); }
+.ann-sib-row.conflict { color: var(--text-2); }
+.ann-sib-row.conflict .ellipsis { color: var(--warn); }

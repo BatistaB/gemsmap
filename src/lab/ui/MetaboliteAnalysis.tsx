@@ -11,6 +11,7 @@ import { lab, useLab } from '../store';
 import type { AnnotationItem, AnnotationStatusKind, CurationSummary, MnxCandidate } from '../types';
 import { ErrorCard, SectionHead, Seg, Toggle, useDebounced } from './common';
 import { VirtualTable, type Col } from './VirtualTable';
+import { compartmentSiblings } from '../../model/siblings';
 
 const STATUS: Record<AnnotationStatusKind, { label: string; cls: string; hint: string }> = {
   confident: { label: 'Confident', cls: 'ok', hint: 'All identifiers (or the metabolite ID and the main databases) agree on one MetaNetX chemical' },
@@ -128,13 +129,16 @@ export function MetaboliteAnalysis() {
     });
   }, [a, cur, filter, dq]);
   const item = a?.items.find((it) => it.id === active) ?? null;
+  // the same compound in other compartments (pyr_c, pyr_m, pyr_e): one identity choice for all of them
+  const siblings = useMemo(() => (a ? compartmentSiblings(a.items) : new Map<string, string[]>()), [a]);
+  const byId = useMemo(() => new Map((a?.items ?? []).map((it) => [it.id, it])), [a]);
   const reviewLeft = a ? a.items.filter((it) => it.status === 'doubt' && !decision(cur, it.id)).length : 0;
 
   const cols: Col<AnnotationItem>[] = [
     { key: 'status', label: 'Status', width: 74, sortValue: (r) => STATUS[r.status].label, render: (r) => <span className={`ann-st ${STATUS[r.status].cls}`} title={STATUS[r.status].hint}>{STATUS[r.status].label}</span> },
     { key: 'id', label: 'Metabolite', width: 'minmax(110px, 1fr)', sortValue: (r) => r.id, render: (r) => <span className="mono ellipsis" title={r.id}>{r.id}</span> },
     { key: 'name', label: 'Name', width: 'minmax(140px, 2fr)', sortValue: (r) => r.name, render: (r) => <span className="ellipsis" title={r.name}>{r.name}</span> },
-    { key: 'comp', label: 'Comp.', width: 54, sortValue: (r) => r.compartment, render: (r) => <span className="muted">{r.compartment}</span> },
+    { key: 'comp', label: 'Comp.', width: 64, sortValue: (r) => r.compartment, render: (r) => { const s = siblings.get(r.id); return <span className="muted" title={s ? `Same compound in: ${s.join(', ')}` : undefined}>{r.compartment}{s && <span className="ann-sib"> +{s.length}</span>}</span>; } },
     { key: 'mnx', label: 'MetaNetX', width: 'minmax(150px, 2fr)', sortValue: (r) => r.proposal?.mnx, render: (r) => r.proposal ? <span className="ellipsis" title={r.candidates[0]?.name ?? ''}><span className="mono">{r.proposal.mnx}</span> <span className="muted">{r.candidates.find((c) => c.mnx === r.proposal!.mnx)?.name}</span></span> : <span className="muted">—</span> },
     { key: 'add', label: '+IDs', width: 48, align: 'right', sortValue: (r) => (r.proposal ? Object.values(r.proposal.add).reduce((n, v) => n + v.length, 0) : null), render: (r) => <span className="mono">{r.proposal ? Object.values(r.proposal.add).reduce((n, v) => n + v.length, 0) : ''}</span>, title: 'Cross-references that would be added' },
     { key: 'dec', label: 'Model', width: 92, sortValue: (r) => decision(cur, r.id), render: (r) => { const d = decision(cur, r.id); return d === 'auto' || d === 'user' ? <span className="ok small">✓ curated{d === 'auto' ? ' (auto)' : ''}</span> : d === 'kept' ? <span className="muted small">kept original</span> : <span className="muted small">—</span>; } },
@@ -181,7 +185,7 @@ export function MetaboliteAnalysis() {
             </div>
           </div>
           <div className="ann-detail">
-            {item ? <ItemDetail key={item.id} it={item} cur={cur} /> : <div className="muted small pad">Select a metabolite to see the evidence and decide.</div>}
+            {item ? <ItemDetail key={item.id} it={item} cur={cur} siblings={(siblings.get(item.id) ?? []).map((id) => byId.get(id)!).filter(Boolean)} /> : <div className="muted small pad">Select a metabolite to see the evidence and decide.</div>}
           </div>
         </div>
       )}
@@ -189,12 +193,29 @@ export function MetaboliteAnalysis() {
   );
 }
 
-function ItemDetail({ it, cur }: { it: AnnotationItem; cur?: CurationSummary }) {
+/** Why a sibling should not silently follow the choice made for `pick` (null = it can). */
+function siblingConflict(s: AnnotationItem, cur: CurationSummary | undefined, pick: string | undefined): string | null {
+  const d = decision(cur, s.id);
+  const applied = cur?.entries[s.id]?.mnx;
+  if ((d === 'auto' || d === 'user') && applied && applied !== pick) return `curated as ${applied}`;
+  if (s.status === 'confident' && s.proposal && s.proposal.mnx !== pick) return `its own identifiers point to ${s.proposal.mnx}`;
+  return null;
+}
+
+function ItemDetail({ it, cur, siblings }: { it: AnnotationItem; cur?: CurationSummary; siblings: AnnotationItem[] }) {
   const d = decision(cur, it.id);
   const appliedMnx = cur?.entries[it.id]?.mnx;
   const [pick, setPick] = useState<string | undefined>(appliedMnx ?? it.proposal?.mnx ?? it.candidates[0]?.mnx);
   const cand = it.candidates.find((c) => c.mnx === pick);
   const [fill, setFill] = useState(true);
+  // siblings follow the choice unless they conflict with it; each one can be switched on or off
+  const [manual, setManual] = useState<Record<string, boolean>>({});
+  const on = (s: AnnotationItem) => manual[s.id] ?? !siblingConflict(s, cur, pick);
+  const also = siblings.filter(on);
+  const apply = () => cand && lab.curate('apply', [{ id: it.id, mnx: cand.mnx, fillFormula: fill }, ...also.map((s) => ({ id: s.id, mnx: cand.mnx, fillFormula: fill, like: it.id }))]);
+  const keep = () => lab.curate('reject', [it.id, ...also.map((s) => s.id)]);
+  const undo = () => lab.curate('revert', [it.id, ...also.filter((s) => { const x = decision(cur, s.id); return x === 'auto' || x === 'user'; }).map((s) => s.id)]);
+  const n = also.length ? ` (+${also.length})` : '';
   const canFill = !it.formula && !!cand?.formula;
   const add = pick === it.proposal?.mnx ? it.proposal?.add : undefined;
   return (
@@ -238,11 +259,31 @@ function ItemDetail({ it, cur }: { it: AnnotationItem; cur?: CurationSummary }) 
         </div>
       )}
 
+      {siblings.length > 0 && (
+        <div className="ann-sibs">
+          <div className="insp-sub">Same compound in other compartments · {siblings.length}</div>
+          <div className="muted small">Checked ones get the same decision (the identity of a compound does not depend on its compartment).</div>
+          {siblings.map((s) => {
+            const conflict = siblingConflict(s, cur, pick);
+            const sd = decision(cur, s.id);
+            return (
+              <label key={s.id} className={`ann-sib-row ${conflict ? 'conflict' : ''}`}>
+                <input type="checkbox" checked={on(s)} onChange={(e) => setManual((m) => ({ ...m, [s.id]: e.target.checked }))} />
+                <span className="mono">{s.id}</span>
+                <span className="muted">{s.compartment}</span>
+                <span className={`ann-st ${STATUS[s.status].cls}`}>{STATUS[s.status].label}</span>
+                <span className="muted small ellipsis">{conflict ? `⚠ ${conflict}` : sd === 'auto' || sd === 'user' ? `curated · ${cur?.entries[s.id]?.mnx}` : sd === 'kept' ? 'kept original' : ''}</span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+
       <div className="row gap wrap">
-        {cand && <button className="btn primary small" onClick={() => lab.curate('apply', [{ id: it.id, mnx: cand.mnx, fillFormula: fill }])}>
-          {d === 'auto' || d === 'user' ? (appliedMnx === cand.mnx ? 'Re-apply' : `Use ${cand.mnx} instead`) : `Apply ${cand.mnx}`}</button>}
-        {d !== 'kept' && <button className="btn small" onClick={() => lab.curate('reject', [it.id])} title="Leave this metabolite as it is in the model file">Keep original</button>}
-        {(d === 'auto' || d === 'user') && <button className="btn small" onClick={() => lab.curate('revert', [it.id])}>Undo</button>}
+        {cand && <button className="btn primary small" onClick={apply} title={also.length ? `Also for ${also.map((s) => s.id).join(', ')}` : undefined}>
+          {d === 'auto' || d === 'user' ? (appliedMnx === cand.mnx ? 'Re-apply' : `Use ${cand.mnx} instead`) : `Apply ${cand.mnx}`}{n}</button>}
+        {d !== 'kept' && <button className="btn small" onClick={keep} title={`Leave ${also.length ? 'these metabolites' : 'this metabolite'} as in the model file`}>Keep original{n}</button>}
+        {(d === 'auto' || d === 'user') && <button className="btn small" onClick={undo}>Undo{n}</button>}
       </div>
     </div>
   );
