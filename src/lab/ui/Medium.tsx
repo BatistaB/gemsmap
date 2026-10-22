@@ -81,9 +81,11 @@ export function MediumEditor() {
         : <span className="mono">{r.uptakeUnbounded ? '∞' : fnum(r.uptakeMax)}</span>
     ) },
     { key: 'secretion', label: 'Max secretion', width: 100, align: 'right', sortValue: (r) => r.secretionMax ?? Infinity, render: (r) => <span className="mono muted">{r.secretionMax == null ? '∞' : fnum(r.secretionMax)}</span> },
-    { key: 'orig', label: 'Model file', width: 110, align: 'right', title: 'Uptake limit in the imported model', sortValue: (r) => r.originalUptakeMax, render: (r) => {
+    { key: 'orig', label: 'Model file', width: 110, align: 'right', title: 'Uptake limit in the imported model', sortValue: (r) => r.originalUptakeMax ?? Infinity, render: (r) => {
       const changed = (r.originalUptakeMax ?? -1) !== (r.uptakeMax ?? -1) && !(r.uptakeUnbounded && r.originalUptakeMax == null);
-      return <span className={`mono small ${changed ? 'modified' : 'muted'}`}>{changed ? `${fnum(r.originalUptakeMax)} → ${r.uptakeUnbounded ? '∞' : fnum(r.uptakeMax)}` : fnum(r.originalUptakeMax)}</span>;
+      // null from the backend = unbounded in the file (JSON has no Infinity)
+      const orig = fnum(r.originalUptakeMax ?? Infinity);
+      return <span className={`mono small ${changed ? 'modified' : 'muted'}`}>{changed ? `${orig} → ${r.uptakeUnbounded ? '∞' : fnum(r.uptakeMax)}` : orig}</span>;
     } },
   ];
 

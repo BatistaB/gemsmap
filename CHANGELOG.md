@@ -42,6 +42,15 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 
 ### Fixed
 - The narrow-window rules for the side panels never applied (the remembered panel width always won).
+- **Models with an unbounded uptake** (an infinite bound in the file, e.g. SBML `-INF`) could not be imported
+  (*Unexpected backend error: … not JSON compliant: inf*); the model summary now sends it as `null`, like the rest
+  of the API.
+- **Comparisons now report a medium difference between an unbounded uptake and no uptake.** Both used to arrive as
+  "no value", so *Configuration differences* showed nothing for, e.g., O₂ ∞ → 0; it now shows `∞ → 0`. A result's
+  *How was this generated?* now counts and lists unbounded uptakes (shown as ∞) instead of leaving them out, and
+  the Medium table's *Model file* column shows and sorts an unbounded uptake as ∞ instead of "—".
+- Narrow side panels: long words in the template list wrap instead of running over the coverage badge, and a
+  panel the user closes while the window is narrow is no longer reopened when the window widens.
 
 ## [0.3.0b1] — 2026-10-13
 

@@ -41,7 +41,8 @@ export interface LabModel {
   id: string; checksum: string; filename: string; format: 'sbml' | 'json' | 'mat'; modelId: string; name: string;
   summary: ModelSummary; compartments: Record<string, string>;
   metabolites: LabMetabolite[]; reactions: LabReaction[]; genes: LabGene[];
-  medium: Record<string, number>;
+  /** max uptake per exchange in the imported file; null = unbounded */
+  medium: Record<string, number | null>;
   warnings: ModelWarning[];
   validation: { format: string; categories: Record<string, { count: number; messages: string[] }>; loader: string[] };
 }
@@ -146,6 +147,7 @@ export interface ConfigDiff {
   sameModel: boolean;
   objective: { a: Objective; b: Objective; changed: boolean };
   methods: { a: string; b: string };
+  /** max uptake in A and B: 0 = not in the medium, null = unbounded */
   medium: { reaction: string; a: number | null; b: number | null }[];
   bounds: { reaction: string; a: Bounds | null; b: Bounds | null }[];
 }
