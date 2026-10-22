@@ -43,7 +43,6 @@ Planned:
 
 ## Templates
 
-- *Generate with AI* inside the application, for example from a KEGG map or from an image of a pathway, under the safeguards described in [AI-assisted templates](../templates/ai-assisted-templates.md).
 - A **template hub**: a searchable, versioned community library (see [Sharing and reuse](../templates/sharing-and-reuse.md#future-direction-a-community-template-library)).
 - Escher maps published by BiGG as templates.
 - More pathways: glyoxylate shunt, gluconeogenesis, serine/glycine, methionine/cysteine, branched-chain and aromatic amino acids, mevalonate, β-oxidation, oxidative phosphorylation.

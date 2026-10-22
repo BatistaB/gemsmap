@@ -14,7 +14,7 @@
    "note": "Core steps are conserved; G6Pase, PPDK/PPS, PDC/ADH, GAPN and the aryl-β-glucoside PTS route are organism-specific. Compartments are left unspecified (KEGG gives none): the matcher decides them in each GEM."
   },
   "authors": [
-   "GEMs MAP AI curator (Claude)"
+   "Drafted with an LLM (Claude Opus 5.5)"
   ],
   "created": "2026-10-09T00:00:00Z",
   "modified": "2026-10-09T18:53:12Z",

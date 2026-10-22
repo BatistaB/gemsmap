@@ -14,7 +14,7 @@
    "note": "GDH, GS, transaminases and asparagine synthesis are conserved; GOGAT (bacteria, plants, fungi), the GABA shunt, D-aspartate and NAA / NAAG (vertebrate brain) are organism-specific. Compartments are chosen by the person mapping onto a GEM."
   },
   "authors": [
-   "GEMs MAP AI curator (Claude)"
+   "Drafted with an LLM (Claude Opus 5.5)"
   ],
   "created": "2026-10-09T00:00:00Z",
   "modified": "2026-10-09T18:53:40Z",

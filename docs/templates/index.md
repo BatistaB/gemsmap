@@ -44,13 +44,13 @@ See [Identity and matching](identity-and-matching.md) for the details, and [Link
 | Capability | Status |
 | --- | --- |
 | Built-in templates: global central carbon, glycolysis, TCA cycle, oxidative PPP | <span class="gm-badge implemented">Implemented</span> |
-| KEGG-derived templates (map00010, map00020, map00030, map00250) and an amino acid overview | <span class="gm-badge experimental">AI-generated, awaiting review</span> |
+| KEGG-derived templates (map00010, map00020, map00030, map00250) and an amino acid overview, drafted with an LLM | <span class="gm-badge experimental">AI-generated, awaiting review</span> |
 | Template Builder: create, edit, duplicate, validate, import and export templates without a model | <span class="gm-badge implemented">Implemented</span> |
 | Identity search (GEMs MAP library offline; KEGG, ChEBI, MetaNetX online; local BiGG tables), *Auto Identify*, *Add BiGG IDs* | <span class="gm-badge implemented">Implemented</span> |
 | Deterministic matching with evidence, review dialog, mapping profiles, reproducibility report | <span class="gm-badge implemented">Implemented</span> |
 | Sharing templates as files (`.gemsmap-template.json`) | <span class="gm-badge implemented">Implemented</span> |
 | A searchable community template hub with versions, provenance and review | <span class="gm-badge planned">Future direction</span> |
-| *Generate with AI* inside the application | <span class="gm-badge planned">Future direction</span> |
+| Drafting a template with the LLM of your choice (outside the application) and reviewing it in the Template Builder | <span class="gm-badge experimental">Works today · needs review</span> |
 | Escher maps from BiGG as templates; more pathways (glyoxylate shunt, β-oxidation, oxidative phosphorylation…) | <span class="gm-badge planned">Planned</span> |
 
 ## In this section
@@ -73,8 +73,8 @@ See [Identity and matching](identity-and-matching.md) for the details, and [Link
 
     Template files today; a community library as the long-term vision.
 
--   [**AI-assisted templates**](ai-assisted-templates.md)
+-   [**Templates drafted with an LLM**](ai-assisted-templates.md)
 
-    What AI already does in the template pipeline, and its limits.
+    How any LLM can draft a template for you to review, and its limits.
 
 </div>

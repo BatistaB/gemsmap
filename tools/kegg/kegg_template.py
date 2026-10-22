@@ -566,7 +566,7 @@ def build(map_id: str) -> tuple[dict, dict]:
         "format": "gemsmap-template", "schema_version": SCHEMA,
         "metadata": {
             "id": cur.TEMPLATE_ID, "name": cur.NAME, "description": cur.DESCRIPTION, "pathway": getattr(cur, "PATHWAY", pw["name"]), "section": getattr(cur, "SECTION", "KEGG-derived templates"),
-            "template_version": cur.VERSION, "scope": cur.SCOPE, "authors": ["GEMs MAP AI curator (Claude)"], "created": cur.CREATED, "modified": now,
+            "template_version": cur.VERSION, "scope": cur.SCOPE, "authors": ["Drafted with an LLM (Claude Opus 5.5)"], "created": cur.CREATED, "modified": now,
             "license": "MIT (drawing and curation); identifiers and biology from KEGG, MetaNetX and BiGG", "tags": cur.TAGS,
             "citations": [{"text": "Kanehisa M, Goto S. KEGG: Kyoto Encyclopedia of Genes and Genomes. Nucleic Acids Res 28:27-30 (2000)", "doi": "10.1093/nar/28.1.27"}],
             "layout_kind": getattr(cur, "LAYOUT_KIND", "vertical"), "review_status": "ai-generated",

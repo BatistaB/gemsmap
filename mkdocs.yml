@@ -138,7 +138,7 @@ nav:
       - Identity and matching: templates/identity-and-matching.md
       - Creating templates: templates/creating-templates.md
       - Sharing and reuse: templates/sharing-and-reuse.md
-      - AI-assisted templates: templates/ai-assisted-templates.md
+      - Templates drafted with an LLM: templates/ai-assisted-templates.md
   - Tutorials:
       - tutorials/index.md
       - "Quick start: from model to map": tutorials/quick-start.md

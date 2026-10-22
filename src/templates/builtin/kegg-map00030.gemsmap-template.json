@@ -14,7 +14,7 @@
    "note": "The oxidative and non-oxidative phases are conserved; ED, glucose oxidation, the archaeal routes, RuMP and phosphoketolase are organism-specific (optional). Compartments are chosen by the person mapping onto a GEM (cytosol, plastid…)."
   },
   "authors": [
-   "GEMs MAP AI curator (Claude)"
+   "Drafted with an LLM (Claude Opus 5.5)"
   ],
   "created": "2026-10-09T00:00:00Z",
   "modified": "2026-10-09T18:53:30Z",

@@ -17,7 +17,9 @@ GEMs MAP makes constraint-based results easier to produce, inspect and draw. It 
 
 - Choosing the solver from the interface (COBRApy's default is used and recorded).
 - Flux sampling, gene and reaction deletion analyses, dynamic, kinetic or thermodynamic analyses other than loopless FBA/FVA.
-- AI features inside the application; a community template hub; importing Escher maps as templates.
+- A community template hub; importing Escher maps as templates.
+
+No AI is built into the application, by design: templates can be drafted with the LLM of your choice outside GEMs MAP and reviewed in the Template Builder (see [Templates drafted with an LLM](../templates/ai-assisted-templates.md)).
 
 See the [Roadmap](roadmap.md).
 

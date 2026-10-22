@@ -52,11 +52,11 @@ This idea worked so well that it became a way to analyse your model too. With th
 In this age of AI, I noticed that AI could be very useful for creating templates. Because GEMs MAP is canvas-based, we can let an AI use the platform to build templates from images, from KEGG, and more. Go grab a coffee, then come back and curate everything!
 
 !!! info "Where this stands today"
-    The first AI-made templates are already in the library: four KEGG-derived templates and the amino acid biosynthesis overview. They were drawn offline by an AI curator and carry an *AI-generated — needs review* label until a person reviews them. Generating templates inside the application, for example from a KEGG map or from an image, is future work. See [AI-assisted templates](templates/ai-assisted-templates.md) and the [Roadmap](reference/roadmap.md).
+    The first templates drafted this way are already in the library: four KEGG-derived templates and the amino acid biosynthesis overview, drafted with an LLM (Claude) outside the application. They carry an *AI-generated — needs review* label until a person reviews them. GEMs MAP itself has no AI built in: you can ask any LLM (Claude, GPT, Codex…) to draw a template on its canvas format, then review it. See [Templates drafted with an LLM](templates/ai-assisted-templates.md).
 
 <figure class="gm-shot" markdown>
 [![The Template Library with two sections of template cards: Central carbon templates and KEGG-derived templates (map00010, map00020, map00030, map00250), each with a preview, description, completeness, author and buttons such as Open and Apply to GEM.](assets/images/templates-library.png)](assets/images/templates-library.png)
-<figcaption>The Template Library. The KEGG-derived templates were drawn by an AI curator and stay marked for review until a person checks them.</figcaption>
+<figcaption>The Template Library. The KEGG-derived templates were drafted with an LLM and stay marked for review until a person checks them.</figcaption>
 </figure>
 
 ## Thank you

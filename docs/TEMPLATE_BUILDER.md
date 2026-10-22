@@ -125,7 +125,7 @@ An unsaved template survives a workspace switch, and a browser reload offers to 
 | unresolved | ○ | identity not defined |
 
 A partial name hit (substring) is never an identity: a suggestion needs an exact name, synonym or identifier.
-A **confirmed** identity is never changed by Auto Identify (or, later, by AI generation). If a suggestion disagrees,
+A **confirmed** identity is never changed by Auto Identify (or by a template drafted with an LLM). If a suggestion disagrees,
 the node keeps its identity and gets a red **!** — *potential identity conflict* — with *Keep mine* / *Use the suggestion*.
 
 Imported files keep the statuses of their author. The import report says who confirmed what, and
@@ -279,8 +279,8 @@ VMH links from MNXref are not used (some chemicals carry unrelated VMH entries).
 
 ## KEGG-derived templates
 
-Four KEGG pathways and an amino acid overview ship as built-ins, made offline by an AI curator with the pipeline
-in `tools/kegg/` and marked **AI-generated — needs review** (`metadata.review_status`) until a person reviews them
+Four KEGG pathways and an amino acid overview ship as built-ins, drafted outside the app with an LLM (Claude Opus 5.5)
+and the pipeline in `tools/kegg/` and marked **AI-generated — needs review** (`metadata.review_status`) until a person reviews them
 (inspector → *Mark as reviewed by me*). KEGG is the biological and topological reference only; every drawing is
 GEMs MAP's own, never a copy of a KEGG map, and the file says so (`metadata.source`).
 
@@ -331,9 +331,12 @@ picture used for the visual self-review. The tests keep every KEGG-derived layou
 | `identity.confidence` | `high` / `probable` for suggestions |
 | `metadata.review_status`, `metadata.last_review`, `metadata.source` | AI-generated / AI-validated / human-reviewed; the reference pathway, generation method and date |
 
+**No AI inside the app, by design.** GEMs MAP does not call any AI service. Because a template is an open,
+declarative file, any LLM (Claude, GPT, Codex…) can draft one from a reference map, with or without the KEGG pipeline
+above; the draft is reviewed in the Template Builder, and the identity layer keeps its identities `suggested` and never
+overrides confirmed ones.
+
 ## Not implemented yet
 
-- **AI template generation inside the app** (*Generate with AI*). Templates are generated offline by the KEGG
-  pipeline above; the identity layer keeps AI output `suggested` and never overrides confirmed identities.
 - **Escher maps as templates**: bigg.bio serves Escher maps per model; importing one as a template would reuse its layout.
 - **Template Hub**: the library is a list of files with a provenance kind, so a remote source can be added later.

@@ -36,5 +36,5 @@ What such a library would need, building on what the file format already records
 The template library in the application is already a list of files with a provenance kind, so a remote source could be added later without changing how templates are mapped.
 
 <div class="gm-next" markdown>
-**Next:** [AI-assisted templates](ai-assisted-templates.md).
+**Next:** [Templates drafted with an LLM](ai-assisted-templates.md).
 </div>

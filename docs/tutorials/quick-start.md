@@ -419,7 +419,7 @@ Templates are pathway maps that know the identity of each molecule. The matcher 
 </figure>
 
 !!! info "The idea behind it"
-    The **? marks** on provisional nodes stay until you confirm them; *Elements → Confirm all provisional* accepts them all at once. The coverage line (17 of 26 core reactions) tells you how much of the template exists in the model *as single reactions*. Many arrows of this overview are **pathway summaries**: one arrow for a whole pathway, which a model implements in several steps. This template was drafted by an AI curator and is marked *needs review* in the library; see [AI-assisted templates](../templates/ai-assisted-templates.md).
+    The **? marks** on provisional nodes stay until you confirm them; *Elements → Confirm all provisional* accepts them all at once. The coverage line (17 of 26 core reactions) tells you how much of the template exists in the model *as single reactions*. Many arrows of this overview are **pathway summaries**: one arrow for a whole pathway, which a model implements in several steps. This template was drafted with an LLM and is marked *needs review* in the library; see [Templates drafted with an LLM](../templates/ai-assisted-templates.md).
 
 ### Step 18 — Find the route behind a summary arrow
 

@@ -27,6 +27,10 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
   queries, so they follow the chosen size.
 
 ### Changed
+- Templates drafted with a language model are described as what they are: any LLM (Claude, GPT, Codex…) can draft a
+  template from a reference map because the format is open and declarative, and a person reviews it in the Template
+  Builder. GEMs MAP has no AI built in, by design. The built-in KEGG templates now name their author as "Drafted with
+  an LLM (Claude Opus 5.5)" instead of an "AI curator"; the documentation page is *Templates drafted with an LLM*.
 - **Side panels fit the window.** Until a panel is dragged, it takes its usual width but at most 22 % of the window;
   a dragged width is kept, capped at 40 % of the window. Dragging and double-click-to-reset work as before. On a
   1366×768 laptop with Windows at 125 % the map now gets 56 % of the width instead of 49 %.
@@ -103,7 +107,7 @@ First beta, and the first public version: installable with `pip install gemsmap`
 - **Place templates with the mouse**: inserting a pathway or shape template (Map Builder list, command palette, or
   *Create pathway* in the mapping review) first shows a light preview that follows the cursor inside a dashed
   frame; a click drops it there, Esc or a right-click cancels, Space + drag still pans.
-- **KEGG-derived templates**, curated and drawn by an AI curator and marked *AI-generated — needs review*:
+- **KEGG-derived templates**, drafted with an LLM (Claude Opus 5.5) outside the application and marked *AI-generated — needs review*:
   Glycolysis / Gluconeogenesis (map00010), Citrate cycle (map00020), Pentose phosphate pathway (map00030) and
   Alanine, aspartate and glutamate metabolism (map00250) in a new *KEGG-derived templates* library section, and an
   **Amino acid biosynthesis overview** (after map01230) in *Central carbon*. Every KEGG compound and reaction of each
