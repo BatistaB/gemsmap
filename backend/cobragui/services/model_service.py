@@ -367,7 +367,8 @@ def build_catalog(entry: registry.ModelEntry) -> dict:
         "modelId": m.id or "", "name": m.name or m.id or entry.filename,
         "summary": summary, "compartments": compartments,
         "metabolites": metabolites, "reactions": reactions, "genes": genes,
-        "medium": entry.original_medium,
+        # an unbounded uptake (inf in COBRApy) is null: JSON has no Infinity
+        "medium": {k: num(v) for k, v in entry.original_medium.items()},
         "warnings": model_warnings(entry, kinds),
         "validation": entry.validation,
     }

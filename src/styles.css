@@ -119,6 +119,8 @@ a { color: var(--accent); }
 .tpl-mini { flex-shrink: 0; background: var(--bg-2); border-radius: 0.25rem; color: var(--text-2); border: 1px solid var(--line); }
 .tpl-name { font-weight: 500; }
 .tpl-desc { color: var(--text-3); font-size: 0.6875rem; }
+/* narrow panels: a long word ("metabolism") wraps instead of running over the coverage badge */
+.tpl-name, .tpl-desc { overflow-wrap: break-word; hyphens: auto; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.375rem; }
 .stats div { background: var(--bg-2); border-radius: var(--radius); padding: 0.375rem; display: flex; flex-direction: column; }
 .stats b { font-size: 0.875rem; font-variant-numeric: tabular-nums; }
