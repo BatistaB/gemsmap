@@ -99,7 +99,7 @@ These are design goals, not guarantees: the biological meaning of a flux distrib
 | Map Builder, flux mapping, condition comparison, export | <span class="gm-badge implemented">Implemented</span> |
 | Model-independent templates, identity matching and review | <span class="gm-badge implemented">Implemented</span> |
 | KEGG-derived templates drafted with an LLM, outside the application | <span class="gm-badge experimental">Awaiting review</span> |
-| Solver selection, flux sampling, gene knockouts | <span class="gm-badge planned">Planned</span> |
+| Solver selection, gene knockouts | <span class="gm-badge planned">Planned</span> |
 | Community template hub | <span class="gm-badge planned">Planned</span> |
 
 The full list of planned work is on the [Roadmap](reference/roadmap.md).

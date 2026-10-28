@@ -1,6 +1,6 @@
 # Constraint-based analysis
 
-The **Simulation** section of COBRAGUI runs four COBRApy methods on the active [model state](constraints.md#model-states): **FBA**, **pFBA**, **loopless FBA** and **FVA**. This page explains what each method computes, which options the interface exposes, and how to read the output.
+The **Simulation** section of COBRAGUI runs five COBRApy methods on the active [model state](constraints.md#model-states): **FBA**, **pFBA**, **loopless FBA**, **FVA** and **flux sampling**. This page explains what each method computes, which options the interface exposes, and how to read the output.
 
 <figure class="gm-shot" markdown>
 [![The Simulation page: four method cards (FBA, pFBA, Loopless FBA, FVA) with pFBA selected; the configuration lists the objective "max 1 × BIOMASS_Ec_iML1515_core_75p37M", the model state "Base model" and "24 compounds available" in the medium; below, the result card shows status Optimal, objective 0.876997 h⁻¹, total flux 769.79, 431 of 2712 active reactions, solver GLPK, and the run time.](../assets/images/cobra-gui-simulation-annotated.png)](../assets/images/cobra-gui-simulation-annotated.png)
@@ -84,6 +84,32 @@ where \(z^\ast\) is the optimal objective and \(f\) the *fraction of optimum*. E
 <figcaption>FVA restricted to one subsystem (<em>Citric Acid Cycle</em> of iML1515, fraction of optimum 1). The note above the table repeats that intervals are not a joint flux distribution.</figcaption>
 </figure>
 
+## Flux sampling
+
+FBA picks one flux vector and FVA gives the range of each reaction separately. **Flux sampling** describes the whole space of flux vectors allowed by the constraints: it draws many feasible flux vectors at random, uniformly over that space, so each reaction gets a **distribution** of fluxes instead of one value. COBRAGUI runs COBRApy's hit-and-run samplers: **OptGP** (Megchelenbrink *et al.*, 2014), the default, and **ACHR** (Kaufman and Smith, 1998).
+
+By default the objective is **not** optimised: the samples cover every state the medium and bounds allow, including slow or no growth. To sample near-optimal states only, tick *Keep objective ≥* and give a fraction of the optimum; COBRApy then adds the constraint \(c^\top v \ge f \cdot z^\ast\) before sampling (`fix_objective_as_constraint`).
+
+| Option | Default | Meaning |
+| --- | --- | --- |
+| Samples | `500` | Number of flux vectors kept. A few hundred are enough for a first look; more give smoother distributions. |
+| Sampler | OptGP | OptGP or ACHR. OptGP can use several processes. |
+| Thinning | `100` | Hit-and-run steps between two kept samples (COBRApy's default). Larger values give less correlated samples and take longer. |
+| Processes | `1` | Worker processes for OptGP. |
+| Seed | empty | Fix it to draw the same samples again; empty means a random seed. |
+| Keep objective ≥ | off | Fraction \(f\) of the optimum the objective must reach in every sample. |
+
+**Cost.** Sampling starts with a warmup that solves two linear programs per reaction (the extreme points of the flux space), then makes *samples × thinning* hit-and-run steps. On *E. coli* core, 300 samples with thinning 50 take a few seconds; on a genome-scale model expect minutes. The running card shows the warmup, then the samples drawn; *Stop & keep* saves the samples drawn so far as a result marked *stopped at n/N samples*, and *Stop* discards the run.
+
+**Validity.** COBRApy validates every sample (bounds and mass balance). Samples that fail are counted and dropped; the result card shows how many.
+
+**Reading the result.** The *Reactions* tab of the result lists, per reaction, the mean, median, standard deviation, the 95 % interval (2.5th–97.5th percentile) and a box plot; click a reaction for the histogram of its samples. *Hide constant* hides reactions with the same flux in every sample (often blocked reactions at 0). The *Exchanges* tab is computed from the **mean flux vector**, which is feasible (an average of feasible vectors) but is **not** an optimal solution, so it is labelled as a mean and never used as an FBA flux distribution: sampling results are not compared with FBA results, have no metabolite turnover (|S·v| is not linear, so the turnover of the mean is not the mean turnover), and do not become the active flux of the Explorer.
+
+**On the map.** *Visualize result* sends the samples to the Map Builder as a **samples** dataset: arrow width and colour follow the mean flux, and density or box plots (right-click a reaction → *Add linked plot*) show each reaction's distribution. The CSV export *all samples* uses the same long format (`reaction,condition,flux`), so a sampling run can also be loaded into the Map Builder from a file.
+
+!!! warning "Samples describe the model, not the cell"
+    A flux distribution from sampling shows which flux states the constraints allow and how much room each reaction has. It is not a measurement or a probability of what the cell does. With few samples or a small thinning, the samples can still be correlated and the tails of the distributions uncertain.
+
 ## Solver status: when there is no answer
 
 Every result has an explicit status: `optimal`, `infeasible`, `unbounded`, `infeasible or unbounded`, `undefined` or `error`. **Only optimal results contain fluxes.** If a problem has no solution, the fluxes do not exist, so GEMsMAP shows no numbers at all instead of zeros, and lists what to check:
@@ -95,7 +121,7 @@ Buttons on the error card open the medium, the objective editor and the list of 
 
 ## Stopping a run
 
-The *Stop* button (top bar, status bar or the running card) cancels a simulation. An FVA stops between chunks of reactions. A single FBA, pFBA or loopless solve cannot be interrupted inside the solver: it finishes in the background and its answer is discarded.
+The *Stop* button (top bar, status bar or the running card) cancels a simulation. An FVA stops between chunks of reactions and flux sampling between batches of samples; for both, *Stop & keep* saves what was computed so far. A single FBA, pFBA or loopless solve cannot be interrupted inside the solver: it finishes in the background and its answer is discarded.
 
 ## Solver and numerical zero
 
@@ -104,7 +130,7 @@ The *Stop* button (top bar, status bar or the running card) cancels a simulation
 
 ## What the methods do not do
 
-Flux sampling, gene knockout simulation and dynamic or kinetic simulations are not implemented. Sampling distributions computed elsewhere can be imported into the Map Builder as data (see [Displaying results](../maps/displaying-and-comparing-results.md#getting-data-onto-the-map)). See the [Roadmap](../reference/roadmap.md).
+Gene knockout simulation and dynamic or kinetic simulations are not implemented, and two flux sampling results cannot yet be compared with each other in COBRAGUI (compare them as conditions in the Map Builder). Sampling distributions computed elsewhere can also be imported into the Map Builder as data (see [Displaying results](../maps/displaying-and-comparing-results.md#getting-data-onto-the-map)). See the [Roadmap](../reference/roadmap.md).
 
 ## References
 
@@ -112,6 +138,8 @@ Flux sampling, gene knockout simulation and dynamic or kinetic simulations are n
 - Lewis NE *et al.* (2010). Omic data from evolved *E. coli* are consistent with computed optimal growth from genome-scale models. *Molecular Systems Biology* 6:390. [doi:10.1038/msb.2010.47](https://doi.org/10.1038/msb.2010.47)
 - Mahadevan R, Schilling CH (2003). The effects of alternate optimal solutions in constraint-based genome-scale metabolic models. *Metabolic Engineering* 5:264–276. [doi:10.1016/j.ymben.2003.09.002](https://doi.org/10.1016/j.ymben.2003.09.002)
 - Desouki AA, Jarre F, Gelius-Dietrich G, Lercher MJ (2015). CycleFreeFlux: efficient removal of thermodynamically infeasible loops from flux distributions. *Bioinformatics* 31:2159–2165. [doi:10.1093/bioinformatics/btv096](https://doi.org/10.1093/bioinformatics/btv096)
+- Megchelenbrink W, Huynen M, Marchiori E (2014). optGpSampler: an improved tool for uniformly sampling the solution-space of genome-scale metabolic networks. *PLoS ONE* 9:e86587. [doi:10.1371/journal.pone.0086587](https://doi.org/10.1371/journal.pone.0086587)
+- Kaufman DE, Smith RL (1998). Direction choice for accelerated convergence in hit-and-run sampling. *Operations Research* 46:84–95. [doi:10.1287/opre.46.1.84](https://doi.org/10.1287/opre.46.1.84)
 - Ebrahim A, Lerman JA, Palsson BO, Hyduke DR (2013). COBRApy: COnstraints-Based Reconstruction and Analysis for Python. *BMC Systems Biology* 7:74. [doi:10.1186/1752-0509-7-74](https://doi.org/10.1186/1752-0509-7-74)
 
 <div class="gm-next" markdown>

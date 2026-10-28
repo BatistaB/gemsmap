@@ -19,7 +19,7 @@
 :   Not yet. GEMsMAP uses COBRApy's default solver in the backend environment (GLPK in a standard installation) and records it in every result. Solver selection is on the [Roadmap](roadmap.md).
 
 **Can I run flux sampling or gene knockouts?**
-:   Not yet; both are [planned](roadmap.md). Sampling results made with other tools can be imported into the Map Builder and shown as density or box plots. To explore a knockout by hand, block the gene's reactions in a duplicated model state.
+:   Flux sampling, yes: choose *Flux sampling* in COBRAGUI's Simulation section (COBRApy's OptGP or ACHR samplers; see [Flux sampling](../cobra-gui/constraint-based-analysis.md#flux-sampling)); the distributions open in Results and go to the Map Builder as density or box plots. Gene knockouts are [planned](roadmap.md): to explore one by hand, block the gene's reactions in a model state.
 
 **My model has no *Subsystems* tab.**
 :   The model has no subsystem annotations. The export of iML1515 from the new BiGG site (`iML1515.biggr.sbml`), for example, carries none, while the classic BiGG JSON has a subsystem for every reaction. See [About the examples](examples.md).

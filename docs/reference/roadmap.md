@@ -18,16 +18,12 @@ Planned:
 
 Different solvers can return different optimal flux distributions for the same problem (see [alternative optima](../cobra-gui/metabolite-analysis.md#worked-example-pyruvate-in-iml1515)), and their tolerances differ. Comparisons between results computed with different solvers will say so, as they already do for different models or methods.
 
-### Sampling methods in the analysis
+### Flux sampling: next steps
 
-GEMsMAP does not sample the flux space yet. Sampling distributions made elsewhere can already be imported into the Map Builder and shown as density or box plots, which is how the built-in example works.
+Flux sampling runs in COBRAGUI since this release (COBRApy's OptGP and ACHR samplers, with progress, *Stop & keep*, distributions in Results and samples datasets in the Map Builder; see [Flux sampling](../cobra-gui/constraint-based-analysis.md#flux-sampling)). Planned next:
 
-Planned:
-
-- **flux sampling** as a fourth kind of analysis in the Simulation section, with COBRApy's samplers (for example OptGP and ACHR), the number of samples, thinning and the fraction of optimum as options;
-- progress and *Stop* like FVA, and results stored with full provenance (state, medium, sampler, parameters, seed);
-- results as **distributions per reaction**: summaries in the Results tables, comparisons between conditions, and direct transfer to the Map Builder as density and box plots;
-- guidance on interpretation: samples describe the feasible space under the constraints, they are not measurements, and their quality depends on convergence.
+- comparing two sampling results in COBRAGUI (shift of each reaction's distribution, overlap), not only as conditions on the map;
+- convergence diagnostics for the samples, and guidance on how many samples and how much thinning a model needs.
 
 ## COBRAGUI
 

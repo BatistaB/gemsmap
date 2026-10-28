@@ -24,7 +24,7 @@
 
 -   [**Roadmap**](roadmap.md)
 
-    Planned features, including solver selection and flux sampling.
+    Planned features, including solver selection and gene knockouts.
 
 -   [**About the examples**](examples.md)
 

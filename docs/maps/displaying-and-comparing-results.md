@@ -34,7 +34,7 @@ Small sample files in the first two shapes are in the repository, under `public/
 CSV, TSV and semicolon-separated files are recognised, and lines starting with `#` are ignored. A first column called *metabolite*, *compound* or *species* makes a metabolite dataset; otherwise GEMsMAP decides by which IDs match the model. IDs are matched to the model leniently: case is ignored, and compartment suffixes and `M_`/`R_` prefixes are tolerated. The dataset shows how many IDs matched (*n % matched*). Clicking it opens the import report, where each unmatched ID can be mapped to a model ID by hand; if almost nothing matches, the report says the file was probably made for a different model.
 
 !!! note "Sampling data"
-    GEMsMAP does not run flux sampling ([planned](../reference/roadmap.md)), but it displays sampling results made elsewhere: import them in long format and add density or box plots. The built-in example uses such sampled distributions.
+    COBRAGUI runs flux sampling itself ([Flux sampling](../cobra-gui/constraint-based-analysis.md#flux-sampling)): *Visualize result* sends the samples to the Map Builder as a samples dataset. Sampling results made elsewhere work the same way: import them in long format and add density or box plots to the reactions.
 
 ## Datasets and conditions
 

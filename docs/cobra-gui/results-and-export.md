@@ -20,11 +20,11 @@ The **Results** section lists every run, newest first, with its status, method, 
 
 | Tab | Content |
 | --- | --- |
-| Reactions | Flux per reaction with the bounds used for this result (FVA: minimum, maximum, range and a range bar). Searchable, *Hide zero flux*, sortable by \|flux\|. |
-| Metabolites | [Turnover](metabolite-analysis.md#turnover-what-it-is-and-what-it-is-not) per metabolite. Not available for FVA. |
-| Exchanges | Uptake and secretion per boundary reaction. Uptake is the flux that brings the metabolite into the system, whatever the sign convention of the reaction. For FVA: flux range and maximum uptake and secretion. |
-| Subsystems | Subsystem summaries and figures (below). Only for models with subsystem annotations. |
-| Genes | Genes with the number of their reactions that carry flux. |
+| Reactions | Flux per reaction with the bounds used for this result (FVA: minimum, maximum, range and a range bar; flux sampling: mean, median, SD, 95 % interval and a box plot, with the histogram of the selected reaction). Searchable, *Hide zero flux*, sortable by \|flux\|. |
+| Metabolites | [Turnover](metabolite-analysis.md#turnover-what-it-is-and-what-it-is-not) per metabolite. Not available for FVA or flux sampling. |
+| Exchanges | Uptake and secretion per boundary reaction. Uptake is the flux that brings the metabolite into the system, whatever the sign convention of the reaction. For FVA: flux range and maximum uptake and secretion. For flux sampling: from the mean flux vector of the samples. |
+| Subsystems | Subsystem summaries and figures (below). Only for models with subsystem annotations, and not for flux sampling. |
+| Genes | Genes with the number of their reactions that carry flux. Not for flux sampling. |
 | How was this generated? | The provenance record. |
 
 ### Provenance
@@ -75,6 +75,8 @@ The **Compare** section compares any two optimal results directly; nothing needs
 
 The **pseudocount** \(p\) is off by default. When set, it gives activated and inactivated rows \(\log_2((|B|+p)/(|A|+p))\), and those values are marked. Exchange rows also say whether a metabolite switched from uptake to secretion or vice versa.
 
+**Flux sampling results** are not listed in Compare: a distribution per reaction is not one flux vector. Send two sampling runs to the Map Builder to see them as conditions side by side.
+
 **FVA results** are compared with FVA results only. Their rows are classified as unchanged, narrowed, widened, shifted or disjoint intervals. Comparing an FVA result with a flux distribution is refused, because an interval per reaction is not one flux vector.
 
 In the *Metabolite turnover* tab, clicking a metabolite explains which reactions changed its turnover; see [Metabolite analysis](metabolite-analysis.md#why-did-turnover-change-explaining-a-comparison). The *Subsystems* tab shows a dumbbell A → B per subsystem.
@@ -87,6 +89,7 @@ In the *Metabolite turnover* tab, clicking a metabolite explains which reactions
 | --- | --- | --- |
 | A result (*Export ▾*) | JSON | The whole result with its metadata (format `cobragui-result`). |
 | | CSV | Reaction fluxes, FVA intervals, metabolite turnover or exchanges. Each CSV starts with `#` lines naming the result, model and checksum, state, method, solver, status, objective and timestamp. |
+| A flux sampling result | CSV | *All samples* in long format (`reaction,condition,flux`, the format the Map Builder reads as a samples dataset) or *per-reaction statistics* (mean, SD, median, 2.5/25/75/97.5 % percentiles, min, max). The JSON keeps the samples too. |
 | Explorer selection | CSV | The selected reactions or metabolites with bounds and flux or turnover. |
 | Subsystem figures | SVG, PDF, PNG 300/600 dpi | Journal-sized figure. |
 | The model (*Save as model…*) | SBML, COBRA JSON, MATLAB | A new model file with the active state, edits and curation applied (see [Medium, bounds and objective](constraints.md#saving-the-modified-model)). |
@@ -96,7 +99,7 @@ In the *Metabolite turnover* tab, clicking a metabolite explains which reactions
 
 *Results → Import* (or dropping files on COBRAGUI) reads results made elsewhere, so they can be compared and mapped like your own:
 
-- JSON exported by GEMsMAP (one result or a list), JSON exported by the earlier GEM Explorer, or a plain `{reaction_id: flux}` object;
+- JSON exported by GEMsMAP (one result or a list, including FVA and flux sampling results), JSON exported by the earlier GEM Explorer, or a plain `{reaction_id: flux}` object;
 - CSV or TSV: `reaction,flux`; wide tables `reaction,A,B,…` (one result per numeric column); FVA tables with `minimum/maximum`, `min/max`, `lower/upper` or `<name>_min/<name>_max` columns. The `#` provenance lines of GEMsMAP's own CSV export restore the name, method and source model.
 
 Values are taken as they are in the file; nothing is re-solved. Results are matched to the loaded model by reaction ID, and the result records how many IDs matched and whether it was computed with another model. When the IDs match, COBRApy derives metabolite turnover and exchanges from the imported fluxes using the loaded model's stoichiometry, and says so. An FVA file whose "fluxes" are midpoints is imported as intervals only.
@@ -107,6 +110,7 @@ Values are taken as they are in the file; nothing is re-solved. Results are matc
 - **Visualize comparison** maps log₂FC or Δ to a diverging colour and, optionally, |flux| in B to width. Reactions without a defined fold change (activations, inactivations, reversals) are drawn neutral.
 - **Add to Map** (Explorer, inspector, right-click) draws reactions, metabolites, a subsystem or a selection, with an automatic layout. Reactions open the Map Builder as a light preview that follows the mouse; a click places them (++esc++ cancels), with new copies of their metabolites.
 - FVA results travel as **ranges**, shown with range plots, never as midpoints.
+- Flux sampling results travel as **samples**: arrow width and colour follow the mean flux, and density or box plots (right-click a reaction → *Add linked plot*) show each reaction's distribution.
 
 See [Displaying and comparing results](../maps/displaying-and-comparing-results.md).
 

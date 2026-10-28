@@ -4,9 +4,10 @@ GEMsMAP makes constraint-based results easier to produce, inspect and draw. It d
 
 ## Scientific
 
-- **Optimal solutions are rarely unique.** FBA and pFBA return one flux distribution among possibly many with the same objective value, and repeated solves can return different ones (an example is described in [Metabolite analysis](../cobra-gui/metabolite-analysis.md#worked-example-pyruvate-in-iml1515)). Conclusions about individual fluxes need FVA, or sampling done elsewhere.
+- **Optimal solutions are rarely unique.** FBA and pFBA return one flux distribution among possibly many with the same objective value, and repeated solves can return different ones (an example is described in [Metabolite analysis](../cobra-gui/metabolite-analysis.md#worked-example-pyruvate-in-iml1515)). Conclusions about individual fluxes need FVA or flux sampling.
 - **Fluxes are predictions under assumptions**: steady state, the chosen objective, the medium and the bounds. They are not measurements, and a map drawn from them shows a model's answer, not the cell's state.
 - **FVA intervals are independent.** They are not a joint distribution; their midpoints are not a solution.
+- **Flux samples describe the feasible space**, not the cell. Their quality depends on the number of samples and the thinning (convergence is not tested), and the mean flux vector is not an optimal solution.
 - **Metabolite turnover** is a derived proxy from one flux vector. It is not a concentration, and constraint-based models contain no concentrations.
 - **Comparisons are descriptive.** Fold changes, Δ, and the turnover explanation decompose differences between two solutions; they do not establish cause.
 - **Structure is not activity.** Template coverage, graph degree and connectivity describe the model's structure, not whether reactions carry flux or are essential.
@@ -16,7 +17,8 @@ GEMsMAP makes constraint-based results easier to produce, inspect and draw. It d
 ## Not implemented
 
 - Choosing the solver from the interface (COBRApy's default is used and recorded).
-- Flux sampling, gene and reaction deletion analyses, dynamic, kinetic or thermodynamic analyses other than loopless FBA/FVA.
+- Gene and reaction deletion analyses, dynamic, kinetic or thermodynamic analyses other than loopless FBA/FVA.
+- Comparing two flux sampling results in COBRAGUI, and convergence diagnostics for the samples.
 - A community template hub; importing Escher maps as templates.
 
 No AI is built into the application, by design: templates can be drafted with the LLM of your choice outside GEMsMAP and reviewed in the Template Builder (see [Templates drafted with an LLM](../templates/ai-assisted-templates.md)).
