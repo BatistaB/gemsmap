@@ -48,6 +48,10 @@ export const METHOD_INFO: Record<string, { label: string; short: string; blurb: 
     label: 'FVA', short: 'FVA', blurb: 'Feasible flux range of each reaction.',
     more: 'Flux variability analysis: for each reaction independently, the minimum and maximum flux compatible with the constraints and a fraction of the optimal objective. The intervals are not a joint flux distribution — the midpoint is not a solution.',
   },
+  sampling: {
+    label: 'Flux sampling', short: 'Sampling', blurb: 'Distribution of feasible flux states.',
+    more: 'COBRApy hit-and-run sampling (OptGP or ACHR): draws flux vectors uniformly from the space allowed by the constraints, optionally with the objective kept above a fraction of the optimum. Each reaction gets a distribution (mean, median, 95% interval) instead of one value. Samples that fail COBRApy\'s validation are dropped. Slower than FBA: start with a few hundred samples.',
+  },
 };
 
 export function reactionTypeLabel(t: LabReaction['type']) {

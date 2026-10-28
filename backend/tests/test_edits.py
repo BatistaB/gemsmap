@@ -246,7 +246,7 @@ def test_edits_survive_reload_and_export(mid):
     assert f.status_code == 200
     assert not client.get(f"/api/models/{mid}/edits").json()["dirty"]
     data = json.loads(f.content)
-    assert "GEMs MAP structural edits" in json.dumps(data.get("notes", {}))
+    assert "GEMsMAP structural edits" in json.dumps(data.get("notes", {}))
     data["id"] = data["id"] + "_reimported"
     r = client.post("/api/models/import", files={"file": ("reimported.json", json.dumps(data).encode(), "application/json")}).json()
     ex = next(x for x in r["reactions"] if x["id"] == "EX_cit_e")

@@ -6,7 +6,7 @@ import type { Method, SimulationResult } from '../types';
 import { ErrorCard, InfoTip, SectionHead, StatusPill } from './common';
 import { ObjectiveEditor } from './Objective';
 
-const METHODS: Method[] = ['fba', 'pfba', 'loopless', 'fva'];
+const METHODS: Method[] = ['fba', 'pfba', 'loopless', 'fva', 'sampling'];
 
 export function objectiveUnit(r: SimulationResult | null, names: (id: string) => string): string {
   const ids = Object.keys(r?.metadata.objective.coefficients ?? {});
@@ -72,8 +72,8 @@ export function Simulate() {
           <span className="grow">{mediumCount} compounds available{st.mediumLabel ? ` · ${st.mediumLabel}` : ''}</span>
           <button className="btn small" onClick={() => lab.setSection('medium')}>Configure medium</button>
         </div>
-        <details className="adv sim-adv">
-          <summary>Advanced options</summary>
+        <details className="adv sim-adv" open={method === 'sampling' || undefined} key={method === 'sampling' ? 'samp' : 'other'}>
+          <summary>{method === 'sampling' ? 'Sampling options' : 'Advanced options'}</summary>
           <div className="sim-adv-grid">
             {(method === 'pfba' || method === 'fva') && (
               <label className="field"><span>Fraction of optimum <InfoTip text={method === 'pfba' ? 'pFBA keeps the objective ≥ this fraction of the optimum while minimizing total flux.' : 'FVA ranges are computed with the objective ≥ this fraction of the optimum.'} /></span>
@@ -92,12 +92,37 @@ export function Simulate() {
                 <label className="field"><span>Processes</span><input className="input tiny num" type="number" min={1} max={16} value={params.processes} onChange={(e) => setP({ processes: Math.max(1, +e.target.value | 0) })} /></label>
               </>
             )}
+            {method === 'sampling' && (
+              <>
+                <label className="field"><span>Samples <InfoTip text="Number of flux vectors kept. Each sample costs `thinning` hit-and-run steps; a few hundred are enough for a first look." /></span>
+                  <input className="input tiny num" type="number" min={1} max={20000} step={50} value={params.samples} onChange={(e) => setP({ samples: Math.max(1, Math.min(20000, +e.target.value | 0)) })} /></label>
+                <label className="field"><span>Sampler <InfoTip text="OptGP (default) can use several processes. ACHR is single-process; both are COBRApy hit-and-run samplers." /></span>
+                  <select className="input tiny" value={params.sampler} onChange={(e) => setP({ sampler: e.target.value as 'optgp' | 'achr' })}>
+                    <option value="optgp">OptGP</option><option value="achr">ACHR</option>
+                  </select></label>
+                <label className="field"><span>Thinning <InfoTip text="Steps between two kept samples (COBRApy default 100). Larger values give less correlated samples and take longer." /></span>
+                  <input className="input tiny num" type="number" min={1} max={10000} value={params.thinning} onChange={(e) => setP({ thinning: Math.max(1, Math.min(10000, +e.target.value | 0)) })} /></label>
+                {params.sampler === 'optgp' && <label className="field"><span>Processes</span><input className="input tiny num" type="number" min={1} max={16} value={params.processes} onChange={(e) => setP({ processes: Math.max(1, +e.target.value | 0) })} /></label>}
+                <label className="field"><span>Seed <InfoTip text="Fix it to get the same samples again (reproducible). Empty: random." /></span>
+                  <input className="input tiny num" type="number" min={0} placeholder="any" title="Empty: a random seed" value={params.seed ?? ''} onChange={(e) => setP({ seed: e.target.value === '' ? null : Math.max(0, +e.target.value | 0) })} /></label>
+                <label className="check" title="Sample only flux states that keep the objective above a fraction of its optimum (COBRApy fix_objective_as_constraint)">
+                  <input type="checkbox" checked={params.objectiveFraction != null} onChange={(e) => setP({ objectiveFraction: e.target.checked ? 0.9 : null })} /> Keep objective ≥</label>
+                {params.objectiveFraction != null && <input className="input tiny num" type="number" min={0} max={1} step={0.05} value={params.objectiveFraction} onChange={(e) => setP({ objectiveFraction: Math.min(1, Math.max(0, +e.target.value)) })} title="Fraction of the optimal objective" />}
+                {params.objectiveFraction != null && <span className="muted small">× optimum</span>}
+              </>
+            )}
             {(method === 'fba' || method === 'loopless') && <span className="muted small">No extra parameters. The solver and tolerances come from COBRApy's configuration.</span>}
           </div>
           {Object.keys(rxnFilters).length > 0 && method === 'fva' && <div className="muted small">Tip: select the filtered rows in the explorer (header checkbox) to run FVA on just those.</div>}
         </details>
       </div>
 
+      {method === 'sampling' && (
+        <div className="note small">
+          Sampling explores the whole space allowed by the constraints{params.objectiveFraction != null ? <> with the objective kept ≥ {params.objectiveFraction} × optimum</> : <> (the objective is not optimized unless you constrain it)</>}.
+          Cost ≈ warmup ({model.summary.reactions * 2} LPs) + {params.samples.toLocaleString()} × {params.thinning} steps{model.summary.reactions > 1500 ? ' — on a model this size expect minutes; you can stop and keep the samples drawn so far' : ''}.
+        </div>
+      )}
       {bigFva && <div className="note small">FVA on {model.summary.reactions} reactions solves {model.summary.reactions * 2} LPs and can take a minute or more. For a quick look, select the reactions of interest in the explorer and run FVA on the selection.</div>}
 
       <div className="run-wrap">
@@ -139,6 +164,7 @@ function RunningCard() {
   const running = useLab((s) => s.running)!;
   const p = running.progress;
   const isFva = running.method === 'fva';
+  const isSampling = running.method === 'sampling';
   const pct = p && p.total ? (p.done / p.total) * 100 : null;
   const label = METHOD_INFO[running.method].label;
   return (
@@ -147,8 +173,8 @@ function RunningCard() {
         <span className="spinner" />
         <span className="grow">{running.stopping ? `Stopping ${label}…` : `Running ${label} on “${running.stateName}”…`} <Elapsed since={running.startedAt} /></span>
         {!running.stopping && <>
-          {isFva && p && p.done > 0 && (
-            <button className="btn small" onClick={() => lab.cancelRun(true)} title="Stop after the current chunk and save the intervals already computed, as a result marked “stopped at”">
+          {(isFva || isSampling) && p && p.done > 0 && (
+            <button className="btn small" onClick={() => lab.cancelRun(true)} title={isSampling ? 'Stop after the current batch and keep the samples drawn so far, as a result marked “stopped at”' : 'Stop after the current chunk and save the intervals already computed, as a result marked “stopped at”'}>
               Stop & keep {p.done}
             </button>
           )}
@@ -159,6 +185,12 @@ function RunningCard() {
         <div className="run-progress">
           <div className="rp-track"><span style={{ width: `${pct ?? 0}%` }} /></div>
           <span className="mono small muted">{p ? `${p.done.toLocaleString()} / ${p.total.toLocaleString()} reactions` : 'computing the optimum…'}</span>
+        </div>
+      )}
+      {isSampling && (
+        <div className="run-progress">
+          <div className="rp-track"><span style={{ width: `${p?.phase === 'sampling' ? pct ?? 0 : 0}%` }} /></div>
+          <span className="mono small muted">{!p || p.phase === 'warmup' || p.phase === 'solving' || p.phase === 'queued' ? 'warmup: extreme points of the flux space (one LP pair per reaction)…' : `${p.done.toLocaleString()} / ${p.total.toLocaleString()} samples`}</span>
         </div>
       )}
     </div>
@@ -192,6 +224,7 @@ export function ResultStatusCard({ r }: { r: SimulationResult }) {
         <div><span>Objective</span><b className="mono">{fnum(r.objectiveValue)} {unit}</b></div>
         {r.metadata.totalFlux != null && <div><span>Total flux (pFBA)</span><b className="mono">{fnum(r.metadata.totalFlux)}</b></div>}
         {nActive != null && <div><span>Active reactions</span><b className="mono">{nActive} / {Object.keys(r.reactionFluxes!).length}</b></div>}
+        {r.samples && r.metadata.sampling && <div><span>Samples</span><b className="mono">{r.metadata.sampling.n}{r.metadata.partial ? ` of ${r.metadata.partial.total}` : ''}</b>{r.metadata.sampling.invalid > 0 && <span className="tag warn" title="Failed COBRApy's validation (bounds or mass balance) and were dropped">{r.metadata.sampling.invalid} invalid</span>}{r.metadata.partial && <span className="tag warn">stopped early</span>}</div>}
         {r.fva && <div><span>FVA reactions</span><b className="mono">{Object.keys(r.fva).length}{r.metadata.partial ? ` of ${r.metadata.partial.total}` : ''}</b>{r.metadata.partial && <span className="tag warn">stopped early</span>}</div>}
         <div><span>Solver</span><b>{r.metadata.solver}</b></div>
         <div><span>Time</span><b className="mono">{r.metadata.elapsedSeconds.toFixed(2)} s</b></div>

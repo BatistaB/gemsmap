@@ -189,3 +189,56 @@ def test_cancel_queued_run_and_fva_keep_partial(model, monkeypatch):
     assert r["solverStatus"] == "optimal"
     assert r["metadata"]["partial"] == {"done": 10, "total": 95}
     assert len(r["fva"]) == 10 and "stopped at 10/95" in r["name"]
+
+
+# ----------------------------------------------------------------------------- flux sampling (small and fast on E. coli core)
+
+FAST = {"samples": 40, "thinning": 5, "seed": 11}
+
+
+def test_flux_sampling_returns_distributions_not_a_flux_vector(model):
+    r = sim(model["id"], "sampling", params=FAST)
+    assert r["solverStatus"] == "optimal" and r["method"] == "sampling"
+    assert r["reactionFluxes"] is None and r["metaboliteTurnover"] is None  # the mean is not an FBA solution
+    s = r["samples"]
+    meta = r["metadata"]["sampling"]
+    assert meta["n"] + meta["invalid"] == meta["drawn"] == 40
+    assert set(s["reactions"]) | set(s["constant"]) == set(s["summary"]) and len(s["summary"]) == 95
+    pgi = s["summary"]["PGI"]
+    assert pgi["min"] <= pgi["q025"] <= pgi["median"] <= pgi["q975"] <= pgi["max"]
+    assert len(s["reactions"]["PGI"]) == meta["n"]
+    assert r["exchanges"]["EX_glc__D_e"]["uptake"] > 0  # exchanges from the mean flux vector
+    assert r["metadata"]["parameters"]["sampler"] == "OptGP"
+
+
+def test_flux_sampling_objective_constraint(model):
+    r = sim(model["id"], "sampling", params={**FAST, "sampler": "achr", "objectiveFraction": 0.9})
+    assert r["samples"]["summary"]["Biomass_Ecoli_core"]["min"] >= 0.9 * 0.8739 - 1e-4
+
+
+def test_flux_sampling_stop_and_keep(model, monkeypatch):
+    from cobragui.services import simulation_service as ss
+    from cobra.sampling import OptGPSampler
+    real = OptGPSampler.sample
+
+    def first_batch_then_stop(self, n, fluxes=True):
+        out = real(self, n, fluxes=fluxes)
+        ss.job_cancel("samp1", True)
+        return out
+    monkeypatch.setattr(OptGPSampler, "sample", first_batch_then_stop)
+    r = client.post(f"/api/models/{model['id']}/simulate/sampling", json={"jobId": "samp1", "params": {"samples": 200, "thinning": 5, "seed": 3}}).json()
+    assert r["metadata"]["partial"] == {"done": 50, "total": 200}
+    assert r["metadata"]["sampling"]["drawn"] == 50 and "stopped at 50/200 samples" in r["name"]
+
+
+def test_flux_sampling_exports(model):
+    r = sim(model["id"], "sampling", params=FAST)
+    long = client.post("/api/results/export", json={"result": r, "format": "csv", "table": "samples"}).text
+    rows = [l.split(",") for l in long.splitlines() if l and not l.startswith("#")]
+    assert rows[0] == ["reaction", "condition", "flux"]
+    n = r["metadata"]["sampling"]["n"]
+    assert len(rows) - 1 == 95 * n  # every reaction, constant ones repeated: what the Map Builder reads as samples
+    summ = client.post("/api/results/export", json={"result": r, "format": "csv", "table": "summary"}).text
+    assert "q97.5" in summ and "PGI," in summ
+    js = client.post("/api/results/export", json={"result": r, "format": "json"}).json()
+    assert js["samples"]["summary"]["PGI"]["mean"] == r["samples"]["summary"]["PGI"]["mean"]

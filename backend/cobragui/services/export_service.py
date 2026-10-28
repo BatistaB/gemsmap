@@ -49,6 +49,25 @@ def result_file(r: ResultPayload, fmt: str, table: str) -> tuple[bytes, str, str
         for k, iv in r.fva.items():
             lo, hi = iv.get("minimum"), iv.get("maximum")
             w.writerow([k, lo, hi, (hi - lo) if lo is not None and hi is not None else ""])
+    elif table in ("samples", "summary"):
+        smp = (r.model_extra or {}).get("samples")
+        if not smp:
+            raise ScienceError("This result has no flux samples")
+        if table == "summary":
+            w.writerow(["reaction", "mean", "sd", "median", "q2.5", "q25", "q75", "q97.5", "min", "max"])
+            for k, s in smp.get("summary", {}).items():
+                w.writerow([k, *(s.get(x) for x in ("mean", "sd", "median", "q025", "q25", "q75", "q975", "min", "max"))])
+        else:
+            # long format reaction,condition,value: what the Map Builder reads as a "samples" dataset
+            cond = r.name or "sampling"
+            n = (r.metadata or {}).get("sampling", {}).get("n") or max((len(v) for v in smp.get("reactions", {}).values()), default=1)
+            w.writerow(["reaction", "condition", "flux"])
+            for k, vals in smp.get("reactions", {}).items():
+                for v in vals:
+                    w.writerow([k, cond, repr(v)])
+            for k, v in smp.get("constant", {}).items():
+                for _ in range(n):
+                    w.writerow([k, cond, "" if v is None else repr(v)])
     elif table == "turnover":
         if r.metabolite_turnover is None:
             raise ScienceError("No metabolite turnover in this result", "Turnover is derived from a single flux vector.")
@@ -76,16 +95,16 @@ def model_file(entry, state: StateSpec, fmt: str) -> tuple[bytes, str, str]:
     cur = annotation_service.curation(entry.id)
     if cur["metabolites"]:
         n = len(cur["metabolites"])
-        model.notes = {**(model.notes or {}), "GEMs MAP curation": (
-            f"{n} metabolites annotated from MetaNetX/MNXref in GEMs MAP "
+        model.notes = {**(model.notes or {}), "GEMsMAP curation": (
+            f"{n} metabolites annotated from MetaNetX/MNXref in GEMsMAP "
             f"({sum(1 for c in cur['metabolites'].values() if c.get('formula'))} formulas filled); "
             f"original file {entry.filename} sha256 {entry.checksum[:16]}")}
     from . import edit_service
     log = edit_service.log_of(entry)
     if log["applied"]:
         labels = [t["label"] for t in log["applied"]]
-        model.notes = {**(model.notes or {}), "GEMs MAP structural edits": (
-            f"{len(labels)} edit(s) in GEMs MAP (COBRAGUI backend) on {entry.filename} (sha256 {entry.checksum[:16]}, edits {edit_service.log_hash(log)}): "
+        model.notes = {**(model.notes or {}), "GEMsMAP structural edits": (
+            f"{len(labels)} edit(s) in GEMsMAP (COBRAGUI backend) on {entry.filename} (sha256 {entry.checksum[:16]}, edits {edit_service.log_hash(log)}): "
             + "; ".join(labels[:40]) + (" …" if len(labels) > 40 else ""))}
     base = Path(entry.filename).stem + ("_" + "".join(ch if ch.isalnum() else "_" for ch in state.name) if state.name else "_modified")
     if fmt == "json":

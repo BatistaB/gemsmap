@@ -5,6 +5,11 @@ Scientific rules enforced here:
 - objectiveValue is always the value of the biological objective (Σ c·v); for pFBA the minimized
   total flux is reported separately in metadata.totalFlux;
 - FVA returns intervals only. No midpoint is computed or treated as a flux distribution;
+- flux sampling (COBRApy OptGP / ACHR) returns the sampled flux distributions and their per-reaction
+  statistics; samples that fail COBRApy's validation (bounds, mass balance) are counted and dropped.
+  Exchanges are derived from the mean flux vector (a convex combination of feasible samples, hence
+  feasible itself); metabolite turnover is not, because |S·v| is not linear in v. The mean is never
+  presented as an FBA flux distribution (reactionFluxes stays empty);
 - metabolite turnover = 0.5 · Σ_j |S_ij · v_j|, a derived proxy computed from one flux vector.
 
 Runs can be cancelled. FVA is computed by COBRApy in chunks of reactions (each chunk is a regular
@@ -29,7 +34,7 @@ from ..errors import ScienceError, num
 from ..schemas import SimulationRequest
 from . import model_service as ms
 
-METHOD_LABEL = {"fba": "FBA", "pfba": "pFBA", "loopless": "Loopless FBA", "fva": "FVA"}
+METHOD_LABEL = {"fba": "FBA", "pfba": "pFBA", "loopless": "Loopless FBA", "fva": "FVA", "sampling": "Flux sampling"}
 
 
 # ----------------------------------------------------------------------------- jobs (progress + cancel)
@@ -218,6 +223,7 @@ def simulate(entry, method: str, req: SimulationRequest) -> dict:
         message: Optional[str] = None
         extra: dict = {}
         partial: Optional[dict] = None
+        sampling: Optional[dict] = None
         try:
             if method == "fba":
                 sol = model.optimize(raise_error=False)
@@ -265,6 +271,9 @@ def simulate(entry, method: str, req: SimulationRequest) -> dict:
                         if job:
                             job["done"] = len(fva)
                     objective_value = num(opt)
+                elif method == "sampling":
+                    sampling, partial = _sample(model, params, job)
+                    extra["sampling"] = sampling["meta"]
         except ScienceError:
             raise
         except OptimizationError as e:
@@ -279,7 +288,7 @@ def simulate(entry, method: str, req: SimulationRequest) -> dict:
             fluxes, status_raw, message = None, "undefined", "The solver returned non-finite fluxes."
         status = normalize_status(status_raw)
         if status != "optimal":
-            fluxes, fva, objective_value = None, None, None
+            fluxes, fva, objective_value, sampling = None, None, None, None
         diagnostics = _diagnostics(status, model, entry, req)
         turnover = exchanges = None
         if fluxes is not None:
@@ -289,6 +298,10 @@ def simulate(entry, method: str, req: SimulationRequest) -> dict:
             fluxes = {k: num(v) for k, v in fluxes.items()}
         elif fva is not None:
             exchanges = exchange_intervals(model, fva, kinds)
+        elif sampling is not None:
+            mean = {k: v["mean"] for k, v in sampling["summary"].items()}
+            objective_value = num(_objective_value(objective, mean))  # = mean objective over the samples (linear)
+            exchanges = exchange_fluxes(model, mean, kinds)
         elapsed = time.perf_counter() - t0
         label = METHOD_LABEL[method]
         metadata = {
@@ -312,11 +325,12 @@ def simulate(entry, method: str, req: SimulationRequest) -> dict:
         }
         if partial:
             metadata["partial"] = partial
-            metadata["parameters"]["reactionSubset"] = partial["done"]
+            if method == "fva":
+                metadata["parameters"]["reactionSubset"] = partial["done"]
     return {
         "id": uuid.uuid4().hex[:12],
         "name": (req.name or f"{label} · {state.name or 'Base model'} · {_objective_label(objective)}")
-        + (f" (stopped at {partial['done']}/{partial['total']})" if partial else ""),
+        + (f" (stopped at {partial['done']}/{partial['total']}{' samples' if method == 'sampling' else ''})" if partial else ""),
         "modelId": entry.id,
         "modelStateId": state.id,
         "method": method,
@@ -326,6 +340,7 @@ def simulate(entry, method: str, req: SimulationRequest) -> dict:
         "fva": fva,
         "metaboliteTurnover": turnover,
         "exchanges": exchanges,
+        "samples": {k: sampling[k] for k in ("reactions", "constant", "summary")} if sampling else None,
         "diagnostics": diagnostics,
         "metadata": metadata,
     }
@@ -347,4 +362,66 @@ def _params_for(method: str, p) -> dict:
     if method == "fva":
         return {"fractionOfOptimum": p.fraction_of_optimum, "loopless": p.loopless, "pfbaFactor": p.pfba_factor,
                 "reactionSubset": len(p.reactions) if p.reactions else None, "processes": p.processes}
+    if method == "sampling":
+        return {"samples": p.samples, "sampler": "OptGP" if p.sampler == "optgp" else "ACHR", "thinning": p.thinning,
+                "processes": p.processes if p.sampler == "optgp" else 1, "seed": p.seed,
+                "objectiveFraction": p.objective_fraction}
     return {}
+
+
+def _sig(x: float) -> float:
+    """Sample values rounded to 6 significant digits (keeps result files small; far below solver tolerance)."""
+    return float(f"{x:.6g}")
+
+
+def _sample(model: cobra.Model, p, job) -> tuple[dict, Optional[dict]]:
+    """Hit-and-run sampling with progress and cancel: one sampler (one warmup), samples drawn in batches."""
+    import pandas as pd
+    from cobra.sampling import ACHRSampler, OptGPSampler
+    from cobra.util.solver import fix_objective_as_constraint
+    if p.objective_fraction is not None:
+        fix_objective_as_constraint(model, fraction=p.objective_fraction)  # reverted with the state context
+    if job:
+        job["phase"], job["total"], job["done"] = "warmup", p.samples, 0
+    t0 = time.perf_counter()
+    if p.sampler == "achr":
+        sampler = ACHRSampler(model, thinning=p.thinning, seed=p.seed)
+    else:
+        sampler = OptGPSampler(model, thinning=p.thinning, processes=p.processes, seed=p.seed)
+    warmup = time.perf_counter() - t0
+    if job:
+        job["phase"] = "sampling"
+    batch = max(1, min(p.samples, max(50, math.ceil(p.samples / 20))))
+    frames, drawn, partial = [], 0, None
+    while drawn < p.samples:
+        if job and job["cancel"]:
+            if job["keep"] and drawn:
+                partial = {"done": drawn, "total": p.samples}
+                break
+            raise _cancelled_error()
+        df = sampler.sample(min(batch, p.samples - drawn))
+        frames.append(df)
+        drawn += len(df)
+        if job:
+            job["done"] = min(drawn, p.samples)
+    allf = pd.concat(frames, ignore_index=True).iloc[:p.samples]
+    codes = list(sampler.validate(allf))
+    valid = allf[[c == "v" for c in codes]]
+    if not len(valid):
+        raise ScienceError("No valid flux sample", f"All {len(allf)} samples failed COBRApy's validation.", status=422,
+                           hints=["Check that the model state is feasible (run FBA first).", "Try the OptGP sampler or a larger thinning."])
+    reactions, constant, summary = {}, {}, {}
+    for rid in valid.columns:
+        col = valid[rid].to_numpy(dtype=float)
+        lo, hi = float(col.min()), float(col.max())
+        q = [float(x) for x in pd.Series(col).quantile([0.025, 0.25, 0.5, 0.75, 0.975])]
+        summary[rid] = {"mean": num(float(col.mean())), "sd": num(float(col.std(ddof=1)) if len(col) > 1 else 0.0),
+                        "median": num(q[2]), "q025": num(q[0]), "q25": num(q[1]), "q75": num(q[3]), "q975": num(q[4]),
+                        "min": num(lo), "max": num(hi)}
+        if hi - lo <= 1e-9 * max(1.0, abs(hi)):
+            constant[rid] = num(float(col.mean()))  # the same value in every sample: stored once
+        else:
+            reactions[rid] = [_sig(x) for x in col]
+    meta = {"n": int(len(valid)), "drawn": int(len(allf)), "invalid": int(len(allf) - len(valid)),
+            "warmupSeconds": round(warmup, 3), "variable": len(reactions), "constant": len(constant)}
+    return {"reactions": reactions, "constant": constant, "summary": summary, "meta": meta}, partial

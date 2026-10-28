@@ -135,7 +135,7 @@ export function LabHeader() {
           ) : <Popover align="right" trigger={(o, t) => <button className={`btn primary small split ${o ? 'on' : ''}`} onClick={t}>▾</button>}>
             {(close) => (
               <div className="menu-list">
-                {(['fba', 'pfba', 'loopless', 'fva'] as Method[]).map((m) => (
+                {(['fba', 'pfba', 'loopless', 'fva', 'sampling'] as Method[]).map((m) => (
                   <button key={m} className={m === method ? 'on' : ''} onClick={() => { useLab.setState({ method: m }); lab.simulate(m); close(); }}>
                     <span>Run {METHOD_INFO[m].label}</span><span className="muted small">{METHOD_INFO[m].blurb}</span>
                   </button>

@@ -6,6 +6,14 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 ## [Unreleased]
 
 ### Added
+- **Flux sampling in COBRAGUI** (Simulation → *Flux sampling*): COBRApy's OptGP or ACHR sampler, with the number
+  of samples, thinning, processes, seed and an optional minimum objective (fraction of the optimum). Progress shows
+  the warmup and the samples drawn; *Stop & keep* saves the samples so far. Samples failing COBRApy's validation are
+  counted and dropped. Results: a distribution per reaction (mean, median, SD, 95 % interval, box plot, histogram),
+  exchanges from the mean flux vector, provenance; CSV exports of all samples (long format) and of the statistics.
+  *Visualize result* sends a samples dataset to the Map Builder (width/colour from the mean; density and box plots
+  show the distributions). The mean is never used as an FBA flux vector: no turnover, not in Compare, never the
+  active flux. Backend: method `sampling` (`POST /api/models/{id}/simulate/sampling`).
 - **How to cite**: a documentation page (Reference → *How to cite*, also in the FAQ and the README) on citing
   the software version (a Zenodo DOI per version, being set up), the article (in preparation), the documentation
   and the tools GEMsMAP builds on. `CITATION.cff` gives GitHub's *Cite this repository*; `tools/release/build.py`

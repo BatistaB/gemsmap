@@ -3,7 +3,7 @@
  * these types describe what it returns and the user-owned model states sent back with each request.
  */
 
-export type Method = 'fba' | 'pfba' | 'loopless' | 'fva';
+export type Method = 'fba' | 'pfba' | 'loopless' | 'fva' | 'sampling';
 export type SolverStatus = 'optimal' | 'infeasible' | 'unbounded' | 'infeasible_or_unbounded' | 'undefined' | 'error';
 export type ReactionType = 'exchange' | 'demand' | 'sink' | 'transport' | 'internal';
 /** [lower, upper]; null = unbounded on that side. */
@@ -90,8 +90,20 @@ export interface SimulationMetadata {
   parameters: Record<string, unknown>;
   timestamp: string; elapsedSeconds: number; solverStatusRaw: string; message: string | null;
   tolerance: number | null; totalFlux?: number | null;
-  /** FVA stopped early with "keep": intervals exist only for the first `done` reactions. */
+  /** FVA / sampling stopped early with "keep": only the first `done` reactions (FVA) or samples (sampling) exist. */
   partial?: { done: number; total: number };
+  /** Flux sampling: valid samples kept, samples drawn, failed COBRApy validation, warmup time. */
+  sampling?: { n: number; drawn: number; invalid: number; warmupSeconds: number; variable: number; constant: number };
+}
+
+/** Per-reaction statistics of a flux sample. */
+export interface SampleSummary { mean: number | null; sd: number | null; median: number | null; q025: number | null; q25: number | null; q75: number | null; q975: number | null; min: number | null; max: number | null }
+
+/** Flux sampling result: the samples of variable reactions, constant reactions once, and statistics. */
+export interface FluxSamples {
+  reactions: Record<string, number[]>;
+  constant: Record<string, number | null>;
+  summary: Record<string, SampleSummary>;
 }
 
 export interface SimulationResult {
@@ -101,6 +113,8 @@ export interface SimulationResult {
   fva: Record<string, { minimum: number | null; maximum: number | null }> | null;
   metaboliteTurnover: Record<string, number | null> | null;
   exchanges: Record<string, ExchangeFlux | ExchangeInterval> | null;
+  /** Flux sampling only (reactionFluxes stays null: the mean of the samples is not an FBA solution). */
+  samples?: FluxSamples | null;
   diagnostics: string[];
   metadata: SimulationMetadata;
   /** Frontend: exact state configuration used (lets the user restore it later). */
@@ -123,7 +137,11 @@ export interface ResultOrigin {
   notes?: string[];
 }
 
-export interface SimParams { fractionOfOptimum: number; loopless: boolean; reactions: string[] | null; pfbaFactor: number | null; processes: number }
+export interface SimParams {
+  fractionOfOptimum: number; loopless: boolean; reactions: string[] | null; pfbaFactor: number | null; processes: number;
+  /** flux sampling (COBRApy): number of samples, sampler, thinning, seed, optional minimum objective (fraction of optimum) */
+  samples: number; sampler: 'optgp' | 'achr'; thinning: number; seed: number | null; objectiveFraction: number | null;
+}
 
 // ------------------------------------------------------------------ comparison
 

@@ -17,6 +17,7 @@ import type { ComparisonResult, CompareRow, EntityRef, LabModel, SimulationResul
 const FLUX_DS = 'ds_cobra_flux';
 const FVA_DS = 'ds_cobra_fva';
 const TURNOVER_DS = 'ds_cobra_turnover';
+const SAMPLES_DS = 'ds_cobra_samples';
 const condIdOf = (r: SimulationResult) => `sim_${r.id}`;
 
 export function toMapModel(m: LabModel): MetabolicModel {
@@ -148,6 +149,29 @@ function withColumn(ds: Dataset, col: string, values: Record<string, number | nu
   return out;
 }
 
+/**
+ * A flux sampling result as one column of the samples dataset, the same shape the Map Builder builds
+ * from a long CSV (reaction,condition,value): the samples per reaction, and their mean as the value
+ * used by width / colour mappings. Density and box plots read the samples.
+ */
+function withSamples(ds: Dataset, col: string, r: SimulationResult): Dataset {
+  const smp = r.samples!;
+  const n = r.metadata.sampling?.n ?? 1;
+  const mean: Record<string, number | null> = {};
+  for (const [id, s] of Object.entries(smp.summary)) mean[id] = s.mean;
+  const out = withColumn(ds, col, mean);
+  const ci = out.columns.indexOf(col);
+  const samples: Record<string, number[][]> = {};
+  for (const id of Object.keys(out.values)) {
+    const row = [...(ds.samples?.[id] ?? [])];
+    while (row.length < out.columns.length) row.push([]);
+    const c = smp.constant[id];
+    row[ci] = smp.reactions[id] ?? (c == null ? [] : Array(n).fill(c));
+    samples[id] = row;
+  }
+  return { ...out, samples };
+}
+
 export interface ResultMappingChoice { width: boolean; color: 'magnitude' | 'signed' | 'none'; turnoverRadius: boolean; fvaRange: boolean }
 
 function upsertMapping(mappings: VisualizationMapping[], m: Omit<VisualizationMapping, 'id'>): VisualizationMapping[] {
@@ -168,6 +192,7 @@ function stageResults(results: SimulationResult[]) {
     const col = condIdOf(r);
     if (r.reactionFluxes) put(withColumn(find(FLUX_DS) ?? blank(FLUX_DS, 'COBRA simulations · flux', 'flux', 'reaction', FLUX_UNIT), col, r.reactionFluxes));
     if (r.metaboliteTurnover) put(withColumn(find(TURNOVER_DS) ?? blank(TURNOVER_DS, 'COBRA simulations · metabolite turnover', 'turnover', 'metabolite', FLUX_UNIT), col, r.metaboliteTurnover));
+    if (r.samples) put(withSamples(find(SAMPLES_DS) ?? { ...blank(SAMPLES_DS, 'COBRA simulations · flux samples', 'samples', 'reaction', FLUX_UNIT), samples: {} }, col, r));
     if (r.fva) {
       const ranges: Record<string, [number, number] | null> = {};
       const empty: Record<string, null> = {};
@@ -206,7 +231,7 @@ export function importResultsToMap(results: SimulationResult[], file: string) {
   s.actions.commit(() => ({ datasets, conditions, mappings }));
   s.actions.setView({ activeCondition: condIdOf(last), compare: 'absolute', reference: s.view.reference && conditions.some((c) => c.id === s.view.reference) ? s.view.reference : condIdOf(results[0]) });
   useStore.setState({ leftTab: 'data' });
-  const ids = new Set(results.flatMap((r) => Object.keys(r.reactionFluxes ?? r.fva ?? {})));
+  const ids = new Set(results.flatMap((r) => Object.keys(r.reactionFluxes ?? r.fva ?? r.samples?.summary ?? {})));
   const matched = s.model ? [...ids].filter((id) => s.model!.reactions[id]).length : null;
   const fva = results.filter((r) => r.fva).length;
   A().toast(`${file}: ${results.length} result${results.length > 1 ? 's' : ''} added as conditions${matched != null ? ` · ${matched}/${ids.size} reaction ids in ${s.model!.name}` : ' · load a GEM to bind them'}${fva ? ` · ${fva} FVA as ranges (use range plots)` : ''}${switched ? ` · ${switched} reaction mapping${switched > 1 ? 's' : ''} now use the imported fluxes (Ctrl Z to undo)` : ''}`);
@@ -221,11 +246,16 @@ export function sendResultToMap(r: SimulationResult, choice: ResultMappingChoice
     if (choice.width) mappings = upsertMapping(mappings, { datasetId: FLUX_DS, target: 'reaction', property: 'width', scale: 'linear', magnitude: true, enabled: true });
     if (choice.color !== 'none') mappings = upsertMapping(mappings, { datasetId: FLUX_DS, target: 'reaction', property: 'color', scale: 'linear', magnitude: choice.color === 'magnitude', enabled: true });
   }
+  if (r.samples) {
+    // width / colour from the mean of the samples; density and box plots read the samples themselves
+    if (choice.width) mappings = upsertMapping(mappings, { datasetId: SAMPLES_DS, target: 'reaction', property: 'width', scale: 'linear', magnitude: true, enabled: true });
+    if (choice.color !== 'none') mappings = upsertMapping(mappings, { datasetId: SAMPLES_DS, target: 'reaction', property: 'color', scale: 'linear', magnitude: choice.color === 'magnitude', enabled: true });
+  }
   if (r.metaboliteTurnover && choice.turnoverRadius) mappings = upsertMapping(mappings, { datasetId: TURNOVER_DS, target: 'metabolite', property: 'radius', scale: 'sqrt', magnitude: true, enabled: true });
   s.actions.commit(() => ({ datasets, conditions, mappings }));
   s.actions.setView({ activeCondition: condIdOf(r), compare: 'absolute', reference: s.view.reference && conditions.some((c) => c.id === s.view.reference) ? s.view.reference : condIdOf(r) });
-  const onMap = Object.values(s.doc.reactions).filter((g) => g.reactionId && (r.reactionFluxes?.[g.reactionId] != null || r.fva?.[g.reactionId])).length;
-  A().toast(`“${r.name}” is now a dataset in the Map Builder${onMap ? ` · ${onMap} arrows bound` : ' · add reactions to the map to see it'}`);
+  const onMap = Object.values(s.doc.reactions).filter((g) => g.reactionId && (r.reactionFluxes?.[g.reactionId] != null || r.fva?.[g.reactionId] || r.samples?.summary[g.reactionId])).length;
+  A().toast(`“${r.name}” is now a dataset in the Map Builder${onMap ? ` · ${onMap} arrows bound` : ' · add reactions to the map to see it'}${r.samples ? ' · right-click a reaction → Add linked plot (density or box) to see its distribution' : ''}`);
   lab.log('info', `Result sent to Map Builder: ${r.name}`);
   lab.setWorkspace('map');
 }

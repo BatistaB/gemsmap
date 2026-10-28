@@ -7,6 +7,7 @@ import type { ExchangeFlux, ExchangeInterval, LabGene, SimulationResult, SortSpe
 import { pickResultFiles } from './importResults';
 import { ELink, Popover, RangeBar, SectionHead, StatusPill, Toggle, useDebounced } from './common';
 import { ResultStatusCard } from './Simulate';
+import { SamplingReactions } from './Sampling';
 import { SubsystemResults } from './Subsystems';
 import { GeneTable, geneSortValue, MetaboliteTable, metSortValue, ReactionTable, rxnSortValue, sortRows, useRxnCtx } from './tables';
 import { VirtualTable, type Col } from './VirtualTable';
@@ -31,7 +32,7 @@ export function Results() {
             <button className="btn primary" onClick={() => lab.setSection('simulate')}><Icon name="play" size={12} /> Run simulation</button>
             <button className="btn" onClick={pickResultFiles}><Icon name="import" size={12} /> Import results…</button>
           </div>
-          <p className="muted small">JSON exported by GEMs MAP or the legacy GEM Explorer, or CSV/TSV flux and FVA tables.</p>
+          <p className="muted small">JSON exported by GEMsMAP (FBA, FVA or flux sampling) or the legacy GEM Explorer, or CSV/TSV flux and FVA tables.</p>
         </div>
       </div>
     );
@@ -69,6 +70,7 @@ function ResultWorkspace({ r }: { r: SimulationResult }) {
   const hasSubsystems = useLab((s) => (s.index?.subsystems.size ?? 0) > 0);
   const modelChecksum = useLab((s) => s.model?.checksum ?? '');
   const ok = r.solverStatus === 'optimal';
+  const sampling = !!r.samples;
   const ex = Object.values(r.exchanges ?? {});
   const uptakes = r.fva ? null : (ex as ExchangeFlux[]).filter((x) => !L.isZero(x.uptake)).length;
   const secretions = r.fva ? null : (ex as ExchangeFlux[]).filter((x) => !L.isZero(x.secretion)).length;
@@ -88,7 +90,7 @@ function ResultWorkspace({ r }: { r: SimulationResult }) {
         <div className="row gap wrap">
           <button className="btn small" onClick={() => setRenaming(true)}>Rename</button>
           {ok && <button className="btn small primary" onClick={() => useLab.setState({ dialog: { kind: 'visualize-result', resultId: r.id } })}>Visualize result</button>}
-          {ok && <button className="btn small" onClick={() => { useLab.setState((s) => ({ compare: { ...s.compare, aId: r.id, result: null } })); lab.setSection('compare'); }}>Compare with…</button>}
+          {ok && !sampling && <button className="btn small" onClick={() => { useLab.setState((s) => ({ compare: { ...s.compare, aId: r.id, result: null } })); lab.setSection('compare'); }}>Compare with…</button>}
           <Popover align="right" trigger={(o, t) => <button className={`btn small ${o ? 'on' : ''}`} onClick={t}>Export ▾</button>}>
             {(close) => (
               <div className="menu-list">
@@ -96,7 +98,9 @@ function ResultWorkspace({ r }: { r: SimulationResult }) {
                 {r.reactionFluxes && <button onClick={() => { exportAs('csv', 'fluxes'); close(); }}>CSV · reaction fluxes</button>}
                 {r.fva && <button onClick={() => { exportAs('csv', 'fva'); close(); }}>CSV · FVA intervals</button>}
                 {r.metaboliteTurnover && <button onClick={() => { exportAs('csv', 'turnover'); close(); }}>CSV · metabolite turnover</button>}
-                {r.exchanges && <button onClick={() => { exportAs('csv', 'exchanges'); close(); }}>CSV · exchanges</button>}
+                {r.exchanges && <button onClick={() => { exportAs('csv', 'exchanges'); close(); }}>CSV · exchanges{sampling ? ' (mean of the samples)' : ''}</button>}
+                {sampling && <button onClick={() => { exportAs('csv', 'samples'); close(); }} title="Long format reaction,condition,flux — opens in the Map Builder as a samples dataset">CSV · all samples</button>}
+                {sampling && <button onClick={() => { exportAs('csv', 'summary'); close(); }}>CSV · per-reaction statistics</button>}
               </div>
             )}
           </Popover>
@@ -107,7 +111,10 @@ function ResultWorkspace({ r }: { r: SimulationResult }) {
       {ok ? (
         <div className="rw-summary">
           <div><span>Status</span><StatusPill status={r.solverStatus} /></div>
-          <div><span>Objective</span><b className="mono">{fnum(r.objectiveValue)}</b></div>
+          <div><span>{sampling ? 'Objective (mean of samples)' : 'Objective'}</span><b className="mono">{fnum(r.objectiveValue)}</b></div>
+          {sampling && r.metadata.sampling && <div><span>Samples</span><b className="mono">{r.metadata.sampling.n}{r.metadata.partial ? ` of ${r.metadata.partial.total}` : ''}</b></div>}
+          {sampling && r.metadata.sampling && <div><span>Variable reactions</span><b className="mono">{r.metadata.sampling.variable} / {r.metadata.sampling.variable + r.metadata.sampling.constant}</b></div>}
+          {sampling && (r.metadata.sampling?.invalid ?? 0) > 0 && <div><span>Dropped (invalid)</span><b className="mono">{r.metadata.sampling!.invalid}</b></div>}
           {r.reactionFluxes && <div><span>Active reactions</span><b className="mono">{Object.values(r.reactionFluxes).filter((v) => !L.isZero(v)).length} / {Object.keys(r.reactionFluxes).length}</b></div>}
           {r.fva && <div><span>Reactions analysed</span><b className="mono">{Object.keys(r.fva).length}</b></div>}
           {uptakes != null && <div><span>Uptakes</span><b className="mono">{uptakes}</b></div>}
@@ -117,14 +124,15 @@ function ResultWorkspace({ r }: { r: SimulationResult }) {
       ) : <div className="pad"><ResultStatusCard r={r} /></div>}
       <div className="ex-tabs rw-tabs">
         {(['reactions', 'metabolites', 'exchanges', 'subsystems', 'genes', 'provenance'] as RTab[]).map((t) => (
-          <button key={t} className={tab === t ? 'on' : ''} disabled={(!ok && t !== 'provenance') || (t === 'subsystems' && !hasSubsystems)}
-            title={t === 'subsystems' && !hasSubsystems ? 'This model has no subsystem annotations' : undefined}
+          <button key={t} className={tab === t ? 'on' : ''} disabled={(!ok && t !== 'provenance') || (t === 'subsystems' && !hasSubsystems) || (sampling && (t === 'subsystems' || t === 'genes'))}
+            title={sampling && (t === 'subsystems' || t === 'genes') ? 'Needs one flux vector; a sampling result is a distribution per reaction' : t === 'subsystems' && !hasSubsystems ? 'This model has no subsystem annotations' : undefined}
             onClick={() => setTab(t)}>{t === 'provenance' ? 'How was this generated?' : t[0].toUpperCase() + t.slice(1)}</button>
         ))}
       </div>
       <div className="rw-body">
-        {ok && tab === 'reactions' && (r.fva ? <FvaTable r={r} /> : <ResultReactions r={r} />)}
-        {ok && tab === 'metabolites' && (r.metaboliteTurnover ? <ResultMetabolites r={r} /> : <div className="note">Metabolite turnover is derived from one flux distribution. FVA defines independent intervals per reaction, so no turnover is computed.</div>)}
+        {ok && tab === 'reactions' && (sampling ? <SamplingReactions r={r} /> : r.fva ? <FvaTable r={r} /> : <ResultReactions r={r} />)}
+        {ok && tab === 'metabolites' && (r.metaboliteTurnover ? <ResultMetabolites r={r} />
+          : <div className="note">{sampling ? 'Metabolite turnover (0.5 × Σ|S·v|) is not linear in the fluxes, so the turnover of the mean is not the mean turnover; it is not computed for flux samples.' : 'Metabolite turnover is derived from one flux distribution. FVA defines independent intervals per reaction, so no turnover is computed.'}</div>)}
         {ok && tab === 'exchanges' && <ExchangeTable r={r} />}
         {ok && tab === 'subsystems' && <SubsystemResults r={r} />}
         {ok && tab === 'genes' && <ResultGenes r={r} />}

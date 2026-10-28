@@ -20,7 +20,8 @@ const METRIC_LABEL: Record<CompareMetric, string> = { delta: 'Flux difference (Î
 type Filter = 'differing' | 'all' | 'changed' | 'activated' | 'inactivated' | 'reversal' | 'missing';
 
 export function Compare() {
-  const results = useLab((s) => s.results.filter((r) => r.solverStatus === 'optimal'));
+  // flux samples are distributions, not one flux vector: they are not compared here
+  const results = useLab((s) => s.results.filter((r) => r.solverStatus === 'optimal' && r.method !== 'sampling'));
   const cmp = useLab((s) => s.compare);
   const settings = useLab((s) => s.settings);
   const [mode, setMode] = useState<'results' | 'states'>('results');

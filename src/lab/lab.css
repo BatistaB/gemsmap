@@ -85,6 +85,7 @@
 .m-pfba, .result-chip i.m-pfba { background: #262c8c; }
 .m-loopless, .result-chip i.m-loopless { background: #0f766e; }
 .m-fva, .result-chip i.m-fva { background: #b45309; }
+.m-sampling, .result-chip i.m-sampling { background: #7c3aed; }
 
 /* ---------------------------------------------------------------- virtual table */
 .vt { flex: 1; min-height: 0; overflow: auto; position: relative; outline: none; }
@@ -608,3 +609,27 @@ body.resizing-col, body.resizing-col * { cursor: col-resize !important; user-sel
 .ann-sib-row:hover { background: var(--bg-2); }
 .ann-sib-row.conflict { color: var(--text-2); }
 .ann-sib-row.conflict .ellipsis { color: var(--warn); }
+
+/* flux sampling results */
+.smp-layout { flex: 1; min-height: 0; display: flex; }
+.smp-layout > .rw-table { min-width: 0; }
+.smp-detail { width: 21rem; flex-shrink: 0; border-left: 1px solid var(--line); overflow-y: auto; padding: 0.625rem 0.75rem; }
+.smp-box { position: relative; display: block; height: 0.75rem; }
+.smp-box i { position: absolute; top: 50%; transform: translateY(-50%); }
+.smp-zero { width: 1px; height: 0.875rem; background: var(--line-2); }
+.smp-whisk { height: 1px; background: var(--text-3); }
+.smp-iqr { height: 0.5rem; background: rgba(42, 120, 214, 0.35); border: 1px solid #2a78d6; border-radius: 2px; box-sizing: border-box; }
+.smp-med { width: 2px; height: 0.75rem; background: #1c5cab; }
+.smp-hist { display: flex; flex-direction: column; gap: 0.375rem; }
+.smp-svg { width: 100%; height: auto; }
+.smp-bar { fill: #2a78d6; opacity: 0.85; }
+.smp-band { fill: rgba(42, 120, 214, 0.09); }
+.smp-zero-line { stroke: var(--line-2); stroke-width: 1; }
+.smp-med-line { stroke: #1c5cab; stroke-width: 1.5; }
+.smp-mean-line { stroke: #e34948; stroke-width: 1.5; stroke-dasharray: 3 2; }
+.smp-axis { font-size: 10px; fill: var(--text-3); }
+.smp-stats { display: grid; grid-template-columns: auto 1fr; gap: 0.1875rem 0.75rem; font-size: 0.75rem; }
+.smp-stats span { color: var(--text-3); }
+.smp-key { display: inline-block; width: 0.75rem; height: 2px; vertical-align: middle; }
+.smp-key.med { background: #1c5cab; }
+.smp-key.mean { background: #e34948; }

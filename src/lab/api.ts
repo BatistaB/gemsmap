@@ -4,7 +4,7 @@ import type {
 } from './types';
 import type { EditHistory, EditOp, EditReport, EditResponse, ExternalCompound, ValidationReport } from './editTypes';
 
-const BASE = (import.meta.env.VITE_COBRA_API as string | undefined) ?? '/api';
+const BASE = (import.meta.env?.VITE_COBRA_API as string | undefined) ?? '/api';
 
 export class ApiError extends Error {
   info: ApiErrorInfo;

@@ -33,6 +33,13 @@ class SimulationParams(Camel):
     reactions: Optional[list[str]] = None
     pfba_factor: Optional[float] = Field(None, ge=1.0)
     processes: int = Field(1, ge=1, le=32)
+    # flux sampling (COBRApy OptGP / ACHR hit-and-run samplers)
+    samples: int = Field(500, ge=1, le=20000)
+    sampler: Literal["optgp", "achr"] = "optgp"
+    thinning: int = Field(100, ge=1, le=10000)
+    seed: Optional[int] = Field(None, ge=0)
+    # None: sample the whole feasible space; a fraction: keep the objective >= fraction x optimum
+    objective_fraction: Optional[float] = Field(None, ge=0.0, le=1.0)
 
 
 class SimulationRequest(Camel):
@@ -100,7 +107,7 @@ class ExplainRequest(Camel):
 class ExportResultRequest(Camel):
     result: ResultPayload
     format: Literal["json", "csv"] = "json"
-    table: Literal["fluxes", "fva", "turnover", "exchanges"] = "fluxes"
+    table: Literal["fluxes", "fva", "turnover", "exchanges", "samples", "summary"] = "fluxes"
 
 
 class EditRequest(Camel):

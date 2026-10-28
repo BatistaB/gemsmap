@@ -99,7 +99,7 @@ export interface LabState extends Session {
   running: {
     method: Method; startedAt: number; stateName: string; jobId: string;
     /** FVA progress from the backend (reactions with a finished interval). */
-    progress?: { done: number; total: number };
+    progress?: { done: number; total: number; phase?: string };
     stopping?: 'discard' | 'keep';
   } | null;
   lastRun: { resultId?: string; error?: ApiErrorInfo; method?: Method; cancelled?: boolean } | null;
@@ -187,7 +187,7 @@ export const useLab = create<LabState>()(() => ({
   contextMenu: null, dialog: null,
   annotation: null, annotationError: null,
   undoOrder: [], redoOrder: [],
-  simParams: { fractionOfOptimum: 1, loopless: false, reactions: null, pfbaFactor: null, processes: 1 },
+  simParams: { fractionOfOptimum: 1, loopless: false, reactions: null, pfbaFactor: null, processes: 1, samples: 500, sampler: 'optgp', thinning: 100, seed: null, objectiveFraction: null },
   method: lsGet(SETTINGS_KEY, DEFAULT_SETTINGS).defaultMethod,
   subsys: {
     selected: [], metric: 'total', mode: 'combined', scale: 'shared', showZero: false, sort: 'magnitude', hideInactive: true,
@@ -426,7 +426,7 @@ export const lab = {
         const { results, notes } = parseResultFile(f.name, await f.text());
         for (const n of notes) log('info', `${f.name}: ${n}`);
         for (const r of results) {
-          const ids = Object.keys(r.reactionFluxes ?? r.fva ?? {});
+          const ids = Object.keys(r.reactionFluxes ?? r.fva ?? r.samples?.summary ?? {});
           const matched = ids.filter((id) => index.rxn.has(id)).length;
           const cs = r.metadata.model.checksum;
           const sameModel = !!cs && model.checksum.startsWith(cs);
@@ -598,11 +598,11 @@ export const lab = {
     runAbort = abort;
     set({ running: { method, startedAt: Date.now(), stateName: st.name, jobId }, method, lastRun: null });
     log('info', `${method.toUpperCase()} started on “${st.name}”${method === 'fva' && params.reactions ? ` (${params.reactions.length} reactions)` : ''}`);
-    // FVA reports how many intervals are done; polled off the solver thread
-    const poll = method === 'fva' ? setInterval(async () => {
+    // FVA reports how many intervals are done, sampling how many samples; polled off the solver thread
+    const poll = method === 'fva' || method === 'sampling' ? setInterval(async () => {
       try {
         const j = await api.job(jobId);
-        set((t) => (t.running?.jobId === jobId && j.total ? { running: { ...t.running, progress: { done: j.done, total: j.total } } } : {}));
+        set((t) => (t.running?.jobId === jobId && j.total ? { running: { ...t.running, progress: { done: j.done, total: j.total, phase: j.phase } } } : {}));
       } catch { /* finished or not started yet */ }
     }, 500) : null;
     try {
@@ -611,7 +611,8 @@ export const lab = {
       const optimal = r.solverStatus === 'optimal';
       set((t) => ({
         results: [...t.results, r],
-        activeResultId: optimal && r.method !== 'fva' ? r.id : t.activeResultId,
+        // a sample is not a flux vector: it never becomes the active flux result of the explorer
+        activeResultId: optimal && r.method !== 'fva' && r.method !== 'sampling' ? r.id : t.activeResultId,
         activeFvaId: optimal && r.method === 'fva' ? r.id : t.activeFvaId,
         lastRun: { resultId: r.id, method },
       }));
@@ -650,7 +651,7 @@ export const lab = {
     const r = L.result(id);
     if (!r) return;
     if (r.solverStatus !== 'optimal') return set({ lastRun: { resultId: id } });
-    if (r.method === 'fva') set({ activeFvaId: id }); else set({ activeResultId: id });
+    if (r.method === 'fva') set({ activeFvaId: id }); else if (r.method !== 'sampling') set({ activeResultId: id });
   },
   renameResult(id: string, name: string) {
     if (!name.trim()) return;

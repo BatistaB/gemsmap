@@ -39,7 +39,7 @@ function mapCoverage(ids: string[]) {
 
 function VisualizeResult({ id, close }: { id: string; close: () => void }) {
   const r = L.result(id);
-  const covered = r ? mapCoverage(Object.keys(r.reactionFluxes ?? r.fva ?? {})) : 0;
+  const covered = r ? mapCoverage(Object.keys(r.reactionFluxes ?? r.fva ?? r.samples?.summary ?? {})) : 0;
   const [c, setC] = useState<ResultMappingChoice>({ width: true, color: 'magnitude', turnoverRadius: false, fvaRange: true });
   if (!r) return null;
   // only the data travel: the map is never changed (draw specific reactions with “Add to map”)
@@ -51,7 +51,16 @@ function VisualizeResult({ id, close }: { id: string; close: () => void }) {
         <div><b>Dataset:</b> {r.name} <span className="muted small">· {r.metadata.methodLabel} · state {r.metadata.state.name}</span></div>
         <div className="muted small">{covered ? `${covered} reactions of this result are already drawn on the map.` : 'No reaction of this result is on the map yet.'} Only the data are sent — no reaction is drawn. Model ids are preserved, so the arrows already on the map bind by themselves; to draw a specific reaction use <b>Add to map</b> (Explorer, Inspector or right-click).</div>
         <div className="insp-sub">Suggested mappings</div>
-        {r.reactionFluxes ? (
+        {r.samples ? (
+          <div className="map-sugg">
+            <div className="small">The samples become a <b>samples</b> dataset: density and box plots show each reaction's distribution (right-click a reaction on the map → <b>Add linked plot</b>).</div>
+            <label className="check"><input type="checkbox" checked={c.width} onChange={(e) => setC({ ...c, width: e.target.checked })} /> |mean flux| of the samples <span className="arrow">→</span> edge thickness</label>
+            <label className="check"><span className="grow">Mean flux of the samples <span className="arrow">→</span> edge colour</span>
+              <select className="input tiny" value={c.color} onChange={(e) => setC({ ...c, color: e.target.value as ResultMappingChoice['color'] })}>
+                <option value="magnitude">|mean| (sequential)</option><option value="signed">signed mean (diverging)</option><option value="none">none</option>
+              </select></label>
+          </div>
+        ) : r.reactionFluxes ? (
           <div className="map-sugg">
             <label className="check"><input type="checkbox" checked={c.width} onChange={(e) => setC({ ...c, width: e.target.checked })} /> Reaction |flux| <span className="arrow">→</span> edge thickness</label>
             <label className="check"><span className="grow">Reaction flux <span className="arrow">→</span> edge colour</span>

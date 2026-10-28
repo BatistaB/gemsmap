@@ -26,7 +26,7 @@ const num = (s: unknown): number | null => {
   const v = Number(s.trim().replace('−', '-'));
   return Number.isFinite(v) ? v : null;
 };
-const METHODS: Method[] = ['fba', 'pfba', 'loopless', 'fva'];
+const METHODS: Method[] = ['fba', 'pfba', 'loopless', 'fva', 'sampling'];
 const METHOD_FROM_LABEL: Record<string, Method> = { fba: 'fba', pfba: 'pfba', 'loopless fba': 'loopless', loopless: 'loopless', fva: 'fva' };
 
 export function isResultJson(head: string): boolean {
@@ -86,6 +86,15 @@ export function parseResultJson(file: string, text: string): ParsedResults {
       r.exchanges = (o.exchanges as SimulationResult['exchanges']) ?? null;
       r.diagnostics = Array.isArray(o.diagnostics) ? (o.diagnostics as string[]) : [];
       r.stateSnapshot = (o.stateSnapshot as SimulationResult['stateSnapshot']) ?? undefined;
+      // flux sampling: samples per variable reaction, constant reactions, statistics (taken as they are)
+      const smp = o.samples as { reactions?: Record<string, unknown[]>; constant?: Record<string, unknown>; summary?: Record<string, Record<string, unknown>> } | null | undefined;
+      if (smp && typeof smp === 'object' && smp.summary) {
+        const reactions: Record<string, number[]> = {};
+        for (const [k, v] of Object.entries(smp.reactions ?? {})) reactions[k] = (Array.isArray(v) ? v : []).map(num).filter((x): x is number => x != null);
+        const summary: NonNullable<SimulationResult['samples']>['summary'] = {};
+        for (const [k, s] of Object.entries(smp.summary)) summary[k] = { mean: num(s.mean), sd: num(s.sd), median: num(s.median), q025: num(s.q025), q25: num(s.q25), q75: num(s.q75), q975: num(s.q975), min: num(s.min), max: num(s.max) };
+        r.samples = { reactions, constant: (numberMap(smp.constant as Record<string, unknown>) ?? {}) as Record<string, number | null>, summary };
+      }
       if (o.fva && typeof o.fva === 'object') {
         r.fva = {};
         for (const [k, iv] of Object.entries(o.fva as Record<string, { minimum?: unknown; maximum?: unknown }>)) r.fva[k] = { minimum: num(iv?.minimum), maximum: num(iv?.maximum) };
@@ -120,7 +129,7 @@ export function parseResultJson(file: string, text: string): ParsedResults {
       }
     }
   });
-  for (const r of results) if (!r.reactionFluxes && !r.fva) throw new Error(`“${r.name}” contains no reaction fluxes or FVA intervals`);
+  for (const r of results) if (!r.reactionFluxes && !r.fva && !r.samples) throw new Error(`“${r.name}” contains no reaction fluxes, FVA intervals or flux samples`);
   return { results, notes };
 }
 

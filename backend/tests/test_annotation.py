@@ -153,7 +153,7 @@ def test_analyze_apply_export_revert(fake_mnx):
     exported = client.post(f"/api/models/{mid}/export", json={"format": "json"}).json()
     g = next(m for m in exported["metabolites"] if m["id"] == "glc__D_e")
     assert "MNXM_GLC" in g["annotation"]["metanetx.chemical"]
-    assert "GEMs MAP curation" in exported.get("notes", {})
+    assert "GEMsMAP curation" in exported.get("notes", {})
     # reject one: its accepted match is undone and remembered
     r = client.post(f"/api/models/{mid}/annotation/reject", json={"ids": ["glc__D_e"]}).json()
     assert "glc__D_e" in r["curation"]["rejectedIds"] and "glc__D_e" not in r["curation"]["entries"]
