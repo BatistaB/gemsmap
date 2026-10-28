@@ -1,4 +1,4 @@
-GEMs MAP {{VERSION}} - An Interactive Workbench for Genome-Scale Metabolic Models
+GEMsMAP {{VERSION}} - An Interactive Workbench for Genome-Scale Metabolic Models
 ==================================================================================
 
 BETA: this version is being tested. It works, but features and file formats can
@@ -6,21 +6,21 @@ still change. Save your work as .gemsmap project files and report problems.
 
 START
 -----
-Windows   Double-click "Start GEMs MAP (Windows).bat".
-macOS     Double-click "Start GEMs MAP (macOS).command".
+Windows   Double-click "Start GEMsMAP (Windows).bat".
+macOS     Double-click "Start GEMsMAP (macOS).command".
           The very first time macOS blocks files from the internet: right-click
           the file, choose Open, then Open again.
 Linux     In a terminal, in this folder:  bash start-gemsmap-linux.sh
 
-GEMs MAP opens in your web browser at http://127.0.0.1:8765. Keep the black
-window open while you work; close it (or press Ctrl+C) to stop GEMs MAP.
+GEMsMAP opens in your web browser at http://127.0.0.1:8765. Keep the black
+window open while you work; close it (or press Ctrl+C) to stop GEMsMAP.
 
 FIRST START
 -----------
 The first start needs the internet and takes a few minutes. It prepares
 everything inside this folder, in "runtime": its own copy of the uv tool,
 Python {{PYTHON}}, the scientific libraries (COBRApy, NumPy, SciPy...) and
-GEMs MAP. Nothing is installed anywhere else on your computer. Later starts take
+GEMsMAP. Nothing is installed anywhere else on your computer. Later starts take
 a few seconds and work without the internet (except the metabolite analysis,
 which looks identifiers up in MetaNetX).
 
@@ -53,8 +53,8 @@ TROUBLESHOOTING
 ---------------
 - Windows says "Windows protected your PC": click "More info", then "Run anyway".
 - "Port 8765 is in use": another program uses that port. Close it, or start
-  GEMs MAP on another port, for example (Windows, in this folder):
-      "Start GEMs MAP (Windows).bat" --port 8766
+  GEMsMAP on another port, for example (Windows, in this folder):
+      "Start GEMsMAP (Windows).bat" --port 8766
   Note: the map autosave belongs to the address, so prefer one port.
 - The first start failed half-way (no internet, computer asleep): start again;
   it resumes. If it keeps failing, delete the "runtime" folder and start again.
@@ -62,9 +62,9 @@ TROUBLESHOOTING
 
 REPORTING A PROBLEM
 -------------------
-In COBRAGUI, click "GEMs MAP {{VERSION}}" in the bottom bar, then "Copy
+In COBRAGUI, click "GEMsMAP {{VERSION}}" in the bottom bar, then "Copy
 diagnostics", and paste it into your report together with what you did and what
 happened: https://github.com/BatistaB/gemsmap/issues
 
-GEMs MAP is released under the MIT License. It is an independent project, not
+GEMsMAP is released under the MIT License. It is an independent project, not
 maintained or endorsed by the COBRApy, BiGG, MetaNetX or KEGG teams.

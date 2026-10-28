@@ -1,6 +1,6 @@
 # First look
 
-Start GEMs MAP with the `gemsmap` command (or *Start GEMs MAP* in the zip folder; see [Installation](installation.md)). It opens in your browser, in **COBRAGUI**. The switcher at the top left moves between the three workspaces; each keeps its state while you work in another.
+Start GEMsMAP with the `gemsmap` command (or *Start GEMsMAP* in the zip folder; see [Installation](installation.md)). It opens in your browser, in **COBRAGUI**. The switcher at the top left moves between the three workspaces; each keeps its state while you work in another.
 
 ## COBRAGUI
 
@@ -25,7 +25,7 @@ Continue with [COBRAGUI](../cobra-gui/index.md).
 
 ## Map Builder: Maps
 
-The Map Builder opens with an **empty canvas** that suggests how to begin. Its button *Open the central carbon demo* (also *File → Open example*) loads the built-in figure with simulated fluxes and flux-sampling distributions for four conditions, the kind of figure GEMs MAP is designed for. If you have worked before, a welcome banner offers to continue your last session.
+The Map Builder opens with an **empty canvas** that suggests how to begin. Its button *Open the central carbon demo* (also *File → Open example*) loads the built-in figure with simulated fluxes and flux-sampling distributions for four conditions, the kind of figure GEMsMAP is designed for. If you have worked before, a welcome banner offers to continue your last session.
 
 <figure class="gm-shot" markdown>
 [![An empty Map Builder canvas with the hint "Start a pathway figure: double-click to add a metabolite, M metabolite tool, S empty slot, drag from a node's outer ring to draw a reaction, drop on empty space to extend the chain, or insert a template from the left panel, Ctrl K for everything", and a button "Open the central carbon demo".](../assets/images/maps-empty-canvas.png)](../assets/images/maps-empty-canvas.png)

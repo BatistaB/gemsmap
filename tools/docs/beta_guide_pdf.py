@@ -18,7 +18,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 from pypdf import PdfReader, PdfWriter
 
-PAGES = [("Part 1 · Install GEMs MAP", "getting-started/installation/index.html"),
+PAGES = [("Part 1 · Install GEMsMAP", "getting-started/installation/index.html"),
          ("Part 2 · Quick start tutorial", "tutorials/quick-start/index.html")]
 
 # print every tab of a tab set, each under its label; drop navigation-only elements
@@ -57,21 +57,21 @@ def cover(version: str, form_url: str, site: Path) -> str:
     .small {{ color: #5b6270; font-size: 9.5pt; }}
     </style></head><body><div class="wrap">
     <img src="{logo}" alt="">
-    <h1>GEMs MAP {html.escape(version)}</h1>
+    <h1>GEMsMAP {html.escape(version)}</h1>
     <div class="sub">Beta test guide · {today}</div>
-    <p>Thank you for testing GEMs MAP, an interactive workbench for genome-scale metabolic models: COBRApy analyses,
+    <p>Thank you for testing GEMsMAP, an interactive workbench for genome-scale metabolic models: COBRApy analyses,
     editable metabolic maps and pathway templates in one application.</p>
     <div class="beta"><b>This is a beta.</b> It works, but features and file formats can still change. Save your work
     as <code>.gemsmap</code> files. Everything runs on your computer; your models are not uploaded anywhere.</div>
     <h2>What we ask of you (about one hour)</h2>
     <ol>
-      <li><b>Install GEMs MAP</b> (Part 1). Note how long it took and anything unexpected.</li>
+      <li><b>Install GEMsMAP</b> (Part 1). Note how long it took and anything unexpected.</li>
       <li><b>Follow the quick start</b> (Part 2) with the <i>E. coli</i> model iJO1366, step by step.</li>
       <li><b>Explore freely</b>, if you can with a model of your own.</li>
       <li><b>Answer the feedback form:</b> {form}</li>
     </ol>
     <h2>When something goes wrong</h2>
-    <p>In COBRAGUI, click <b>GEMs MAP {html.escape(version)}</b> in the bottom bar, then <b>Copy diagnostics</b>, and paste
+    <p>In COBRAGUI, click <b>GEMsMAP {html.escape(version)}</b> in the bottom bar, then <b>Copy diagnostics</b>, and paste
     it into the form or into an issue at <a href="https://github.com/BatistaB/gemsmap/issues">github.com/BatistaB/gemsmap/issues</a>,
     with what you did and what happened. A screenshot helps.</p>
     <p class="small">Documentation: gemsmap.readthedocs.io · Source code: github.com/BatistaB/gemsmap · MIT License. The screenshots in this guide
@@ -96,7 +96,7 @@ def main() -> None:
         writer.append(PdfReader(io.BytesIO(page.pdf(format="A4", print_background=True))))
         for title, rel in PAGES:
             footer = (f'<div style="font-size:8px;color:#888;width:100%;padding:0 12mm;display:flex;justify-content:space-between">'
-                      f'<span>GEMs MAP {html.escape(a.version)} · Beta test guide · {html.escape(title)}</span>'
+                      f'<span>GEMsMAP {html.escape(a.version)} · Beta test guide · {html.escape(title)}</span>'
                       '<span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>')
             page.goto((site / rel).as_uri(), wait_until="load")
             page.evaluate(EXPAND_TABS)

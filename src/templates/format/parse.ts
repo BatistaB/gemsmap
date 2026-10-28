@@ -23,14 +23,14 @@ export function parseTemplateJson(text: string): ParseResult {
 export function parseTemplate(raw: unknown): ParseResult {
   const errors: string[] = [], warnings: string[] = [];
   if (!isObj(raw)) return { errors: ['The file does not contain a JSON object'], warnings };
-  if (isProjectFormat(raw.format)) return { errors: ['This is a GEMs MAP project (.gemsmap), not a template — open it with File → Open project'], warnings };
+  if (isProjectFormat(raw.format)) return { errors: ['This is a GEMsMAP project (.gemsmap), not a template — open it with File → Open project'], warnings };
   if (!isTemplateFormat(raw.format)) return { errors: [`Unknown format "${String(raw.format)}" — expected "${TEMPLATE_FORMAT}"`], warnings };
   const sv = str(raw.schema_version) ?? '';
   const [major, minor] = sv.split('.').map(Number);
   const [curMajor, curMinor] = TEMPLATE_SCHEMA_VERSION.split('.').map(Number);
   if (!Number.isFinite(major)) errors.push('Missing schema_version');
-  else if (major !== curMajor) errors.push(`Schema ${sv} is not supported by this GEMs MAP (reads ${curMajor}.x)`);
-  else if (minor > curMinor) warnings.push(`Written by a newer GEMs MAP (schema ${sv}); unknown fields are kept but ignored`);
+  else if (major !== curMajor) errors.push(`Schema ${sv} is not supported by this GEMsMAP (reads ${curMajor}.x)`);
+  else if (minor > curMinor) warnings.push(`Written by a newer GEMsMAP (schema ${sv}); unknown fields are kept but ignored`);
   if (!isObj(raw.metadata)) errors.push('Missing metadata');
   if (!isObj(raw.biology)) errors.push('Missing biology section');
   if (!isObj(raw.layout)) errors.push('Missing layout section');

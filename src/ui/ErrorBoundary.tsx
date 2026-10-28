@@ -9,7 +9,7 @@ export class ErrorBoundary extends Component<{ name: string; children: ReactNode
   }
 
   componentDidCatch(error: Error) {
-    console.error(`[GEMs MAP] ${this.props.name} crashed:`, error);
+    console.error(`[GEMsMAP] ${this.props.name} crashed:`, error);
   }
 
   render() {

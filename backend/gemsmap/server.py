@@ -1,4 +1,4 @@
-"""The GEMs MAP application: the COBRAGUI API (/api) and the built web interface (/) on one address.
+"""The GEMsMAP application: the COBRAGUI API (/api) and the built web interface (/) on one address.
 
 The interface is the Vite build (`npm run build` → dist/), copied into gemsmap/web/ when the package is built
 (tools/release/build.py). In a development checkout there is no web/ folder: Vite serves the interface and proxies

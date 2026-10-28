@@ -49,7 +49,7 @@ The dialog detects an existing boundary reaction for the same metabolite and off
 - **Undo / redo** (++ctrl+z++ / ++ctrl+shift+z++) walks back structural edits and state changes in the order they were made.
 - The **Structure** button in the top bar lists the edit history and offers *Validate model* (duplicates and other issues, each linked to the Explorer), *Export model…*, *Export patch* and *Discard all*.
 - **Export patch** writes `model_patch.json`: the edits and their net effect (added, removed, changed), to document or reproduce them.
-- When you leave a model with unsaved edits, GEMs MAP asks whether to export the model, keep the edits for later (they stay in the backend and are re-applied next time) or discard them.
+- When you leave a model with unsaved edits, GEMsMAP asks whether to export the model, keep the edits for later (they stay in the backend and are re-applied next time) or discard them.
 
 Edits change the real `cobra.Model` used by FBA, FVA, the medium and exports, so a new simulation immediately reflects them.
 

@@ -10,13 +10,17 @@
 
     Short answers to common questions.
 
+-   [**How to cite**](how-to-cite.md)
+
+    Citing the software version, the article, this documentation and the tools GEMsMAP builds on.
+
 -   [**Troubleshooting**](troubleshooting.md)
 
     What to do when the backend is offline, a model does not load or a solve is infeasible.
 
 -   [**Limitations**](limitations.md)
 
-    What GEMs MAP does not do, and what its results do not mean.
+    What GEMsMAP does not do, and what its results do not mean.
 
 -   [**Roadmap**](roadmap.md)
 

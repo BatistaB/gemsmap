@@ -1,5 +1,5 @@
 """BiGG data layer: the universal metabolites and reactions of BiGG Models (https://bigg.bio) as a local knowledge
-base for building templates. GEMs MAP does not talk to the BiGG API: the published bulk tables are installed once
+base for building templates. GEMsMAP does not talk to the BiGG API: the published bulk tables are installed once
 (``gemsmap bigg-data``, or ``npm run bigg:data`` in a development checkout) into the backend cache and indexed in memory.
 
 1. Metabolite identity: search by BiGG ID (current or superseded), any cross-referenced identifier (KEGG, ChEBI,
@@ -30,7 +30,7 @@ from .annotation_service import compact
 
 SOURCE = "https://bigg.bio"
 
-# BiGG cross-reference namespaces -> GEMs MAP identifier keys (others: drugbank, kegg.drug, wikipedia, GO are left out)
+# BiGG cross-reference namespaces -> GEMsMAP identifier keys (others: drugbank, kegg.drug, wikipedia, GO are left out)
 MET_NS = {"CHEBI": "chebi", "kegg.compound": "kegg.compound", "metacyc.compound": "metacyc.compound", "metanetx.chemical": "metanetx.chemical",
           "seed.compound": "seed.compound", "hmdb": "hmdb", "inchikey": "inchikey"}
 RXN_NS = {"metanetx.reaction": "metanetx.reaction", "metacyc.reaction": "metacyc.reaction", "seed.reaction": "seed.reaction", "rhea": "rhea",
@@ -481,7 +481,7 @@ def enrich_model(model: dict) -> tuple[dict, dict]:
         report["reactions"] += 1
         out_rxns.append({**r, "id": new_id, "metabolites": {rename.get(k, fix(k)): v for k, v in r.get("metabolites", {}).items()}, "annotation": ann})
     notes = dict(model.get("notes") or {})
-    notes["GEMs MAP"] = "BiGG export: IDs normalized; annotations completed from the BiGG universal tables" if ix else "BiGG export: IDs normalized"
+    notes["GEMsMAP"] = "BiGG export: IDs normalized; annotations completed from the BiGG universal tables" if ix else "BiGG export: IDs normalized"
     return {**model, "metabolites": out_mets, "reactions": out_rxns, "notes": notes}, report
 
 

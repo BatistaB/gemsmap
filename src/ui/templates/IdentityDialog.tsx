@@ -1,7 +1,7 @@
 /**
  * "Define identity": the fast path of the Template Builder. Double-click a node,
  * type a name, pick a candidate — the node now represents that compound.
- * Candidates come from the GEMs MAP library (instantly, offline) and from KEGG /
+ * Candidates come from the GEMsMAP library (instantly, offline) and from KEGG /
  * ChEBI / MetaNetX when the backend runs. Picking one is a human confirmation.
  */
 import { useEffect, useMemo, useState } from 'react';
@@ -83,8 +83,8 @@ function MetaboliteIdentity({ metId, query }: { metId: string; query?: string })
         }} />
       <div className="row gap small muted">
         {busy ? <><span className="spinner sm" /> searching BiGG, KEGG, ChEBI and MetaNetX…</> : remote?.online
-          ? <>GEMs MAP library{remote.sources?.BiGG === 'ok' ? ' + BiGG' : ''} + KEGG + ChEBI (resolved through MetaNetX){remote.sources?.BiGG === 'not downloaded' ? <span> · BiGG data not downloaded (Template Library → BiGG)</span> : null}</>
-          : 'GEMs MAP library'}
+          ? <>GEMsMAP library{remote.sources?.BiGG === 'ok' ? ' + BiGG' : ''} + KEGG + ChEBI (resolved through MetaNetX){remote.sources?.BiGG === 'not downloaded' ? <span> · BiGG data not downloaded (Template Library → BiGG)</span> : null}</>
+          : 'GEMsMAP library'}
       </div>
       {remote && !remote.online && remote.note && <div className="tm-note small">{remote.note}</div>}
       <div className="list scroll id-results">
@@ -164,7 +164,7 @@ function ReactionIdentity({ reactionId }: { reactionId: string }) {
       <div className="muted small">A reaction is defined by its participants, stoichiometry and direction — not by its name, which varies between models. Database identifiers make later matching to a GEM stronger.</div>
       <div className="eq mono">{equationText(design, r)}</div>
       <div className="row gap small"><span className="muted">Current:</span><b>{r.name}</b>{r.canonicalName && <span>{r.canonicalName}</span>}<StatusBadge status={r.identity.status} />{r.ec.length > 0 && <span className="tag">EC {r.ec.join(', ')}</span>}</div>
-      <div className="section-title">GEMs MAP library (built-in templates)</div>
+      <div className="section-title">GEMsMAP library (built-in templates)</div>
       <input className="input" placeholder="Filter by name or EC (hexokinase, 2.7.1.1 …)" value={text} onChange={(e) => setText(e.target.value)} />
       <div className="list id-results">
         {local.map((c, i) => <ReactionRow key={`l${i}`} c={c} onPick={() => pick(c)} />)}

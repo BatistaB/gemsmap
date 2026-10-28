@@ -1,6 +1,6 @@
 """Curation of KEGG map00020 — Citrate cycle (TCA cycle).
 
-The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMs MAP's own
+The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMsMAP's own
 drawing (the cycle as a circle, clockwise from oxaloacetate, enzymes inside and cofactors outside; pyruvate entry
 and anaplerosis above), not a copy of the KEGG map.
 """
@@ -14,7 +14,7 @@ VERSION = "0.1.0"
 CREATED = "2026-10-09T00:00:00Z"
 DESCRIPTION = ("The citrate cycle with the entries and exits KEGG map00020 draws: pyruvate dehydrogenase, pyruvate carboxylase and "
                "PEP carboxykinase (anaplerosis), ATP-citrate lyase (citrate cleavage, reductive TCA / lipogenesis) and cis-aconitate "
-               "as the aconitase intermediate. Derived from KEGG; drawn by GEMs MAP.")
+               "as the aconitase intermediate. Derived from KEGG; drawn by GEMsMAP.")
 SCOPE = {"level": "universal", "taxa": [], "note": "The cycle is conserved; ATP-citrate lyase, PC and the ferredoxin-dependent oxidoreductases (PFOR, OGOR) are organism-specific. Compartments are left to the person mapping onto a GEM (mitochondrial in eukaryotes, cytosolic in prokaryotes)."}
 TAGS = ["KEGG", "map00020", "TCA cycle", "citrate cycle", "central carbon"]
 
@@ -102,7 +102,7 @@ DECISIONS = [
     "Quinone / quinol of SDH are generic entities (ubiquinone or menaquinone depending on the organism): kept generic, flagged for review.",
     "Directionality follows the KGML of rn00020 for every drawn step (the overall complexes take it from their KEGG half-reactions).",
     "Compartments are not part of the template: the person chooses them when mapping onto a GEM (mitochondrial matrix in eukaryotes, cytosol in prokaryotes; the matcher proposes and asks when both exist).",
-    "Identities: an entity or reaction already confirmed in the GEMs MAP canonical library keeps that confirmation; every other identity is an AI suggestion and goes to the review queue when it is not high-confidence.",
+    "Identities: an entity or reaction already confirmed in the GEMsMAP canonical library keeps that confirmation; every other identity is an AI suggestion and goes to the review queue when it is not high-confidence.",
 ]
 
 
@@ -138,6 +138,6 @@ def layout(L: Layout) -> dict:
     L.port("icit>Glyoxylate and dicarboxylate metabolism", 520, 40, n["icit"])
 
     L.label("Citrate cycle (TCA cycle)", -680, -690, size=16, weight=700, italic=False, kind="title")
-    L.label("derived from KEGG map00020 · drawn by GEMs MAP", -680, -670, size=10, weight=400, italic=True)
+    L.label("derived from KEGG map00020 · drawn by GEMsMAP", -680, -670, size=10, weight=400, italic=True)
     L.label("TCA cycle", -34, 5, size=13, weight=600)
     return L.result()

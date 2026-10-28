@@ -1,4 +1,4 @@
-"""Build the GEMs MAP release files from a clean copy of the repository.
+"""Build the GEMsMAP release files from a clean copy of the repository.
 
     python tools/release/build.py                 -> release/gemsmap-<version>-py3-none-any.whl and .tar.gz (PyPI)
                                                      and release/GEMsMAP-<version>.zip (double-click download)
@@ -101,7 +101,7 @@ def check_archive(path: Path, version: str) -> list[str]:
         names = zipfile.ZipFile(path).namelist()
         problems = [f"private-looking file: {n}" for n in names if PRIVATE.search(n)]
         top = f"GEMsMAP-{version}/"
-        need = ["Start GEMs MAP (Windows).bat", "Start GEMs MAP (macOS).command", "start-gemsmap-linux.sh", "README-FIRST.txt",
+        need = ["Start GEMsMAP (Windows).bat", "Start GEMsMAP (macOS).command", "start-gemsmap-linux.sh", "README-FIRST.txt",
                 "app/start-windows.ps1", "app/start-unix.sh", f"app/gemsmap-{version}-py3-none-any.whl"]
         return problems + [f"missing {top}{n}" for n in need if top + n not in names]
     names = zipfile.ZipFile(path).namelist() if path.suffix == ".whl" else [m.name for m in tarfile.open(path).getmembers()]
@@ -127,6 +127,9 @@ def main() -> int:
     pkg = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))["version"]
     if pkg != npm_version(version):
         sys.exit(f"Version mismatch: backend/gemsmap/__init__.py says {version}, package.json says {pkg} (expected {npm_version(version)})")
+    cff = re.search(r"(?m)^version:\s*['\"]?([^'\"\s]+)", (ROOT / "CITATION.cff").read_text(encoding="utf-8"))
+    if not cff or cff.group(1) != version:
+        sys.exit(f"Version mismatch: backend/gemsmap/__init__.py says {version}, CITATION.cff says {cff.group(1) if cff else 'nothing'}")
     npm = shutil.which("npm")
     if not npm:
         sys.exit("npm not found: install Node.js 18 or newer")
@@ -141,7 +144,7 @@ def main() -> int:
         sys.exit("Refusing to build: private-looking files are tracked or not ignored:\n  " + "\n  ".join(leaked))
 
     tmp = Path(tempfile.mkdtemp(prefix="gemsmap-release-"))
-    print(f"GEMs MAP {version}: copying {len(files)} files to {tmp}")
+    print(f"GEMsMAP {version}: copying {len(files)} files to {tmp}")
     try:
         for f in files:
             dst = tmp / f
@@ -172,7 +175,7 @@ def main() -> int:
         if not ok:
             print("\nThe release files have problems (see above): do not publish them.")
             return 1
-        print(f"\nRelease files for GEMs MAP {version} are in {OUT.relative_to(ROOT)}/")
+        print(f"\nRelease files for GEMsMAP {version} are in {OUT.relative_to(ROOT)}/")
         return 0
     finally:
         if a.keep:

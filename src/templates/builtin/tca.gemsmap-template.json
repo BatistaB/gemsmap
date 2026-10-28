@@ -14,7 +14,7 @@
    "note": "Mitochondrial in eukaryotes, cytosolic in prokaryotes."
   },
   "authors": [
-   "GEMs MAP"
+   "GEMsMAP"
   ],
   "created": "2026-10-02T00:00:00.000Z",
   "modified": "2026-10-08T00:00:00.000Z",
@@ -74,7 +74,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "acetyl-CoA"
    },
@@ -113,7 +113,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "citrate"
    },
@@ -154,7 +154,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "isocitrate"
    },
@@ -197,7 +197,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "2-oxoglutarate"
    },
@@ -236,7 +236,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "succinyl-CoA"
    },
@@ -277,7 +277,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "succinate"
    },
@@ -317,7 +317,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "fumarate"
    },
@@ -372,7 +372,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "L-malate"
    },
@@ -412,7 +412,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "oxaloacetate"
    },
@@ -448,7 +448,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "H2O"
    },
@@ -486,7 +486,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "CoA"
    },
@@ -525,7 +525,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "NAD+"
    },
@@ -561,7 +561,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "CO2"
    },
@@ -598,7 +598,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "NADH"
    },
@@ -636,7 +636,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "ADP"
    },
@@ -675,7 +675,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "phosphate"
    },
@@ -713,7 +713,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "ATP"
    },
@@ -737,7 +737,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "ubiquinone"
    },
@@ -760,7 +760,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "ubiquinol"
    }
@@ -959,7 +959,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "CS",
@@ -998,7 +998,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "ACONT",
@@ -1057,7 +1057,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "ICDHyr",
@@ -1121,7 +1121,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "AKGDH",
@@ -1184,7 +1184,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "SUCOAS",
@@ -1237,7 +1237,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "SUCDi",
@@ -1286,7 +1286,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "FUM",
@@ -1338,7 +1338,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "MDH",

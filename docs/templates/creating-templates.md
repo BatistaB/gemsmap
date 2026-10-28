@@ -28,11 +28,11 @@ Open a template from the library (*Open*), make your own copy of a built-in (*Du
 ## Defining identities
 
 <figure class="gm-shot gm-medium" markdown>
-![The "Define identity — template entity" dialog for the citrate node of the TCA template: display name, compartment, the current confirmed identity Citrate with KEGG C00158 and ChEBI 16947 and 30769, a search box with "Citrate", and candidates: Citrate (GEMs MAP library, BiGG, KEGG, MetaNetX) with MetaNetX, KEGG, ChEBI, BiGG and ModelSEED identifiers, followed by unrelated ChEBI hits such as "gallium citrate ga 67" and "citrate-coated silver nanoparticle".](../assets/images/templates-identity-dialog.png)
-<figcaption>The identity search merges the GEMs MAP library, the BiGG tables, and KEGG and ChEBI resolved through MetaNetX. Free-text searches also return loosely related compounds, which is why a person confirms the identity.</figcaption>
+![The "Define identity — template entity" dialog for the citrate node of the TCA template: display name, compartment, the current confirmed identity Citrate with KEGG C00158 and ChEBI 16947 and 30769, a search box with "Citrate", and candidates: Citrate (GEMsMAP library, BiGG, KEGG, MetaNetX) with MetaNetX, KEGG, ChEBI, BiGG and ModelSEED identifiers, followed by unrelated ChEBI hits such as "gallium citrate ga 67" and "citrate-coated silver nanoparticle".](../assets/images/templates-identity-dialog.png)
+<figcaption>The identity search merges the GEMsMAP library, the BiGG tables, and KEGG and ChEBI resolved through MetaNetX. Free-text searches also return loosely related compounds, which is why a person confirms the identity.</figcaption>
 </figure>
 
-The search looks in the **GEMs MAP library** (offline), the **BiGG tables** (offline, if installed) and **KEGG and ChEBI** resolved through **MetaNetX** (online, through the backend; answers cached for 90 days). Each candidate shows its identifiers, formula, sources and why it matched. Without the backend the search uses the library only and says so.
+The search looks in the **GEMsMAP library** (offline), the **BiGG tables** (offline, if installed) and **KEGG and ChEBI** resolved through **MetaNetX** (online, through the backend; answers cached for 90 days). Each candidate shows its identifiers, formula, sources and why it matched. Without the backend the search uses the library only and says so.
 
 **Identity statuses** belong to the template, not to any model:
 

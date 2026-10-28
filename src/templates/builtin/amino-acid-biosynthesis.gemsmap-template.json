@@ -4,7 +4,7 @@
  "metadata": {
   "id": "amino-acid-biosynthesis",
   "name": "Amino acid biosynthesis (overview)",
-  "description": "Where the twenty amino acids come from: the central-carbon precursors (3-phosphoglycerate, PEP + erythrose-4P, pyruvate, oxaloacetate, 2-oxoglutarate, ribose-5P / PRPP) and the biosynthetic families built on them — serine, aromatic, pyruvate, aspartate, glutamate and histidine. Whole pathways are drawn as summary arrows (KEGG modules). After KEGG map01230; drawn by GEMs MAP.",
+  "description": "Where the twenty amino acids come from: the central-carbon precursors (3-phosphoglycerate, PEP + erythrose-4P, pyruvate, oxaloacetate, 2-oxoglutarate, ribose-5P / PRPP) and the biosynthetic families built on them — serine, aromatic, pyruvate, aspartate, glutamate and histidine. Whole pathways are drawn as summary arrows (KEGG modules). After KEGG map01230; drawn by GEMsMAP.",
   "pathway": "Biosynthesis of amino acids",
   "section": "Central carbon",
   "template_version": "0.1.0",
@@ -96,7 +96,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00031; MetaNetX MNXM1364061; BiGG glc__D; GEMs MAP library 'D-glucose'"
+     "note": "KEGG C00031; MetaNetX MNXM1364061; BiGG glc__D; GEMsMAP library 'D-glucose'"
     },
     "related": [
      {
@@ -186,7 +186,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00197; MetaNetX MNXM727604; BiGG 3pg; GEMs MAP library '3-phospho-D-glycerate'"
+     "note": "KEGG C00197; MetaNetX MNXM727604; BiGG 3pg; GEMsMAP library '3-phospho-D-glycerate'"
     },
     "library": "3-phospho-D-glycerate",
     "provenance": {
@@ -238,7 +238,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00074; MetaNetX MNXM73; BiGG pep; GEMs MAP library 'phosphoenolpyruvate'"
+     "note": "KEGG C00074; MetaNetX MNXM73; BiGG pep; GEMsMAP library 'phosphoenolpyruvate'"
     },
     "library": "phosphoenolpyruvate",
     "provenance": {
@@ -294,7 +294,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00022; MetaNetX MNXM23; BiGG pyr; GEMs MAP library 'pyruvate'"
+     "note": "KEGG C00022; MetaNetX MNXM23; BiGG pyr; GEMsMAP library 'pyruvate'"
     },
     "library": "pyruvate",
     "provenance": {
@@ -350,7 +350,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00036; MetaNetX MNXM46; BiGG oaa; GEMs MAP library 'oxaloacetate'"
+     "note": "KEGG C00036; MetaNetX MNXM46; BiGG oaa; GEMsMAP library 'oxaloacetate'"
     },
     "library": "oxaloacetate",
     "provenance": {
@@ -411,7 +411,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00026; MetaNetX MNXM1368744; BiGG akg; GEMs MAP library '2-oxoglutarate'"
+     "note": "KEGG C00026; MetaNetX MNXM1368744; BiGG akg; GEMsMAP library '2-oxoglutarate'"
     },
     "library": "2-oxoglutarate",
     "provenance": {
@@ -470,7 +470,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00117; MetaNetX MNXM1363910; BiGG r5p; GEMs MAP library 'D-ribose-5-phosphate'"
+     "note": "KEGG C00117; MetaNetX MNXM1363910; BiGG r5p; GEMsMAP library 'D-ribose-5-phosphate'"
     },
     "library": "D-ribose-5-phosphate",
     "provenance": {
@@ -1806,7 +1806,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00002; MetaNetX MNXM3; BiGG atp; GEMs MAP library 'ATP'"
+     "note": "KEGG C00002; MetaNetX MNXM3; BiGG atp; GEMsMAP library 'ATP'"
     },
     "library": "ATP",
     "provenance": {
@@ -1858,7 +1858,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00008; MetaNetX MNXM40333; BiGG adp; GEMs MAP library 'ADP'"
+     "note": "KEGG C00008; MetaNetX MNXM40333; BiGG adp; GEMsMAP library 'ADP'"
     },
     "library": "ADP",
     "provenance": {
@@ -2027,7 +2027,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00009; MetaNetX MNXM9; BiGG pi; GEMs MAP library 'phosphate'"
+     "note": "KEGG C00009; MetaNetX MNXM9; BiGG pi; GEMsMAP library 'phosphate'"
     },
     "library": "phosphate",
     "provenance": {
@@ -2083,7 +2083,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00006; MetaNetX MNXM5; BiGG nadp; GEMs MAP library 'NADP+'"
+     "note": "KEGG C00006; MetaNetX MNXM5; BiGG nadp; GEMsMAP library 'NADP+'"
     },
     "library": "NADP+",
     "provenance": {
@@ -2134,7 +2134,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00005; MetaNetX MNXM738702; BiGG nadph; GEMs MAP library 'NADPH'"
+     "note": "KEGG C00005; MetaNetX MNXM738702; BiGG nadph; GEMsMAP library 'NADPH'"
     },
     "library": "NADPH",
     "provenance": {
@@ -2186,7 +2186,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00001; MetaNetX WATER; BiGG h2o; GEMs MAP library 'H2O'"
+     "note": "KEGG C00001; MetaNetX WATER; BiGG h2o; GEMsMAP library 'H2O'"
     },
     "library": "H2O",
     "provenance": {
@@ -2482,7 +2482,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "KEGG C00024; MetaNetX MNXM1104266; BiGG accoa; GEMs MAP library 'acetyl-CoA'"
+     "note": "KEGG C00024; MetaNetX MNXM1104266; BiGG accoa; GEMsMAP library 'acetyl-CoA'"
     },
     "library": "acetyl-CoA",
     "provenance": {
@@ -5360,7 +5360,7 @@
     "id": "tpl_lbl_002",
     "x": -700,
     "y": -130,
-    "text": "overview after KEGG map01230 · drawn by GEMs MAP",
+    "text": "overview after KEGG map01230 · drawn by GEMsMAP",
     "size": 10,
     "weight": 400,
     "italic": true,

@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/brand/gemsmap-logo-dark.png">
-    <img src="docs/brand/gemsmap-logo.png" alt="GEMs MAP" width="460">
+    <img src="docs/brand/gemsmap-logo.png" alt="GEMsMAP" width="460">
   </picture>
 </p>
 
@@ -11,7 +11,7 @@
   <img src="https://github.com/BatistaB/gemsmap/actions/workflows/ci.yml/badge.svg" alt="CI"> <a href="https://pypi.org/project/gemsmap/"><img src="https://img.shields.io/pypi/v/gemsmap?include_prereleases&label=PyPI" alt="PyPI"></a> <a href="https://gemsmap.readthedocs.io/"><img src="https://readthedocs.org/projects/gemsmap/badge/?version=latest" alt="Documentation"></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
 </p>
 
-GEMs MAP takes a genome-scale metabolic model (GEM) from import to a publication-quality figure in one application.
+GEMsMAP takes a genome-scale metabolic model (GEM) from import to a publication-quality figure in one application.
 Explore and simulate the model with [COBRApy](https://opencobra.github.io/cobrapy/), compare conditions, then map
 the results onto editable pathway figures, without writing every step as code.
 Think "Canva for metabolic networks" with COBRApy and pathway-style GEM semantics underneath.
@@ -22,11 +22,11 @@ It runs on your own computer, and your models are not uploaded anywhere.
   <br><sub>The built-in central carbon example in the Map Builder: arrow width and colour encode flux, and each density plot shows a flux distribution per condition. The example data are illustrative.</sub>
 </p>
 
-## Why GEMs MAP?
+## Why GEMsMAP?
 
 Asking a GEM a question is easy with COBRApy; **reading the answer** is harder. Flux vectors are long tables,
 identifiers differ between models, and the figures that communicate a result are usually redrawn by hand, outside
-the analysis. GEMs MAP keeps these steps together: every result stays inspectable (which medium, objective, bounds
+the analysis. GEMsMAP keeps these steps together: every result stays inspectable (which medium, objective, bounds
 and solver produced it), and the identifiers COBRApy uses are carried onto the map, so results bind to the drawing
 without manual matching.
 
@@ -69,7 +69,7 @@ asks you to review uncertain cases. [More about templates](https://gemsmap.readt
 
 ## Install
 
-> **GEMs MAP 0.3 is in beta.** It works, but features and file formats can still change before the first stable
+> **GEMsMAP 0.3 is in beta.** It works, but features and file formats can still change before the first stable
 > release. Save your work as `.gemsmap` project files, and please [report problems](https://github.com/BatistaB/gemsmap/issues).
 
 With Python 3.10 or newer, on Windows, macOS or Linux:
@@ -79,22 +79,22 @@ pip install gemsmap
 gemsmap
 ```
 
-`gemsmap` starts GEMs MAP and opens it in your browser at http://127.0.0.1:8765; keep the window open while you work.
+`gemsmap` starts GEMsMAP and opens it in your browser at http://127.0.0.1:8765; keep the window open while you work.
 Other ways, without Python:
 
 - [uv](https://docs.astral.sh/uv/): `uvx gemsmap`.
 - **Zip:** download `GEMsMAP-<version>.zip` from [Releases](https://github.com/BatistaB/gemsmap/releases), extract it and
-  double-click *Start GEMs MAP* (Windows `.bat`, macOS `.command`; Linux: `bash start-gemsmap-linux.sh`). The first
-  start prepares Python and GEMs MAP inside that folder; `README-FIRST.txt` explains the rest.
+  double-click *Start GEMsMAP* (Windows `.bat`, macOS `.command`; Linux: `bash start-gemsmap-linux.sh`). The first
+  start prepares Python and GEMsMAP inside that folder; `README-FIRST.txt` explains the rest.
 
-**New to Python environments?** Install GEMs MAP in an environment of its own, so its libraries cannot interfere
+**New to Python environments?** Install GEMsMAP in an environment of its own, so its libraries cannot interfere
 with other projects. The [step-by-step guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/#step-by-step-install-with-pip) shows how on Windows, macOS and
 Linux: create a folder, create the environment, activate it, update pip, install and start.
 Requirements and troubleshooting: [Installation guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/).
 
 ## Quick start
 
-1. Start GEMs MAP with `gemsmap`. It opens in **COBRAGUI**.
+1. Start GEMsMAP with `gemsmap`. It opens in **COBRAGUI**.
 2. Drop a model file (SBML, COBRA JSON or MATLAB `.mat`) on the window, or pick one of the example models
    bundled with COBRApy.
 3. Adjust the medium, bounds or objective if needed, then run **pFBA** (FBA, loopless FBA and FVA are also
@@ -108,7 +108,7 @@ about 45 minutes.
 
 ## Scientific principles
 
-GEMs MAP aims to make results easy to read without changing what they mean:
+GEMsMAP aims to make results easy to read without changing what they mean:
 
 - **All flux computations run in COBRApy**, in Python on your computer; the browser never computes fluxes.
 - **A failed solve never shows fluxes.** Every analysis reports its solver status; a non-optimal result lists what
@@ -137,7 +137,7 @@ The user guide is published at **<https://gemsmap.readthedocs.io/>**:
 
 ## Project status
 
-GEMs MAP 0.3 is a beta. Model import and editing, FBA, pFBA, loopless FBA and FVA, result comparison, the Map
+GEMsMAP 0.3 is a beta. Model import and editing, FBA, pFBA, loopless FBA and FVA, result comparison, the Map
 Builder and template matching are implemented. Solver selection, flux sampling and gene knockouts are planned; see
 the [roadmap](https://gemsmap.readthedocs.io/en/latest/reference/roadmap/). Changes between versions are listed in [CHANGELOG.md](CHANGELOG.md).
 
@@ -146,13 +146,13 @@ Projects from version 0.2 and earlier, when the application was called *MetMap*,
 
 ## Getting help
 
-To report a problem, click **GEMs MAP &lt;version&gt;** in the COBRAGUI status bar, then *Copy diagnostics*, and
+To report a problem, click **GEMsMAP &lt;version&gt;** in the COBRAGUI status bar, then *Copy diagnostics*, and
 paste it into a [new issue](https://github.com/BatistaB/gemsmap/issues/new/choose) (or run `gemsmap diagnose`).
 Feature requests are welcome in the same place.
 
 ## Contributing
 
-To run GEMs MAP from source (Node.js 18+ and Python 3.10+):
+To run GEMsMAP from source (Node.js 18+ and Python 3.10+):
 
 ```bash
 npm install
@@ -165,14 +165,21 @@ npm run dev             # interface on http://localhost:5173 (forwards /api to t
 - [Architecture](docs/ARCHITECTURE.md): how the code is organised (interface, COBRApy backend, templates).
 - [Contributing to the docs](docs/CONTRIBUTING.md): building and previewing the documentation site.
 
+## How to cite
+
+Please cite the version of GEMsMAP you used; GitHub's *Cite this repository* button gives the reference from
+[CITATION.cff](CITATION.cff). Each version will get its own DOI on Zenodo, and an article describing GEMsMAP is in
+preparation. Both will be listed on the [How to cite](https://gemsmap.readthedocs.io/en/latest/reference/how-to-cite/)
+page, together with the tools to cite alongside GEMsMAP.
+
 ## License and acknowledgements
 
-GEMs MAP is released under the [MIT License](LICENSE).
+GEMsMAP is released under the [MIT License](LICENSE).
 
 All simulations run in [COBRApy](https://opencobra.github.io/cobrapy/) (Ebrahim *et al.*, 2013, *BMC Systems
 Biology* 7:74). Identifier curation uses [MetaNetX/MNXref](https://www.metanetx.org) and, when installed locally,
-the universal tables of [BiGG Models](https://bigg.bio). GEMs MAP is an independent project and is not maintained
+the universal tables of [BiGG Models](https://bigg.bio). GEMsMAP is an independent project and is not maintained
 or endorsed by the COBRApy, BiGG, MetaNetX or KEGG teams.
 
 The logo is a gem cut from a metabolic network, coloured like a flux map ([brand guide](docs/brand/README.md)).
-How the project started: [the story of GEMs MAP](https://gemsmap.readthedocs.io/en/latest/history/).
+How the project started: [the story of GEMsMAP](https://gemsmap.readthedocs.io/en/latest/history/).

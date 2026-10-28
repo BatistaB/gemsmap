@@ -38,7 +38,7 @@ OUT = ROOT / "docs" / "assets" / "images"
 DEBUG = Path(tempfile.gettempdir()) / "gemsmap-capture-debug"
 DSF = 1.5                      # device scale factor: crisp text without huge files
 VIEW = {"width": 1600, "height": 900}
-BRAND = (71, 69, 196)          # #4745c4, a blue edge of the GEMs MAP logo
+BRAND = (71, 69, 196)          # #4745c4, a blue edge of the GEMsMAP logo
 PHASES = ("lab", "maps", "templates", "metanetx")
 
 

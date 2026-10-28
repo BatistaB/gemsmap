@@ -1,6 +1,6 @@
 # Tutorials
 
-Step-by-step tutorials that follow a real genome-scale model from file to figure. They are written together with the GEMs MAP author and tested end to end in the application; every screenshot comes from that test run.
+Step-by-step tutorials that follow a real genome-scale model from file to figure. They are written together with the GEMsMAP author and tested end to end in the application; every screenshot comes from that test run.
 
 <div class="grid cards" markdown>
 
@@ -22,6 +22,6 @@ Step-by-step tutorials that follow a real genome-scale model from file to figure
 
 ## Before you start
 
-- Install and start GEMs MAP with its backend: [Installation](../getting-started/installation.md).
+- Install and start GEMsMAP with its backend: [Installation](../getting-started/installation.md).
 - The tutorials download models from [BiGG Models](https://bigg.bio); the first run of the metabolite analysis also needs the internet.
 - Values such as growth rates are reproducible; individual fluxes can differ slightly between runs because of alternative optimal solutions. The tutorials say what to expect and why.

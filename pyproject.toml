@@ -1,4 +1,4 @@
-# The installable GEMs MAP package (pip install gemsmap): the COBRAGUI backend plus the built web interface.
+# The installable GEMsMAP package (pip install gemsmap): the COBRAGUI backend plus the built web interface.
 # Build it with tools/release/build.py, which compiles the interface into backend/gemsmap/web/ from a clean copy of the
 # tracked files first. Development does not use this file: npm run dev + npm run backend (see CONTRIBUTING.md).
 [build-system]
@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 [project]
 name = "gemsmap"
 dynamic = ["version"]
-description = "GEMs MAP: an interactive workbench for genome-scale metabolic models (COBRApy analyses, editable metabolic maps, identity-aware pathway templates)"
+description = "GEMsMAP: an interactive workbench for genome-scale metabolic models (COBRApy analyses, editable metabolic maps, identity-aware pathway templates)"
 readme = "PYPI_README.md"
 license = "MIT"
 license-files = ["LICENSE"]

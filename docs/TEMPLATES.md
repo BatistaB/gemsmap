@@ -34,7 +34,7 @@ The engine runs in the browser. The Map Builder works without the Python backend
 
 ```jsonc
 {
-  "id": "tca", "name": "TCA cycle", "version": "2.0", "author": "GEMs MAP",
+  "id": "tca", "name": "TCA cycle", "version": "2.0", "author": "GEMsMAP",
   "compartmentRules": {
     "default": { "preferred": ["MITOCHONDRION"], "fallback": ["CYTOSOL", "INTRACELLULAR"],
                  "note": "The TCA cycle is mitochondrial in eukaryotes; …" }

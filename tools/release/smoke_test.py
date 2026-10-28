@@ -1,4 +1,4 @@
-"""Install-and-run check of an installed GEMs MAP (standard library only).
+"""Install-and-run check of an installed GEMsMAP (standard library only).
 
     python tools/release/smoke_test.py --python <env python> [--port 8799] [--expect-version 0.3.0b1]
 
@@ -39,7 +39,7 @@ def main() -> int:
             failures.append(what)
 
     v = subprocess.run([a.python, "-m", "gemsmap", "--version"], capture_output=True, text=True)
-    check(v.returncode == 0 and "GEMs MAP" in v.stdout, f"gemsmap --version -> {v.stdout.strip() or v.stderr.strip()}")
+    check(v.returncode == 0 and "GEMsMAP" in v.stdout, f"gemsmap --version -> {v.stdout.strip() or v.stderr.strip()}")
     if a.expect_version:
         check(a.expect_version in v.stdout, f"version is {a.expect_version}")
     d = subprocess.run([a.python, "-m", "gemsmap", "diagnose"], capture_output=True, text=True)

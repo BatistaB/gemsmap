@@ -1,6 +1,6 @@
 """The `gemsmap` command.
 
-    gemsmap                      start GEMs MAP and open it in the browser (http://127.0.0.1:8765)
+    gemsmap                      start GEMsMAP and open it in the browser (http://127.0.0.1:8765)
     gemsmap --port 8766          another port (the Map Builder's autosave belongs to the address, so keep one port)
     gemsmap --no-browser         start without opening the browser
     gemsmap diagnose             versions, solvers and folders, to paste into a bug report
@@ -72,19 +72,19 @@ def run(host: str, port: int, open_browser: bool) -> int:
     base = f"http://{'127.0.0.1' if host in ('0.0.0.0', '') else host}:{port}"
     found = _probe(base)
     if found == "gemsmap":
-        print(f"GEMs MAP is already running at {base}")
+        print(f"GEMsMAP is already running at {base}")
         if open_browser:
             webbrowser.open(base)
         return 0
     if found == "backend":
-        print(f"Port {port} is used by a GEMs MAP backend without the interface (a development backend?).\n"
+        print(f"Port {port} is used by a GEMsMAP backend without the interface (a development backend?).\n"
               f"Stop it, or start on another port: gemsmap --port {port + 1}")
         return 1
     if not _port_free(host, port):
         print(f"Port {port} is in use by another program. Start on another port: gemsmap --port {port + 1}")
         return 1
 
-    print(f"Starting GEMs MAP {__version__} ...", flush=True)
+    print(f"Starting GEMsMAP {__version__} ...", flush=True)
     import uvicorn
 
     from .server import app, has_web
@@ -93,7 +93,7 @@ def run(host: str, port: int, open_browser: bool) -> int:
               "Only the API runs; use `npm run dev` for the interface.")
     if open_browser and has_web():
         threading.Thread(target=_open_when_ready, args=(base,), daemon=True).start()
-    print(f"GEMs MAP {__version__} is running at {base}\n"
+    print(f"GEMsMAP {__version__} is running at {base}\n"
           "Keep this window open while you use it. Press Ctrl+C to stop.", flush=True)
     uvicorn.run(app, host=host, port=port, log_level="warning")
     return 0
@@ -101,7 +101,7 @@ def run(host: str, port: int, open_browser: bool) -> int:
 
 def diagnose() -> str:
     """Everything a bug report needs, one fact per line."""
-    lines = [f"GEMs MAP {__version__}",
+    lines = [f"GEMsMAP {__version__}",
              f"Python {platform.python_version()} ({platform.python_implementation()}) at {sys.executable}",
              f"System {platform.platform()} ({platform.machine()})"]
     try:
@@ -140,7 +140,7 @@ def bigg_data(folder: Optional[Path]) -> int:
         print(f"BiGG data not installed: {e}")
         return 1
     print(f"BiGG data installed in {bigg_service.data_dir()}: {st['metabolites']} universal metabolites, {st['reactions']} reactions.\n"
-          "A running GEMs MAP uses them from its next search.")
+          "A running GEMsMAP uses them from its next search.")
     return 0
 
 
@@ -151,8 +151,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             stream.reconfigure(errors="backslashreplace")
         except (AttributeError, ValueError):
             pass
-    ap = argparse.ArgumentParser(prog="gemsmap", description="GEMs MAP: an interactive workbench for genome-scale metabolic models.")
-    ap.add_argument("--version", action="version", version=f"GEMs MAP {__version__}")
+    ap = argparse.ArgumentParser(prog="gemsmap", description="GEMsMAP: an interactive workbench for genome-scale metabolic models.")
+    ap.add_argument("--version", action="version", version=f"GEMsMAP {__version__}")
     ap.add_argument("--host", default="127.0.0.1", help="address to listen on (default 127.0.0.1: this computer only)")
     ap.add_argument("--port", type=int, default=DEFAULT_PORT, help=f"port (default {DEFAULT_PORT})")
     ap.add_argument("--no-browser", action="store_true", help="do not open the browser")

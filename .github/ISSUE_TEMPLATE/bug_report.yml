@@ -24,7 +24,7 @@ body:
     id: env
     attributes:
       label: Diagnostics
-      description: Click "GEMs MAP <version>" in the COBRAGUI status bar, then "Copy diagnostics", and paste it here (or the output of `gemsmap diagnose`). Add the model's format and size; its name only if it is not private.
+      description: Click "GEMsMAP <version>" in the COBRAGUI status bar, then "Copy diagnostics", and paste it here (or the output of `gemsmap diagnose`). Add the model's format and size; its name only if it is not private.
       render: text
   - type: textarea
     id: logs

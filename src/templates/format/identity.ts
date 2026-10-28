@@ -2,7 +2,7 @@
  * Template identity: candidates for "what is this node?", and the rules that
  * keep human decisions on top.
  *
- *  - Sources: the GEMs MAP canonical library (offline, curated) and, when the
+ *  - Sources: the GEMsMAP canonical library (offline, curated) and, when the
  *    backend runs, KEGG / ChEBI searches resolved through MetaNetX (online).
  *  - A person picking a candidate makes the identity `confirmed`.
  *  - Machines (database search, Auto Identify, AI) only produce `suggested` or
@@ -22,9 +22,9 @@ export interface IdentityCandidate {
   synonyms: string[];
   identifiers: IdentifierTable;
   related?: RelatedFormSpec[];
-  /** Canonical-library id when the candidate comes from (or matches) the GEMs MAP library. */
+  /** Canonical-library id when the candidate comes from (or matches) the GEMsMAP library. */
   library?: string;
-  /** Where the candidate was found: "GEMs MAP library", "KEGG", "ChEBI", "MetaNetX". */
+  /** Where the candidate was found: "GEMsMAP library", "KEGG", "ChEBI", "MetaNetX". */
   sources: string[];
   /** Search relevance 0–1 (exact name 1, synonym 0.9, prefix 0.7, substring 0.5). Not a probability. */
   score: number;
@@ -52,7 +52,7 @@ export function sameCompound(a: { name: string; identifiers: IdentifierTable }, 
 
 function fromLibrary(m: CanonicalMetabolite, score: number, match: string): IdentityCandidate {
   return {
-    name: m.name, short: m.short, formula: m.formula, synonyms: m.synonyms, identifiers: m.xrefs, library: m.id, sources: ['GEMs MAP library'], score, match,
+    name: m.name, short: m.short, formula: m.formula, synonyms: m.synonyms, identifiers: m.xrefs, library: m.id, sources: ['GEMsMAP library'], score, match,
     related: m.related?.map((r) => ({ note: r.note, names: r.names, identifiers: r.xrefs })),
   };
 }

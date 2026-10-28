@@ -1,6 +1,6 @@
 # Metabolite analysis
 
-A flux vector describes reactions. Many biological questions are about **metabolites**: where does the cell's pyruvate come from? What happens to acetyl-CoA when oxygen is removed? Answering that from a stoichiometric matrix with thousands of columns, or from a list of reaction IDs you would have to memorise, is slow and error-prone. GEMs MAP offers two complementary tools:
+A flux vector describes reactions. Many biological questions are about **metabolites**: where does the cell's pyruvate come from? What happens to acetyl-CoA when oxygen is removed? Answering that from a stoichiometric matrix with thousands of columns, or from a list of reaction IDs you would have to memorise, is slow and error-prone. GEMsMAP offers two complementary tools:
 
 | Tool | Where | Question it answers |
 | --- | --- | --- |
@@ -52,13 +52,13 @@ The inspector shows two different kinds of information side by side, and they an
 
 Neither number is a property of the living cell:
 
-- **Degree is not importance.** Many reactions per metabolite (high *degree*) is typical of cofactors and hubs such as ATP, NAD(H), H₂O or H⁺, which is why GEMs MAP hides them in the local network and on maps by default. A metabolite with few reactions can still be essential.
+- **Degree is not importance.** Many reactions per metabolite (high *degree*) is typical of cofactors and hubs such as ATP, NAD(H), H₂O or H⁺, which is why GEMsMAP hides them in the local network and on maps by default. A metabolite with few reactions can still be essential.
 - **Turnover is not concentration.** Fluxes are rates; constraint-based models contain no concentrations at all.
-- **Neither is essentiality.** Whether a metabolite or reaction is required for growth is a separate question; GEMs MAP does not test it (gene and reaction deletion analyses are [planned](../reference/roadmap.md)).
+- **Neither is essentiality.** Whether a metabolite or reaction is required for growth is a separate question; GEMsMAP does not test it (gene and reaction deletion analyses are [planned](../reference/roadmap.md)).
 
 ## Turnover: what it is and what it is not
 
-For metabolite \(i\) and flux vector \(v\), GEMs MAP reports
+For metabolite \(i\) and flux vector \(v\), GEMsMAP reports
 
 \[
 \text{turnover}_i = \tfrac{1}{2} \sum_j \left| S_{ij}\, v_j \right|
@@ -107,7 +107,7 @@ Formulas are compared on heavy atoms only, because protonation states differ bet
 
 **What is written.** With *Apply confident matches* on, confident matches add the missing cross-references to the metabolite annotation under COBRApy/identifiers.org keys (`metanetx.chemical`, `kegg.compound`, `chebi`, `bigg.metabolite`, `seed.compound`, `metacyc.compound`, `hmdb`, `inchikey`, …). With *Fill missing formulas* on, a formula and charge are added **only where the model has none**; these MetaNetX values are at pH 7.3. For *Review* cases you decide: accept a candidate or *Keep original*. Existing values are never removed or rewritten, every accepted match can be undone, and *Revert all* restores the original annotation. Click a column title to sort the table; click again to reverse, and a third time for the original order.
 
-**The same compound in other compartments.** `pyr_c`, `pyr_m` and `pyr_e` are three metabolites of the model but one chemical, so a decision about the identity of one of them is meant for all of them. GEMs MAP recognises these siblings conservatively:
+**The same compound in other compartments.** `pyr_c`, `pyr_m` and `pyr_e` are three metabolites of the model but one chemical, so a decision about the identity of one of them is meant for all of them. GEMsMAP recognises these siblings conservatively:
 
 - the same ID once the compartment part is removed (`pyr_c`, `M_pyr_c`, `pyr[c]`, ModelSEED `cpd00020_c0`) **and** a compatible name;
 - for numbered IDs without a compartment part (yeast-GEM `s_1399`, `s_1401`), the same name without its compartment tag ("pyruvate [cytoplasm]");

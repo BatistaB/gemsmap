@@ -6,6 +6,10 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 ## [Unreleased]
 
 ### Added
+- **How to cite**: a documentation page (Reference → *How to cite*, also in the FAQ and the README) on citing
+  the software version (a Zenodo DOI per version, being set up), the article (in preparation), the documentation
+  and the tools GEMsMAP builds on. `CITATION.cff` gives GitHub's *Cite this repository*; `tools/release/build.py`
+  checks that its version matches the package.
 - **One identity for a compound in every compartment.** The same compound in other compartments (pyr_c, pyr_m, pyr_e; also
   M_ prefixes, ModelSEED cpd…_c0, ids[c], and numbered ids with the same name) is recognised conservatively (same base id
   and a compatible name; never two of them in one compartment).
@@ -27,9 +31,12 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
   queries, so they follow the chosen size.
 
 ### Changed
+- **The name is written GEMsMAP**, one word, everywhere: interface, documentation, README, package descriptions,
+  command-line messages, model notes and the zip launchers (*Start GEMsMAP (Windows).bat*, *Start GEMsMAP
+  (macOS).command*). Lowercase identifiers (`gemsmap`, `.gemsmap`, `GEMSMAP_*`) do not change.
 - Templates drafted with a language model are described as what they are: any LLM (Claude, GPT, Codex…) can draft a
   template from a reference map because the format is open and declarative, and a person reviews it in the Template
-  Builder. GEMs MAP has no AI built in, by design. The built-in KEGG templates now name their author as "Drafted with
+  Builder. GEMsMAP has no AI built in, by design. The built-in KEGG templates now name their author as "Drafted with
   an LLM (Claude Opus 5.5)" instead of an "AI curator"; the documentation page is *Templates drafted with an LLM*.
 - **Side panels fit the window.** Until a panel is dragged, it takes its usual width but at most 22 % of the window;
   a dragged width is kept, capped at 40 % of the window. Dragging and double-click-to-reset work as before. On a
@@ -43,10 +50,10 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
   wraps its items.
 - **Installation guide for beginners:** *Step by step: install with pip* on the Installation page walks through
   opening a terminal, checking Python, making a folder, creating and activating a virtual environment, updating
-  pip, installing and starting GEMs MAP, with Windows / macOS / Linux tabs (linked, so one choice applies to the
+  pip, installing and starting GEMsMAP, with Windows / macOS / Linux tabs (linked, so one choice applies to the
   whole site) and what each step should print. The quick start tutorial opens with the same sequence; the
   troubleshooting page covers `python` missing on Windows and PowerShell blocking the activation script.
-- **README** rewritten for people arriving at the project: what GEMs MAP is and why it exists, screenshots,
+- **README** rewritten for people arriving at the project: what GEMsMAP is and why it exists, screenshots,
   installation, a quick start, its scientific principles, links to the documentation, project status, help and
   contributing. Maintainer notes (private-data handling, backend modules and routes, project layout) moved out of
   it: private-data rules stay in `CONTRIBUTING.md`, the code organisation is in the new technical note
@@ -66,12 +73,12 @@ First beta, and the first public version: installable with `pip install gemsmap`
   `server.py`); one version for backend, interface and package (`backend/gemsmap/__init__.py`, PEP 440).
   - Commands: `gemsmap --port/--host/--no-browser`, `gemsmap diagnose` (versions, solvers, folders for bug
     reports), `gemsmap bigg-data [--from <folder>]` (the BiGG tables; `npm run bigg:data` uses the same code).
-    If GEMs MAP already runs on the port, `gemsmap` only opens the browser; a busy port gets a clear message.
+    If GEMsMAP already runs on the port, `gemsmap` only opens the browser; a busy port gets a clear message.
   - `pyproject.toml` (hatchling), `PYPI_README.md`; `tools/release/build.py` builds the wheel and sdist from a
     copy of the files git tracks, so git-ignored private data can never be packaged, and checks the archives;
     `tools/release/smoke_test.py` installs-and-runs a build (interface, health, textbook FBA = 0.8739).
   - Tested: Windows 11 with Python 3.12 (pip) and Ubuntu (WSL) with Python 3.14 (uv); wheel 0.5 MB.
-  - COBRAGUI status bar: **GEMs MAP <version>** opens the version and a *Copy diagnostics* block for bug reports
+  - COBRAGUI status bar: **GEMsMAP <version>** opens the version and a *Copy diagnostics* block for bug reports
     (versions, system, browser; no model or file names). `/api/health` also reports Python and the platform.
 - **Double-click zip** `GEMsMAP-<version>.zip` (built with the wheel): launchers for Windows (`.bat` + PowerShell),
   macOS (`.command`) and Linux (`.sh`) and `README-FIRST.txt`. The first start installs uv (pinned, only when it is
@@ -88,7 +95,7 @@ First beta, and the first public version: installable with `pip install gemsmap`
   *Auto label position* for reactions. They are saved in the template (`layout.nodes[].fill` is new) and kept when
   the template is drawn on a map.
 - Both side panels of the Template Builder fold section by section (click a title; *Expand all* / *Collapse all*).
-- **History page** in the documentation (`docs/history.md`, a top-level *History* tab): how GEMs MAP started, told
+- **History page** in the documentation (`docs/history.md`, a top-level *History* tab): how GEMsMAP started, told
   by its author, with links to the papers and tools it mentions and a table of other GEM visualisation tools. The
   roadmap now names KEGG maps and pathway images as possible sources for in-app AI template generation.
 - **Documentation site** (MkDocs + Material for MkDocs, Read the Docs): `mkdocs.yml`, `.readthedocs.yaml`, pinned
@@ -112,7 +119,7 @@ First beta, and the first public version: installable with `pip install gemsmap`
   Alanine, aspartate and glutamate metabolism (map00250) in a new *KEGG-derived templates* library section, and an
   **Amino acid biosynthesis overview** (after map01230) in *Central carbon*. Every KEGG compound and reaction of each
   map is drawn, folded (anomers, lumped complexes, cofactor variants) or omitted with a reason; identities come from
-  the GEMs MAP library, MetaNetX and the BiGG tables; layouts have no overlapping labels or crossings.
+  the GEMsMAP library, MetaNetX and the BiGG tables; layouts have no overlapping labels or crossings.
   - Pipeline `npm run kegg:template -- <map>` (`tools/kegg/`), per-map reports in `docs/templates/kegg/`.
   - `npm run template:qc` (validation, visual QC with the app's geometry, mapping comparison on the test models)
     and `npm run template:render` (SVG / PNG with the app's Scene).
@@ -143,7 +150,7 @@ First beta, and the first public version: installable with `pip install gemsmap`
     entity @ compartment, reactions with stoichiometry, cofactors, reversibility, EC and database IDs, pathway links)
     and layout (several visual instances per metabolite, ports, arrow geometry, groups, labels). Stable `tpl_*` ids.
   - Template Design Mode reuses the Map Builder canvas; a node is a *template entity*, not a model metabolite.
-    Double-click → identity search (GEMs MAP library offline; KEGG + ChEBI resolved through MetaNetX with the backend);
+    Double-click → identity search (GEMsMAP library offline; KEGG + ChEBI resolved through MetaNetX with the backend);
     reaction identity from its participants (built-in reactions and MNXref).
   - Identity statuses confirmed / suggested / ambiguous / unresolved on the canvas, review queue, Auto Identify,
     potential-identity-conflict handling (a confirmed identity is never overwritten).
@@ -152,7 +159,7 @@ First beta, and the first public version: installable with `pip install gemsmap`
   - Templates are applied to a GEM through the existing mapping engine and review dialog; user templates appear
     in the Map Builder gallery. Backend: `GET /api/identity/compounds`, `POST /api/identity/reactions`.
 - **BiGG data layer** for templates (`npm run bigg:data`, installed once from the bigg.bio bulk tables or from local
-  files; GEMs MAP does not call the BiGG API). BiGG universal metabolites join the identity search and Auto Identify;
+  files; GEMsMAP does not call the BiGG API). BiGG universal metabolites join the identity search and Auto Identify;
   reaction identity scores BiGG universal reactions on every participant (cofactors included), coefficient,
   compartment, EC and transport; *Add BiGG IDs* adds unambiguous BiGG IDs to a template's entities and reactions.
   Models exported by bigg.bio lose their `__<model>__` ID prefixes on import, and COBRAGUI completes their
@@ -229,11 +236,11 @@ First beta, and the first public version: installable with `pip install gemsmap`
   the page (e.g. a very large model sent to the map) can therefore no longer lock the app on every reload. The
   previous temporary session is kept as a spare (`gemsmap.autosave.previous`).
 - **The Model Lab is now COBRAGUI** (COBRA graphical user interface), with its own logo: *cobra* with a small
-  network in the *o*, *GUI* with the cobra as the *I*, and a screen showing the GEMs MAP gem and charts. The logo
+  network in the *o*, *GUI* with the cobra as the *I*, and a screen showing the GEMsMAP gem and charts. The logo
   sits at the left of the COBRAGUI header row, the workspace switcher reads *COBRAGUI · Map Builder · Templates*,
   and the interface, the README and the documentation use the new name (`docs/brand/` has the logo files; the
   master is in `logo/`).
-- **The project is now GEMs MAP** (formerly MetMap), with a new logo: a gem drawn as a metabolic network, its edges
+- **The project is now GEMsMAP** (formerly MetMap), with a new logo: a gem drawn as a metabolic network, its edges
   coloured like a flux map, and the COBRA cobra around the **P**. The top bar shows the gem on its own, the
   browser tab has a favicon, `docs/brand/` holds the logo files and a short brand guide, and `logo/` the masters;
   `tools/brand/make_brand.py` regenerates every logo file and the vector gem from them.
@@ -244,7 +251,7 @@ First beta, and the first public version: installable with `pip install gemsmap`
     `gemsmap.*` / `gemsmap-*` (the autosaved map included), and the IndexedDB databases `metmap` / `metmap-lab`
     are copied to `gemsmap` / `gemsmap-lab` (the old ones are kept as a backup).
   - npm package `gemsmap`; tools read `GEMSMAP_DATA_DIR` (`METMAP_DATA_DIR` still works); exported models carry
-    `GEMs MAP curation` / `GEMs MAP structural edits` notes; dev handles `window.gemsmap` / `window.gemsmapLab`.
+    `GEMsMAP curation` / `GEMsMAP structural edits` notes; dev handles `window.gemsmap` / `window.gemsmapLab`.
 - **Compartments are optional in templates**: the person chooses them when mapping onto a GEM. A missing
   compartment is no longer a warning nor part of the completeness score; a preferred compartment still ranks the
   matcher's candidates.
@@ -268,7 +275,7 @@ First beta, and the first public version: installable with `pip install gemsmap`
   paired A/B bars per reaction. The subsystem selection is shared between Results and Compare.
 - Example model **E. coli iJO1366** (bundled with COBRApy, 37 subsystems).
 - **Import results** in COBRAGUI (Results → Import, Ctrl K, or drop the files): JSON exported by
-  GEMs MAP or by the legacy GEM Explorer, and CSV/TSV flux tables (`reaction,flux`, wide tables with one
+  GEMsMAP or by the legacy GEM Explorer, and CSV/TSV flux tables (`reaction,flux`, wide tables with one
   result per column) or FVA tables (`minimum/maximum`, `_min/_max`). Imported results are tagged, keep
   their source model in the provenance and can be compared with any other result by reaction id —
   also across different models ("Only in one result" category). Turnover and exchanges missing from a

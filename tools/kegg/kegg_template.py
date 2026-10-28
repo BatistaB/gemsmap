@@ -1,4 +1,4 @@
-"""KEGG pathway → GEMs MAP template (curated, model-independent).
+"""KEGG pathway → GEMsMAP template (curated, model-independent).
 
     npm run kegg:template -- map00010            build src/templates/builtin/kegg-map00010.gemsmap-template.json
                                                  and the reports in docs/templates/kegg/map00010/
@@ -12,7 +12,7 @@ links, and the layout, drawn by hand with the helpers of tools/kegg/layout.py.
 Identities are reconciled with the app's own infrastructure: the MetaNetX client of the backend (SPARQL, cached)
 and the installed BiGG tables (npm run bigg:data). Nothing is invented: unresolved stays unresolved, ambiguous
 keeps its candidates, generic classes stay generic, and every machine identity is a *suggestion* (status
-"suggested", source "ai") except entities and reactions already confirmed in the GEMs MAP canonical library.
+"suggested", source "ai") except entities and reactions already confirmed in the GEMsMAP canonical library.
 
 Outputs: the template file, an identity mapping table (CSV), the review queue, a validation/QC report and a
 generation log (Markdown). Standard library + the backend package.
@@ -176,7 +176,7 @@ def mnx_identifiers(info: dict) -> dict[str, set[str]]:
 
 
 def reconcile_compound(cid: str, kc: dict, library: dict | None, bigg, generic: bool = False) -> dict:
-    """Identity of one KEGG compound: KEGG entry + MetaNetX + BiGG (+ GEMs MAP library when it already knows it)."""
+    """Identity of one KEGG compound: KEGG entry + MetaNetX + BiGG (+ GEMsMAP library when it already knows it)."""
     chebi = kc["dblinks"].get("ChEBI", [])
     by_kegg, mnx = mnx_chemicals(cid, chebi)
     ids: dict[str, set[str]] = {"kegg.compound": {cid}, "chebi": {f"CHEBI:{c}" for c in chebi}}
@@ -228,7 +228,7 @@ def reconcile_compound(cid: str, kc: dict, library: dict | None, bigg, generic: 
         for ns, vals in library.get("xrefs", {}).items():
             if ns in REVIEW_NS:
                 ids.setdefault(ns, set()).update(vals)
-        evidence.append(f"GEMs MAP library '{library['id']}'")
+        evidence.append(f"GEMsMAP library '{library['id']}'")
     # confidence: one MetaNetX chemical, consistent formula, at most one BiGG ID
     if library:
         status, conf = "confirmed", None
@@ -303,7 +303,7 @@ def load_curation(map_id: str):
 
 
 def library_entities() -> dict[str, dict]:
-    """The GEMs MAP canonical library (src/templates/mapping/library.ts), keyed by KEGG compound ID."""
+    """The GEMsMAP canonical library (src/templates/mapping/library.ts), keyed by KEGG compound ID."""
     lib = {}
     for f in (ROOT / "src" / "templates" / "builtin").glob("*.gemsmap-template.json"):
         t = json.loads(f.read_text(encoding="utf-8"))
@@ -638,7 +638,7 @@ def write_reports(tpl: dict, rep: dict, out: Path) -> None:
     md = [
         f"# {tpl['metadata']['name']} — generation report", "",
         f"Source: KEGG {pw['id']} ({pw['name']}), {tpl['metadata']['source']['url']}. The biology was taken from KEGG's flat files and KGML;",
-        "the drawing is GEMs MAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.", "",
+        "the drawing is GEMsMAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.", "",
         "## Completeness", "", "```text",
         *([f"KEGG compounds handled:         {handled_c}/{n_c}  (entities {cnt(c_lines, 'entity')}, related forms {cnt(c_lines, 'related')}, omitted with reason {cnt(c_lines, 'omitted')})"] if not overview else
           [f"Overview of KEGG {pw['id']}:  pathway summaries {sum(1 for r in tpl['biology']['reactions'] if r.get('summary'))}, single reactions {sum(1 for r in tpl['biology']['reactions'] if not r.get('summary'))}"]),
@@ -648,7 +648,7 @@ def write_reports(tpl: dict, rep: dict, out: Path) -> None:
         f"ModelSEED mapped:               {ids_cov('seed.compound')}",
         f"ChEBI mapped:                   {ids_cov('chebi')}",
         f"MetaCyc mapped:                 {ids_cov('metacyc.compound')}", "",
-        f"Confirmed (GEMs MAP library):     {st('confirmed')}",
+        f"Confirmed (GEMsMAP library):     {st('confirmed')}",
         f"Suggested, high confidence:     {sum(1 for e in ents if e['identity']['status'] == 'suggested' and e['identity'].get('confidence') == 'high')}",
         f"Suggested, probable:            {sum(1 for e in ents if e['identity']['status'] == 'suggested' and e['identity'].get('confidence') == 'probable')}",
         f"Ambiguous metabolites:          {st('ambiguous')}",

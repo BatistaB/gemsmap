@@ -6,7 +6,7 @@ A drawing becomes scientifically useful when its nodes and arrows are **bound** 
 
 | Source | How | Notes |
 | --- | --- | --- |
-| **COBRAGUI** | Happens automatically the first time you *Add to map*, *Visualize result* or *Visualize comparison*. | The same model, with the same IDs. If the map already uses a different model, GEMs MAP asks before replacing it. If 97 % or more of the reaction IDs are shared (for example a newer version of the same model), the map keeps its copy and its bindings. |
+| **COBRAGUI** | Happens automatically the first time you *Add to map*, *Visualize result* or *Visualize comparison*. | The same model, with the same IDs. If the map already uses a different model, GEMsMAP asks before replacing it. If 97 % or more of the reaction IDs are shared (for example a newer version of the same model), the map keeps its copy and its bindings. |
 | **File → Import GEM into the map only** | COBRA JSON or SBML, parsed in the browser. | Enough to draw, bind and display data, without the backend. *Model → Validation* lists notes about the file. |
 | **Built-in central carbon model** | *Model* tab, when no model is loaded. | Small demonstration model that goes with the example figure. |
 
@@ -18,7 +18,7 @@ The *Model* tab shows the bound model's size and lets you search it. Projects st
 - An **arrow** stores a model reaction ID, or a short series of reactions shown as one *lumped* arrow (`ACONTa + ACONTb`), or a hidden sub-network in a summary arrow.
 - A **slot** or a **free arrow** is not bound yet. Unbound elements keep their place and appearance, show *Not bound to a model reaction* or *Unbound slot* in the inspector, and receive no data.
 
-When you draw an arrow between two bound metabolites, GEMs MAP binds it to the model reaction that links them. If the arrow was drawn against the reaction's stoichiometric direction, the inspector says so, and the flux sign is flipped for display. *Inspect in COBRAGUI →* in the inspector opens the bound metabolite or reaction in COBRAGUI; *Focus in map* in COBRAGUI does the reverse.
+When you draw an arrow between two bound metabolites, GEMsMAP binds it to the model reaction that links them. If the arrow was drawn against the reaction's stoichiometric direction, the inspector says so, and the flux sign is flipped for display. *Inspect in COBRAGUI →* in the inspector opens the bound metabolite or reaction in COBRAGUI; *Focus in map* in COBRAGUI does the reverse.
 
 ## Slots and auto-bind
 
@@ -32,7 +32,7 @@ Auto-bind resolves hints against the model's IDs and names, so the same hint fin
 
 ## Pathway templates
 
-Pathway templates are more than drawings: each node of a template stands for a **biological entity in a compartment**, for example *D-glucose 6-phosphate in the cytosol*, never for a model ID. Applying a template to a model therefore means finding, for every node, the model metabolite that is that entity. GEMs MAP does this with a deterministic matcher and shows you the result before anything is drawn. The concepts and scoring are explained in [Identity and matching](../templates/identity-and-matching.md); this section shows the workflow on the map.
+Pathway templates are more than drawings: each node of a template stands for a **biological entity in a compartment**, for example *D-glucose 6-phosphate in the cytosol*, never for a model ID. Applying a template to a model therefore means finding, for every node, the model metabolite that is that entity. GEMsMAP does this with a deterministic matcher and shows you the result before anything is drawn. The concepts and scoring are explained in [Identity and matching](../templates/identity-and-matching.md); this section shows the workflow on the map.
 
 **1. Pick a template.** *Elements → Pathway templates* lists the built-in and your own templates. With a model loaded, each shows its **coverage** of that model (`25/25`, `9/9`, `7/28 ?`). Coverage counts how much of the template exists in the model; it says nothing about flux or activity.
 
@@ -67,7 +67,7 @@ Your choices are stored in the model's **mapping profile**, identified by a stru
 
 Replacing the map's model keeps every arrow's reaction ID; IDs that do not exist in the new model become unbound, and template nodes are re-mapped. A template drawn on one model can therefore be moved to a related model, with the review dialog flagging what changed.
 
-**Enzyme-constrained models.** ecModels (GECKO) split a reaction into per-isozyme and per-direction copies, for example `r101` into `r101_EXP_1…3` and `r101_REV_EXP_1…3`. GEMs MAP folds these families back automatically. An arrow bound to the parent reaction shows the family's **net flux** (forward copies minus `_REV` copies), and a parent missing from the model is rebuilt as a virtual reaction for search and routes, never exported. Enzyme pseudo-metabolites (`prot_…`) are never drawn.
+**Enzyme-constrained models.** ecModels (GECKO) split a reaction into per-isozyme and per-direction copies, for example `r101` into `r101_EXP_1…3` and `r101_REV_EXP_1…3`. GEMsMAP folds these families back automatically. An arrow bound to the parent reaction shows the family's **net flux** (forward copies minus `_REV` copies), and a parent missing from the model is rebuilt as a virtual reaction for search and routes, never exported. Enzyme pseudo-metabolites (`prot_…`) are never drawn.
 
 <div class="gm-next" markdown>
 **Next:** [Display and compare results](displaying-and-comparing-results.md) on the bound map.

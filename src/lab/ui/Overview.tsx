@@ -54,13 +54,13 @@ function ImportScreen() {
 export function BackendCard() {
   const backend = useLab((s) => s.backend);
   if (backend.status === 'online') {
-    return <div className="muted small center">GEMs MAP {backend.health?.version} · COBRApy {backend.health?.cobraVersion} · solver {backend.health?.defaultSolver} · backend ready</div>;
+    return <div className="muted small center">GEMsMAP {backend.health?.version} · COBRApy {backend.health?.cobraVersion} · solver {backend.health?.defaultSolver} · backend ready</div>;
   }
   if (backend.status === 'checking') return <div className="muted small center"><span className="spinner" /> Connecting to the COBRApy backend…</div>;
   return (
     <div className="error-card">
       <div className="ec-title">COBRApy backend is not running</div>
-      <div className="ec-msg">COBRAGUI runs all science in Python (COBRApy). Start GEMs MAP in a terminal, keep that window open, then retry:</div>
+      <div className="ec-msg">COBRAGUI runs all science in Python (COBRApy). Start GEMsMAP in a terminal, keep that window open, then retry:</div>
       <pre className="cmd">gemsmap</pre>
       <div className="muted small">Development checkout: <span className="mono">npm run backend</span> (the first time, <span className="mono">npm run backend:setup</span> creates <span className="mono">backend/.venv</span> and installs COBRApy, FastAPI and uvicorn).</div>
       <div><button className="btn small" onClick={() => lab.checkBackend()}>Retry connection</button></div>

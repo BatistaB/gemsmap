@@ -1,6 +1,6 @@
 # Limitations
 
-GEMs MAP makes constraint-based results easier to produce, inspect and draw. It does not make them more true than the model and constraints behind them. This page collects the main limitations, scientific and technical.
+GEMsMAP makes constraint-based results easier to produce, inspect and draw. It does not make them more true than the model and constraints behind them. This page collects the main limitations, scientific and technical.
 
 ## Scientific
 
@@ -19,7 +19,7 @@ GEMs MAP makes constraint-based results easier to produce, inspect and draw. It 
 - Flux sampling, gene and reaction deletion analyses, dynamic, kinetic or thermodynamic analyses other than loopless FBA/FVA.
 - A community template hub; importing Escher maps as templates.
 
-No AI is built into the application, by design: templates can be drafted with the LLM of your choice outside GEMs MAP and reviewed in the Template Builder (see [Templates drafted with an LLM](../templates/ai-assisted-templates.md)).
+No AI is built into the application, by design: templates can be drafted with the LLM of your choice outside GEMsMAP and reviewed in the Template Builder (see [Templates drafted with an LLM](../templates/ai-assisted-templates.md)).
 
 See the [Roadmap](roadmap.md).
 

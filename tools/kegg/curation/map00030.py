@@ -1,6 +1,6 @@
 """Curation of KEGG map00030 — Pentose phosphate pathway.
 
-The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMs MAP's own
+The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMsMAP's own
 drawing (oxidative phase across the top, the non-oxidative transketolase / transaldolase cascade as a two-column
 ladder below it, Entner–Doudoroff and the side routes as modules around), not a copy of the KEGG map.
 """
@@ -13,7 +13,7 @@ CREATED = "2026-10-09T00:00:00Z"
 DESCRIPTION = ("Oxidative and non-oxidative pentose phosphate pathway with the routes KEGG map00030 draws around it: Entner–Doudoroff, "
                "periplasmic glucose oxidation and the 2-ketogluconate route (bacteria), the non- and semi-phosphorylative ED (archaea), "
                "ribose / PRPP / deoxyribose, the ribulose monophosphate (RuMP) shunt of methylotrophs, sedoheptulose kinase and "
-               "phosphoketolase. Derived from KEGG; drawn by GEMs MAP.")
+               "phosphoketolase. Derived from KEGG; drawn by GEMsMAP.")
 SCOPE = {"level": "universal", "taxa": [], "note": "The oxidative and non-oxidative phases are conserved; ED, glucose oxidation, the archaeal routes, RuMP and phosphoketolase are organism-specific (optional). Compartments are chosen by the person mapping onto a GEM (cytosol, plastid…)."}
 TAGS = ["KEGG", "map00030", "pentose phosphate pathway", "Entner-Doudoroff", "central carbon"]
 
@@ -252,5 +252,5 @@ def layout(L: Layout) -> dict:
     L.group("RuMP (methylotrophs)", [n["h6p"], n["f6p_3"]])
     L.label("Entner–Doudoroff", 180, 260)
     L.label("Pentose phosphate pathway", -300, -340, size=16, weight=700, italic=False, kind="title")
-    L.label("derived from KEGG map00030 · drawn by GEMs MAP", -300, -320, size=10, weight=400, italic=True)
+    L.label("derived from KEGG map00030 · drawn by GEMsMAP", -300, -320, size=10, weight=400, italic=True)
     return L.result()

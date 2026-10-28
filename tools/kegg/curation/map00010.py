@@ -1,6 +1,6 @@
 """Curation of KEGG map00010 — Glycolysis / Gluconeogenesis.
 
-The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMs MAP's own
+The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMsMAP's own
 drawing (top → bottom, glycolysis down the middle, gluconeogenic bypasses on the right, branches to the sides),
 not a copy of the KEGG map.
 """
@@ -12,7 +12,7 @@ VERSION = "0.1.0"
 CREATED = "2026-10-09T00:00:00Z"
 DESCRIPTION = ("Embden–Meyerhof–Parnas glycolysis and gluconeogenesis with the branches KEGG map00010 draws: glucose-1P, "
                "the 2,3-bisphosphoglycerate shunt, non-phosphorylating GAPN, pyruvate fates (lactate, ethanol, acetate, acetyl-CoA) "
-               "and the bacterial PTS route of aryl-β-glucosides. Derived from KEGG; drawn by GEMs MAP.")
+               "and the bacterial PTS route of aryl-β-glucosides. Derived from KEGG; drawn by GEMsMAP.")
 SCOPE = {"level": "universal", "taxa": [], "note": "Core steps are conserved; G6Pase, PPDK/PPS, PDC/ADH, GAPN and the aryl-β-glucoside PTS route are organism-specific. Compartments are left unspecified (KEGG gives none): the matcher decides them in each GEM."}
 TAGS = ["KEGG", "map00010", "glycolysis", "gluconeogenesis", "central carbon"]
 
@@ -135,9 +135,9 @@ DECISIONS = [
     "Multi-step complexes are drawn as their overall reaction: PDH (R00209; KEGG draws E1/E2/E3 through enzyme-bound lipoyl intermediates) and PDC (R00224; two TPP-dependent half-reactions). The KEGG steps are kept as provenance.",
     "Compartments are left unspecified: KEGG reference pathways have none, and glycolysis is plastidic as well as cytosolic in plants. The matcher picks the compartment in each GEM.",
     "Directionality follows the KGML of rn00010 (reversible / irreversible) for every drawn step.",
-    "Cofactors are drawn beside each arrow as small attached nodes — repeated for every reaction, all pointing to the same entity (ATP is one entity drawn many times). Water and protons are left out of the drawing (water stays in the equations, protons are left out of the equations as in all GEMs MAP templates).",
+    "Cofactors are drawn beside each arrow as small attached nodes — repeated for every reaction, all pointing to the same entity (ATP is one entity drawn many times). Water and protons are left out of the drawing (water stays in the equations, protons are left out of the equations as in all GEMsMAP templates).",
     "Protein phosphoryl carriers (phospho-histidine proteins of the PTS and of the 2,3-BPG-primed PGAM, and the dephosphorylated His-protein) are generic entities: kept generic, flagged for review. On the PGAM priming step the carrier is the enzyme's own active-site histidine, so it stays in the equation but is not drawn; on the PTS steps (HPr / EIIB) it is drawn.",
-    "Identities: an entity or reaction already confirmed in the GEMs MAP canonical library keeps that confirmation; every other identity is an AI suggestion (high confidence when KEGG → one MetaNetX chemical with a consistent formula and an unambiguous BiGG ID; probable otherwise) and goes to the review queue.",
+    "Identities: an entity or reaction already confirmed in the GEMsMAP canonical library keeps that confirmation; every other identity is an AI suggestion (high confidence when KEGG → one MetaNetX chemical with a consistent formula and an unambiguous BiGG ID; probable otherwise) and goes to the review queue.",
 ]
 
 
@@ -227,7 +227,7 @@ def layout(L: Layout) -> dict:
     # ---- modules
     L.group("Aryl-β-D-glucosides (PTS, bacteria)", [n["arb"], n["arb6p"], n["sal"], n["sal6p"], n["g6p_2"]])
     L.label("Glycolysis / Gluconeogenesis", H - 640, -200, size=16, weight=700, italic=False, kind="title")
-    L.label("derived from KEGG map00010 · drawn by GEMs MAP", H - 640, -180, size=10, weight=400, italic=True)
+    L.label("derived from KEGG map00010 · drawn by GEMsMAP", H - 640, -180, size=10, weight=400, italic=True)
     L.label("2,3-BPG shunt", -270, 550)
     L.label("Fermentation", 300, 930)
     return L.result()

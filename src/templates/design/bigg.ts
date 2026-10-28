@@ -1,6 +1,6 @@
 /**
  * BiGG data layer (through the backend): the universal metabolite and reaction tables of BiGG Models,
- * installed locally once (`npm run bigg:data`). GEMs MAP never calls the BiGG API; these tables feed the
+ * installed locally once (`npm run bigg:data`). GEMsMAP never calls the BiGG API; these tables feed the
  * identity search and give templates the BiGG IDs that models downloaded from BiGG use.
  */
 import { create } from 'zustand';

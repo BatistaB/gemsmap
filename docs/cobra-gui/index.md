@@ -1,9 +1,9 @@
 # COBRAGUI
 
-![COBRAGUI logo: the word cobra with a small network in the o, GUI with a cobra as the I, and a screen showing the GEMs MAP gem and charts](../brand/cobragui-logo.png#only-light){ .gm-section-logo }
-![COBRAGUI logo: the word cobra with a small network in the o, GUI with a cobra as the I, and a screen showing the GEMs MAP gem and charts](../brand/cobragui-logo-dark.png#only-dark){ .gm-section-logo }
+![COBRAGUI logo: the word cobra with a small network in the o, GUI with a cobra as the I, and a screen showing the GEMsMAP gem and charts](../brand/cobragui-logo.png#only-light){ .gm-section-logo }
+![COBRAGUI logo: the word cobra with a small network in the o, GUI with a cobra as the I, and a screen showing the GEMsMAP gem and charts](../brand/cobragui-logo-dark.png#only-dark){ .gm-section-logo }
 
-**COBRAGUI** (COBRA graphical user interface) is the workspace of GEMs MAP that works on the model itself: a graphical front end to [COBRApy](https://opencobra.github.io/cobrapy/), the Python package for constraint-based reconstruction and analysis. It lets you load a genome-scale model, look inside it, change its constraints, simulate it and compare results by pointing and clicking. The computations are the standard COBRApy ones, run by a local Python service.
+**COBRAGUI** (COBRA graphical user interface) is the workspace of GEMsMAP that works on the model itself: a graphical front end to [COBRApy](https://opencobra.github.io/cobrapy/), the Python package for constraint-based reconstruction and analysis. It lets you load a genome-scale model, look inside it, change its constraints, simulate it and compare results by pointing and clicking. The computations are the standard COBRApy ones, run by a local Python service.
 
 <figure class="gm-shot" markdown>
 [![The COBRAGUI overview of E. coli iML1515, with numbered callouts on the workspace switcher, the section list, the model state switcher, the Run button, the model card, the inspector and the status bar.](../assets/images/cobra-gui-overview-annotated.png)](../assets/images/cobra-gui-overview-annotated.png)

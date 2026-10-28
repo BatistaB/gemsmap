@@ -304,7 +304,7 @@ async def identity_reactions(body: ReactionIdentityRequest):
 
 
 # ----------------------------------------------------------------------------- BiGG data layer
-# The BiGG universal tables, installed locally (gemsmap bigg-data; npm run bigg:data in a checkout). GEMs MAP does not call the BiGG API.
+# The BiGG universal tables, installed locally (gemsmap bigg-data; npm run bigg:data in a checkout). GEMsMAP does not call the BiGG API.
 
 @api.get("/bigg/status")
 def bigg_status():

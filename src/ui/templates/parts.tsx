@@ -40,7 +40,7 @@ export const REVIEW_LABEL: Record<NonNullable<TemplateMetadata['review_status']>
 
 export function ReviewTag({ md }: { md: TemplateMetadata }) {
   if (!md.review_status) return null;
-  return <span className={`tag review ${md.review_status}`} title={md.last_review ? `Last review ${md.last_review}` : 'Drafted with a language model (LLM) outside GEMs MAP; a person has not reviewed its identities and layout yet'}>{REVIEW_LABEL[md.review_status]}</span>;
+  return <span className={`tag review ${md.review_status}`} title={md.last_review ? `Last review ${md.last_review}` : 'Drafted with a language model (LLM) outside GEMsMAP; a person has not reviewed its identities and layout yet'}>{REVIEW_LABEL[md.review_status]}</span>;
 }
 
 const ORDER: Namespace[] = ['metanetx.chemical', 'kegg.compound', 'chebi', 'bigg.metabolite', 'seed.compound', 'metacyc.compound', 'hmdb', 'inchikey',

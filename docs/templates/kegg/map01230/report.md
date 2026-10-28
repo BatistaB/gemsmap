@@ -1,7 +1,7 @@
 # Amino acid biosynthesis (overview) — generation report
 
 Source: KEGG map01230 (Biosynthesis of amino acids), https://www.genome.jp/pathway/map01230. The biology was taken from KEGG's flat files and KGML;
-the drawing is GEMs MAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
+the drawing is GEMsMAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
 
 ## Completeness
 
@@ -14,7 +14,7 @@ ModelSEED mapped:               46
 ChEBI mapped:                   46
 MetaCyc mapped:                 45
 
-Confirmed (GEMs MAP library):     14
+Confirmed (GEMsMAP library):     14
 Suggested, high confidence:     32
 Suggested, probable:            0
 Ambiguous metabolites:          0

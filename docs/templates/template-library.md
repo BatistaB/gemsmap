@@ -1,6 +1,6 @@
 # Template library
 
-The **Templates** workspace opens on the **Template Library**: every template GEMs MAP knows, built-in and your own, grouped by section.
+The **Templates** workspace opens on the **Template Library**: every template GEMsMAP knows, built-in and your own, grouped by section.
 
 <figure class="gm-shot" markdown>
 [![The Template Library: a search box, Import template and New template buttons, a BiGG data notice, the GEM currently in the Map Builder, and two sections of template cards — Central carbon (Global central carbon metabolism, Glycolysis, TCA cycle, Pentose phosphate (oxidative), Amino acid biosynthesis overview) and KEGG-derived templates (map00010, map00020, map00030, map00250) — each with a preview, description, size, scope, completeness, author and version, and buttons Open, Duplicate, Export and Apply to GEM.](../assets/images/templates-library.png)](../assets/images/templates-library.png)
@@ -13,7 +13,7 @@ Each card shows a preview, the pathway, the number of **drawn** metabolites and 
 
 ### Central carbon
 
-These four were drawn and curated by hand. Their identities are confirmed in the GEMs MAP library, and their equations are complete (cofactors included) and checked for heavy-atom balance, with KEGG reaction IDs checked against the KEGG equations.
+These four were drawn and curated by hand. Their identities are confirmed in the GEMsMAP library, and their equations are complete (cofactors included) and checked for heavy-atom balance, with KEGG reaction IDs checked against the KEGG equations.
 
 | Template | Drawn | Reactions | Compartments | Notes |
 | --- | --- | --- | --- | --- |
@@ -36,7 +36,7 @@ These four were drawn and curated by hand. Their identities are confirmed in the
 | Pentose phosphate pathway | KEGG-derived templates | KEGG map00030 | 31 metabolites, 34 reactions |
 | Alanine, aspartate and glutamate metabolism | KEGG-derived templates | KEGG map00250 | 27 metabolites, 36 reactions |
 
-<span class="gm-badge experimental">AI-generated — needs review</span> These templates were drafted **with an LLM (Claude Opus 5.5), outside the application**, with a reproducible pipeline (see [Templates drafted with an LLM](ai-assisted-templates.md)), and remain marked *AI-generated — needs review* until a person reviews them. KEGG is used as the biological and topological reference only; every drawing is GEMs MAP's own and is **not an official KEGG map**. Every KEGG compound and reaction of each map is drawn, folded (anomers, lumped complexes, cofactor variants) or omitted with a written reason. Per-map generation reports, identity and reaction tables, layout QC and previews are in the repository under `docs/templates/kegg/<map>/`, for example the [map00010 report](kegg/map00010/report.md).
+<span class="gm-badge experimental">AI-generated — needs review</span> These templates were drafted **with an LLM (Claude Opus 5.5), outside the application**, with a reproducible pipeline (see [Templates drafted with an LLM](ai-assisted-templates.md)), and remain marked *AI-generated — needs review* until a person reviews them. KEGG is used as the biological and topological reference only; every drawing is GEMsMAP's own and is **not an official KEGG map**. Every KEGG compound and reaction of each map is drawn, folded (anomers, lumped complexes, cofactor variants) or omitted with a written reason. Per-map generation reports, identity and reaction tables, layout QC and previews are in the repository under `docs/templates/kegg/<map>/`, for example the [map00010 report](kegg/map00010/report.md).
 
 <div class="gm-next" markdown>
 **Next:** how a template finds its way into a model: [Identity and matching](identity-and-matching.md).

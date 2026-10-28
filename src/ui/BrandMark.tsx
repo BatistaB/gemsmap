@@ -1,5 +1,5 @@
 /**
- * The GEMs MAP mark: a gem cut from a metabolic network. Nodes are metabolites, edges are reactions
+ * The GEMsMAP mark: a gem cut from a metabolic network. Nodes are metabolites, edges are reactions
  * coloured on the map's diverging flux scale (red / blue, paler = smaller |flux|), the girdle in ink.
  * Same gem as tools/brand/make_brand.py (which writes the SVG and PNG brand files): keep NODES, EDGES
  * and the UI weights in step with it. In the UI the strokes are heavier (an optical size) so the

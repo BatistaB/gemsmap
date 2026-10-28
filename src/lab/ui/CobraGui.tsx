@@ -239,7 +239,7 @@ export function LabStatusBar() {
   const busy = useLab((s) => s.busy);
   return (
     <footer className="bottombar lab-status">
-      <span className={`be-dot ${backend.status}`} title={backend.status === 'online' ? `COBRApy ${backend.health?.cobraVersion} · solvers ${backend.health?.solvers.join(', ')}` : 'Backend offline — start GEMs MAP with the gemsmap command'} />
+      <span className={`be-dot ${backend.status}`} title={backend.status === 'online' ? `COBRApy ${backend.health?.cobraVersion} · solvers ${backend.health?.solvers.join(', ')}` : 'Backend offline — start GEMsMAP with the gemsmap command'} />
       <span className="small">{backend.status === 'online' ? `COBRApy ${backend.health?.cobraVersion} · ${backend.health?.defaultSolver}` : backend.status === 'checking' ? 'Connecting…' : <button className="link" onClick={() => lab.checkBackend()}>Backend offline — retry</button>}</span>
       {busy && <span className="small"><span className="spinner sm" /> {busy}</span>}
       {running && <span className="small"><span className="spinner sm" /> {running.stopping ? 'Stopping' : 'Running'} {METHOD_INFO[running.method].label}…{running.progress ? ` ${running.progress.done}/${running.progress.total}` : ''}
@@ -271,7 +271,7 @@ export function LabStatusBar() {
 export function diagnosticsText(): string {
   const h = useLab.getState().backend.health;
   return [
-    `GEMs MAP ${h?.version ?? 'unknown'}`,
+    `GEMsMAP ${h?.version ?? 'unknown'}`,
     `Python ${h?.python ?? '?'} on ${h?.platform ?? '?'}`,
     `COBRApy ${h?.cobraVersion ?? '?'}, solvers: ${h?.solvers.join(', ') ?? '?'} (default ${h?.defaultSolver ?? '?'})`,
     `Browser: ${navigator.userAgent}`,
@@ -287,10 +287,10 @@ function AboutPopover() {
     catch { setCopied(false); }
   };
   return (
-    <Popover align="right" trigger={(o, t) => <button className={`link small ${o ? 'on' : ''}`} onClick={t} title="Version and diagnostics">GEMs MAP {version}</button>}>
+    <Popover align="right" trigger={(o, t) => <button className={`link small ${o ? 'on' : ''}`} onClick={t} title="Version and diagnostics">GEMsMAP {version}</button>}>
       {() => (
         <div className="filters settings-pop">
-          <div className="f-title">GEMs MAP {version}</div>
+          <div className="f-title">GEMsMAP {version}</div>
           <div className="muted small">To report a problem, paste this block into your report. It lists versions only, no model or file names.</div>
           <textarea className="input mono small" readOnly rows={5} value={diagnosticsText()} onFocus={(e) => e.currentTarget.select()} />
           <div className="row gap"><button className="btn small" onClick={copy}>{copied ? 'Copied' : 'Copy diagnostics'}</button></div>

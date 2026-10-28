@@ -143,7 +143,7 @@ function DesignLeftPanel() {
         </div>
         <div className="section">
           <div className="section-title">Identity</div>
-          <button className="btn block" onClick={runAuto} disabled={auto === 'running'} title="Search the GEMs MAP library (and KEGG / ChEBI / MetaNetX when the backend runs) for every entity that is not confirmed. Confirmed identities are never changed.">
+          <button className="btn block" onClick={runAuto} disabled={auto === 'running'} title="Search the GEMsMAP library (and KEGG / ChEBI / MetaNetX when the backend runs) for every entity that is not confirmed. Confirmed identities are never changed.">
             {auto === 'running' ? <><span className="spinner sm" /> Identifying…</> : <><Icon name="sparkle" size={14} /> Auto Identify</>}
           </button>
           {auto && auto !== 'running' && (

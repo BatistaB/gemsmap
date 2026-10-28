@@ -96,8 +96,8 @@ In the *Metabolite turnover* tab, clicking a metabolite explains which reactions
 
 *Results → Import* (or dropping files on COBRAGUI) reads results made elsewhere, so they can be compared and mapped like your own:
 
-- JSON exported by GEMs MAP (one result or a list), JSON exported by the earlier GEM Explorer, or a plain `{reaction_id: flux}` object;
-- CSV or TSV: `reaction,flux`; wide tables `reaction,A,B,…` (one result per numeric column); FVA tables with `minimum/maximum`, `min/max`, `lower/upper` or `<name>_min/<name>_max` columns. The `#` provenance lines of GEMs MAP's own CSV export restore the name, method and source model.
+- JSON exported by GEMsMAP (one result or a list), JSON exported by the earlier GEM Explorer, or a plain `{reaction_id: flux}` object;
+- CSV or TSV: `reaction,flux`; wide tables `reaction,A,B,…` (one result per numeric column); FVA tables with `minimum/maximum`, `min/max`, `lower/upper` or `<name>_min/<name>_max` columns. The `#` provenance lines of GEMsMAP's own CSV export restore the name, method and source model.
 
 Values are taken as they are in the file; nothing is re-solved. Results are matched to the loaded model by reaction ID, and the result records how many IDs matched and whether it was computed with another model. When the IDs match, COBRApy derives metabolite turnover and exchanges from the imported fluxes using the loaded model's stoichiometry, and says so. An FVA file whose "fluxes" are midpoints is imported as intervals only.
 

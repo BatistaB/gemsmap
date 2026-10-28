@@ -20,7 +20,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
     res = await fetch(BASE + path, init);
   } catch (e) {
     if ((e as Error).name === 'AbortError') throw new ApiError({ title: 'Simulation cancelled', message: '', hints: [], status: 499, detail: { cancelled: true } });
-    throw new ApiError({ title: 'COBRApy backend unreachable', message: (e as Error).message, hints: ['Start GEMs MAP: run gemsmap in a terminal and keep it open', 'Development checkout: npm run backend (it listens on http://127.0.0.1:8765)'], status: 0 });
+    throw new ApiError({ title: 'COBRApy backend unreachable', message: (e as Error).message, hints: ['Start GEMsMAP: run gemsmap in a terminal and keep it open', 'Development checkout: npm run backend (it listens on http://127.0.0.1:8765)'], status: 0 });
   }
   if (!res.ok) {
     let info: ApiErrorInfo = { title: `Backend error ${res.status}`, message: res.statusText, hints: [], status: res.status };

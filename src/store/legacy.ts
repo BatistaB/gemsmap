@@ -1,5 +1,5 @@
 /**
- * GEMs MAP was called MetMap up to 0.2. Browser storage written under the old name moves to the new
+ * GEMsMAP was called MetMap up to 0.2. Browser storage written under the old name moves to the new
  * one on the first start after the rename, so the autosaved map, user templates, mapping profiles,
  * panel layout and COBRAGUI sessions carry over:
  *  - localStorage keys "metmap.*" / "metmap-*" → "gemsmap.*" / "gemsmap-*" (synchronously, when this
@@ -79,7 +79,7 @@ async function copyDatabase(from: string, to: string) {
 async function copyIndexedDb() {
   if (typeof indexedDB === 'undefined') return;
   for (const [from, to] of [[OLD, NEW], [`${OLD}-lab`, `${NEW}-lab`]]) {
-    try { await copyDatabase(from, to); } catch (e) { console.warn(`[GEMs MAP] could not move browser database "${from}"`, e); }
+    try { await copyDatabase(from, to); } catch (e) { console.warn(`[GEMsMAP] could not move browser database "${from}"`, e); }
   }
 }
 

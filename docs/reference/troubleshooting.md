@@ -4,12 +4,12 @@
 
 `gemsmap diagnose` prints the versions, the solvers and the data folder; paste its output into any [report](https://github.com/BatistaB/gemsmap/issues/new/choose).
 
-- **`gemsmap` is not recognized / command not found.** The folder where pip puts commands is not on your PATH, or the environment where you installed GEMs MAP is not active. Run `python -m gemsmap` instead, or activate the environment first.
+- **`gemsmap` is not recognized / command not found.** The folder where pip puts commands is not on your PATH, or the environment where you installed GEMsMAP is not active. Run `python -m gemsmap` instead, or activate the environment first.
 - **Windows: `python` is not recognized, or opens the Microsoft Store.** Python is not installed, or not on the PATH. Install it from [python.org](https://www.python.org/downloads/) and tick *Add python.exe to PATH* on the first screen of the installer, then open a new terminal. If `py --version` works, your Python has only the `py` launcher: create the environment with `py -m venv .venv` (see [Step by step: install with pip](../getting-started/installation.md#step-by-step-install-with-pip)).
 - **Windows: activating the environment says *running scripts is disabled on this system*.** PowerShell blocks scripts by default. Run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`, which allows them in this window only, then `.\.venv\Scripts\Activate.ps1` again. In the Command Prompt (`cmd`), activate with `.venv\Scripts\activate.bat` instead.
 - **`pip` says *externally-managed-environment*** (Ubuntu, Debian and other Linux systems), or **`python -m venv` says *ensurepip is not available***. The system Python does not allow installing packages for everyone. Use [uv](../getting-started/installation.md#install) (`uv tool install gemsmap`), or install the venv module (`sudo apt install python3-venv`) and use a virtual environment.
-- **pip finds no matching version, or says it *requires a different Python***. GEMs MAP needs Python 3.10 or newer. Use a newer Python, or uv, which brings its own.
-- **Port 8765 is in use.** Another program, or another GEMs MAP, uses it. If it is GEMs MAP, `gemsmap` just opens the browser on it. Otherwise start on another port: `gemsmap --port 8766` (the Map Builder autosave belongs to the address, so prefer one port).
+- **pip finds no matching version, or says it *requires a different Python***. GEMsMAP needs Python 3.10 or newer. Use a newer Python, or uv, which brings its own.
+- **Port 8765 is in use.** Another program, or another GEMsMAP, uses it. If it is GEMsMAP, `gemsmap` just opens the browser on it. Otherwise start on another port: `gemsmap --port 8766` (the Map Builder autosave belongs to the address, so prefer one port).
 - **The page does not open by itself.** Open http://127.0.0.1:8765 in your browser; `gemsmap --no-browser` never opens it.
 - **Zip on Windows: *the path of this folder is too long***. Move the extracted folder somewhere short, such as `C:\GEMsMAP`, and start again.
 - **Zip on Windows: *Windows protected your PC***. Click *More info*, then *Run anyway*.
@@ -20,7 +20,7 @@
 
 The status bar shows *Backend offline — retry* instead of the COBRApy version, and the start screen shows *COBRApy backend is not running*. The backend stops when the window where `gemsmap` runs is closed.
 
-1. Start GEMs MAP again (`gemsmap`, or *Start GEMs MAP* in the zip folder) and keep its window open.
+1. Start GEMsMAP again (`gemsmap`, or *Start GEMsMAP* in the zip folder) and keep its window open.
 2. Click *Retry connection*.
 
 In a development checkout, the backend is `npm run backend` (the first time, `npm run backend:setup` creates its environment). If it warns that `backend/.venv` was not found, it falls back to the system Python, which usually lacks COBRApy: run `npm run backend:setup`. If the backend runs on another port, start the interface with `VITE_COBRA_API` pointing to it (see [Installation](../getting-started/installation.md#configuration)).
@@ -30,7 +30,7 @@ In a development checkout, the backend is `npm run backend` (the first time, `np
 - **"Unsupported model format"**: use `.xml`/`.sbml`, `.json` or `.mat`. The format is detected from the extension or the first bytes.
 - **"SBML model could not be read"**: the SBML validator found a fatal error; the error card shows the first message. Check the file with another tool, or export it again from its source.
 - **A very large SBML file is slow**: the first import parses the SBML; later imports of the same file use the cached JSON copy.
-- **IDs look like `__iML1515__…`**: a BiGG export; GEMs MAP removes these prefixes on import. If they remain, two entries would collide after removal and the IDs are kept as they are.
+- **IDs look like `__iML1515__…`**: a BiGG export; GEMsMAP removes these prefixes on import. If they remain, two entries would collide after removal and the IDs are kept as they are.
 
 ## A simulation returns "Infeasible"
 
@@ -68,7 +68,7 @@ It should not rescale: domains are computed over all conditions. If a mapping ha
 
 That is how the PDF is made: choose *Save as PDF* as the printer. For a vector file without the print dialog, export SVG.
 
-## The template identity search finds only the GEMs MAP library
+## The template identity search finds only the GEMsMAP library
 
 The online search (KEGG, ChEBI via MetaNetX) needs the backend; BiGG candidates need the [BiGG tables](../getting-started/installation.md#optional-bigg-tables-for-templates). Without them, the search says it is offline.
 

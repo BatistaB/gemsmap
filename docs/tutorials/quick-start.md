@@ -4,21 +4,21 @@ description: Quick start tutorial — import E. coli iJO1366, simulate it with a
 
 # Quick start: from model to map with *E. coli* iJO1366
 
-This tutorial walks through GEMs MAP from start to finish with a real genome-scale model. You will import *E. coli* iJO1366, simulate it with and without oxygen, compare the two solutions, and turn the comparison into an annotated pathway map. Each step tells you **what to do**, explains **the idea behind it**, and shows **what you should see**.
+This tutorial walks through GEMsMAP from start to finish with a real genome-scale model. You will import *E. coli* iJO1366, simulate it with and without oxygen, compare the two solutions, and turn the comparison into an annotated pathway map. Each step tells you **what to do**, explains **the idea behind it**, and shows **what you should see**.
 
 | | |
 | --- | --- |
 | **Time** | about 45 minutes |
-| **You need** | GEMs MAP installed and running ([Before you start](#before-you-start-install-gems-map), below) and an internet connection to download the model |
+| **You need** | GEMsMAP installed and running ([Before you start](#before-you-start-install-gemsmap), below) and an internet connection to download the model |
 | **Model** | *Escherichia coli* str. K-12 substr. MG1655, **iJO1366** (Orth *et al.*, 2011): 2,583 reactions, 1,805 metabolites, 1,367 genes |
 | **You will learn** | COBRAGUI: import, explore, medium, pFBA, results, comparison, subsystem figures · Map Builder: datasets, templates, mappings, plots, collapsing, connected reactions, routes |
 
 !!! warning "Your numbers may differ slightly"
     The growth rates in this tutorial are reproducible. Individual fluxes and the counts derived from them can change a little between runs, because a model usually has many equally optimal flux distributions and pFBA returns one of them (see [Constraint-based analysis](../cobra-gui/constraint-based-analysis.md#fba-flux-balance-analysis)). If you see, for example, 26 instead of 30 reactions *activated from zero*, nothing is wrong.
 
-## Before you start: install GEMs MAP
+## Before you start: install GEMsMAP
 
-GEMs MAP is installed with pip in a **Python environment of its own**: a folder with its own copy of Python and its own libraries, so GEMs MAP cannot interfere with your other projects, and deleting the folder removes it. You need Python 3.10 or newer. The whole sequence is: open a terminal, **make a folder**, **create the environment** in it, **activate** it, **update pip**, **install** GEMs MAP and **start** it.
+GEMsMAP is installed with pip in a **Python environment of its own**: a folder with its own copy of Python and its own libraries, so GEMsMAP cannot interfere with your other projects, and deleting the folder removes it. You need Python 3.10 or newer. The whole sequence is: open a terminal, **make a folder**, **create the environment** in it, **activate** it, **update pip**, **install** GEMsMAP and **start** it.
 
 === "Windows"
 
@@ -62,7 +62,7 @@ GEMs MAP is installed with pip in a **Python environment of its own**: a folder 
     gemsmap
     ```
 
-After the activation, the line where you type starts with `(.venv)`. The installation downloads a few hundred MB and can take several minutes. The last command opens GEMs MAP in your browser; keep the terminal open while you work through the tutorial.
+After the activation, the line where you type starts with `(.venv)`. The installation downloads a few hundred MB and can take several minutes. The last command opens GEMsMAP in your browser; keep the terminal open while you work through the tutorial.
 
 If a command fails, or you want to know what each one does and what you should see, follow [Step by step: install with pip](../getting-started/installation.md#step-by-step-install-with-pip). It also covers the most common surprises: `py` instead of `python` on Windows, PowerShell refusing to run the activation script, and the missing venv module on Ubuntu. If you prefer not to install Python, the [Installation](../getting-started/installation.md#install) page has two other ways (uv and a double-click zip).
 
@@ -76,7 +76,7 @@ If a command fails, or you want to know what each one does and what you should s
 ### Step 1 — Import the model
 
 1. Download **iJO1366** from BiGG Models: open [bigg.bio/models/iJO1366](https://bigg.bio/models/iJO1366) and download the **JSON** file, or download it directly from `http://bigg.ucsd.edu/static/models/iJO1366.json` (2.8 MB).
-2. Open GEMs MAP. It starts in **COBRAGUI**.
+2. Open GEMsMAP. It starts in **COBRAGUI**.
 3. **Drag `iJO1366.json` onto the window**, or click **Import model** and choose the file.
 4. Wait a few seconds while COBRApy reads the model. The **Overview** opens.
 
@@ -86,7 +86,7 @@ If a command fails, or you want to know what each one does and what you should s
 </figure>
 
 !!! info "The idea behind it"
-    COBRApy reads and validates the file in the local backend; your browser never computes fluxes. GEMs MAP keeps a copy of the file and identifies it by its checksum, so every result you compute later records exactly which model produced it. The original file is never modified.
+    COBRApy reads and validates the file in the local backend; your browser never computes fluxes. GEMsMAP keeps a copy of the file and identifies it by its checksum, so every result you compute later records exactly which model produced it. The original file is never modified.
 
     The start screen also offers *E. coli iJO1366* as an example bundled with COBRApy. It is the same reconstruction, but downloading the BiGG file makes your work reproducible with a file you can cite and share.
 
@@ -120,7 +120,7 @@ If a command fails, or you want to know what each one does and what you should s
 </figure>
 
 !!! info "The idea behind it"
-    Before a simulation, GEMs MAP can only say which reactions *could* produce or consume pyruvate, according to the side of the equation (*Produced by (as written)*). That is **connectivity**, not flux. After the simulation in the next step, the same lists split by the direction in which each reaction actually runs. More in [Metabolite analysis](../cobra-gui/metabolite-analysis.md).
+    Before a simulation, GEMsMAP can only say which reactions *could* produce or consume pyruvate, according to the side of the equation (*Produced by (as written)*). That is **connectivity**, not flux. After the simulation in the next step, the same lists split by the direction in which each reaction actually runs. More in [Metabolite analysis](../cobra-gui/metabolite-analysis.md).
 
 ### Step 4 — Simulate with pFBA and name the result `run_o2`
 
@@ -167,7 +167,7 @@ If a command fails, or you want to know what each one does and what you should s
 </figure>
 
 !!! info "The idea behind it"
-    GEMs MAP first lists **what differs between the two runs** (here only `EX_o2_e`), so you know what you are comparing. Then it **classifies every reaction before computing any ratio**: *changed*, *unchanged*, *activated from zero*, *inactivated to zero*, *direction reversal*. A fold change is not defined for a reaction that starts or stops, or that runs the other way, so those are counted separately instead of being hidden in a number. log₂FC compares magnitudes: +1 means twice the flux, −1 half.
+    GEMsMAP first lists **what differs between the two runs** (here only `EX_o2_e`), so you know what you are comparing. Then it **classifies every reaction before computing any ratio**: *changed*, *unchanged*, *activated from zero*, *inactivated to zero*, *direction reversal*. A fold change is not defined for a reaction that starts or stops, or that runs the other way, so those are counted separately instead of being hidden in a number. log₂FC compares magnitudes: +1 means twice the flux, −1 half.
 
 Now use the comparison to answer some questions. The filter menu above the table (*Differing only*) selects the categories.
 
@@ -245,7 +245,7 @@ You should find the secretion of fermentation products (`EX_ac_e` acetate, `EX_e
 
 1. Click **Map Builder** in the workspace switcher (top left). If a figure is already open, for example the built-in example, choose **File → New project** to start from an empty canvas.
 2. Go back to the **COBRAGUI → Compare** and click **Visualize comparison**.
-3. In the dialog keep **log₂FC of |flux| → edge colour** and **width = |flux| in B**, then click **Send to Map Builder**. (If the Map Builder holds another model, GEMs MAP asks before replacing it: confirm.)
+3. In the dialog keep **log₂FC of |flux| → edge colour** and **width = |flux| in B**, then click **Send to Map Builder**. (If the Map Builder holds another model, GEMsMAP asks before replacing it: confirm.)
 4. In the Map Builder, open the **Data** tab of the left panel: the data are already there.
 
 <div class="grid" markdown>
@@ -268,7 +268,7 @@ You should find the secretion of fermentation products (`EX_ac_e` acetate, `EX_e
 ### Step 9 — Insert the global central carbon metabolism template
 
 1. Open the **Elements** tab and click **Global central carbon metabolism** under *Pathway templates*.
-2. The **mapping review** opens: GEMs MAP has searched iJO1366 for every metabolite of the template. On a fresh installation you should see **25 mapped, 1 to review**: *D-Ribose 5-phosphate* → `r5p_c`, provisionally, with medium confidence. Click it and *why?* to see the evidence, and keep `r5p_c`; it is the right metabolite. (If you ran the [metabolite analysis](../cobra-gui/metabolite-analysis.md#curating-identifiers-with-metanetx) on this model before, all 26 may be mapped automatically.)
+2. The **mapping review** opens: GEMsMAP has searched iJO1366 for every metabolite of the template. On a fresh installation you should see **25 mapped, 1 to review**: *D-Ribose 5-phosphate* → `r5p_c`, provisionally, with medium confidence. Click it and *why?* to see the evidence, and keep `r5p_c`; it is the right metabolite. (If you ran the [metabolite analysis](../cobra-gui/metabolite-analysis.md#curating-identifiers-with-metanetx) on this model before, all 26 may be mapped automatically.)
 3. Note the message about the TCA cycle: it is mitochondrial in eukaryotes, and since *E. coli* has no mitochondria, it was searched in the cytosol.
 4. Click **Create pathway**. A preview follows your mouse: **click where it should go**. Then press ++f++ to fit the view.
 
@@ -329,7 +329,7 @@ You should find the secretion of fermentation products (`EX_ac_e` acetate, `EX_e
 </div>
 
 !!! note "Drawn opposite to the model"
-    The inspector of PGK says *drawn opposite to model direction — flux sign flipped for display*. iJO1366 writes the reaction as `3pg_c + atp_c ⇌ 13dpg_c + adp_c`, while glycolysis is drawn from 1,3-bisphosphoglycerate to 3-phosphoglycerate. GEMs MAP keeps the drawing readable and flips the sign of the flux for display, so the arrowhead still points the way the reaction runs.
+    The inspector of PGK says *drawn opposite to model direction — flux sign flipped for display*. iJO1366 writes the reaction as `3pg_c + atp_c ⇌ 13dpg_c + adp_c`, while glycolysis is drawn from 1,3-bisphosphoglycerate to 3-phosphoglycerate. GEMsMAP keeps the drawing readable and flips the sign of the flux for display, so the arrowhead still points the way the reaction runs.
 
 ### Step 13 — Switch, compare and animate conditions
 
@@ -393,7 +393,7 @@ At the bottom of the window, the **condition bar** controls the whole map:
 1. Switch to **COBRAGUI** and click **Explore**.
 2. In the left sidebar, under **Views**, click **Active reactions** (only reactions with flux, sorted by |flux|).
 3. Search `OCBT` (ornithine carbamoyltransferase, in arginine biosynthesis) and click it.
-4. In the inspector, click **+ Add to map**. GEMs MAP switches to the **Map Builder** with OCBT as a light preview that follows the mouse: click an empty area to place it (++esc++ cancels), then press ++f++. Its metabolites are new copies; drag one onto another node of the same metabolite to merge them.
+4. In the inspector, click **+ Add to map**. GEMsMAP switches to the **Map Builder** with OCBT as a light preview that follows the mouse: click an empty area to place it (++esc++ cancels), then press ++f++. Its metabolites are new copies; drag one onto another node of the same metabolite to merge them.
 
 <figure class="gm-shot" markdown>
 [![The COBRAGUI Explore section with the "Active reactions" view highlighted in the sidebar, OCBT in the search box and the "Add to map" button of its inspector highlighted.](../assets/images/tutorials/quickstart-23-ocbt-add-annotated.png)](../assets/images/tutorials/quickstart-23-ocbt-add-annotated.png)
@@ -426,7 +426,7 @@ Templates are pathway maps that know the identity of each molecule. The matcher 
 1. Find the arrow **SerA·C·B** in the serine family: it goes from **3-phospho-D-glycerate** to **L-serine**.
 2. Click it. The inspector says **Not bound to a model reaction**: in the model this conversion takes several reactions.
 3. Click **Find routes 3pg_c → ser__L_c in the model…**.
-4. Keep **Only routes that carry flux** (here in `run_wo2`). GEMs MAP finds **one route of 3 reactions: PGCD → PSERT → PSP_L**.
+4. Keep **Only routes that carry flux** (here in `run_wo2`). GEMsMAP finds **one route of 3 reactions: PGCD → PSERT → PSP_L**.
 5. Click **Insert** to draw every step, or **Collapsed** to insert them as one summary arrow that you can expand later.
 
 <figure class="gm-shot gm-medium" markdown>
@@ -456,4 +456,4 @@ You imported a genome-scale model, explored its structure, simulated it in two c
 
 Orth JD, Conrad TM, Na J, Lerman JA, Nam H, Feist AM, Palsson BØ (2011). A comprehensive genome-scale reconstruction of *Escherichia coli* metabolism—2011. *Molecular Systems Biology* 7:535. [doi:10.1038/msb.2011.65](https://doi.org/10.1038/msb.2011.65)
 
-The screenshots of this tutorial were captured from GEMs MAP 0.2.0 with COBRApy 0.32.1 and GLPK, using `iJO1366.json` from BiGG (SHA-256 `9376a93f62ad430719f23e612154dd94c67e0d7c9545ed9d17a4d0c347672313`). The values the application displayed are recorded in `docs/assets/images/tutorials/quickstart-manifest.json`.
+The screenshots of this tutorial were captured from GEMsMAP 0.2.0 with COBRApy 0.32.1 and GLPK, using `iJO1366.json` from BiGG (SHA-256 `9376a93f62ad430719f23e612154dd94c67e0d7c9545ed9d17a4d0c347672313`). The values the application displayed are recorded in `docs/assets/images/tutorials/quickstart-manifest.json`.

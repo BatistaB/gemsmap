@@ -1,7 +1,7 @@
 @echo off
-rem GEMs MAP {{VERSION}}: double-click to start. The first start prepares everything inside this folder.
+rem GEMsMAP {{VERSION}}: double-click to start. The first start prepares everything inside this folder.
 setlocal
-title GEMs MAP {{VERSION}}
+title GEMsMAP {{VERSION}}
 rem Started from PowerShell 7, Windows PowerShell would inherit PowerShell 7's module path and fail to load its own
 rem modules (Get-ExecutionPolicy...). An empty PSModulePath makes it use its defaults.
 set "PSModulePath="

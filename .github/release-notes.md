@@ -7,11 +7,11 @@ pip install gemsmap
 gemsmap
 ```
 
-`gemsmap` opens GEMs MAP in your browser at http://127.0.0.1:8765. Keep the window open while you work.
+`gemsmap` opens GEMsMAP in your browser at http://127.0.0.1:8765. Keep the window open while you work.
 With [uv](https://docs.astral.sh/uv/): `uvx gemsmap`.
 
 **Without Python:** download `GEMsMAP-{{VERSION}}.zip` below, extract it to a folder of its own, and double-click
-*Start GEMs MAP* (Windows `.bat`; macOS `.command`, the first time right-click > Open; Linux:
+*Start GEMsMAP* (Windows `.bat`; macOS `.command`, the first time right-click > Open; Linux:
 `bash start-gemsmap-linux.sh`). The first start needs the internet for a few minutes and prepares everything inside
 that folder. See `README-FIRST.txt` in the zip.
 
@@ -27,5 +27,5 @@ See [CHANGELOG.md](https://github.com/BatistaB/gemsmap/blob/main/CHANGELOG.md).
 - `GEMsMAP-{{VERSION}}.zip`: double-click download for Windows, macOS and Linux.
 - `SHA256SUMS.txt`: checksums of the files.
 
-Problems? Click **GEMs MAP {{VERSION}}** in the COBRAGUI status bar, then *Copy diagnostics*, and paste it into a
+Problems? Click **GEMsMAP {{VERSION}}** in the COBRAGUI status bar, then *Copy diagnostics*, and paste it into a
 [new issue](https://github.com/BatistaB/gemsmap/issues/new/choose).

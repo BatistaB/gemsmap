@@ -1,7 +1,7 @@
 # Pentose phosphate pathway (KEGG map00030) — generation report
 
 Source: KEGG map00030 (Pentose phosphate pathway), https://www.genome.jp/pathway/map00030. The biology was taken from KEGG's flat files and KGML;
-the drawing is GEMs MAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
+the drawing is GEMsMAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
 
 ## Completeness
 
@@ -14,7 +14,7 @@ ModelSEED mapped:               45
 ChEBI mapped:                   46
 MetaCyc mapped:                 44
 
-Confirmed (GEMs MAP library):     18
+Confirmed (GEMsMAP library):     18
 Suggested, high confidence:     26
 Suggested, probable:            2
 Ambiguous metabolites:          0

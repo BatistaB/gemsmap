@@ -26,12 +26,12 @@ def test_version_flag(capsys):
     with pytest.raises(SystemExit) as e:
         cli.main(["--version"])
     assert e.value.code == 0
-    assert capsys.readouterr().out.strip() == f"GEMs MAP {gemsmap.__version__}"
+    assert capsys.readouterr().out.strip() == f"GEMsMAP {gemsmap.__version__}"
 
 
 def test_diagnose_reports_versions_and_folders():
     text = cli.diagnose()
-    assert text.startswith(f"GEMs MAP {gemsmap.__version__}\n")
+    assert text.startswith(f"GEMsMAP {gemsmap.__version__}\n")
     assert "COBRApy" in text and "solvers:" in text and "not importable" not in text
     assert "Data folder:" in text and "BiGG tables:" in text
     assert not set("…·→—") & set(text)  # our own text is ASCII, so it prints in every console (paths may not be)

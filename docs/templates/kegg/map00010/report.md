@@ -1,7 +1,7 @@
 # Glycolysis / Gluconeogenesis (KEGG map00010) — generation report
 
 Source: KEGG map00010 (Glycolysis / Gluconeogenesis), https://www.genome.jp/pathway/map00010. The biology was taken from KEGG's flat files and KGML;
-the drawing is GEMs MAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
+the drawing is GEMsMAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
 
 ## Completeness
 
@@ -14,7 +14,7 @@ ModelSEED mapped:               40
 ChEBI mapped:                   37
 MetaCyc mapped:                 38
 
-Confirmed (GEMs MAP library):     24
+Confirmed (GEMsMAP library):     24
 Suggested, high confidence:     13
 Suggested, probable:            3
 Ambiguous metabolites:          0
@@ -159,9 +159,9 @@ enzymes, phosphatases). The matcher still finds them in a model by MetaNetX / Mo
 - Multi-step complexes are drawn as their overall reaction: PDH (R00209; KEGG draws E1/E2/E3 through enzyme-bound lipoyl intermediates) and PDC (R00224; two TPP-dependent half-reactions). The KEGG steps are kept as provenance.
 - Compartments are left unspecified: KEGG reference pathways have none, and glycolysis is plastidic as well as cytosolic in plants. The matcher picks the compartment in each GEM.
 - Directionality follows the KGML of rn00010 (reversible / irreversible) for every drawn step.
-- Cofactors are drawn beside each arrow as small attached nodes — repeated for every reaction, all pointing to the same entity (ATP is one entity drawn many times). Water and protons are left out of the drawing (water stays in the equations, protons are left out of the equations as in all GEMs MAP templates).
+- Cofactors are drawn beside each arrow as small attached nodes — repeated for every reaction, all pointing to the same entity (ATP is one entity drawn many times). Water and protons are left out of the drawing (water stays in the equations, protons are left out of the equations as in all GEMsMAP templates).
 - Protein phosphoryl carriers (phospho-histidine proteins of the PTS and of the 2,3-BPG-primed PGAM, and the dephosphorylated His-protein) are generic entities: kept generic, flagged for review. On the PGAM priming step the carrier is the enzyme's own active-site histidine, so it stays in the equation but is not drawn; on the PTS steps (HPr / EIIB) it is drawn.
-- Identities: an entity or reaction already confirmed in the GEMs MAP canonical library keeps that confirmation; every other identity is an AI suggestion (high confidence when KEGG → one MetaNetX chemical with a consistent formula and an unambiguous BiGG ID; probable otherwise) and goes to the review queue.
+- Identities: an entity or reaction already confirmed in the GEMsMAP canonical library keeps that confirmation; every other identity is an AI suggestion (high confidence when KEGG → one MetaNetX chemical with a consistent formula and an unambiguous BiGG ID; probable otherwise) and goes to the review queue.
 
 ## Generation log
 

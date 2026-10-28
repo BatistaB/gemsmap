@@ -22,7 +22,7 @@ A metabolic model is a stoichiometric matrix \(S\) (metabolites × reactions) pl
 S\,v = 0, \qquad lb_j \le v_j \le ub_j \quad \text{for every reaction } j
 \]
 
-Fluxes are in mmol gDW⁻¹ h⁻¹ (millimoles per gram of dry weight per hour), the usual convention of genome-scale models; a biomass objective is then a growth rate in h⁻¹. GEMs MAP does not convert units: it shows what COBRApy returns for the model as written.
+Fluxes are in mmol gDW⁻¹ h⁻¹ (millimoles per gram of dry weight per hour), the usual convention of genome-scale models; a biomass objective is then a growth rate in h⁻¹. GEMsMAP does not convert units: it shows what COBRApy returns for the model as written.
 
 The set of flux vectors that satisfy these constraints is usually huge. Each method below picks out, or describes, a part of it.
 
@@ -34,7 +34,7 @@ FBA solves a linear program: maximise (or minimise) a linear objective \(c^\top 
 \max_{v}\; c^\top v \quad \text{s.t.}\quad S\,v = 0,\; lb \le v \le ub
 \]
 
-In GEMs MAP the objective is the one stored in the model file, or the one you set in the [objective editor](constraints.md#objective). The result is the optimal objective value and **one** flux vector that reaches it.
+In GEMsMAP the objective is the one stored in the model file, or the one you set in the [objective editor](constraints.md#objective). The result is the optimal objective value and **one** flux vector that reaches it.
 
 !!! warning "One optimum, many flux distributions"
     Many different flux vectors usually reach the same optimal objective value: parallel pathways, isozymes and cycles leave freedom that the objective does not constrain. FBA returns whichever optimal vertex the solver finds. Treat individual fluxes of an FBA solution as *one possible* distribution, not as the prediction of the model. [FVA](#fva-flux-variability-analysis) shows how much each flux can vary at the optimum; [pFBA](#pfba-parsimonious-fba) picks a more reproducible solution.
@@ -44,7 +44,7 @@ In GEMs MAP the objective is the one stored in the model file, or the one you se
 pFBA (Lewis *et al.*, 2010) first finds the optimum, then keeps the objective at (a fraction of) that optimum and **minimises the sum of absolute fluxes**. The idea is enzyme economy: among equally good solutions, prefer the one that needs the least total flux.
 
 - **Fraction of optimum** (Advanced options, default `1`): the objective must stay ≥ this fraction of the optimum while total flux is minimised.
-- **Reported values.** The result's objective value is the **biological objective** \(\sum c_j v_j\) of the returned fluxes, recomputed by GEMs MAP; the minimised total flux is reported separately as *Total flux (pFBA)* (Σ|flux|). COBRApy's own `objective_value` for pFBA is the total flux, which is easy to confuse with growth; GEMs MAP keeps the two apart.
+- **Reported values.** The result's objective value is the **biological objective** \(\sum c_j v_j\) of the returned fluxes, recomputed by GEMsMAP; the minimised total flux is reported separately as *Total flux (pFBA)* (Σ|flux|). COBRApy's own `objective_value` for pFBA is the total flux, which is easy to confuse with growth; GEMsMAP keeps the two apart.
 - pFBA solutions are more reproducible than plain FBA, but they can still be non-unique, and minimal total flux is a modelling assumption, not a measured property.
 
 ## Loopless FBA
@@ -72,7 +72,7 @@ where \(z^\ast\) is the optimal objective and \(f\) the *fraction of optimum*. E
 **Reading FVA.** The result is a table of intervals, one per reaction, shown as numbers and range bars. A reaction with `min = max = 0` is blocked under these conditions; a narrow interval means the flux is well determined at the optimum; a wide one means the model leaves it free.
 
 !!! danger "FVA intervals are not a flux distribution"
-    Each interval is computed independently. Choosing a value inside every interval does **not** give a feasible flux vector, and the midpoints are not a solution. GEMs MAP never uses midpoints as fluxes: FVA results have no metabolite turnover, are sent to maps as **ranges** only, and can be compared only with other FVA results.
+    Each interval is computed independently. Choosing a value inside every interval does **not** give a feasible flux vector, and the midpoints are not a solution. GEMsMAP never uses midpoints as fluxes: FVA results have no metabolite turnover, are sent to maps as **ranges** only, and can be compared only with other FVA results.
 
 **Large models.** On iML1515 (2,712 reactions) a full FVA solves 5,424 linear programs. The README of the project reports about 95 s with GLPK on the author's machine. The interface warns about large runs and offers faster alternatives:
 
@@ -86,7 +86,7 @@ where \(z^\ast\) is the optimal objective and \(f\) the *fraction of optimum*. E
 
 ## Solver status: when there is no answer
 
-Every result has an explicit status: `optimal`, `infeasible`, `unbounded`, `infeasible or unbounded`, `undefined` or `error`. **Only optimal results contain fluxes.** If a problem has no solution, the fluxes do not exist, so GEMs MAP shows no numbers at all instead of zeros, and lists what to check:
+Every result has an explicit status: `optimal`, `infeasible`, `unbounded`, `infeasible or unbounded`, `undefined` or `error`. **Only optimal results contain fluxes.** If a problem has no solution, the fluxes do not exist, so GEMsMAP shows no numbers at all instead of zeros, and lists what to check:
 
 - **Infeasible.** Are essential substrates available in the medium? Can the objective reaction carry flux? Which bounds differ from the model file? Are some reactions forced to carry flux (for example a non-zero maintenance requirement)?
 - **Unbounded.** The objective can grow without limit, usually because a reaction on its path or an uptake has an infinite bound.

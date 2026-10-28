@@ -1,6 +1,6 @@
-# GEMs MAP {{VERSION}} for Windows, started by "Start GEMs MAP (Windows).bat".
+# GEMsMAP {{VERSION}} for Windows, started by "Start GEMsMAP (Windows).bat".
 # The first start prepares a private environment in runtime\ next to this app\ folder: its own copy of uv (pinned),
-# Python {{PYTHON}} and GEMs MAP with its libraries. Nothing is installed elsewhere; delete the folder to remove it.
+# Python {{PYTHON}} and GEMsMAP with its libraries. Nothing is installed elsewhere; delete the folder to remove it.
 # Options are passed to gemsmap (for example --port 8766); --setup-only prepares the environment and stops.
 $ErrorActionPreference = 'Stop'
 $app = $PSScriptRoot
@@ -17,7 +17,7 @@ $rest = @($args | Where-Object { $_ -ne '--setup-only' })
 
 function Fail($why) {
   Write-Host ''
-  Write-Host "GEMs MAP could not be prepared: $why" -ForegroundColor Red
+  Write-Host "GEMsMAP could not be prepared: $why" -ForegroundColor Red
   Write-Host 'See README-FIRST.txt (Troubleshooting), or report it with the messages above:'
   Write-Host 'https://github.com/BatistaB/gemsmap/issues'
   exit 1
@@ -29,7 +29,7 @@ if (-not (Test-Path $ready)) {
     Fail ("the path of this folder is too long for Windows ($($root.Length) characters, at most 90):`n  $root`n" +
           "Move the GEMsMAP folder to a shorter place, for example C:\GEMsMAP or your Documents folder, and start again.")
   }
-  Write-Host "GEMs MAP {{VERSION}}: first start. Preparing a private environment in:"
+  Write-Host "GEMsMAP {{VERSION}}: first start. Preparing a private environment in:"
   Write-Host "  $rt"
   Write-Host 'This downloads Python and the scientific libraries once (a few hundred MB) and can take a few minutes.'
   Write-Host ''
@@ -63,13 +63,13 @@ if (-not (Test-Path $ready)) {
   Write-Host '[2/3] Getting Python {{PYTHON}}'
   & $uv venv --quiet --python {{PYTHON}} (Join-Path $rt 'env')
   if ($LASTEXITCODE -ne 0) { Fail "creating the Python environment failed (uv exit code $LASTEXITCODE)" }
-  Write-Host '[3/3] Installing GEMs MAP and its libraries'
+  Write-Host '[3/3] Installing GEMsMAP and its libraries'
   & $uv pip install --quiet --python $py (Join-Path $app '{{WHEEL}}')
-  if ($LASTEXITCODE -ne 0) { Fail "installing GEMs MAP failed (uv exit code $LASTEXITCODE; check the internet connection)" }
+  if ($LASTEXITCODE -ne 0) { Fail "installing GEMsMAP failed (uv exit code $LASTEXITCODE; check the internet connection)" }
   Set-Content -Path $ready -Value (Get-Date -Format o)
-  Write-Host 'GEMs MAP is installed in this folder.'
+  Write-Host 'GEMsMAP is installed in this folder.'
 }
 
-if ($setupOnly) { Write-Host 'GEMs MAP {{VERSION}} is ready.'; exit 0 }
+if ($setupOnly) { Write-Host 'GEMsMAP {{VERSION}} is ready.'; exit 0 }
 & $py -m gemsmap @rest
 exit $LASTEXITCODE

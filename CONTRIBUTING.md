@@ -1,6 +1,6 @@
 # Contributing / development workflow
 
-GEMs MAP is developed as the visualization platform of a PhD project. These conventions keep the
+GEMsMAP is developed as the visualization platform of a PhD project. These conventions keep the
 history readable and every result reproducible.
 
 ## Setup
@@ -92,7 +92,9 @@ Semantic versioning, `MAJOR.MINOR.PATCH`:
 Release checklist:
 
 1. Move the *Unreleased* entries of `CHANGELOG.md` under the new version and date.
-2. Bump `version` in `package.json` and `__version__` in `backend/cobragui/__init__.py`.
+2. Bump `__version__` in `backend/gemsmap/__init__.py` (PEP 440, for example `0.3.0b1`), `version` in
+   `package.json` (npm form, `0.3.0-beta.1`) and `version` and `date-released` in `CITATION.cff`.
+   `tools/release/build.py` stops if they disagree.
 3. `npm run typecheck && npm run build && npm run backend:test`
 4. `git commit -m "chore(release): v0.3.0"` and `git tag -a v0.3.0 -m "v0.3.0"`.
 

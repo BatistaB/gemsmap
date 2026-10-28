@@ -60,7 +60,7 @@ export function TopBar() {
     <header className="topbar">
       <div className="tb-row">
       <div className="tb-left">
-        <div className="logo" role="img" aria-label="GEMs MAP" title="GEMs MAP — visualization and constraint-based analysis of genome-scale metabolic models"><BrandMark width={30} /></div>
+        <div className="logo" role="img" aria-label="GEMsMAP" title="GEMsMAP — visualization and constraint-based analysis of genome-scale metabolic models"><BrandMark width={30} /></div>
         <WorkspaceSwitcher />
         <div className="menu-wrap" ref={ref}>
           <button className="menu-btn" onClick={() => setMenu(!menu)}>File</button>

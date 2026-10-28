@@ -1,12 +1,12 @@
-# GEMs MAP documentation — MkDocs + Material for MkDocs, built by Read the Docs (.readthedocs.yaml).
+# GEMsMAP documentation — MkDocs + Material for MkDocs, built by Read the Docs (.readthedocs.yaml).
 # Local preview:  pip install -r docs/requirements.txt  &&  mkdocs serve
 # Release check:  mkdocs build --strict
-site_name: GEMs MAP
+site_name: GEMsMAP
 site_description: An Interactive Workbench for Genome-Scale Metabolic Models
 site_author: Bruno Batista
 # Read the Docs sets the canonical URL of each build; it stays empty in local builds.
 site_url: !ENV [READTHEDOCS_CANONICAL_URL, ""]
-copyright: GEMs MAP is released under the MIT License. Documentation © the GEMs MAP authors.
+copyright: GEMsMAP is released under the MIT License. Documentation © the GEMsMAP authors.
 
 docs_dir: docs
 site_dir: site
@@ -146,6 +146,7 @@ nav:
       - reference/index.md
       - Glossary: reference/glossary.md
       - FAQ: reference/faq.md
+      - How to cite: reference/how-to-cite.md
       - Troubleshooting: reference/troubleshooting.md
       - Limitations: reference/limitations.md
       - Roadmap: reference/roadmap.md

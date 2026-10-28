@@ -19,7 +19,7 @@ The format is recognised from the extension, or from the first bytes of the file
 COBRApy reads the file in the backend; for a genome-scale SBML model this takes some seconds (importing iML1515 as COBRA JSON took about 12–20 s on the computer used for these pages). The backend then keeps a fast JSON copy in its cache, so reloading the same model later, for example after restarting the backend, is quicker. Importing the very same file again is recognised by its SHA-256 checksum and reuses the loaded model.
 
 !!! tip "Models downloaded from BiGG"
-    Models exported by the new BiGG site (bigg.bio, files such as `iML1515.biggr.sbml` or `*.biggr.json`) prefix model-specific identifiers with `__<model id>__` and carry few annotations. GEMs MAP removes the prefixes on import, and COBRAGUI completes the annotations from the local BiGG tables when they are [installed](../getting-started/installation.md#optional-bigg-tables-for-templates). These exports may also lack subsystems: the bigg.bio export of iML1515 has none, while the classic BiGG JSON used in these pages has a subsystem for every reaction (see [About the examples](../reference/examples.md)).
+    Models exported by the new BiGG site (bigg.bio, files such as `iML1515.biggr.sbml` or `*.biggr.json`) prefix model-specific identifiers with `__<model id>__` and carry few annotations. GEMsMAP removes the prefixes on import, and COBRAGUI completes the annotations from the local BiGG tables when they are [installed](../getting-started/installation.md#optional-bigg-tables-for-templates). These exports may also lack subsystems: the bigg.bio export of iML1515 has none, while the classic BiGG JSON used in these pages has a subsystem for every reaction (see [About the examples](../reference/examples.md)).
 
 ## The overview: what the model contains
 
@@ -54,7 +54,7 @@ For iML1515 the overview reports 128 dead-end metabolites, 109 non-boundary reac
 
 ## Importing results instead of models
 
-COBRAGUI also accepts **result files**: result JSON exported by GEMs MAP (or the earlier GEM Explorer), and CSV/TSV flux or FVA tables, for example runs made with other tools. Drop them on the window or use *Results → Import*. They are matched to the loaded model by reaction ID; the result records its source file and how many IDs matched. See [Results, comparison and export](results-and-export.md#importing-results).
+COBRAGUI also accepts **result files**: result JSON exported by GEMsMAP (or the earlier GEM Explorer), and CSV/TSV flux or FVA tables, for example runs made with other tools. Drop them on the window or use *Results → Import*. They are matched to the loaded model by reaction ID; the result records its source file and how many IDs matched. See [Results, comparison and export](results-and-export.md#importing-results).
 
 ## Importing a model into the Map Builder only
 

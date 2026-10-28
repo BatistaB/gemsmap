@@ -7,7 +7,7 @@ Bounds
 :   The lower and upper limits of a reaction's flux, \(lb \le v \le ub\). An irreversible reaction has \(lb = 0\); a blocked one has \(lb = ub = 0\). Many models use ±1000 as "unbounded". See [Medium, bounds and objective](../cobra-gui/constraints.md#reaction-bounds).
 
 COBRA, COBRApy
-:   COnstraint-Based Reconstruction and Analysis, the family of methods for genome-scale models; [COBRApy](https://opencobra.github.io/cobrapy/) is its Python implementation, which runs every simulation in GEMs MAP.
+:   COnstraint-Based Reconstruction and Analysis, the family of methods for genome-scale models; [COBRApy](https://opencobra.github.io/cobrapy/) is its Python implementation, which runs every simulation in GEMsMAP.
 
 Compartment
 :   A cellular location in a model (cytosol, mitochondrion, periplasm, extracellular space…). The same chemical in two compartments is two different model metabolites (`pyr_c`, `pyr_p`). Templates use *conceptual* compartments (cytosol, mitochondria…) with fallbacks.
@@ -16,13 +16,13 @@ Constraint-based modelling
 :   Describing what a metabolic network *can* do with constraints (mass balance, bounds) instead of kinetic equations, and analysing that space by optimisation. See [Constraint-based analysis](../cobra-gui/constraint-based-analysis.md).
 
 Currency metabolite (cofactor)
-:   A metabolite that takes part in very many reactions, such as ATP, ADP, NAD(P)(H), H₂O, H⁺, phosphate, CoA, CO₂, O₂ or NH₄⁺. GEMs MAP hides them in maps, path-finding and the local network by default.
+:   A metabolite that takes part in very many reactions, such as ATP, ADP, NAD(P)(H), H₂O, H⁺, phosphate, CoA, CO₂, O₂ or NH₄⁺. GEMsMAP hides them in maps, path-finding and the local network by default.
 
 Entity (template entity)
 :   In a template, the chemical a node stands for, identified by names, formula and database identifiers, independently of any model. See [Identity and matching](../templates/identity-and-matching.md).
 
 Exchange, demand and sink reactions
-:   Boundary reactions with metabolites on one side only. An *exchange* connects an extracellular metabolite to the environment (uptake or secretion); a *demand* irreversibly removes a metabolite; a *sink* supplies or removes one artificially. GEMs MAP follows COBRApy's definitions.
+:   Boundary reactions with metabolites on one side only. An *exchange* connects an extracellular metabolite to the environment (uptake or secretion); a *demand* irreversibly removes a metabolite; a *sink* supplies or removes one artificially. GEMsMAP follows COBRApy's definitions.
 
 FBA (flux balance analysis)
 :   Linear programming that maximises or minimises an objective subject to \(S v = 0\) and the bounds. Returns one optimal flux vector, usually one of many.
@@ -40,7 +40,7 @@ Gene–reaction rule (GPR)
 :   A Boolean rule linking genes to a reaction, for example `b3916 or b1723` (isozymes) or `b0726 and b0727` (subunits of a complex).
 
 Identifier mapping
-:   Finding, for each node of a template, the model metabolite or reaction that represents the same biochemical entity. GEMs MAP does this with a scored, evidence-based matcher and a review dialog.
+:   Finding, for each node of a template, the model metabolite or reaction that represents the same biochemical entity. GEMsMAP does this with a scored, evidence-based matcher and a review dialog.
 
 Loopless FBA
 :   An optimal flux distribution without thermodynamically infeasible internal cycles (COBRApy `loopless_solution`, CycleFreeFlux).
@@ -55,7 +55,7 @@ Metabolite
 :   A chemical species in a compartment of a model, with an ID, name, formula and charge.
 
 Model state
-:   In GEMs MAP, a named set of bound changes and an optional objective on top of the imported model, such as *Base model* or *Anaerobic*.
+:   In GEMsMAP, a named set of bound changes and an optional objective on top of the imported model, such as *Base model* or *Anaerobic*.
 
 Objective
 :   The linear function an optimisation maximises or minimises, typically a biomass reaction representing growth.
@@ -79,4 +79,4 @@ Template
 :   A reusable pathway layout that stores biological identity and topology, not model IDs. See [Templates](../templates/index.md).
 
 Turnover (metabolite)
-:   In GEMs MAP, \(\tfrac{1}{2}\sum_j |S_{ij} v_j|\): the total production (= consumption) rate of a metabolite in one flux solution. A derived proxy, not a concentration.
+:   In GEMsMAP, \(\tfrac{1}{2}\sum_j |S_{ij} v_j|\): the total production (= consumption) rate of a metabolite in one flux solution. A derived proxy, not a concentration.

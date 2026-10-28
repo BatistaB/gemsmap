@@ -33,9 +33,9 @@ This is a short orientation, not the full tutorial. The [canvas page](canvas-and
 
 A pathway map is a **communication device**. Four principles keep it scientifically honest.
 
-**1. A layout is an abstraction, not the cell.** Glycolysis is drawn as a vertical chain and the TCA cycle as a circle because readers recognise those shapes. Positions on the canvas carry no spatial meaning, and GEMs MAP never moves your nodes when data or models change. Compartments drawn as boxes are visual groupings that you choose.
+**1. A layout is an abstraction, not the cell.** Glycolysis is drawn as a vertical chain and the TCA cycle as a circle because readers recognise those shapes. Positions on the canvas carry no spatial meaning, and GEMsMAP never moves your nodes when data or models change. Compartments drawn as boxes are visual groupings that you choose.
 
-**2. A metabolite may be drawn many times.** Cofactors such as ATP, NAD(H) or H₂O take part in hundreds of reactions; connecting all of them to a single node would turn any figure into a hairball. GEMs MAP hides these *currency metabolites* by default (ATP, ADP, NAD(P)(H), H₂O, H⁺, phosphate, CoA, CO₂, O₂, NH₄⁺ and similar, recognised by ID and name), can show them as small text beside the arrow, and lets you draw any metabolite more than once. Every drawing still points to the **same model metabolite**, so all copies show the same data.
+**2. A metabolite may be drawn many times.** Cofactors such as ATP, NAD(H) or H₂O take part in hundreds of reactions; connecting all of them to a single node would turn any figure into a hairball. GEMsMAP hides these *currency metabolites* by default (ATP, ADP, NAD(P)(H), H₂O, H⁺, phosphate, CoA, CO₂, O₂, NH₄⁺ and similar, recognised by ID and name), can show them as small text beside the arrow, and lets you draw any metabolite more than once. Every drawing still points to the **same model metabolite**, so all copies show the same data.
 
 ![Diagram: two drawings of ATP beside the HEX1 and PFK arrows both refer to the model metabolite atp_c; the ATP produced by ATP synthase in the mitochondrion refers to atp_m; atp_c and atp_m are the same chemical entity, ATP (KEGG C00002), in different compartments.](../assets/diagrams/visual-instances.svg){ .gm-diagram }
 

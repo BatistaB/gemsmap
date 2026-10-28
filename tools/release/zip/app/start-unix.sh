@@ -1,7 +1,7 @@
 #!/bin/bash
-# GEMs MAP {{VERSION}} for macOS and Linux, started by "Start GEMs MAP (macOS).command" or start-gemsmap-linux.sh.
+# GEMsMAP {{VERSION}} for macOS and Linux, started by "Start GEMsMAP (macOS).command" or start-gemsmap-linux.sh.
 # The first start prepares a private environment in runtime/ next to this app/ folder: its own copy of uv (pinned),
-# Python {{PYTHON}} and GEMs MAP with its libraries. Nothing is installed elsewhere; delete the folder to remove it.
+# Python {{PYTHON}} and GEMsMAP with its libraries. Nothing is installed elsewhere; delete the folder to remove it.
 # Options are passed to gemsmap (for example --port 8766); --setup-only prepares the environment and stops.
 APP="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$(dirname "$APP")"
@@ -12,7 +12,7 @@ READY="$RT/ready-{{VERSION}}"
 
 fail() {
   echo
-  echo "GEMs MAP could not be prepared: $1"
+  echo "GEMsMAP could not be prepared: $1"
   echo "See README-FIRST.txt (Troubleshooting), or report it with the messages above:"
   echo "https://github.com/BatistaB/gemsmap/issues"
   read -r -p "Press Enter to close this window. " _ || true
@@ -26,7 +26,7 @@ for a in "$@"; do
 done
 
 if [ ! -f "$READY" ]; then
-  echo "GEMs MAP {{VERSION}}: first start. Preparing a private environment in:"
+  echo "GEMsMAP {{VERSION}}: first start. Preparing a private environment in:"
   echo "  $RT"
   echo "This downloads Python and the scientific libraries once (a few hundred MB) and can take a few minutes."
   echo
@@ -42,14 +42,14 @@ if [ ! -f "$READY" ]; then
   rm -rf "$RT/env"
   echo "[2/3] Getting Python {{PYTHON}}"
   "$UV" venv --quiet --python {{PYTHON}} "$RT/env" || fail "creating the Python environment failed"
-  echo "[3/3] Installing GEMs MAP and its libraries"
-  "$UV" pip install --quiet --python "$PY" "$APP/{{WHEEL}}" || fail "installing GEMs MAP failed (check the internet connection)"
+  echo "[3/3] Installing GEMsMAP and its libraries"
+  "$UV" pip install --quiet --python "$PY" "$APP/{{WHEEL}}" || fail "installing GEMsMAP failed (check the internet connection)"
   date > "$READY"
-  echo "GEMs MAP is installed in this folder."
+  echo "GEMsMAP is installed in this folder."
 fi
 
 if [ "$SETUP_ONLY" = 1 ]; then
-  echo "GEMs MAP {{VERSION}} is ready."
+  echo "GEMsMAP {{VERSION}} is ready."
   exit 0
 fi
 # run through Python (not the gemsmap script), so folder names with spaces never matter

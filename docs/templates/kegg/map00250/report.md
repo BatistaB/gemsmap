@@ -1,7 +1,7 @@
 # Alanine, aspartate and glutamate metabolism (KEGG map00250) — generation report
 
 Source: KEGG map00250 (Alanine, aspartate and glutamate metabolism), https://www.genome.jp/pathway/map00250. The biology was taken from KEGG's flat files and KGML;
-the drawing is GEMs MAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
+the drawing is GEMsMAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
 
 ## Completeness
 
@@ -14,7 +14,7 @@ ModelSEED mapped:               53
 ChEBI mapped:                   54
 MetaCyc mapped:                 52
 
-Confirmed (GEMs MAP library):     18
+Confirmed (GEMsMAP library):     18
 Suggested, high confidence:     34
 Suggested, probable:            2
 Ambiguous metabolites:          0

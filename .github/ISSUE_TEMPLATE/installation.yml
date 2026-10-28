@@ -1,10 +1,10 @@
 name: Installation report
-description: Tell us how installing or starting GEMs MAP went, whether it worked or not
+description: Tell us how installing or starting GEMsMAP went, whether it worked or not
 labels: [installation]
 body:
   - type: markdown
     attributes:
-      value: Thank you for testing GEMs MAP. Reports of installations that worked are useful too.
+      value: Thank you for testing GEMsMAP. Reports of installations that worked are useful too.
   - type: dropdown
     id: result
     attributes:
@@ -39,5 +39,5 @@ body:
     id: diagnostics
     attributes:
       label: Diagnostics
-      description: If GEMs MAP starts, click "GEMs MAP <version>" in the COBRAGUI status bar, then "Copy diagnostics", and paste it here. Otherwise paste the output of `gemsmap diagnose`, or the messages of the window where it failed.
+      description: If GEMsMAP starts, click "GEMsMAP <version>" in the COBRAGUI status bar, then "Copy diagnostics", and paste it here. Otherwise paste the output of `gemsmap diagnose`, or the messages of the window where it failed.
       render: text

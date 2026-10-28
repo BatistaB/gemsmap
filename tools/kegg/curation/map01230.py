@@ -17,7 +17,7 @@ VERSION = "0.1.0"
 CREATED = "2026-10-09T00:00:00Z"
 DESCRIPTION = ("Where the twenty amino acids come from: the central-carbon precursors (3-phosphoglycerate, PEP + erythrose-4P, pyruvate, "
                "oxaloacetate, 2-oxoglutarate, ribose-5P / PRPP) and the biosynthetic families built on them — serine, aromatic, pyruvate, "
-               "aspartate, glutamate and histidine. Whole pathways are drawn as summary arrows (KEGG modules). After KEGG map01230; drawn by GEMs MAP.")
+               "aspartate, glutamate and histidine. Whole pathways are drawn as summary arrows (KEGG modules). After KEGG map01230; drawn by GEMsMAP.")
 SCOPE = {"level": "universal", "taxa": [], "note": "Families are universal; lysine is made from aspartate (DAP pathway, bacteria and plants) or from 2-oxoglutarate (AAA pathway, fungi). Animals lack several of these pathways (essential amino acids). Compartments are chosen by the person mapping onto a GEM."}
 TAGS = ["amino acids", "overview", "KEGG", "map01230", "central carbon", "precursors"]
 
@@ -183,5 +183,5 @@ def layout(L: Layout) -> dict:
     L.group("Glutamate family", [n["glu"], n["gln"], n["pro"], n["arg"]], fill="#fcebee", **{k: v for k, v in fam.items() if k != "kind"})
     L.group("Histidine", [n["prpp"], n["his"]], fill="#e8f6f6", **{k: v for k, v in fam.items() if k != "kind"})
     L.label("Amino acid biosynthesis", -700, -150, size=16, weight=700, italic=False, kind="title")
-    L.label("overview after KEGG map01230 · drawn by GEMs MAP", -700, -130, size=10, weight=400, italic=True)
+    L.label("overview after KEGG map01230 · drawn by GEMsMAP", -700, -130, size=10, weight=400, italic=True)
     return L.result()

@@ -14,7 +14,7 @@
    "note": "Conserved; cytosolic."
   },
   "authors": [
-   "GEMs MAP"
+   "GEMsMAP"
   ],
   "created": "2026-10-02T00:00:00.000Z",
   "modified": "2026-10-08T00:00:00.000Z",
@@ -99,7 +99,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "D-glucose-6-phosphate"
    },
@@ -140,7 +140,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "6-phosphogluconolactone"
    },
@@ -180,7 +180,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "6-phospho-D-gluconate"
    },
@@ -220,7 +220,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "D-ribulose-5-phosphate"
    },
@@ -260,7 +260,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "D-ribose-5-phosphate"
    },
@@ -300,7 +300,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "D-xylulose-5-phosphate"
    },
@@ -338,7 +338,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "NADP+"
    },
@@ -375,7 +375,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "NADPH"
    },
@@ -411,7 +411,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "H2O"
    },
@@ -447,7 +447,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP canonical library (identifiers verified by hand)"
+     "note": "GEMsMAP canonical library (identifiers verified by hand)"
     },
     "library": "CO2"
    }
@@ -576,7 +576,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "G6PDH2r",
@@ -623,7 +623,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "PGL"
@@ -680,7 +680,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "GND"
@@ -721,7 +721,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "RPI"
@@ -762,7 +762,7 @@
     "identity": {
      "status": "confirmed",
      "source": "builtin",
-     "note": "GEMs MAP built-in template; KEGG reaction IDs checked against the KEGG equation"
+     "note": "GEMsMAP built-in template; KEGG reaction IDs checked against the KEGG equation"
     },
     "hints": [
      "RPE"

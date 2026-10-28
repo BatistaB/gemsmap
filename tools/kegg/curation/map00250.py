@@ -1,6 +1,6 @@
 """Curation of KEGG map00250 — Alanine, aspartate and glutamate metabolism.
 
-The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMs MAP's own
+The biology comes from KEGG (flat files + KGML); the decisions below are the curator's. The layout is GEMsMAP's own
 drawing (the glutamate / glutamine nitrogen-assimilation column in the middle, aspartate / asparagine on the left,
 alanine and the GABA shunt on the right, the nitrogen donations of glutamine and aspartate below), not a copy of
 the KEGG map.
@@ -14,7 +14,7 @@ CREATED = "2026-10-09T00:00:00Z"
 DESCRIPTION = ("Nitrogen assimilation and the amino acids made directly from central-carbon keto acids: glutamate / glutamine "
                "(GDH, GS-GOGAT, glutaminase), aspartate / asparagine, alanine, the GABA shunt, and the nitrogen glutamine and "
                "aspartate donate to carbamoyl phosphate, pyrimidines, purines, arginine and amino sugars; N-acetylaspartate / NAAG "
-               "of the vertebrate brain. Derived from KEGG; drawn by GEMs MAP.")
+               "of the vertebrate brain. Derived from KEGG; drawn by GEMsMAP.")
 SCOPE = {"level": "universal", "taxa": [], "note": "GDH, GS, transaminases and asparagine synthesis are conserved; GOGAT (bacteria, plants, fungi), the GABA shunt, D-aspartate and NAA / NAAG (vertebrate brain) are organism-specific. Compartments are chosen by the person mapping onto a GEM."}
 TAGS = ["KEGG", "map00250", "amino acids", "glutamate", "aspartate", "nitrogen assimilation"]
 
@@ -245,5 +245,5 @@ def layout(L: Layout) -> dict:
     L.group("GABA shunt", [n["gaba"], n["ssa"], n["succ"]])
     L.group("N-Acetylaspartate · NAAG (vertebrate brain)", [n["asp_3"], n["naa"], n["naag"], n["naagg"], n["glu_2"], n["citglu"]])
     L.label("Alanine, aspartate and glutamate metabolism", -900, -640, size=16, weight=700, italic=False, kind="title")
-    L.label("derived from KEGG map00250 · drawn by GEMs MAP", -900, -620, size=10, weight=400, italic=True)
+    L.label("derived from KEGG map00250 · drawn by GEMsMAP", -900, -620, size=10, weight=400, italic=True)
     return L.result()

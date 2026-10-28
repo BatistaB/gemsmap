@@ -1,6 +1,6 @@
 # About the examples
 
-The screenshots and numbers in this documentation come from real runs of GEMs MAP, captured automatically from the running application. Nothing is mocked or edited, except that transient notifications are hidden and numbered callouts are added to some images. This page records what was used, so that every value can be reproduced and checked.
+The screenshots and numbers in this documentation come from real runs of GEMsMAP, captured automatically from the running application. Nothing is mocked or edited, except that transient notifications are hidden and numbered callouts are added to some images. This page records what was used, so that every value can be reproduced and checked.
 
 ## The model: *E. coli* iML1515
 
@@ -10,7 +10,7 @@ The screenshots and numbers in this documentation come from real runs of GEMs MA
 | Model | iML1515 (Monk *et al.*, 2017), from [BiGG Models](https://bigg.bio/models/iML1515) |
 | File | `iML1515.json`, the classic BiGG COBRA JSON export (`http://bigg.ucsd.edu/static/models/iML1515.json`; BiGG lists it as last updated 31 Oct 2019) |
 | SHA-256 | `b0f9199f048779bb08a14dfa6c09ec56d35b8750d2f99681980d0f098355fbf5` |
-| Size in GEMs MAP | 2,712 reactions · 1,877 metabolites · 1,516 genes · 3 compartments · 40 subsystems |
+| Size in GEMsMAP | 2,712 reactions · 1,877 metabolites · 1,516 genes · 3 compartments · 40 subsystems |
 | Objective | maximise `BIOMASS_Ec_iML1515_core_75p37M` (from the file) |
 | Medium | from the file: 24 compounds may be taken up; D-glucose ≤ 10 mmol gDW⁻¹ h⁻¹; O₂ and the other compounds ≤ 1000 |
 
@@ -23,7 +23,7 @@ iML1515 is a published model by its authors; it is used here only as a well-know
 
 | | |
 | --- | --- |
-| GEMs MAP | development version of 12 October 2026, just before 0.3.0b1 (the manifests record the build) |
+| GEMsMAP | development version of 12 October 2026, just before 0.3.0b1 (the manifests record the build) |
 | COBRApy | 0.32.1 |
 | Solver | GLPK (COBRApy's default in the backend environment) |
 | Browser | Microsoft Edge (Chromium), headless, 1600 × 900 px at 1.5× |

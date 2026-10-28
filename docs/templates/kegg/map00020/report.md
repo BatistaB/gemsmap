@@ -1,7 +1,7 @@
 # Citrate cycle (TCA cycle) (KEGG map00020) — generation report
 
 Source: KEGG map00020 (Citrate cycle (TCA cycle)), https://www.genome.jp/pathway/map00020. The biology was taken from KEGG's flat files and KGML;
-the drawing is GEMs MAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
+the drawing is GEMsMAP's own and is **not** an official KEGG map. Status: **AI-generated — needs review**.
 
 ## Completeness
 
@@ -14,7 +14,7 @@ ModelSEED mapped:               22
 ChEBI mapped:                   23
 MetaCyc mapped:                 21
 
-Confirmed (GEMs MAP library):     19
+Confirmed (GEMsMAP library):     19
 Suggested, high confidence:     2
 Suggested, probable:            2
 Ambiguous metabolites:          0
@@ -114,7 +114,7 @@ enzymes, phosphatases). The matcher still finds them in a model by MetaNetX / Mo
 - Quinone / quinol of SDH are generic entities (ubiquinone or menaquinone depending on the organism): kept generic, flagged for review.
 - Directionality follows the KGML of rn00020 for every drawn step (the overall complexes take it from their KEGG half-reactions).
 - Compartments are not part of the template: the person chooses them when mapping onto a GEM (mitochondrial matrix in eukaryotes, cytosol in prokaryotes; the matcher proposes and asks when both exist).
-- Identities: an entity or reaction already confirmed in the GEMs MAP canonical library keeps that confirmation; every other identity is an AI suggestion and goes to the review queue when it is not high-confidence.
+- Identities: an entity or reaction already confirmed in the GEMsMAP canonical library keeps that confirmation; every other identity is an AI suggestion and goes to the review queue when it is not high-confidence.
 
 ## Generation log
 

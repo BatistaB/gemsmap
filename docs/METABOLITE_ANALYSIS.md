@@ -32,7 +32,7 @@ Two rules keep the noise out:
 
 ## BiGG local tables (offline knowledge base)
 
-When the BiGG universal tables are installed (`npm run bigg:data`, see [TEMPLATE_BUILDER.md](TEMPLATE_BUILDER.md)), the analysis uses them next to MetaNetX. **MetaNetX stays the reference and decides**; BiGG is offline enrichment. GEMs MAP never calls the BiGG API.
+When the BiGG universal tables are installed (`npm run bigg:data`, see [TEMPLATE_BUILDER.md](TEMPLATE_BUILDER.md)), the analysis uses them next to MetaNetX. **MetaNetX stays the reference and decides**; BiGG is offline enrichment. GEMsMAP never calls the BiGG API.
 
 - **Bridge**: each metabolite is resolved to BiGG universal metabolites through its annotation and its own ID, superseded BiGG IDs included (`glc_D` → `glc__D`). BiGG's MetaNetX links are often from an older MNX release (glutathione: `MNXM57` in BiGG, `MNXM490899` in MNXref 4). So they are used only when the metabolite's own identifiers resolve nothing in MetaNetX, for example BiGG IDs unknown to MNXref, or MetaNetX unreachable. Bridged inputs are shown as evidence and never count as an extra independent database.
 - **Enrichment**: an accepted match also gets its BiGG ID and BiGG's curated cross-references (KEGG, ChEBI, ModelSEED, HMDB, InChIKey), if the BiGG metabolite has the same composition. When several BiGG entries share an identifier (`g6p` and `M01389`), only the one the model itself uses is written. If the model uses none of them, no BiGG ID is written.
@@ -48,7 +48,7 @@ For an accepted match, the chemical's cross-references are added under COBRApy /
 - **Not written**: KEGG *drug* entries, and MetaCyc IDs when MetaNetX lists more than two for one chemical. Those are compound classes merged into the chemical (D-glucose → "Soyasapogenol-B-Monoglucosides").
 - **Formula and charge**: only when the model has no formula, and only with *Fill missing formulas* on. The MetaNetX values are at pH 7.3.
 
-Accepted matches form a **curation layer** (`<model id>.curation.json` in the model cache). It records the original formula and charge, so every metabolite can be undone (*Undo*, *Revert all*). *Keep original* records that you looked at a suggestion and declined it, and later analyses respect that. The layer is re-applied whenever the model is loaded, and exported files carry it, with a `GEMs MAP curation` note in the model notes. The imported file itself is never modified.
+Accepted matches form a **curation layer** (`<model id>.curation.json` in the model cache). It records the original formula and charge, so every metabolite can be undone (*Undo*, *Revert all*). *Keep original* records that you looked at a suggestion and declined it, and later analyses respect that. The layer is re-applied whenever the model is loaded, and exported files carry it, with a `GEMsMAP curation` note in the model notes. The imported file itself is never modified.
 
 ## API
 

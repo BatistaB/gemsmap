@@ -1,6 +1,6 @@
 # Templates
 
-A GEMs MAP **template** is a reusable pathway layout that knows **what each molecule is**, not what it is called in one particular model. The same template draws glycolysis on a BiGG model (`g6p_c`), a ModelSEED model (`cpd00079_c0`) or a KEGG-based model (`C00092[c]`), always with the same recognisable shape. A matcher finds the model's names for each molecule and asks you to review the uncertain cases.
+A GEMsMAP **template** is a reusable pathway layout that knows **what each molecule is**, not what it is called in one particular model. The same template draws glycolysis on a BiGG model (`g6p_c`), a ModelSEED model (`cpd00079_c0`) or a KEGG-based model (`C00092[c]`), always with the same recognisable shape. A matcher finds the model's names for each molecule and asks you to review the uncertain cases.
 
 > **A template describes biological identity and pathway topology; a GEM provides model-specific identifiers.**
 
@@ -46,7 +46,7 @@ See [Identity and matching](identity-and-matching.md) for the details, and [Link
 | Built-in templates: global central carbon, glycolysis, TCA cycle, oxidative PPP | <span class="gm-badge implemented">Implemented</span> |
 | KEGG-derived templates (map00010, map00020, map00030, map00250) and an amino acid overview, drafted with an LLM | <span class="gm-badge experimental">AI-generated, awaiting review</span> |
 | Template Builder: create, edit, duplicate, validate, import and export templates without a model | <span class="gm-badge implemented">Implemented</span> |
-| Identity search (GEMs MAP library offline; KEGG, ChEBI, MetaNetX online; local BiGG tables), *Auto Identify*, *Add BiGG IDs* | <span class="gm-badge implemented">Implemented</span> |
+| Identity search (GEMsMAP library offline; KEGG, ChEBI, MetaNetX online; local BiGG tables), *Auto Identify*, *Add BiGG IDs* | <span class="gm-badge implemented">Implemented</span> |
 | Deterministic matching with evidence, review dialog, mapping profiles, reproducibility report | <span class="gm-badge implemented">Implemented</span> |
 | Sharing templates as files (`.gemsmap-template.json`) | <span class="gm-badge implemented">Implemented</span> |
 | A searchable community template hub with versions, provenance and review | <span class="gm-badge planned">Future direction</span> |

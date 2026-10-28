@@ -107,7 +107,7 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/zip test" && cd "$RUNNER_TEMP/zip test" && unzip -q "$GITHUB_WORKSPACE"/release/GEMsMAP-*.zip
           D="$(ls -d "$RUNNER_TEMP/zip test"/GEMsMAP-*)"
-          if [ "$RUNNER_OS" = macOS ]; then L="$D/Start GEMs MAP (macOS).command"; else L="$D/start-gemsmap-linux.sh"; fi
+          if [ "$RUNNER_OS" = macOS ]; then L="$D/Start GEMsMAP (macOS).command"; else L="$D/start-gemsmap-linux.sh"; fi
           set +e  # keep going after a failure, to publish its output as an annotation
           "$L" --setup-only < /dev/null 2>&1 | tee "$RUNNER_TEMP/zip.log"
           rc=${PIPESTATUS[0]}
@@ -122,7 +122,7 @@ jobs:
           Expand-Archive -Path (Get-Item release\GEMsMAP-*.zip).FullName -DestinationPath $base
           $d = (Get-ChildItem $base -Directory | Select-Object -First 1).FullName
           $log = Join-Path $env:RUNNER_TEMP 'zip.log'
-          & "$d\Start GEMs MAP (Windows).bat" --setup-only *>&1 | Tee-Object -FilePath $log
+          & "$d\Start GEMsMAP (Windows).bat" --setup-only *>&1 | Tee-Object -FilePath $log
           $rc = $LASTEXITCODE
           if ($rc -ne 0) {
             $msg = (Get-Content $log -Tail 40) -join "`n" | python .github/annotate.py
@@ -180,4 +180,4 @@ jobs:
           (cd release && sha256sum * > SHA256SUMS.txt)
           sed "s/{{VERSION}}/$VERSION/g" .github/release-notes.md > "$RUNNER_TEMP/notes.md"
           pre=""; if [[ "$VERSION" =~ (a|b|rc)[0-9]+$ ]]; then pre="--prerelease"; fi
-          gh release create "$GITHUB_REF_NAME" release/* --draft $pre --title "GEMs MAP $VERSION" --notes-file "$RUNNER_TEMP/notes.md"
+          gh release create "$GITHUB_REF_NAME" release/* --draft $pre --title "GEMsMAP $VERSION" --notes-file "$RUNNER_TEMP/notes.md"

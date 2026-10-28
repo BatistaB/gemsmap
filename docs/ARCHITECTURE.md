@@ -6,7 +6,7 @@ parts fit together from a user's point of view, see the [Overview](getting-start
 
 ## Where things run
 
-GEMs MAP is a web interface (TypeScript, React, Vite) served by a local Python server (FastAPI over COBRApy).
+GEMsMAP is a web interface (TypeScript, React, Vite) served by a local Python server (FastAPI over COBRApy).
 The `gemsmap` command serves both on one address: the API under `/api` and the built interface under `/`
 (`backend/gemsmap/server.py`). In development, `npm run dev` serves the interface on port 5173 and forwards `/api`
 to the backend started with `npm run backend`.

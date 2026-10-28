@@ -1,6 +1,6 @@
 # Identity and matching
 
-A template can be reused across models only if it says **what** each node is, independently of any model's naming. This page explains how GEMs MAP represents that identity and how it finds the corresponding metabolites and reactions in a GEM, including what it does when it is not sure.
+A template can be reused across models only if it says **what** each node is, independently of any model's naming. This page explains how GEMsMAP represents that identity and how it finds the corresponding metabolites and reactions in a GEM, including what it does when it is not sure.
 
 ## Three levels of identity in a template
 
@@ -18,7 +18,7 @@ A template **reaction** is defined by its participants, stoichiometry and direct
 
 The matcher reads identifiers from the model's metabolite **annotations**: KEGG, ChEBI, BiGG, ModelSEED, MetaCyc, HMDB and others, written as `kegg.compound:C00031`, `CHEBI:17634`, identifiers.org URLs and other common spellings. It also reads identifiers encoded in the **metabolite ID** itself (`C00031[c]`, `cpd00027_c0`, `glc__D_c`), names and synonyms (keeping stereochemistry: D ≠ L), the **formula** (heavy atoms; hydrogen is ignored because protonation states differ), the **compartment**, and whether a chemical reaction links a candidate to the neighbouring slots.
 
-Template identities themselves come from the GEMs MAP canonical library (offline), from KEGG and ChEBI resolved through MetaNetX (online, through the backend), and from the local BiGG tables when installed (see [Creating templates](creating-templates.md#defining-identities)).
+Template identities themselves come from the GEMsMAP canonical library (offline), from KEGG and ChEBI resolved through MetaNetX (online, through the backend), and from the local BiGG tables when installed (see [Creating templates](creating-templates.md#defining-identities)).
 
 !!! note "Annotations decide how much can be matched"
     A model whose metabolites carry no cross-references can still be matched through ID patterns, names, formulas and topology, but with less certainty. Curating a model's annotations with [MetaNetX](../cobra-gui/metabolite-analysis.md#curating-identifiers-with-metanetx) before applying templates usually raises confidence. In the example below, after the MetaNetX curation of iML1515 the same template mapped all 26 slots with high confidence.
@@ -89,7 +89,7 @@ Your decisions are stored as `entity @ compartment → model metabolite` (or *ab
 
 ### The same entity in other compartments
 
-A template can draw one entity in several compartments, for example pyruvate in the cytosol and in the mitochondrion. When you choose a model metabolite for one of these slots, in the review dialog or in the inspector, GEMs MAP also maps the other compartments to the [same compound](../cobra-gui/metabolite-analysis.md#curating-identifiers-with-metanetx) in the model: choosing `pyr_c` maps the mitochondrial slot to `pyr_m`. Such slots are confirmed with the method *same compound as pyr_c*.
+A template can draw one entity in several compartments, for example pyruvate in the cytosol and in the mitochondrion. When you choose a model metabolite for one of these slots, in the review dialog or in the inspector, GEMsMAP also maps the other compartments to the [same compound](../cobra-gui/metabolite-analysis.md#curating-identifiers-with-metanetx) in the model: choosing `pyr_c` maps the mitochondrial slot to `pyr_m`. Such slots are confirmed with the method *same compound as pyr_c*.
 
 - A slot you chose yourself, or one mapped with high confidence, is never changed this way.
 - In the review dialog, changing or clearing a choice also undoes the slots that followed it.

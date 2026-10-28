@@ -4,11 +4,11 @@
     npm run bigg:data -- --from <folder>       use files you downloaded yourself from https://bigg.bio/data_access
                                                (a *metabolites*.json and a *reactions*.json in that folder)
 
-Installed GEMs MAP: `gemsmap bigg-data` (same options). This script is the development-checkout equivalent.
+Installed GEMsMAP: `gemsmap bigg-data` (same options). This script is the development-checkout equivalent.
 
 The tables are stored in the backend cache (next to the MetaNetX cache) and used offline from then on: identity
 search, reaction identity from stoichiometry, BiGG IDs for templates, and the annotation of models exported by BiGG.
-GEMs MAP itself never calls the BiGG API. Run again to update.
+GEMsMAP itself never calls the BiGG API. Run again to update.
 """
 from __future__ import annotations
 

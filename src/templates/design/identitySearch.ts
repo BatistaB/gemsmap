@@ -1,5 +1,5 @@
 /**
- * Identity search for the Template Builder. Offline first: the GEMs MAP canonical
+ * Identity search for the Template Builder. Offline first: the GEMsMAP canonical
  * library answers instantly; the backend (when running) adds KEGG / ChEBI hits
  * resolved through MetaNetX, and MNXref reactions for a set of participants.
  * Works without any GEM loaded.
@@ -48,7 +48,7 @@ export async function searchIdentities(q: string): Promise<SearchResult> {
     const ans = await remoteCompounds(q);
     return { candidates: mergeCandidates([local, ans.candidates.map(fromRemote)]), online: true, sources: ans.sources };
   } catch (e) {
-    return { candidates: local, online: false, note: `Database search unavailable (${(e as Error).message}) — showing the GEMs MAP library only. Start GEMs MAP with the gemsmap command (development checkout: npm run backend) to search KEGG, ChEBI and MetaNetX.` };
+    return { candidates: local, online: false, note: `Database search unavailable (${(e as Error).message}) — showing the GEMsMAP library only. Start GEMsMAP with the gemsmap command (development checkout: npm run backend) to search KEGG, ChEBI and MetaNetX.` };
   }
 }
 
@@ -86,7 +86,7 @@ export function searchReactionLibrary(f: TemplateFile, r: TemplateReaction, text
     const side = br.participants.filter((p) => !p.main).map((p) => entityOfMet(bf, p.metabolite)?.name).filter(Boolean);
     out.push({
       name: br.name, canonicalName: br.canonicalName, ec: br.ec, identifiers: br.identifiers, reversible: br.reversible,
-      equation: equationText(bf, br), sources: ['GEMs MAP library'], score: mains.length ? hit / mains.length : 0.5, evidence: [...evidence, ...(side.length ? [{ ok: true, text: `cofactors in the library equation: ${side.join(', ')}` }] : [])],
+      equation: equationText(bf, br), sources: ['GEMsMAP library'], score: mains.length ? hit / mains.length : 0.5, evidence: [...evidence, ...(side.length ? [{ ok: true, text: `cofactors in the library equation: ${side.join(', ')}` }] : [])],
     });
   }
   return out.sort((a, b) => b.score - a.score).slice(0, 6);

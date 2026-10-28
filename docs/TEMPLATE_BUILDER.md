@@ -10,7 +10,7 @@ Applying a template to a GEM goes through the existing mapping engine and its re
 
 ## Design notes (written before implementation, 2026-10-08)
 
-GEMs MAP already had model-agnostic pathway templates: specs that point at a canonical metabolite library,
+GEMsMAP already had model-agnostic pathway templates: specs that point at a canonical metabolite library,
 a deterministic mapping engine with inspectable evidence, per-model mapping profiles and a review
 dialog. The Template Builder extends that system. It does not replace it.
 
@@ -22,7 +22,7 @@ dialog. The Template Builder extends that system. It does not replace it.
 | Mapping engine (`templates/mapping/engine.ts`), `modelIndex`, compartments, names, identifiers | Template → GEM matching, unchanged in its scoring. |
 | Mapping review dialog and Inspector resolver (`TemplateMapping.tsx`) | Step 4 (human review of correspondences) when a template is applied to a GEM. |
 | Mapping profiles (`profile.ts`) | The matching history: `entity@compartment → model metabolite`, per model fingerprint. They stay outside the template. |
-| Canonical library (`library.ts`) | The offline identity source of the identity search ("GEMs MAP library"). |
+| Canonical library (`library.ts`) | The offline identity source of the identity search ("GEMsMAP library"). |
 | MetaNetX client with SQLite cache (`backend/.../metanetx.py`) and the normalizers of the Metabolite Review (`annotation_service.py`) | Online identity search: KEGG/ChEBI hits resolved through MNXref, cross-references, formulas. Reaction identity from participants. |
 
 ### 2. Generalized
@@ -164,7 +164,7 @@ of the score and a missing one is not a warning.
     "id": "glycolysis", "name": "Glycolysis", "pathway": "Glycolysis (Embden–Meyerhof–Parnas)", "description": "…",
     "template_version": "2.0.0",            // version of this pathway, independent of schema_version
     "scope": { "level": "universal", "taxa": [], "note": "Conserved; cytosolic." },
-    "authors": ["GEMs MAP"], "created": "…", "modified": "…", "license": "MIT", "tags": ["glycolysis"],
+    "authors": ["GEMsMAP"], "created": "…", "modified": "…", "license": "MIT", "tags": ["glycolysis"],
     "citations": [{ "text": "…", "doi": "10.…" }], "derived_from": { "id": "…", "name": "…", "template_version": "…" }
   },
   "biology": {
@@ -234,7 +234,7 @@ one piece; cofactors drawn beside an arrow keep following that arrow afterwards.
 ## BiGG data layer
 
 The universal metabolites and reactions of [BiGG Models](https://bigg.bio) are used as a local knowledge base for
-building templates, so that a template carries the BiGG IDs that models downloaded from BiGG use. GEMs MAP does not
+building templates, so that a template carries the BiGG IDs that models downloaded from BiGG use. GEMsMAP does not
 talk to the BiGG API: the two published bulk tables are installed once.
 
 ```bash
@@ -273,7 +273,7 @@ They are stored next to the MetaNetX cache (`<cache>/cobragui/bigg/`, outside th
 | `GET /api/bigg/status` | whether the BiGG tables are installed, with counts and date |
 
 Answers are cached for 90 days in `identity_cache.sqlite` next to the MetaNetX cache. Without the backend the search
-uses the GEMs MAP canonical library only (offline) and says so. MetaNetX IDs are resolved live from KEGG / ChEBI:
+uses the GEMsMAP canonical library only (offline) and says so. MetaNetX IDs are resolved live from KEGG / ChEBI:
 MNXref deprecates and splits chemicals between releases (`MNXM41`, the classic D-glucose ID, is deprecated).
 VMH links from MNXref are not used (some chemicals carry unrelated VMH entries).
 
@@ -282,7 +282,7 @@ VMH links from MNXref are not used (some chemicals carry unrelated VMH entries).
 Four KEGG pathways and an amino acid overview ship as built-ins, drafted outside the app with an LLM (Claude Opus 5.5)
 and the pipeline in `tools/kegg/` and marked **AI-generated — needs review** (`metadata.review_status`) until a person reviews them
 (inspector → *Mark as reviewed by me*). KEGG is the biological and topological reference only; every drawing is
-GEMs MAP's own, never a copy of a KEGG map, and the file says so (`metadata.source`).
+GEMsMAP's own, never a copy of a KEGG map, and the file says so (`metadata.source`).
 
 | Template | Section | KEGG | Drawn |
 | --- | --- | --- | --- |
@@ -301,7 +301,7 @@ QC and mapping comparison with the hand-made built-in (`qc.md`) and a preview (`
 **Pipeline.** `npm run kegg:template -- map00010` reads KEGG's flat files and KGML (cached for 90 days next to the
 BiGG data), applies the curation file `tools/kegg/curation/<map>.py` (entities, cofactors, steps, variants,
 omissions, decisions, layout) and writes `src/templates/builtin/<id>.gemsmap-template.json` plus the reports.
-Identities come from the app's infrastructure: entities already confirmed in the GEMs MAP library keep their
+Identities come from the app's infrastructure: entities already confirmed in the GEMsMAP library keep their
 confirmation; every other identity is a suggestion (`high` when KEGG → one MetaNetX chemical with a consistent
 formula and BiGG ID, `probable` otherwise; generic classes are never `high`). BiGG reaction IDs are accepted only
 when BiGG's KEGG link *and* every template participant agree (BiGG links some KEGG reactions to unrelated ones).
@@ -331,7 +331,7 @@ picture used for the visual self-review. The tests keep every KEGG-derived layou
 | `identity.confidence` | `high` / `probable` for suggestions |
 | `metadata.review_status`, `metadata.last_review`, `metadata.source` | AI-generated / AI-validated / human-reviewed; the reference pathway, generation method and date |
 
-**No AI inside the app, by design.** GEMs MAP does not call any AI service. Because a template is an open,
+**No AI inside the app, by design.** GEMsMAP does not call any AI service. Because a template is an open,
 declarative file, any LLM (Claude, GPT, Codex…) can draft one from a reference map, with or without the KEGG pipeline
 above; the draft is reviewed in the Template Builder, and the identity layer keeps its identities `suggested` and never
 overrides confirmed ones.

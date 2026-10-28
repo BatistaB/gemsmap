@@ -1,0 +1,24 @@
+# How to cite GEMsMAP: https://gemsmap.readthedocs.io/en/latest/reference/how-to-cite/
+# Keep `version` and `date-released` in step with backend/gemsmap/__init__.py (tools/release/build.py checks the version).
+# When the version is archived on Zenodo, add its DOI under `identifiers`; when the article is published, add it
+# as `preferred-citation`.
+cff-version: 1.2.0
+message: "If you use GEMsMAP, please cite the version you used, and the tools it builds on (COBRApy and, when used, MetaNetX, BiGG and KEGG)."
+type: software
+title: "GEMsMAP: an interactive workbench for genome-scale metabolic models"
+abstract: "GEMsMAP connects constraint-based computation with COBRApy, reaction and metabolite exploration, and editable metabolic maps in one application, with identity-aware pathway templates that can be applied to different genome-scale metabolic models."
+authors:
+  - family-names: Batista
+    given-names: Bruno
+version: 0.3.0b1
+date-released: 2026-10-13
+license: MIT
+repository-code: "https://github.com/BatistaB/gemsmap"
+url: "https://gemsmap.readthedocs.io/"
+keywords:
+  - genome-scale metabolic model
+  - constraint-based modeling
+  - flux balance analysis
+  - COBRApy
+  - metabolic maps
+  - pathway visualization

@@ -1,11 +1,11 @@
-# GEMs MAP
+# GEMsMAP
 
 **An Interactive Workbench for Genome-Scale Metabolic Models.**
 
-> **Beta.** GEMs MAP 0.3 is in beta testing. It works, but features, file formats and the interface can still
+> **Beta.** GEMsMAP 0.3 is in beta testing. It works, but features, file formats and the interface can still
 > change before the first stable release. Save your work as `.gemsmap` project files and report problems.
 
-GEMs MAP connects constraint-based computation, model exploration and editable metabolic maps in one application:
+GEMsMAP connects constraint-based computation, model exploration and editable metabolic maps in one application:
 
 - **COBRAGUI**: a graphical front end to [COBRApy](https://opencobra.github.io/cobrapy/). Import SBML, COBRA JSON
   or MATLAB models; set the medium, bounds and objective; run FBA, pFBA, loopless FBA or FVA; inspect, compare and
@@ -27,7 +27,7 @@ gemsmap
 `gemsmap` starts the application and opens it in your browser at <http://127.0.0.1:8765>. Keep the window open
 while you work; press Ctrl+C to stop. Everything runs on your computer: your models are not uploaded anywhere.
 
-Ideally install GEMs MAP in a Python environment of its own. New to that? The
+Ideally install GEMsMAP in a Python environment of its own. New to that? The
 [step-by-step guide](https://gemsmap.readthedocs.io/en/latest/getting-started/installation/#step-by-step-install-with-pip) explains each command on Windows, macOS and Linux.
 
 Without Python, install [uv](https://docs.astral.sh/uv/) and run `uvx gemsmap`.
@@ -36,7 +36,7 @@ Other commands: `gemsmap diagnose` (versions and folders, for bug reports), `gem
 tables for the Template Builder), `gemsmap --help`.
 
 No Python at all? Each [release on GitHub](https://github.com/BatistaB/gemsmap/releases) also has a
-`GEMsMAP-<version>.zip`: extract it and double-click *Start GEMs MAP*; the first start prepares everything inside
+`GEMsMAP-<version>.zip`: extract it and double-click *Start GEMsMAP*; the first start prepares everything inside
 that folder.
 
 ## Documentation
@@ -46,10 +46,10 @@ The user guide, with a step-by-step quick start tutorial: <https://gemsmap.readt
 ## Feedback
 
 Source code, releases and the issue tracker: <https://github.com/BatistaB/gemsmap>. To report a problem, click
-**GEMs MAP <version>** in the COBRAGUI status bar, then *Copy diagnostics*, and paste it into a
+**GEMsMAP <version>** in the COBRAGUI status bar, then *Copy diagnostics*, and paste it into a
 [new issue](https://github.com/BatistaB/gemsmap/issues).
 
 ## License
 
-MIT. GEMs MAP is an independent project and is not maintained or endorsed by the COBRApy, BiGG, MetaNetX or KEGG
+MIT. GEMsMAP is an independent project and is not maintained or endorsed by the COBRApy, BiGG, MetaNetX or KEGG
 teams.

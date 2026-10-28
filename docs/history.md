@@ -1,13 +1,13 @@
 ---
 title: History
-description: How GEMs MAP started — research on Aspergillus oryzae, a figure from a CHO paper, and a tool that keeps evolving.
+description: How GEMsMAP started — research on Aspergillus oryzae, a figure from a CHO paper, and a tool that keeps evolving.
 hide:
   - navigation
 ---
 
-# The story of GEMs MAP
+# The story of GEMsMAP
 
-*By **Bruno Batista**, creator of GEMs MAP · [:fontawesome-brands-linkedin: LinkedIn](https://www.linkedin.com/in/bruno-batista-523856173/)*
+*By **Bruno Batista**, creator of GEMsMAP · [:fontawesome-brands-linkedin: LinkedIn](https://www.linkedin.com/in/bruno-batista-523856173/)*
 
 ## A problem: drawing the fluxes
 
@@ -19,7 +19,7 @@ Along the way, I had a huge problem: how to represent the fluxes and draw the ma
 
 Then I read the paper *Exploring CHO cell stability during prolonged passaging via eXplainable AI driven flux balance analysis* (Choi *et al.*, 2026). When I saw its [Figure 5](https://www.nature.com/articles/s41540-026-00660-z#Fig5), I thought: *maybe this is the best way to show metabolic fluxes.* The figure draws central carbon metabolism and methionine and cysteine metabolism as clean pathway maps, and next to the key reactions it plots the flux distribution of each culture passage (P10, P12, P26 and P28).
 
-So I started to ask myself: how would I make this figure, but connected to the [COBRApy](https://opencobra.github.io/cobrapy/) world? That is how GEMs MAP was born. I added an intuitive graphical interface with a canvas-like drawing system: you draw a pathway as freely as in a drawing program, and each arrow knows which reaction of the model it represents.
+So I started to ask myself: how would I make this figure, but connected to the [COBRApy](https://opencobra.github.io/cobrapy/) world? That is how GEMsMAP was born. I added an intuitive graphical interface with a canvas-like drawing system: you draw a pathway as freely as in a drawing program, and each arrow knows which reaction of the model it represents.
 
 <figure class="gm-shot" markdown>
 [![The Map Builder showing the built-in central carbon example: glycolysis drawn vertically, the oxidative pentose phosphate pathway branching to the left and a circular TCA cycle, with flux density plots beside the reactions and a condition bar at the bottom.](assets/images/maps-demo.png)](assets/images/maps-demo.png)
@@ -32,14 +32,14 @@ From there, I kept using it and improving it, almost like an organism that devel
 
 ## Templates: helping models talk to each other
 
-Later, I realised that to be really useful to other people, GEMs MAP had to try to solve one of the main problems of the GEM field: **the conversation between different models**. The same metabolite can have a different ID in each model, so a map drawn for one model does not simply work with another.
+Later, I realised that to be really useful to other people, GEMsMAP had to try to solve one of the main problems of the GEM field: **the conversation between different models**. The same metabolite can have a different ID in each model, so a map drawn for one model does not simply work with another.
 
 At that time, [BiGG](https://bigg.bio) had recently made a huge change to its structure: it unified metabolites and reactions and linked them to reference databases (metabolites to ChEBI, reactions to Rhea). That gave me an idea: do the same with maps!
 
 That is how **templates** were born. A template is a ready-made map in which each metabolite and reaction can (or not) have an **identity**. The system uses these identities to find and suggest the matching elements in your model, and then a person curates the options. See [Templates](templates/index.md) and [Identity and matching](templates/identity-and-matching.md).
 
 <figure class="gm-shot" markdown>
-[![The "Define identity — template entity" dialog for the citrate node of the TCA template, with its confirmed identity (KEGG C00158, ChEBI 16947 and 30769), a search box and a list of candidates from the GEMs MAP library, BiGG, KEGG and MetaNetX.](assets/images/templates-identity-dialog.png)](assets/images/templates-identity-dialog.png)
+[![The "Define identity — template entity" dialog for the citrate node of the TCA template, with its confirmed identity (KEGG C00158, ChEBI 16947 and 30769), a search box and a list of candidates from the GEMsMAP library, BiGG, KEGG and MetaNetX.](assets/images/templates-identity-dialog.png)](assets/images/templates-identity-dialog.png)
 <figcaption>Each metabolite of a template can carry an identity. The candidates come from the databases; a person confirms the right one.</figcaption>
 </figure>
 
@@ -49,10 +49,10 @@ This idea worked so well that it became a way to analyse your model too. With th
 
 ## AI: grab a coffee, then curate
 
-In this age of AI, I noticed that AI could be very useful for creating templates. Because GEMs MAP is canvas-based, we can let an AI use the platform to build templates from images, from KEGG, and more. Go grab a coffee, then come back and curate everything!
+In this age of AI, I noticed that AI could be very useful for creating templates. Because GEMsMAP is canvas-based, we can let an AI use the platform to build templates from images, from KEGG, and more. Go grab a coffee, then come back and curate everything!
 
 !!! info "Where this stands today"
-    The first templates drafted this way are already in the library: four KEGG-derived templates and the amino acid biosynthesis overview, drafted with an LLM (Claude) outside the application. They carry an *AI-generated — needs review* label until a person reviews them. GEMs MAP itself has no AI built in: you can ask any LLM (Claude, GPT, Codex…) to draw a template on its canvas format, then review it. See [Templates drafted with an LLM](templates/ai-assisted-templates.md).
+    The first templates drafted this way are already in the library: four KEGG-derived templates and the amino acid biosynthesis overview, drafted with an LLM (Claude) outside the application. They carry an *AI-generated — needs review* label until a person reviews them. GEMsMAP itself has no AI built in: you can ask any LLM (Claude, GPT, Codex…) to draw a template on its canvas format, then review it. See [Templates drafted with an LLM](templates/ai-assisted-templates.md).
 
 <figure class="gm-shot" markdown>
 [![The Template Library with two sections of template cards: Central carbon templates and KEGG-derived templates (map00010, map00020, map00030, map00250), each with a preview, description, completeness, author and buttons such as Open and Apply to GEM.](assets/images/templates-library.png)](assets/images/templates-library.png)
@@ -63,7 +63,7 @@ In this age of AI, I noticed that AI could be very useful for creating templates
 
 Since I started this project, I have learned a lot, and I am really happy with the result. More than anything, I hope this tool is useful to everyone who works with GEMs.
 
-GEMs MAP is meant to be a **living project** that keeps evolving under the laws of natural selection. We are open to ideas and new features: if you have one, [send me a message on LinkedIn](https://www.linkedin.com/in/bruno-batista-523856173/). The [Roadmap](reference/roadmap.md) lists what is already planned.
+GEMsMAP is meant to be a **living project** that keeps evolving under the laws of natural selection. We are open to ideas and new features: if you have one, [send me a message on LinkedIn](https://www.linkedin.com/in/bruno-batista-523856173/). The [Roadmap](reference/roadmap.md) lists what is already planned.
 
 Thank you for reading!
 

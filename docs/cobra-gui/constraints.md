@@ -27,7 +27,7 @@ A *model state* is a set of changes on top of the imported model: reaction bound
 The medium is the set of **uptake limits of exchange reactions**, read and written through COBRApy's `model.medium`. The table lists each compound with its exchange reaction, maximum uptake, maximum secretion and the value in the model file (highlighted when changed). Untick a compound to forbid its uptake; edit *Max uptake* to change the limit. Values are in mmol gDW⁻¹ h⁻¹ and must be ≥ 0. Click a column title to sort the table (numbers from high to low, text from A to Z), again to reverse the order, and a third time to restore the original order.
 
 !!! info "Sign convention"
-    In COBRApy an exchange reaction is written `X <=>`, so a **negative** flux imports X. Uptake limits are therefore stored as negative lower bounds. GEMs MAP shows uptake and secretion as positive amounts and leaves the sign convention to COBRApy, so it is never re-derived in the interface. Medium edits are stored in the model state as ordinary bound changes.
+    In COBRApy an exchange reaction is written `X <=>`, so a **negative** flux imports X. Uptake limits are therefore stored as negative lower bounds. GEMsMAP shows uptake and secretion as positive amounts and leaves the sign convention to COBRApy, so it is never re-derived in the interface. Medium edits are stored in the model state as ordinary bound changes.
 
 | Preset | What it does |
 | --- | --- |

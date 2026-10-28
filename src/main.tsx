@@ -35,4 +35,4 @@ async function boot() {
   }
   createRoot(document.getElementById('root')!).render(<App />);
 }
-boot().catch((e) => { console.error("GEMs MAP failed to start", e); });
+boot().catch((e) => { console.error("GEMsMAP failed to start", e); });

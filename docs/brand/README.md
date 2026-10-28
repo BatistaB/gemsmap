@@ -1,15 +1,16 @@
-# GEMs MAP brand
+# GEMsMAP brand
 
 <p>
-  <img src="gemsmap-logo.png" alt="GEMs MAP logo" width="360">
+  <img src="gemsmap-logo.png" alt="GEMsMAP logo" width="360">
 </p>
 
 ## Name
 
-**GEMs MAP**: *GEMs* with a lowercase *s* (the plural of GEM, genome-scale metabolic model, and gems, the stones),
-*MAP* in capitals. Write it this way in text, titles and figures. Avoid *GEMS MAP*, *Gems Map* and *GEMsMap*.
-Where a single token is needed (package name, file extension, storage keys, environment variables) use `gemsmap`
-or `GEMSMAP`.
+**GEMsMAP**: one word, *GEMs* with a lowercase *s* (the plural of GEM, genome-scale metabolic model, and gems,
+the stones) followed by *MAP* in capitals. Write it this way in text, titles and figures. Avoid *GEMs MAP* (with a
+space), *GEMSMAP*, *GemsMap* and *GEMsMap*. The logo sets the two parts on two lines; the name is still one word.
+Where a lowercase or code token is needed (package name, file extension, storage keys, environment variables) use
+`gemsmap` or `GEMSMAP_…`.
 
 Tagline: *An interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models.*
 
@@ -45,7 +46,7 @@ the top row is 180 wide): display, ≥ 96 px, 16 / 3.4 / 7 / 3.2; UI, 24 / 5 / 1
 
 ## COBRAGUI
 
-COBRAGUI (COBRA graphical user interface) is the workspace that drives COBRApy. It ships inside GEMs MAP but has
+COBRAGUI (COBRA graphical user interface) is the workspace that drives COBRApy. It ships inside GEMsMAP but has
 its own name and logo, because it is meant to grow into a front end for more of the COBRA ecosystem.
 
 <p>
@@ -53,11 +54,11 @@ its own name and logo, because it is meant to grow into a front end for more of 
 </p>
 
 - **The logo.** *cobra* in a round sans-serif, with a small network of coloured reactions in the *o*; *GUI* with
-  the cobra as the *I* (the same snake as in the GEMs MAP **P**); a screen with the GEMs MAP gem and charts:
+  the cobra as the *I* (the same snake as in the GEMsMAP **P**); a screen with the GEMsMAP gem and charts:
   COBRAGUI is a window onto the same network.
 - **The name.** Write *COBRAGUI* in text, one word, in capitals (COBRA is an acronym). In identifiers: `cobragui`.
 - **Where it appears.** At the left of the COBRAGUI header row in the app (the gem stays in the top left corner
-  for GEMs MAP), at the top of the COBRAGUI section of the documentation and of the README.
+  for GEMsMAP), at the top of the COBRAGUI section of the documentation and of the README.
 
 | File | Use |
 | --- | --- |

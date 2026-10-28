@@ -2,7 +2,7 @@
   "name": "gemsmap",
   "version": "0.3.0-beta.1",
   "private": true,
-  "description": "GEMs MAP — an interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models (COBRAGUI for COBRApy, publication-quality pathway maps)",
+  "description": "GEMsMAP — an interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models (COBRAGUI for COBRApy, publication-quality pathway maps)",
   "license": "MIT",
   "author": "Bruno Batista <bruno.batista.biotec@gmail.com>",
   "type": "module",

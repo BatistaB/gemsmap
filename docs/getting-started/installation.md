@@ -1,9 +1,9 @@
 # Installation
 
 !!! warning "Beta"
-    GEMs MAP 0.3 is in beta testing. It works, but features, file formats and the interface can still change before the first stable release. Save your work as `.gemsmap` project files, and please [report problems](https://github.com/BatistaB/gemsmap/issues/new/choose).
+    GEMsMAP 0.3 is in beta testing. It works, but features, file formats and the interface can still change before the first stable release. Save your work as `.gemsmap` project files, and please [report problems](https://github.com/BatistaB/gemsmap/issues/new/choose).
 
-GEMs MAP runs on your own computer. One command starts a small local server and opens the application in your web browser. Your models are not uploaded anywhere; the internet is needed only to install, and for the identifier lookups of the [metabolite analysis](../cobra-gui/metabolite-analysis.md) (MetaNetX).
+GEMsMAP runs on your own computer. One command starts a small local server and opens the application in your web browser. Your models are not uploaded anywhere; the internet is needed only to install, and for the identifier lookups of the [metabolite analysis](../cobra-gui/metabolite-analysis.md) (MetaNetX).
 
 ## Requirements
 
@@ -26,13 +26,13 @@ Choose one way. If you already use Python, take **pip**; if you have never insta
     pip install gemsmap
     ```
 
-    Install GEMs MAP in a Python environment of its own (a [venv](https://docs.python.org/3/library/venv.html) or a conda environment), so its libraries do not interfere with other projects. **Never created one?** Follow [Step by step: install with pip](#step-by-step-install-with-pip) below: it explains each command and what you should see, and takes about ten minutes.
+    Install GEMsMAP in a Python environment of its own (a [venv](https://docs.python.org/3/library/venv.html) or a conda environment), so its libraries do not interfere with other projects. **Never created one?** Follow [Step by step: install with pip](#step-by-step-install-with-pip) below: it explains each command and what you should see, and takes about ten minutes.
 
     The first installation downloads COBRApy and the scientific libraries, a few hundred MB, and can take several minutes.
 
 === "uv (no Python needed)"
 
-    [uv](https://docs.astral.sh/uv/) installs Python itself when needed. Install uv once, following [its installation guide](https://docs.astral.sh/uv/getting-started/installation/), then either run GEMs MAP directly:
+    [uv](https://docs.astral.sh/uv/) installs Python itself when needed. Install uv once, following [its installation guide](https://docs.astral.sh/uv/getting-started/installation/), then either run GEMsMAP directly:
 
     ```bash
     uvx gemsmap
@@ -51,11 +51,11 @@ Choose one way. If you already use Python, take **pip**; if you have never insta
     1. Download `GEMsMAP-<version>.zip` from the [releases on GitHub](https://github.com/BatistaB/gemsmap/releases).
     2. Extract it to a folder of its own, for example `C:\GEMsMAP` or your *Documents* folder. On Windows the folder path must be short (at most 90 characters), because Windows limits the length of file paths.
     3. Start it:
-        - **Windows:** double-click *Start GEMs MAP (Windows).bat*. If Windows says *Windows protected your PC*, click *More info*, then *Run anyway*.
-        - **macOS:** double-click *Start GEMs MAP (macOS).command*. The very first time, macOS blocks files downloaded from the internet: right-click the file, choose *Open*, then *Open* again.
+        - **Windows:** double-click *Start GEMsMAP (Windows).bat*. If Windows says *Windows protected your PC*, click *More info*, then *Run anyway*.
+        - **macOS:** double-click *Start GEMsMAP (macOS).command*. The very first time, macOS blocks files downloaded from the internet: right-click the file, choose *Open*, then *Open* again.
         - **Linux:** in a terminal, in that folder, run `bash start-gemsmap-linux.sh`.
 
-    The first start needs the internet and takes a few minutes. It shows three steps (uv, Python, GEMs MAP) and prepares everything **inside that folder**, in `runtime`; nothing is installed elsewhere. Later starts take a few seconds. `README-FIRST.txt` in the zip explains the rest.
+    The first start needs the internet and takes a few minutes. It shows three steps (uv, Python, GEMsMAP) and prepares everything **inside that folder**, in `runtime`; nothing is installed elsewhere. Later starts take a few seconds. `README-FIRST.txt` in the zip explains the rest.
 
 === "From source (developers)"
 
@@ -70,7 +70,7 @@ Choose one way. If you already use Python, take **pip**; if you have never insta
 
 ## Step by step: install with pip
 
-This section is for anyone who has not used a terminal or a Python environment before. It installs GEMs MAP with pip in a **virtual environment**: a folder with its own copy of Python and its own libraries. GEMs MAP and its scientific libraries go into that folder instead of the Python of your system, so they cannot conflict with other projects, and deleting the folder removes everything. You create the environment once; afterwards you only activate it.
+This section is for anyone who has not used a terminal or a Python environment before. It installs GEMsMAP with pip in a **virtual environment**: a folder with its own copy of Python and its own libraries. GEMsMAP and its scientific libraries go into that folder instead of the Python of your system, so they cannot conflict with other projects, and deleting the folder removes everything. You create the environment once; afterwards you only activate it.
 
 Choose your system in any of the tabs below; the other tabs on this page follow your choice. Type or paste each command, press ++enter++, and wait until the terminal is ready for the next one.
 
@@ -117,7 +117,7 @@ Choose your system in any of the tabs below; the other tabs on this page follow 
 
     You should see a version from **Python 3.10** to **3.14**, for example `Python 3.12.3`. If your distribution has an older Python, the [uv installation](#install) is the easiest way: it brings its own Python.
 
-### 3. Create a folder for GEMs MAP
+### 3. Create a folder for GEMsMAP
 
 === "Windows"
 
@@ -215,13 +215,13 @@ pip is the program that installs Python packages. A current pip finds the right 
 python -m pip install --upgrade pip
 ```
 
-### 7. Install GEMs MAP
+### 7. Install GEMsMAP
 
 ```bash
 pip install gemsmap
 ```
 
-pip downloads GEMs MAP and the scientific libraries it needs (COBRApy, NumPy, SciPy, pandas…), a few hundred MB. It can take several minutes and prints many lines. Wait until the line with `(.venv)` comes back. One of the last lines starts with **`Successfully installed`** and lists the installed packages, `gemsmap` among them, with its version, for example `gemsmap-0.3.0b1`.
+pip downloads GEMsMAP and the scientific libraries it needs (COBRApy, NumPy, SciPy, pandas…), a few hundred MB. It can take several minutes and prints many lines. Wait until the line with `(.venv)` comes back. One of the last lines starts with **`Successfully installed`** and lists the installed packages, `gemsmap` among them, with its version, for example `gemsmap-0.3.0b1`.
 
 ### 8. Check and start
 
@@ -230,7 +230,7 @@ gemsmap diagnose
 gemsmap
 ```
 
-`gemsmap diagnose` prints the versions of GEMs MAP, Python and COBRApy and the solvers it found. `gemsmap` starts GEMs MAP and opens it in your browser: see [Start](#start) below. Keep the terminal open while you work, and press ++ctrl+c++ in it to stop GEMs MAP.
+`gemsmap diagnose` prints the versions of GEMsMAP, Python and COBRApy and the solvers it found. `gemsmap` starts GEMsMAP and opens it in your browser: see [Start](#start) below. Keep the terminal open while you work, and press ++ctrl+c++ in it to stop GEMsMAP.
 
 ### Next time
 
@@ -260,7 +260,7 @@ The environment is already there: open a terminal, go to the folder, activate, s
     gemsmap
     ```
 
-To update GEMs MAP later, activate the environment and run `pip install --upgrade gemsmap` (see [Update](#update)). To remove it, close GEMs MAP and delete the `gemsmap` folder: the environment and everything installed in it go with it. Your data are kept separately (see [Where your data are](#where-your-data-are)).
+To update GEMsMAP later, activate the environment and run `pip install --upgrade gemsmap` (see [Update](#update)). To remove it, close GEMsMAP and delete the `gemsmap` folder: the environment and everything installed in it go with it. Your data are kept separately (see [Where your data are](#where-your-data-are)).
 
 ## Start
 
@@ -268,9 +268,9 @@ To update GEMs MAP later, activate the environment and run `pip install --upgrad
 gemsmap
 ```
 
-GEMs MAP opens in your browser at **http://127.0.0.1:8765**. Keep the window where the command runs open while you work; close it or press ++ctrl+c++ to stop GEMs MAP. With the zip, the *Start GEMs MAP* file does the same. If the page does not open by itself, open that address in your browser.
+GEMsMAP opens in your browser at **http://127.0.0.1:8765**. Keep the window where the command runs open while you work; close it or press ++ctrl+c++ to stop GEMsMAP. With the zip, the *Start GEMsMAP* file does the same. If the page does not open by itself, open that address in your browser.
 
-The start screen of COBRAGUI confirms that everything works: it lists the GEMs MAP version, the COBRApy version and the solver, for example *GEMs MAP 0.3.0b1 · COBRApy 0.32.1 · solver GLPK · backend ready*.
+The start screen of COBRAGUI confirms that everything works: it lists the GEMsMAP version, the COBRApy version and the solver, for example *GEMsMAP 0.3.0b1 · COBRApy 0.32.1 · solver GLPK · backend ready*.
 
 <figure class="gm-shot" markdown>
 ![The COBRAGUI start screen: a drop zone reading "Drop a metabolic model here", the accepted formats SBML, COBRA JSON and MATLAB .mat, an Import model button, links to two example models bundled with COBRApy, and a status line with the COBRApy version and the solver.](../assets/images/cobra-gui-import.png)
@@ -279,7 +279,7 @@ The start screen of COBRAGUI confirms that everything works: it lists the GEMs M
 
 | Command | Effect |
 | --- | --- |
-| `gemsmap` | Start GEMs MAP and open it in the browser. If it is already running, only open the browser. |
+| `gemsmap` | Start GEMsMAP and open it in the browser. If it is already running, only open the browser. |
 | `gemsmap --port 8766` | Use another port, for example when 8765 is taken. |
 | `gemsmap --no-browser` | Start without opening the browser. |
 | `gemsmap diagnose` | Print the versions, the solvers and the data folder, for a bug report. |
@@ -299,7 +299,7 @@ If the `gemsmap` command is not found, `python -m gemsmap` does the same.
 | uv | `uv tool upgrade gemsmap`, or `uvx gemsmap@latest` |
 | zip | Download the new zip and extract it to a new folder (its first start prepares it again). |
 
-While GEMs MAP has only beta versions, these commands install the newest beta. Once a stable version exists, a newer beta has to be named explicitly, for example `pip install gemsmap==0.4.0b1`.
+While GEMsMAP has only beta versions, these commands install the newest beta. Once a stable version exists, a newer beta has to be named explicitly, for example `pip install gemsmap==0.4.0b1`.
 
 ## Uninstall
 
@@ -323,7 +323,7 @@ The template identity tools and the metabolite analysis can use the universal me
 gemsmap bigg-data
 ```
 
-Or use the two JSON files you downloaded yourself from the BiGG data-access page: `gemsmap bigg-data --from path/to/folder`. In a development checkout the command is `npm run bigg:data`. GEMs MAP reads the tables locally and never calls the BiGG API.
+Or use the two JSON files you downloaded yourself from the BiGG data-access page: `gemsmap bigg-data --from path/to/folder`. In a development checkout the command is `npm run bigg:data`. GEMsMAP reads the tables locally and never calls the BiGG API.
 
 ## Configuration
 
@@ -340,7 +340,7 @@ Or use the two JSON files you downloaded yourself from the BiGG data-access page
 gemsmap diagnose
 ```
 
-It prints the GEMs MAP, Python, COBRApy and solver versions, whether the web interface is included, and the data folder. If something does not work, see [Troubleshooting](../reference/troubleshooting.md#installation-and-start), and paste this output into your [report](https://github.com/BatistaB/gemsmap/issues/new/choose).
+It prints the GEMsMAP, Python, COBRApy and solver versions, whether the web interface is included, and the data folder. If something does not work, see [Troubleshooting](../reference/troubleshooting.md#installation-and-start), and paste this output into your [report](https://github.com/BatistaB/gemsmap/issues/new/choose).
 
 <div class="gm-next" markdown>
 **Next:** take the [first look](first-look.md) at the window, or go straight to [importing a model](../cobra-gui/importing-models.md).

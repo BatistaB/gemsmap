@@ -20,7 +20,7 @@ Different solvers can return different optimal flux distributions for the same p
 
 ### Sampling methods in the analysis
 
-GEMs MAP does not sample the flux space yet. Sampling distributions made elsewhere can already be imported into the Map Builder and shown as density or box plots, which is how the built-in example works.
+GEMsMAP does not sample the flux space yet. Sampling distributions made elsewhere can already be imported into the Map Builder and shown as density or box plots, which is how the built-in example works.
 
 Planned:
 

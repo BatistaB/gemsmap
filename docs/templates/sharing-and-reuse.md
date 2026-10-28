@@ -19,7 +19,7 @@ Two simpler mechanisms also exist in the Map Builder: **Save as template** on a 
 
 <span class="gm-badge planned">Not implemented — vision</span>
 
-The long-term aim is a **searchable, versioned library of pathway layouts** that scientists create, review and reuse, so that a well-drawn pathway does not have to be redrawn for every model, organism and paper. Nothing below exists yet; there is no upload, publishing, moderation or synchronisation in GEMs MAP today.
+The long-term aim is a **searchable, versioned library of pathway layouts** that scientists create, review and reuse, so that a well-drawn pathway does not have to be redrawn for every model, organism and paper. Nothing below exists yet; there is no upload, publishing, moderation or synchronisation in GEMsMAP today.
 
 What such a library would need, building on what the file format already records:
 
