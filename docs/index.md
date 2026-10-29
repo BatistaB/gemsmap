@@ -38,7 +38,7 @@ GEMsMAP keeps these steps together. Every simulation result stays inspectable (w
 
 <div class="grid cards" markdown>
 
--   :material-flask-outline:{ .lg .middle } **COBRAGUI**
+-   ![COBRAGUI](brand/cobragui-logo.png#only-light){ .gm-card-logo }![COBRAGUI](brand/cobragui-logo-dark.png#only-dark){ .gm-card-logo }
 
     ---
 
@@ -46,7 +46,7 @@ GEMsMAP keeps these steps together. Every simulation result stays inspectable (w
 
     [:octicons-arrow-right-24: COBRAGUI](cobra-gui/index.md)
 
--   :material-vector-polyline:{ .lg .middle } **Maps**
+-   ![Map Builder](brand/mapbuilder-logo.png#only-light){ .gm-card-logo }![Map Builder](brand/mapbuilder-logo-dark.png#only-dark){ .gm-card-logo }
 
     ---
 
@@ -54,7 +54,7 @@ GEMsMAP keeps these steps together. Every simulation result stays inspectable (w
 
     [:octicons-arrow-right-24: Maps](maps/index.md)
 
--   :material-shape-outline:{ .lg .middle } **Templates**
+-   ![Templates](brand/templates-logo-horizontal.png#only-light){ .gm-card-logo }![Templates](brand/templates-logo-horizontal-dark.png#only-dark){ .gm-card-logo }
 
     ---
 

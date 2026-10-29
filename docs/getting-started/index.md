@@ -12,7 +12,7 @@ The switcher at the top left of the window moves between three workspaces. They 
 | **Map Builder** | [Maps](../maps/index.md) | Draw pathway figures, bind them to the model, map results onto them, export figures. |
 | **Templates** | [Templates](../templates/index.md) | Design and review model-independent pathway templates and apply them to a model. |
 
-COBRAGUI stands for *COBRA graphical user interface*. It has its own logo and name because it is meant to grow into a front end for more of the COBRA ecosystem, while it ships inside GEMsMAP. In the source code it lives in `src/lab/` and `backend/cobragui/`.
+Each workspace has its own logo at the left of the second row of the top bar, while the gem in the top left corner stays the mark of GEMsMAP. COBRAGUI stands for *COBRA graphical user interface*. It has its own logo and name because it is meant to grow into a front end for more of the COBRA ecosystem, while it ships inside GEMsMAP. In the source code it lives in `src/lab/` and `backend/cobragui/`.
 
 ## Where things run
 

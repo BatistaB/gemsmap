@@ -36,6 +36,11 @@ The application has three workspaces that share the same model and data, switche
 
 ### COBRAGUI: explore and simulate the model
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand/cobragui-logo-dark.png">
+  <img src="docs/brand/cobragui-logo.png" alt="COBRAGUI logo" height="64">
+</picture>
+
 The COBRA graphical user interface. Import SBML, COBRA JSON or MATLAB models; explore metabolites, reactions and
 genes; set the medium, bounds and objective; run FBA, pFBA, loopless FBA or FVA; compare results and export them.
 Metabolite identifiers can be curated against MetaNetX. [More about COBRAGUI](https://gemsmap.readthedocs.io/en/latest/cobra-gui/)
@@ -47,6 +52,11 @@ Metabolite identifiers can be curated against MetaNetX. [More about COBRAGUI](ht
 
 ### Map Builder: turn results into pathway figures
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand/mapbuilder-logo-dark.png">
+  <img src="docs/brand/mapbuilder-logo.png" alt="Map Builder logo" height="64">
+</picture>
+
 Draw or insert pathways, bind them to the model, map fluxes to arrow width and colour, switch between conditions or
 show their differences (Δ, log₂FC), add small linked plots, and export SVG, PNG, PDF or an animated GIF.
 [More about the Map Builder](https://gemsmap.readthedocs.io/en/latest/maps/)
@@ -57,6 +67,11 @@ show their differences (Δ, log₂FC), add small linked plots, and export SVG, P
 </p>
 
 ### Templates: one pathway layout for any GEM
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/brand/templates-logo-horizontal-dark.png">
+  <img src="docs/brand/templates-logo-horizontal.png" alt="Templates logo" height="64">
+</picture>
 
 Reusable pathway layouts (central carbon metabolism, glycolysis, TCA cycle, pentose phosphate pathway, …) that
 describe biological identity rather than model IDs. A matcher finds what each molecule is called in your GEM and

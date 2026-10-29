@@ -58,7 +58,7 @@ its own name and logo, because it is meant to grow into a front end for more of 
   COBRAGUI is a window onto the same network.
 - **The name.** Write *COBRAGUI* in text, one word, in capitals (COBRA is an acronym). In identifiers: `cobragui`.
 - **Where it appears.** At the left of the COBRAGUI header row in the app (the gem stays in the top left corner
-  for GEMsMAP), at the top of the COBRAGUI section of the documentation and of the README.
+  for GEMsMAP), at the top of the COBRAGUI section of the documentation, on its home page card and in the README.
 
 | File | Use |
 | --- | --- |
@@ -67,6 +67,39 @@ its own name and logo, because it is meant to grow into a front end for more of 
 | [`../../public/brand/cobragui-logo.png`](../../public/brand/cobragui-logo.png) | The app's header (120 px high, shown at 32 px) |
 
 The master is [`logo/cobragui-logo.png`](../../logo/cobragui-logo.png); `tools/brand/make_brand.py` makes the transparent files.
+
+## Map Builder and Templates
+
+The two other workspaces have logos of their own too, in the GEMsMAP wordmark's slab serif with the same cobra as
+the **P**, each with the gem at another moment of its life:
+
+<p>
+  <img src="mapbuilder-logo.png" alt="Map Builder logo" width="260">
+  &nbsp;&nbsp;
+  <img src="templates-logo.png" alt="Templates logo" width="140">
+</p>
+
+- **Map Builder.** *MAP* above *BUILDER*, beside a gem **being drawn**: some edges are already coloured by flux,
+  others are still dashed, and some nodes are empty, like the slots of a map waiting to be bound to a model.
+- **Templates.** *TEMPLATES* above a **grey gem with empty nodes**: the layout and the identities, before any
+  model or data are attached. Stacked, it is nearly square; where it must sit in a row (the app's header, the
+  documentation cards) the generator sets the word beside the gem (`templates-logo-horizontal.png`).
+- **Where they appear.** In the app, at the left of the second row of the top bar of their workspace (Template
+  Design Mode shows the Templates logo over the drawing tools); `src/ui/WorkspaceLogo.tsx` places all three
+  workspace logos. In the documentation, at the top of the Maps and Templates sections, on the home page cards,
+  and in the README.
+
+| File | Use |
+| --- | --- |
+| [`mapbuilder-logo.png`](mapbuilder-logo.png), [`mapbuilder-logo-dark.png`](mapbuilder-logo-dark.png) | Map Builder, light and dark backgrounds |
+| [`templates-logo.png`](templates-logo.png), [`templates-logo-dark.png`](templates-logo-dark.png) | Templates, stacked, light and dark backgrounds |
+| [`templates-logo-horizontal.png`](templates-logo-horizontal.png), [`templates-logo-horizontal-dark.png`](templates-logo-horizontal-dark.png) | Templates, word beside the gem, for rows |
+| `../../public/brand/{mapbuilder,templates}-logo.png` | The app's header rows (120 px high, shown at 32 px; Templates horizontal) |
+
+The masters are [`logo/mapbuilder-logo.png`](../../logo/mapbuilder-logo.png) and
+[`logo/templates-logo.png`](../../logo/templates-logo.png). On dark backgrounds the generator keeps every colour of
+these logos except those too dark to read there: the navy edges of the Map Builder gem become a vivid blue, still
+distinct from the lavender ones, so strong and pale edges keep their difference.
 
 ## Colours
 

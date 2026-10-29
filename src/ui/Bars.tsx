@@ -4,6 +4,7 @@ import { A, useStore, type Tool } from '../store/store';
 import type { CompareMode } from '../viz/types';
 import { BrandMark } from './BrandMark';
 import { Icon } from './icons';
+import { WorkspaceLogo } from './WorkspaceLogo';
 import { openFile } from './files';
 import { useLab } from '../lab/store';
 import { LabHeader } from '../lab/ui/CobraGui';
@@ -103,21 +104,24 @@ export function TopBar() {
         {!labMode && !tplMode && <button className="btn primary" onClick={() => useStore.setState({ dialog: { kind: 'export' } })}><Icon name="export" size={14} /> Export</button>}
       </div>
       </div>
-      {labMode ? <div className="tb-center lab"><LabHeader /></div> : tplMode && !designing ? null : <div className="tb-center">
-        <IconBtn icon="panelL" title="Toggle left panel" on={leftOpen} onClick={() => useStore.setState({ leftOpen: !leftOpen })} />
-        <span className="tb-sep" />
-        {tools.map(([t, icon, title]) => <IconBtn key={t} icon={icon} title={title} on={tool === t} onClick={() => useStore.setState({ tool: t })} />)}
-        <span className="tb-sep" />
-        <IconBtn icon="undo" title="Undo (Ctrl Z)" onClick={a.undo} disabled={!canUndo} />
-        <IconBtn icon="redo" title="Redo (Ctrl Shift Z)" onClick={a.redo} disabled={!canRedo} />
-        <span className="tb-sep" />
-        <IconBtn icon="grid" title="Show grid" on={canvas.showGrid} onClick={() => a.setCanvas({ showGrid: !canvas.showGrid })} />
-        <IconBtn icon="magnet" title="Snap to grid" on={canvas.snap} onClick={() => a.setCanvas({ snap: !canvas.snap })} />
-        <span className="tb-sep" />
-        <button className="zoom" title="Zoom (wheel) — click to reset" onClick={() => a.setCamera({ k: 1 })}>{Math.round(k * 100)}%</button>
-        <IconBtn icon="fit" title="Fit all (F)" onClick={a.fitAll} />
-        <span className="tb-sep" />
-        <IconBtn icon="panelR" title="Toggle inspector" on={rightOpen} onClick={() => useStore.setState({ rightOpen: !rightOpen })} />
+      {labMode ? <div className="tb-center lab"><LabHeader /></div> : tplMode && !designing ? <div className="tb-center tb-brand"><WorkspaceLogo workspace="templates" /></div> : <div className="tb-center tb-tools">
+        <WorkspaceLogo workspace={tplMode ? 'templates' : 'map'} />
+        <div className="tb-tools-group">
+          <IconBtn icon="panelL" title="Toggle left panel" on={leftOpen} onClick={() => useStore.setState({ leftOpen: !leftOpen })} />
+          <span className="tb-sep" />
+          {tools.map(([t, icon, title]) => <IconBtn key={t} icon={icon} title={title} on={tool === t} onClick={() => useStore.setState({ tool: t })} />)}
+          <span className="tb-sep" />
+          <IconBtn icon="undo" title="Undo (Ctrl Z)" onClick={a.undo} disabled={!canUndo} />
+          <IconBtn icon="redo" title="Redo (Ctrl Shift Z)" onClick={a.redo} disabled={!canRedo} />
+          <span className="tb-sep" />
+          <IconBtn icon="grid" title="Show grid" on={canvas.showGrid} onClick={() => a.setCanvas({ showGrid: !canvas.showGrid })} />
+          <IconBtn icon="magnet" title="Snap to grid" on={canvas.snap} onClick={() => a.setCanvas({ snap: !canvas.snap })} />
+          <span className="tb-sep" />
+          <button className="zoom" title="Zoom (wheel) — click to reset" onClick={() => a.setCamera({ k: 1 })}>{Math.round(k * 100)}%</button>
+          <IconBtn icon="fit" title="Fit all (F)" onClick={a.fitAll} />
+          <span className="tb-sep" />
+          <IconBtn icon="panelR" title="Toggle inspector" on={rightOpen} onClick={() => useStore.setState({ rightOpen: !rightOpen })} />
+        </div>
       </div>}
     </header>
   );

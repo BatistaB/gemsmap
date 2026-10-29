@@ -1,4 +1,4 @@
-"""Brand files of GEMsMAP and COBRAGUI, generated from the masters in logo/ and one definition of the gem.
+"""Brand files of GEMsMAP and its workspaces, generated from the masters in logo/ and one definition of the gem.
 
     python tools/brand/make_brand.py        (needs Pillow: pip install -r tools/docs/requirements.txt)
 
@@ -9,14 +9,20 @@ size and can switch palettes on dark backgrounds. Written files:
     public/favicon.svg, docs/assets/brand/favicon.svg   favicon weights, adapts to dark backgrounds
     docs/assets/brand/gemsmap-mark-{light,dark}.svg  documentation header (UI weights, one palette each)
     docs/brand/gemsmap-logo{,-dark,-mono}.png        wordmark of logo/gemsmap-logo.png + the vector gem
-    docs/brand/cobragui-logo{,-dark}.png             logo/cobragui-logo.png on a transparent background
-    public/brand/cobragui-logo.png                   the same, small, for the COBRAGUI header row
+    docs/brand/{cobragui,mapbuilder,templates}-logo{,-dark}.png
+                                                     the workspace logos (logo/<name>-logo.png) on transparency
+    docs/brand/templates-logo-horizontal{,-dark}.png the stacked Templates logo set side by side
+    public/brand/{cobragui,mapbuilder,templates}-logo.png
+                                                     the same, small, for each workspace's header row; the
+                                                     stacked Templates logo becomes horizontal there
 
 src/ui/BrandMark.tsx draws the same gem in the app's top bar: keep its NODES, EDGES and weights in step.
 """
+import colorsys
+from functools import lru_cache
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -138,18 +144,45 @@ def gemsmap_logo(master: Image.Image, theme: str, mono=False) -> Image.Image:
     return resize(crop(out, 0.03), width=1600)
 
 
-# ------------------------------------------------------------------ COBRAGUI logo
-def cobragui_logo(master: Image.Image, theme: str) -> Image.Image:
-    """White becomes transparent. Neutral ink (text, snake, monitor frame) keeps its coverage (light ink on dark
-    backgrounds); colours keep their hue (colour-to-alpha). The two blend by saturation, so compression noise in
-    the grey frame never flips single pixels between the two."""
+# ------------------------------------------------------------------ workspace logos (COBRAGUI, Map Builder, Templates)
+@lru_cache(maxsize=None)
+def on_dark(r8: int, g8: int, b8: int) -> tuple:
+    """A logo colour for dark backgrounds, at the same hue and saturation: a colour too dark to read there (navy)
+    is brightened in proportion to its strength on white; every other colour keeps its own lightness, so the
+    brand colours stay recognisable."""
+    r, g, b = r8 / 255, g8 / 255, b8 / 255
+    luma = 0.2126 * r + 0.7152 * g + 0.0722 * b
+    target = max(luma, 0.12 + 0.30 * (1 - luma))
+    if target == luma:
+        return r, g, b
+    h, _, sat = colorsys.rgb_to_hls(r, g, b)
+    lo, hi = 0.0, 1.0
+    for _ in range(14):
+        mid = (lo + hi) / 2
+        rr, gg, bb = colorsys.hls_to_rgb(h, mid, sat)
+        lo, hi = (mid, hi) if 0.2126 * rr + 0.7152 * gg + 0.0722 * bb < target else (lo, mid)
+    return colorsys.hls_to_rgb(h, (lo + hi) / 2, sat)
+
+
+def lift(master: Image.Image, theme: str) -> Image.Image:
+    """White becomes transparent. Neutral ink (text, snake, nodes, grey edges, monitor frame) keeps its coverage
+    (light ink on dark backgrounds); colours keep their hue. On light backgrounds that is colour-to-alpha, exact
+    on white. On dark backgrounds each coloured stroke is first un-blended from white (its pure colour taken from
+    the strongest coloured pixel within 2 px) and then recoloured by on_dark(). Neutral and coloured pixels blend
+    by saturation, so compression noise in a grey area never flips single pixels between the two."""
     src = master.convert('RGB')
     box = src.convert('L').point(lambda v: 255 if v < 247 else 0).getbbox()
     src = src.crop(box)
-    ink = 237 / 255 if theme == 'dark' else 0.0
+    dark = theme == 'dark'
+    pixels = list(src.get_flattened_data() if hasattr(src, 'get_flattened_data') else src.getdata())
+    # strength of the coloured pixels (distance from white) and its local maximum: a stroke's own colour
+    strength = Image.new('L', src.size)
+    strength.putdata([round((1 - min(p) / 255) * 255) if max(p) - min(p) > 50 else 0 for p in pixels])
+    peaks = strength.filter(ImageFilter.MaxFilter(5))
+    peak = list(peaks.get_flattened_data() if hasattr(peaks, 'get_flattened_data') else peaks.getdata())
+    ink = 237 / 255 if dark else 0.0
     data = []
-    pixels = src.get_flattened_data() if hasattr(src, 'get_flattened_data') else src.getdata()
-    for r8, g8, b8 in pixels:
+    for i, (r8, g8, b8) in enumerate(pixels):
         r, g, b = r8 / 255, g8 / 255, b8 / 255
         mn, mx = min(r, g, b), max(r, g, b)
         a_c = 1 - mn
@@ -158,15 +191,37 @@ def cobragui_logo(master: Image.Image, theme: str) -> Image.Image:
             continue
         wc = max(0.0, min(1.0, (mx - mn - 0.06) / 0.14))
         a_n = 1 - (0.2126 * r + 0.7152 * g + 0.0722 * b)
-        a_o = (1 - wc) * a_n + wc * a_c
-
-        def ch(c):
-            cc = max(0.0, min(1.0, 1 - (1 - c) / a_c))
-            return round(max(0.0, min(1.0, ((1 - wc) * a_n * ink + wc * a_c * cc) / max(a_o, 1e-6))) * 255)
-
-        data.append((ch(r), ch(g), ch(b), round(a_o * 255)))
+        if dark:
+            a_n = a_n ** 0.75  # grey strokes stay legible on a dark background
+            a_max = max(peak[i] / 255, a_c)
+            pure = [max(0.0, min(1.0, 1 - (1 - c) * a_max / a_c)) for c in (r, g, b)]
+            colour = on_dark(*(round(c * 31) * 255 // 31 for c in pure))
+            cov = a_c / a_max
+        else:
+            colour = [max(0.0, min(1.0, 1 - (1 - c) / a_c)) for c in (r, g, b)]
+            cov = a_c
+        a_o = (1 - wc) * a_n + wc * cov
+        mix = lambda k: round(max(0.0, min(1.0, ((1 - wc) * a_n * ink + wc * cov * colour[k]) / max(a_o, 1e-6))) * 255)
+        data.append((mix(0), mix(1), mix(2), round(a_o * 255)))
     out = Image.new('RGBA', src.size)
     out.putdata(data)
+    return crop(out, 0.02)
+
+
+def horizontal(stacked: Image.Image) -> Image.Image:
+    """A stacked logo (word above, gem below) set side by side for a header row, where the word would be too
+    small: the gem at full height, the word at 40 % of it, centred beside it."""
+    alpha = stacked.getchannel('A')
+    rows = [alpha.crop((0, y, stacked.width, y + 1)).getextrema()[1] for y in range(stacked.height)]
+    top_end = next(y for y in range(stacked.height) if rows[y] > 25)
+    gap = next(y for y in range(top_end, stacked.height - 6) if all(v <= 25 for v in rows[y:y + 6]))  # first empty band
+    word = crop(stacked.crop((0, 0, stacked.width, gap)), 0)
+    gem = crop(stacked.crop((0, gap, stacked.width, stacked.height)), 0)
+    word = resize(word, height=round(gem.height * 0.40))
+    space = round(gem.height * 0.14)
+    out = Image.new('RGBA', (gem.width + space + word.width, gem.height), (0, 0, 0, 0))
+    out.alpha_composite(gem, (0, 0))
+    out.alpha_composite(word, (gem.width + space, (gem.height - word.height) // 2))
     return crop(out, 0.02)
 
 
@@ -193,12 +248,17 @@ def main():
     write('docs/brand/gemsmap-logo.png', gemsmap_logo(master, 'light'))
     write('docs/brand/gemsmap-logo-dark.png', gemsmap_logo(master, 'dark'))
     write('docs/brand/gemsmap-logo-mono.png', gemsmap_logo(master, 'light', mono=True))
-    print('COBRAGUI logo (logo/cobragui-logo.png)')
-    master = Image.open(ROOT / 'logo' / 'cobragui-logo.png')
-    light = cobragui_logo(master, 'light')
-    write('docs/brand/cobragui-logo.png', resize(light, height=450))
-    write('docs/brand/cobragui-logo-dark.png', resize(cobragui_logo(master, 'dark'), height=450))
-    write('public/brand/cobragui-logo.png', resize(light, height=120))
+    # docs: the logo as drawn (light / dark); app header: 120 px high, shown at 32 px
+    for name, docs_height, stacked in [('cobragui', 450, False), ('mapbuilder', 450, False), ('templates', 600, True)]:
+        print(f'{name} logo (logo/{name}-logo.png)')
+        master = Image.open(ROOT / 'logo' / f'{name}-logo.png')
+        light = lift(master, 'light')
+        write(f'docs/brand/{name}-logo.png', resize(light, height=docs_height))
+        write(f'docs/brand/{name}-logo-dark.png', resize(lift(master, 'dark'), height=docs_height))
+        write(f'public/brand/{name}-logo.png', resize(horizontal(light) if stacked else light, height=120))
+        if stacked:  # documentation cards, next to the horizontal logos of the other workspaces
+            write(f'docs/brand/{name}-logo-horizontal.png', resize(horizontal(light), height=240))
+            write(f'docs/brand/{name}-logo-horizontal-dark.png', resize(horizontal(lift(master, 'dark')), height=240))
 
 
 if __name__ == '__main__':

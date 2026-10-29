@@ -56,6 +56,12 @@ kbd { font-family: inherit; font-size: 0.6875rem; color: var(--text-3); backgrou
 .tb-left { min-width: 0; flex: 1; }
 .tb-right { flex: 1; justify-content: flex-end; gap: 0.5rem; }
 .logo { display: flex; align-items: center; padding-right: 0.375rem; }
+/* each workspace's own logo at the left of the second row (WorkspaceLogo); the map tools stay centred */
+.ws-logo { height: 2rem; width: auto; flex: none; user-select: none; }
+.topbar > .tb-center.tb-tools { display: grid; grid-template-columns: 1fr auto 1fr; }
+.tb-tools > .ws-logo { justify-self: start; }
+.tb-tools-group { display: flex; align-items: center; gap: 0.25rem; }
+.topbar > .tb-center.tb-brand { justify-content: flex-start; }
 .menu-wrap { position: relative; }
 .menu-btn { background: none; border: 0; padding: 0.3125rem 0.5rem; border-radius: var(--radius); }
 .menu-btn:hover { background: var(--bg-3); }

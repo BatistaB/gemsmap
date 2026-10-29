@@ -17,6 +17,7 @@ import { Overview } from './Overview';
 import { Results } from './Results';
 import { Simulate } from './Simulate';
 import { ResizeHandle, usePanelWidth } from '../../ui/Resizer';
+import { WorkspaceLogo } from '../../ui/WorkspaceLogo';
 
 const SECTIONS: { id: LabSection; label: string; icon: string; key?: string }[] = [
   { id: 'overview', label: 'Overview', icon: 'file' },
@@ -106,19 +107,14 @@ function LabSidebar() {
 
 // ------------------------------------------------------------------ header (inside the shared top bar)
 
-/** COBRAGUI has its own logo (docs/brand/cobragui-logo.png), at the left of its header row. */
-function CobraGuiLogo() {
-  return <img className="cobragui-logo" src={`${import.meta.env.BASE_URL}brand/cobragui-logo.png`} alt="COBRAGUI" title="COBRAGUI — a graphical user interface for COBRApy: explore, edit and simulate the GEM" draggable={false} />;
-}
-
 export function LabHeader() {
   const model = useLab((s) => s.model);
   const running = useLab((s) => s.running);
   const method = useLab((s) => s.method);
-  if (!model) return <CobraGuiLogo />;
+  if (!model) return <WorkspaceLogo workspace="lab" />;
   return (
     <>
-      <CobraGuiLogo />
+      <WorkspaceLogo workspace="lab" />
       <div className="lab-header">
         <span className="lh-model" title={`${model.filename} · sha256 ${model.checksum.slice(0, 12)}`}><span className="muted">Model</span> <b>{model.name}</b></span>
         <StateSwitcher />

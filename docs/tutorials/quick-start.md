@@ -456,4 +456,4 @@ You imported a genome-scale model, explored its structure, simulated it in two c
 
 Orth JD, Conrad TM, Na J, Lerman JA, Nam H, Feist AM, Palsson BØ (2011). A comprehensive genome-scale reconstruction of *Escherichia coli* metabolism—2011. *Molecular Systems Biology* 7:535. [doi:10.1038/msb.2011.65](https://doi.org/10.1038/msb.2011.65)
 
-The screenshots of this tutorial were captured from GEMsMAP 0.2.0 with COBRApy 0.32.1 and GLPK, using `iJO1366.json` from BiGG (SHA-256 `9376a93f62ad430719f23e612154dd94c67e0d7c9545ed9d17a4d0c347672313`). The values the application displayed are recorded in `docs/assets/images/tutorials/quickstart-manifest.json`.
+The screenshots of this tutorial were captured from GEMsMAP 0.3.0b1 with COBRApy 0.32.1 and GLPK, using `iJO1366.json` from BiGG (SHA-256 `9376a93f62ad430719f23e612154dd94c67e0d7c9545ed9d17a4d0c347672313`). The values the application displayed are recorded in `docs/assets/images/tutorials/quickstart-manifest.json`.

@@ -6,6 +6,13 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 ## [Unreleased]
 
 ### Added
+- **Map Builder and Templates logos.** Each workspace now shows its own logo at the left of the second row of the
+  top bar (COBRAGUI already did): MAP BUILDER beside a gem being drawn, TEMPLATES with a grey gem with empty nodes
+  (set horizontally there so the word stays readable). Template Design Mode shows the Templates logo over the
+  drawing tools, which stay centred. The documentation opens the Maps and Templates sections with them, the home
+  page cards show the three workspace logos, and the README has them too; the brand guide describes them.
+  `tools/brand/make_brand.py` makes their transparent and dark-background files from `logo/mapbuilder-logo.png`
+  and `logo/templates-logo.png`; dark variants now keep every colour except those too dark to read there.
 - **Flux sampling in COBRAGUI** (Simulation → *Flux sampling*): COBRApy's OptGP or ACHR sampler, with the number
   of samples, thinning, processes, seed and an optional minimum objective (fraction of the optimum). Progress shows
   the warmup and the samples drawn; *Stop & keep* saves the samples so far. Samples failing COBRApy's validation are

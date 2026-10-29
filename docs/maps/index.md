@@ -1,5 +1,8 @@
 # Maps
 
+![Map Builder logo: MAP with the cobra as the P above BUILDER, beside a gem being drawn, with some edges coloured, some still dashed and some nodes still empty](../brand/mapbuilder-logo.png#only-light){ .gm-section-logo }
+![Map Builder logo: MAP with the cobra as the P above BUILDER, beside a gem being drawn, with some edges coloured, some still dashed and some nodes still empty](../brand/mapbuilder-logo-dark.png#only-dark){ .gm-section-logo }
+
 The **Map Builder** is a visual design canvas for metabolic networks. You draw or insert pathways the way you would arrange shapes in a drawing tool: click, drag, align, group, style. Underneath, every node and arrow can be bound to a metabolite or reaction of the loaded model, so data from COBRAGUI, or from a file, colour and size the figure correctly.
 
 <figure class="gm-shot" markdown>

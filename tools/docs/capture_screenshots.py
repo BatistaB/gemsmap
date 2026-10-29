@@ -427,7 +427,7 @@ def phase_maps(c: Capture, model: Path):
         c.workspace("Map Builder")
         pg.keyboard.press("f")
         pg.wait_for_timeout(800)
-        c.shot("maps-demo", boxes=[(1, ".panel.left .tabs"), (2, ".tb-center"), (3, ".center"), (4, ".panel.right"), (5, ".bottombar")])
+        c.shot("maps-demo", boxes=[(1, ".panel.left .tabs"), (2, ".tb-tools-group"), (3, ".center"), (4, ".panel.right"), (5, ".bottombar")])
         c.shot("maps-toolbar", clip={"x": 0, "y": 0, "width": VIEW["width"], "height": 78})
         c.shot("maps-elements-panel", element=".panel.left")
 

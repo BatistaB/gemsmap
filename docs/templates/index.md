@@ -1,5 +1,8 @@
 # Templates
 
+![Templates logo: TEMPLATES with the cobra as the P, above a grey gem whose nodes are empty: the layout, waiting for a model](../brand/templates-logo.png#only-light){ .gm-section-logo .gm-stacked }
+![Templates logo: TEMPLATES with the cobra as the P, above a grey gem whose nodes are empty: the layout, waiting for a model](../brand/templates-logo-dark.png#only-dark){ .gm-section-logo .gm-stacked }
+
 A GEMsMAP **template** is a reusable pathway layout that knows **what each molecule is**, not what it is called in one particular model. The same template draws glycolysis on a BiGG model (`g6p_c`), a ModelSEED model (`cpd00079_c0`) or a KEGG-based model (`C00092[c]`), always with the same recognisable shape. A matcher finds the model's names for each molecule and asks you to review the uncertain cases.
 
 > **A template describes biological identity and pathway topology; a GEM provides model-specific identifiers.**
