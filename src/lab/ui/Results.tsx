@@ -310,7 +310,8 @@ function OriginTags({ r }: { r: SimulationResult }) {
 function Provenance({ r }: { r: SimulationResult }) {
   const md = r.metadata;
   const index = useLab((s) => s.index)!;
-  const medium = Object.entries(md.medium).filter(([, v]) => v != null && v > 0);
+  // null = unbounded uptake (JSON has no Infinity): it allows uptake too
+  const medium = Object.entries(md.medium).filter(([, v]) => v == null || v > 0);
   const row = (k: string, v: React.ReactNode) => <div className="kv"><span>{k}</span><span>{v}</span></div>;
   return (
     <div className="provenance">
@@ -323,7 +324,7 @@ function Provenance({ r }: { r: SimulationResult }) {
       {row('Objective', <span className="mono">{objectiveText(md.objective)}{md.objectiveIsModelDefault ? <span className="muted"> (model file)</span> : null}</span>)}
       {row('Medium', `${medium.length} exchange reactions allow uptake`)}
       <details className="prov-list"><summary className="muted small">Show medium</summary>
-        {medium.map(([id, v]) => <div key={id} className="kv small"><ELink r={{ kind: 'reaction', id }}>{id}</ELink><span className="mono">{fnum(v)} · {index.met.get(index.rxn.get(id)?.boundaryMetabolite ?? '')?.name ?? ''}</span></div>)}
+        {medium.map(([id, v]) => <div key={id} className="kv small"><ELink r={{ kind: 'reaction', id }}>{id}</ELink><span className="mono">{fnum(v ?? Infinity)} · {index.met.get(index.rxn.get(id)?.boundaryMetabolite ?? '')?.name ?? ''}</span></div>)}
       </details>
       {row('Modified bounds', md.boundChanges.length ? `${md.boundChanges.length} reaction${md.boundChanges.length > 1 ? 's' : ''}` : 'none (model file bounds)')}
       {md.boundChanges.length > 0 && (

@@ -84,7 +84,7 @@ function ConfigDiffView() {
       {open && n > 0 && (
         <div className="cfg-body">
           {c.objective.changed && <div className="kv"><span>Objective</span><span className="mono">{objectiveText(c.objective.a)} → {objectiveText(c.objective.b)}</span></div>}
-          {c.medium.length > 0 && <div className="cfg-group"><div className="muted small">Medium (max uptake)</div>{c.medium.map((m) => <div key={m.reaction} className="kv small"><ELink r={{ kind: 'reaction', id: m.reaction }} /><span className="mono">{fnum(m.a ?? 0)} → {fnum(m.b ?? 0)}</span></div>)}</div>}
+          {c.medium.length > 0 && <div className="cfg-group"><div className="muted small">Medium (max uptake)</div>{c.medium.map((m) => <div key={m.reaction} className="kv small"><ELink r={{ kind: 'reaction', id: m.reaction }} /><span className="mono">{fnum(m.a ?? Infinity)} → {fnum(m.b ?? Infinity)}</span></div>)}</div>}
           {c.bounds.length > 0 && <div className="cfg-group"><div className="muted small">Bounds (vs model file)</div>{c.bounds.map((m) => <div key={m.reaction} className="kv small"><ELink r={{ kind: 'reaction', id: m.reaction }} /><span className="mono">{m.a ? fbounds(m.a) : 'file'} → {m.b ? fbounds(m.b) : 'file'}</span></div>)}</div>}
         </div>
       )}
