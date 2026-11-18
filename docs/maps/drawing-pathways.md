@@ -53,9 +53,12 @@ With several items selected, the inspector (and the floating toolbar) offers:
 
 *Spacing* sets the distance used by the layouts; *Tidy selection* straightens nearly aligned items; *Align & distribute* lines up edges and centres. Layouts only move what is selected.
 
+**Resizing a selection.** Select two or more metabolites or reactions: a dashed box with four corner handles appears. Drag a handle to enlarge or shrink the drawing; proportions are always kept, the opposite corner stays fixed, and the curvature and label offsets of the arrows inside follow. Metabolite and font sizes do not change. ++ctrl+z++ undoes it.
+
 ## Groups, compartments and annotations
 
-- ++ctrl+g++ groups the selection as a **pathway** (with a title); *Group as compartment* draws a compartment box. Groups move as one; *Ungroup* (++ctrl+shift+g++) releases them.
+- ++ctrl+g++ groups the selection as a **pathway** (with a title); its frame follows its metabolites. Groups move as one; *Ungroup* (++ctrl+shift+g++) releases them.
+- A **compartment** is a free frame: *Elements → Compartment box* draws one in the middle of the view (or around the selection, with *Group as compartment*). Drag its eight handles to size it freely — the reactions inside do not move; hold ++shift++ on a corner to keep its proportions. **The metabolites inside the frame belong to the compartment**, and moving the frame moves them too. Dragging a handle of any group turns it into a free frame; *Inspector → Fit frame to its metabolites* returns to the automatic frame.
 - *Elements → Annotations* adds a **panel label** (a, b, c…), a **figure title**, a **pathway label** or a **compartment box**. Text items have their own size, weight and colour; double-click to edit.
 
 ## Styles

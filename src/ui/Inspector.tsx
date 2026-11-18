@@ -312,6 +312,15 @@ export function GroupInspector({ g }: { g: PathwayGroup }) {
         <label className="check" title="Clicks and box selection go through to the reactions inside. Hold 3 s or right-click to unlock."><input type="checkbox" checked={!!g.locked} onChange={(e) => a.updateGroup(g.id, { locked: e.target.checked })} /> Locked (select what is inside)</label>
         <button className="btn small" onClick={() => a.ungroup()}>Ungroup</button>
       </div>
+      <div className="section">
+        <div className="section-title">Frame</div>
+        {g.box
+          ? <>
+              <div className="muted small">Free frame — drag its handles to resize it; the {g.nodeIds.length} metabolites inside belong to it, and moving the frame moves them too.</div>
+              <button className="btn small" onClick={() => a.fitGroupToMembers(g.id)} title="Let the frame follow its metabolites again">Fit frame to its metabolites</button>
+            </>
+          : <div className="muted small">The frame follows its metabolites. Drag a handle of the selected frame to size it freely.</div>}
+      </div>
     </>
   );
 }

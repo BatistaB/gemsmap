@@ -118,6 +118,7 @@ export function labelAnchor(p: Point, pos: string | undefined, r: number, fontSi
 }
 
 export function groupBounds(g: PathwayGroup, nodes: Record<ID, NodeGlyph>): { x: number; y: number; w: number; h: number } | null {
+  if (g.box) return { ...g.box };
   const ns = g.nodeIds.map((id) => nodes[id]).filter(Boolean);
   if (!ns.length) return null;
   const x0 = Math.min(...ns.map((n) => n.x)) - g.padding;
@@ -125,4 +126,14 @@ export function groupBounds(g: PathwayGroup, nodes: Record<ID, NodeGlyph>): { x:
   const x1 = Math.max(...ns.map((n) => n.x)) + g.padding + 20;
   const y1 = Math.max(...ns.map((n) => n.y)) + g.padding;
   return { x: x0, y: y0 - 14, w: x1 - x0, h: y1 - y0 + 14 };
+}
+
+/** Metabolites whose centre lies inside a frame. */
+export function nodesInBox(box: { x: number; y: number; w: number; h: number }, nodes: Record<ID, NodeGlyph>): ID[] {
+  return Object.values(nodes).filter((n) => n.x >= box.x && n.x <= box.x + box.w && n.y >= box.y && n.y <= box.y + box.h).map((n) => n.id);
+}
+
+/** A group's metabolites: inside its free frame when it has one, otherwise its stored members. */
+export function groupMembers(g: PathwayGroup, nodes: Record<ID, NodeGlyph>): ID[] {
+  return g.box ? nodesInBox(g.box, nodes) : g.nodeIds.filter((id) => nodes[id]);
 }

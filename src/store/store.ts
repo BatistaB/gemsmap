@@ -22,6 +22,7 @@ import { CONDITION_COLORS } from '../viz/palettes';
 import type {
   AnimationSettings, CanvasSettings, NodeGlyph, PathwayGroup, PlotGlyph, PlotType, Point, ReactionGlyph, StyleSettings, TextGlyph, ViewState, VisualDoc, VisualizationMapping,
 } from '../viz/types';
+import { groupMembers, nodesInBox } from '../viz/geometry';
 import { collapseGlyphs, expandCollapsed, glyphsBetween } from './collapse';
 import { docBounds, emptyDoc, emptyProject, plotAnchorApprox, PROJECT_FORMAT, uid, type ProjectFile, type SavedView } from './project';
 
@@ -544,7 +545,7 @@ function createActions(set: Set, get: Get) {
     moveFrom: (start: Record<string, Point>, dx: number, dy: number) =>
       set((s) => {
         const d = s.doc;
-        const nodes = { ...d.nodes }, texts = { ...d.texts }, plots = { ...d.plots };
+        const nodes = { ...d.nodes }, texts = { ...d.texts }, plots = { ...d.plots }, groups = { ...d.groups };
         let legend = d.legend;
         for (const [k, p] of Object.entries(start)) {
           const [kind, id] = parseKey(k);
@@ -552,8 +553,9 @@ function createActions(set: Set, get: Get) {
           else if (kind === 'text' && texts[id]) texts[id] = { ...texts[id], x: p.x + dx, y: p.y + dy };
           else if (kind === 'plot' && plots[id]) plots[id] = { ...plots[id], dx: p.x + dx, dy: p.y + dy };
           else if (kind === 'legend') legend = { ...legend, x: p.x + dx, y: p.y + dy, auto: false };
+          else if (kind === 'group' && groups[id]?.box) groups[id] = { ...groups[id], box: { ...groups[id].box!, x: p.x + dx, y: p.y + dy } };
         }
-        return { doc: followAttached(d, { ...d, nodes, texts, plots, legend }) };
+        return { doc: followAttached(d, { ...d, nodes, texts, plots, legend, groups }) };
       }),
     nudge: (dx: number, dy: number) => {
       const ids = selectedNodeIds();
@@ -589,15 +591,50 @@ function createActions(set: Set, get: Get) {
     },
     groupSelection: (kind: 'pathway' | 'compartment' = 'pathway', title?: string) => {
       const ids = selectedNodeIds();
-      if (!ids.length) return toast('Select metabolites to group');
+      // a compartment is a free frame: around the selection, or a default box in the middle of the view
+      if (!ids.length && kind !== 'compartment') return toast('Select metabolites to group');
+      const s = get();
       const id = uid('g');
-      patchDoc((d) => ({ ...d, groups: { ...d.groups, [id]: { id, kind, title: title ?? (kind === 'pathway' ? 'Pathway' : 'Cytosol'), nodeIds: ids, padding: kind === 'pathway' ? 26 : 40, fill: kind === 'pathway' ? 'none' : '#f4f6fb', stroke: kind === 'pathway' ? 'none' : '#b9c2d6', dashed: kind === 'compartment' } } }));
+      const padding = kind === 'pathway' ? 26 : 40;
+      let box: PathwayGroup['box'];
+      if (kind === 'compartment') {
+        if (ids.length) {
+          const ns = ids.map((n) => s.doc.nodes[n]).filter(Boolean);
+          const x0 = Math.min(...ns.map((n) => n.x)) - padding, y0 = Math.min(...ns.map((n) => n.y)) - padding - 14;
+          box = { x: x0, y: y0, w: Math.max(...ns.map((n) => n.x)) + padding + 20 - x0, h: Math.max(...ns.map((n) => n.y)) + padding - y0 };
+        } else {
+          const c = { x: (s.viewport.w / 2 - s.camera.x) / s.camera.k, y: (s.viewport.h / 2 - s.camera.y) / s.camera.k };
+          box = { x: snapV(c.x - 200), y: snapV(c.y - 140), w: 400, h: 280 };
+        }
+      }
+      const group: PathwayGroup = { id, kind, title: title ?? (kind === 'pathway' ? 'Pathway' : 'Cytosol'), nodeIds: box ? nodesInBox(box, s.doc.nodes) : ids, padding, fill: kind === 'pathway' ? 'none' : '#f4f6fb', stroke: kind === 'pathway' ? 'none' : '#b9c2d6', dashed: kind === 'compartment', box };
+      patchDoc((d) => ({ ...d, groups: { ...d.groups, [id]: group } }));
       set({ selection: [key('group', id)] });
+      if (kind === 'compartment') toast('Compartment: drag its handles to resize — metabolites inside the frame belong to it');
     },
+    /** Free-frame groups: their members are the metabolites inside the frame (after a resize or a move). */
+    syncGroupMembers: () => {
+      const d = get().doc;
+      let changed = false;
+      const groups = { ...d.groups };
+      for (const g of Object.values(d.groups)) {
+        if (!g.box) continue;
+        const ids = nodesInBox(g.box, d.nodes);
+        if (ids.length !== g.nodeIds.length || ids.some((x, i) => x !== g.nodeIds[i])) { groups[g.id] = { ...g, nodeIds: ids }; changed = true; }
+      }
+      if (changed) set((st) => ({ doc: { ...st.doc, groups } }));
+    },
+    /** Back to a frame that follows its metabolites. */
+    fitGroupToMembers: (gid: ID) => commit((st) => {
+      const g = st.doc.groups[gid];
+      if (!g?.box) return {};
+      const { box: _drop, ...rest } = g; void _drop;
+      return { doc: { ...st.doc, groups: { ...st.doc.groups, [gid]: { ...rest, nodeIds: groupMembers(g, st.doc.nodes) } } } };
+    }),
     ungroup: () => {
       const gids = selectedIds('group');
       if (!gids.length) return;
-      const nodeIds = gids.flatMap((g) => get().doc.groups[g].nodeIds);
+      const nodeIds = gids.flatMap((g) => groupMembers(get().doc.groups[g], get().doc.nodes));
       patchDoc((d) => { const groups = { ...d.groups }; gids.forEach((g) => delete groups[g]); return { ...d, groups }; });
       set({ selection: nodeIds.map((id) => key('node', id)) });
     },

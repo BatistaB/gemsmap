@@ -173,8 +173,13 @@ export interface PathwayGroup {
   locked?: boolean;
   title: string;
   subtitle?: string;
-  /** Members drive the (auto-fitted) bounding box. */
+  /** Members drive the (auto-fitted) bounding box — unless `box` is set. */
   nodeIds: ID[];
+  /**
+   * Free frame (world units), resized by its handles independently of the metabolites. When set, the
+   * group's members are the metabolites inside the frame (kept in nodeIds by syncGroupMembers).
+   */
+  box?: { x: number; y: number; w: number; h: number };
   padding: number;
   fill: string;
   stroke: string;

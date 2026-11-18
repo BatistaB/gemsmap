@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { A, key, parseKey, useStore, type SelKey } from '../store/store';
 import { docBounds, legendPos, plotAnchorApprox } from '../store/project';
+import { groupBounds, groupMembers } from '../viz/geometry';
 import { evaluate } from '../viz/evaluate';
 import { THEMES } from '../viz/presets';
 import type { ID } from '../model/types';
@@ -17,7 +18,37 @@ type Gesture =
   | { mode: 'box'; start: Point; cur: Point; additive: boolean }
   | { mode: 'drag'; startWorld: Point; start: Record<SelKey, Point>; primary: SelKey | null; moved: boolean; deferSelect: SelKey | null }
   | { mode: 'connect'; from: string; cur: Point }
-  | { mode: 'bend'; rid: string; startBend: number; startWorld: Point };
+  | { mode: 'bend'; rid: string; startBend: number; startWorld: Point }
+  /** free frame of a group (compartment) */
+  | { mode: 'gresize'; id: string; dir: string; start: Box; startWorld: Point }
+  /** proportional scaling of the selection about the opposite corner of its box */
+  | { mode: 'scale'; anchor: Point; corner: Point; start: Record<SelKey, Point>; bends: Record<string, { bend?: number; off?: Point }> };
+
+type Box = { x: number; y: number; w: number; h: number };
+const SEL_PAD = 14;
+
+/** Metabolites drawn by a selection (selected nodes and both ends of selected arrows), unlocked only. */
+function selectionNodeIds(sel: SelKey[]): string[] {
+  const d = useStore.getState().doc;
+  const out = new Set<string>();
+  for (const k of sel) {
+    const [kind, id] = parseKey(k);
+    if (kind === 'node') out.add(id);
+    else if (kind === 'reaction') { const r = d.reactions[id]; r?.sources.concat(r.targets).forEach((n) => out.add(n)); }
+  }
+  return [...out].filter((id) => d.nodes[id] && !d.nodes[id].locked);
+}
+
+/** Box (with padding) around the metabolites and texts of a selection; null when there is nothing to scale. */
+function selectionBox(sel: SelKey[]): Box | null {
+  const d = useStore.getState().doc;
+  const pts = selectionNodeIds(sel).map((id) => d.nodes[id]);
+  for (const k of sel) { const [kind, id] = parseKey(k); if (kind === 'text' && d.texts[id] && !d.texts[id].locked) pts.push(d.texts[id] as never); }
+  if (pts.length < 2) return null;
+  const x0 = Math.min(...pts.map((p) => p.x)) - SEL_PAD, y0 = Math.min(...pts.map((p) => p.y)) - SEL_PAD;
+  const x1 = Math.max(...pts.map((p) => p.x)) + SEL_PAD, y1 = Math.max(...pts.map((p) => p.y)) + SEL_PAD;
+  return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+}
 
 export function useEvaluated() {
   const doc = useStore((s) => s.doc);
@@ -55,6 +86,10 @@ export function Canvas() {
   const noSelection = useMemo(() => new Set<string>(), []);
   const selectedSet = useMemo(() => new Set(selection), [selection]);
   const [gesture, setGesture] = useState<Gesture | null>(null);
+  // box with corner handles to scale a multi-element selection (hidden while dragging it)
+  const selBox = useMemo(() => (tool === 'select' && (!gesture || gesture.mode === 'scale') ? selectionBox(selection) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [selection, doc, tool, gesture?.mode]);
   const [guides, setGuides] = useState<{ x?: number; y?: number }>({});
   // dragging one metabolite onto another node of the same metabolite merges them on release
   const [mergeTarget, setMergeTarget] = useState<{ from: ID; into: ID; x: number; y: number } | null>(null);
@@ -122,7 +157,11 @@ export function Canvas() {
     for (const k of keys) {
       const [kind, id] = parseKey(k);
       if (kind === 'node') nodeSet.add(id);
-      else if (kind === 'group') d.groups[id]?.nodeIds.forEach((n) => nodeSet.add(n));
+      else if (kind === 'group' && d.groups[id]) {
+        const g = d.groups[id];
+        groupMembers(g, d.nodes).forEach((n) => nodeSet.add(n));
+        if (g.box) out[k] = { x: g.box.x, y: g.box.y };
+      }
       else if (kind === 'reaction') { const r = d.reactions[id]; r?.sources.concat(r.targets).forEach((n) => nodeSet.add(n)); }
       else if (kind === 'text' && d.texts[id]) out[k] = { x: d.texts[id].x, y: d.texts[id].y };
       else if (kind === 'legend') out[k] = legendPos(d);
@@ -164,6 +203,36 @@ export function Canvas() {
     const resize = target.closest('[data-resize]')?.getAttribute('data-resize');
     if (resize) {
       const [pid, dir] = resize.split(':');
+      if (pid.startsWith('group/')) {
+        // a group frame: resized on its own; an auto-fitted group becomes a free frame
+        const gid = pid.slice(6), g = s.doc.groups[gid];
+        const b = g && groupBounds(g, s.doc.nodes);
+        if (b) {
+          A().beginGesture();
+          if (!g.box) A().live((d) => ({ ...d, groups: { ...d.groups, [gid]: { ...d.groups[gid], box: b } } }));
+          setGesture({ mode: 'gresize', id: gid, dir, start: b, startWorld: world });
+          return;
+        }
+      }
+      if (pid === 'sel') {
+        const b = selectionBox(s.selection);
+        if (b) {
+          const corner = { x: dir.includes('e') ? b.x + b.w : b.x, y: dir.includes('s') ? b.y + b.h : b.y };
+          const anchor = { x: dir.includes('e') ? b.x : b.x + b.w, y: dir.includes('s') ? b.y : b.y + b.h };
+          const start: Record<SelKey, Point> = {};
+          const nids = new Set(selectionNodeIds(s.selection));
+          for (const id of nids) start[key('node', id)] = { x: s.doc.nodes[id].x, y: s.doc.nodes[id].y };
+          for (const k of s.selection) { const [kind, id] = parseKey(k); if (kind === 'text' && s.doc.texts[id] && !s.doc.texts[id].locked) start[k] = { x: s.doc.texts[id].x, y: s.doc.texts[id].y }; }
+          // curvature and label offsets of arrows entirely inside the selection scale with it
+          const bends: Record<string, { bend?: number; off?: Point }> = {};
+          for (const r of Object.values(s.doc.reactions)) {
+            if ([...r.sources, ...r.targets].every((n) => nids.has(n)) && (r.bend || r.labelOffset)) bends[r.id] = { bend: r.bend, off: r.labelOffset };
+          }
+          A().beginGesture();
+          setGesture({ mode: 'scale', anchor, corner, start, bends });
+          return;
+        }
+      }
       if (pid === 'legend') {
         // legend: uniform scale; start = { dx: x, dy: y, w: scale, h: natural content height }
         const p = legendPos(s.doc);
@@ -252,6 +321,43 @@ export function Canvas() {
           cur.moved = true;
         }
         A().setCamera({ x: cur.cx + e.clientX - cur.sx, y: cur.cy + e.clientY - cur.sy });
+      } else if (cur.mode === 'gresize') {
+        const ddx = world.x - cur.startWorld.x, ddy = world.y - cur.startWorld.y;
+        const st = cur.start;
+        let { x, y, w, h } = st;
+        const MIN = 60;
+        if (cur.dir.includes('e')) w = Math.max(MIN, st.w + ddx);
+        if (cur.dir.includes('w')) { w = Math.max(MIN, st.w - ddx); x = st.x + st.w - w; }
+        if (cur.dir.includes('s')) h = Math.max(MIN, st.h + ddy);
+        if (cur.dir.includes('n')) { h = Math.max(MIN, st.h - ddy); y = st.y + st.h - h; }
+        if (e.shiftKey && cur.dir.length === 2) { // keep the frame's proportions on corners
+          const k = Math.max(w / st.w, h / st.h);
+          const nw = st.w * k, nh = st.h * k;
+          if (cur.dir.includes('w')) x = st.x + st.w - nw;
+          if (cur.dir.includes('n')) y = st.y + st.h - nh;
+          w = nw; h = nh;
+        }
+        const r = (v: number) => Math.round(v);
+        A().live((d) => ({ ...d, groups: { ...d.groups, [cur.id]: { ...d.groups[cur.id], box: { x: r(x), y: r(y), w: r(w), h: r(h) } } } }));
+      } else if (cur.mode === 'scale') {
+        // uniform factor: projection of the pointer on the anchor→corner diagonal (proportions always kept)
+        const vx = cur.corner.x - cur.anchor.x, vy = cur.corner.y - cur.anchor.y;
+        const k = Math.max(0.05, ((world.x - cur.anchor.x) * vx + (world.y - cur.anchor.y) * vy) / (vx * vx + vy * vy || 1));
+        const a = cur.anchor;
+        A().live((d) => {
+          const nodes = { ...d.nodes }, texts = { ...d.texts }, reactions = { ...d.reactions };
+          for (const [k2, p] of Object.entries(cur.start)) {
+            const [kind, id] = parseKey(k2);
+            const np = { x: Math.round(a.x + (p.x - a.x) * k), y: Math.round(a.y + (p.y - a.y) * k) };
+            if (kind === 'node' && nodes[id]) nodes[id] = { ...nodes[id], ...np };
+            else if (kind === 'text' && texts[id]) texts[id] = { ...texts[id], ...np };
+          }
+          for (const [rid, b] of Object.entries(cur.bends)) {
+            if (!reactions[rid]) continue;
+            reactions[rid] = { ...reactions[rid], ...(b.bend ? { bend: Math.round(b.bend * k) } : {}), ...(b.off ? { labelOffset: { x: b.off.x * k, y: b.off.y * k } } : {}) };
+          }
+          return { ...d, nodes, texts, reactions };
+        });
       } else if (cur.mode === 'resize' && cur.id === 'legend') {
         const ddx = world.x - cur.startWorld.x, ddy = world.y - cur.startWorld.y;
         const { dx: x0, dy: y0, w: k0, h: hn } = cur.start;
@@ -363,7 +469,10 @@ export function Canvas() {
         for (const t of Object.values(s.doc.texts)) if (!t.locked && inside(t)) keys.push(key('text', t.id));
         for (const p of Object.values(s.doc.plots)) { const a = plotAnchorApprox(s.doc, p.anchor); if (!p.locked && a && inside({ x: a.x + p.dx + p.w / 2, y: a.y + p.dy + p.h / 2 })) keys.push(key('plot', p.id)); }
         A().select(keys, cur.additive);
+      } else if (cur.mode === 'gresize' || cur.mode === 'scale') {
+        A().syncGroupMembers();
       } else if (cur.mode === 'drag') {
+        if (cur.moved) A().syncGroupMembers();
         if (!cur.moved && cur.deferSelect) A().select([cur.deferSelect]);
         const mt = mergeRef.current;
         mergeRef.current = null;
@@ -497,6 +606,16 @@ export function Canvas() {
           <g id="scene-root">
             <Scene doc={doc} model={model} datasets={datasets} conditions={conditions} view={view} style={style} theme={theme} ev={ev} selected={selectedSet} particles={particles} interactive />
           </g>
+          {selBox && (
+            <g className="ui-only">
+              <rect x={selBox.x} y={selBox.y} width={selBox.w} height={selBox.h} fill="none" stroke="#4f5bd5" strokeWidth={1 / camera.k} strokeDasharray={`${4 / camera.k} ${3 / camera.k}`} pointerEvents="none" />
+              {([['nw', 0, 0, 'nwse-resize'], ['ne', 1, 0, 'nesw-resize'], ['se', 1, 1, 'nwse-resize'], ['sw', 0, 1, 'nesw-resize']] as const).map(([dir, fx, fy, cursor]) => (
+                <rect key={dir} data-resize={`sel:${dir}`} x={selBox.x + fx * selBox.w - 5 / camera.k} y={selBox.y + fy * selBox.h - 5 / camera.k} width={10 / camera.k} height={10 / camera.k} rx={2 / camera.k} fill="#fff" stroke="#4f5bd5" strokeWidth={1.4 / camera.k} style={{ cursor }}>
+                  <title>Drag to resize the selection (proportions kept)</title>
+                </rect>
+              ))}
+            </g>
+          )}
           {guides.x != null && <line x1={guides.x} x2={guides.x} y1={-1e5} y2={1e5} stroke="#e8505b" strokeWidth={0.8 / camera.k} strokeDasharray={`${4 / camera.k} ${3 / camera.k}`} />}
           {guides.y != null && <line y1={guides.y} y2={guides.y} x1={-1e5} x2={1e5} stroke="#e8505b" strokeWidth={0.8 / camera.k} strokeDasharray={`${4 / camera.k} ${3 / camera.k}`} />}
           {mergeTarget && (

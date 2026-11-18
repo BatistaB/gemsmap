@@ -6,6 +6,13 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 ## [Unreleased]
 
 ### Added
+- **Resize a selection proportionally**: two or more selected metabolites or reactions get a box with corner
+  handles; dragging one scales the drawing about the opposite corner (proportions kept, arrow curvature and label
+  offsets follow, sizes unchanged).
+- **Free compartment frames**: *Compartment box* works without a selection; a compartment's frame has eight handles
+  and is resized independently of the reactions inside (Shift keeps proportions on corners). The metabolites inside
+  the frame are its members and move with it. Any group becomes a free frame when a handle is dragged; *Fit frame to
+  its metabolites* returns to the automatic frame.
 - **Map Builder and Templates logos.** Each workspace now shows its own logo at the left of the second row of the
   top bar (COBRAGUI already did): MAP BUILDER beside a gem being drawn, TEMPLATES with a grey gem with empty nodes
   (set horizontally there so the word stays readable). Template Design Mode shows the Templates logo over the

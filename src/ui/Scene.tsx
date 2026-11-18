@@ -10,6 +10,12 @@ import type { NodeGlyph, ReactionGlyph, TextGlyph, StyleSettings, ViewState, Vis
 import { Legend } from './Legend';
 import { MiniPlot } from './MiniPlot';
 
+/** Resize handles of a group frame: direction, relative x, relative y, cursor. */
+const GROUP_HANDLES: [string, number, number, string][] = [
+  ['nw', 0, 0, 'nwse-resize'], ['n', 0.5, 0, 'ns-resize'], ['ne', 1, 0, 'nesw-resize'], ['e', 1, 0.5, 'ew-resize'],
+  ['se', 1, 1, 'nwse-resize'], ['s', 0.5, 1, 'ns-resize'], ['sw', 0, 1, 'nesw-resize'], ['w', 0, 0.5, 'ew-resize'],
+];
+
 export interface SceneProps {
   doc: VisualDoc;
   model: MetabolicModel | null;
@@ -316,6 +322,9 @@ function SceneImpl({ doc, model, datasets, conditions, view, style, theme, ev, s
               <text x={b.x + 8} y={b.y + 13} fontSize={fs + 1} fontWeight={600} fontStyle={comp ? 'normal' : 'italic'} fill={theme.text}>{g.title}</text>
               {g.locked && interactive && <text className="ui-only" x={b.x + b.w - 8} y={b.y + 14} fontSize={fs} textAnchor="end" fill="#a07800">🔒 locked</text>}
               {g.subtitle && <text x={b.x + 8} y={b.y + 25} fontSize={fs - 1} fill={theme.plotAxis}>{g.subtitle}</text>}
+              {isSel && interactive && !g.locked && GROUP_HANDLES.map(([dir, fx, fy, cursor]) => (
+                <rect key={dir} className="ui-only" data-resize={`group/${g.id}:${dir}`} x={b.x + fx * b.w - 4} y={b.y + fy * b.h - 4} width={8} height={8} rx={1.5} fill="#fff" stroke={SEL} strokeWidth={1.2} style={{ cursor }} />
+              ))}
             </g>
           );
         })}
