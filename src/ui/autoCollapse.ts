@@ -22,13 +22,23 @@ const RULES: Rule[] = [
 export function installAutoCollapse() {
   const narrow = RULES.map(() => false);
   const autoClosed = RULES.map(() => false);
+  const wasOpen = RULES.map((r) => r.isOpen());
+  let applying = false;
   let told = false;
+  const set = (r: Rule, open: boolean) => { applying = true; try { r.setOpen(open); } finally { applying = false; } };
+  // a panel the user opens or closes (rather than this module) is theirs: it is not reopened automatically
+  const watch = () => RULES.forEach((r, i) => {
+    const open = r.isOpen();
+    if (open !== wasOpen[i]) { wasOpen[i] = open; if (!applying) autoClosed[i] = false; }
+  });
+  useStore.subscribe(watch);
+  useLab.subscribe(watch);
   const check = (vw: number) => {
     let closed = false;
     RULES.forEach((r, i) => {
       const now = vw < r.below;
-      if (now && !narrow[i] && r.isOpen()) { r.setOpen(false); autoClosed[i] = true; closed = true; }
-      if (!now && narrow[i]) { if (autoClosed[i] && !r.isOpen()) r.setOpen(true); autoClosed[i] = false; }
+      if (now && !narrow[i] && r.isOpen()) { set(r, false); autoClosed[i] = true; closed = true; }
+      if (!now && narrow[i]) { if (autoClosed[i] && !r.isOpen()) set(r, true); autoClosed[i] = false; }
       narrow[i] = now;
     });
     if (closed && !told) {

@@ -107,6 +107,31 @@ def test_medium_roundtrip(model):
     assert r["objectiveValue"] < 0.87
 
 
+def test_unbounded_uptake_in_the_file(tmp_path):
+    """A model file may leave a bound unbounded (SBML -INF). JSON has no Infinity: the API sends null."""
+    from cobra.io import load_model, write_sbml_model
+    m = load_model("textbook")
+    m.reactions.EX_o2_e.lower_bound = -math.inf
+    path = tmp_path / "o2_unbounded.xml"
+    write_sbml_model(m, str(path))
+    r = client.post("/api/models/import", files={"file": ("o2_unbounded.xml", path.read_bytes(), "application/xml")})
+    assert r.status_code == 200, r.text
+    j = r.json()
+    assert j["medium"]["EX_o2_e"] is None
+    t = client.post(f"/api/models/{j['id']}/medium/query", json={"state": {}}).json()
+    o2 = next(x for x in t["rows"] if x["reaction"] == "EX_o2_e")
+    assert o2["uptakeUnbounded"] and o2["originalUptakeMax"] is None
+    res = sim(j["id"], "fba")
+    assert res["solverStatus"] == "optimal" and abs(res["objectiveValue"] - 0.8739) < 1e-3
+    assert res["metadata"]["medium"]["EX_o2_e"] is None
+    # unbounded (null) and "not in the medium" (absent) are different media: the comparison must say so
+    anaerobic = sim(j["id"], "fba", {"name": "no O2", "bounds": {"EX_o2_e": [0, 1000]}})
+    assert "EX_o2_e" not in anaerobic["metadata"]["medium"]
+    c = client.post("/api/results/compare", json={"a": res, "b": anaerobic}).json()
+    o2 = [d for d in c["config"]["medium"] if d["reaction"] == "EX_o2_e"]
+    assert o2 == [{"reaction": "EX_o2_e", "a": None, "b": 0.0}]
+
+
 def test_medium_presets(model):
     mid = model["id"]
     an = client.post(f"/api/models/{mid}/medium/preset", json={"state": {}, "preset": "anaerobic"}).json()

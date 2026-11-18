@@ -63,7 +63,8 @@ def _config_diff(a: ResultPayload, b: ResultPayload) -> dict:
     meda, medb = ma.get("medium") or {}, mb.get("medium") or {}
     medium = []
     for rid in sorted(set(meda) | set(medb)):
-        x, y = meda.get(rid), medb.get(rid)
+        # absent = not in the medium (uptake 0); null = unbounded uptake (JSON has no Infinity)
+        x, y = (meda[rid] if rid in meda else 0.0), (medb[rid] if rid in medb else 0.0)
         if x != y:
             medium.append({"reaction": rid, "a": x, "b": y})
     ba = {c["reaction"]: c["current"] for c in ma.get("boundChanges") or []}
