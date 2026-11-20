@@ -25,11 +25,11 @@ The [Zenodo record](https://doi.org/10.5281/zenodo.24383708) lists every version
 
 Fill in your version (see [below](#find-the-version-you-used)):
 
-> Batista B (2026). *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Version 0.3.0. Zenodo. [doi:10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709)
+> Batista B, de Carvalho LM, Damasio A (2026). *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Version 0.3.0. Zenodo. [doi:10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709)
 
 ```bibtex
 @software{gemsmap,
-  author  = {Batista, Bruno},
+  author  = {Batista, Bruno and de Carvalho, Lucas Miguel and Damasio, André},
   title   = {{GEMsMAP}: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates},
   version = {0.3.0},
   year    = {2026},

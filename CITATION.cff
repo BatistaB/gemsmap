@@ -11,6 +11,15 @@ authors:
   - family-names: Batista
     given-names: Bruno
     orcid: "https://orcid.org/0000-0002-2449-8304"
+    affiliation: "University of Campinas (UNICAMP), Campinas, Brazil"
+  - family-names: "de Carvalho"
+    given-names: "Lucas Miguel"
+    orcid: "https://orcid.org/0000-0002-8766-0452"
+    affiliation: "Universidade São Francisco (USF), Bragança Paulista, Brazil"
+  - family-names: Damasio
+    given-names: "André"
+    orcid: "https://orcid.org/0000-0001-9304-3998"
+    affiliation: "University of Campinas (UNICAMP), Campinas, Brazil"
 version: 0.3.0
 date-released: 2026-11-19
 doi: 10.5281/zenodo.24383709
