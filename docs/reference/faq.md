@@ -40,4 +40,4 @@
 :   No. It uses their software or data and cites them; it is an independent project.
 
 **How do I cite GEMsMAP, or this documentation?**
-:   Cite the software version you used and, once it is published, the article that describes GEMsMAP. Each version will have its own DOI on Zenodo; the documentation is released with the software, so the version DOI covers it too. To point to one page, give its address and the date you read it. See [How to cite](how-to-cite.md), which also lists the tools to cite with it (COBRApy and, when used, MetaNetX, BiGG and KEGG).
+:   Cite the software version you used and, once it is published, the article that describes GEMsMAP. Each version has its own DOI on Zenodo (0.3.0: [doi:10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709)); the documentation is released with the software, so the version DOI covers it too. To point to one page, give its address and the date you read it. See [How to cite](how-to-cite.md), which also lists the tools to cite with it (COBRApy and, when used, MetaNetX, BiGG and KEGG).

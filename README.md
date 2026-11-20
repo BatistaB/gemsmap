@@ -184,9 +184,13 @@ npm run dev             # interface on http://localhost:5173 (forwards /api to t
 ## How to cite
 
 Please cite the version of GEMsMAP you used; GitHub's *Cite this repository* button gives the reference from
-[CITATION.cff](CITATION.cff). Each version will get its own DOI on Zenodo, and an article describing GEMsMAP is in
-preparation. Both will be listed on the [How to cite](https://gemsmap.readthedocs.io/en/latest/reference/how-to-cite/)
-page, together with the tools to cite alongside GEMsMAP.
+[CITATION.cff](CITATION.cff). Each version is archived on Zenodo with its own DOI:
+
+- GEMsMAP 0.3.0: [doi:10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709)
+- all versions (concept DOI, resolves to the newest): [doi:10.5281/zenodo.24383708](https://doi.org/10.5281/zenodo.24383708)
+
+An article describing GEMsMAP is in preparation. The [How to cite](https://gemsmap.readthedocs.io/en/latest/reference/how-to-cite/)
+page gives the full reference and the tools to cite alongside GEMsMAP.
 
 ## License and acknowledgements
 

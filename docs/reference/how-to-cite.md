@@ -4,23 +4,28 @@ If GEMsMAP helped your work, please cite it, so that others can find it and repe
 
 | What | Cite it for | Identifier |
 | --- | --- | --- |
-| **The software**, in the version you used | The exact program behind your results and figures. This documentation is part of it. | A DOI for each version, from Zenodo <span class="gm-badge planned">Being set up</span> |
+| **The software**, in the version you used | The exact program behind your results and figures. This documentation is part of it. | A DOI for each version, from Zenodo: 0.3.0 is [doi:10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709) |
 | **The article** that describes GEMsMAP | The method and its design | The journal DOI <span class="gm-badge planned">In preparation</span> |
 
 When both exist, cite both: the article where you introduce the tool, and the software version in your methods.
 
 !!! info "Where this stands today"
-    The DOIs are being assigned: GEMsMAP 0.3.0 is the version described in the article. Until the software DOI exists, cite the version and the repository address as shown below. This page will give both DOIs as soon as they are assigned.
+    GEMsMAP 0.3.0, the version described in the article, is archived on Zenodo as [doi:10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709). The article is in preparation; this page will give its DOI when it is published.
 
 ## Cite the software
 
-Each released version of GEMsMAP will be archived on [Zenodo](https://zenodo.org), an open research repository run by CERN. Zenodo gives every version its own DOI, and gives the project a *concept DOI* that always points to the newest version. Cite the DOI of the **version you used**: another version can give different results or draw a figure differently.
+Each released version of GEMsMAP is archived on [Zenodo](https://zenodo.org), an open research repository run by CERN. Zenodo gives every version its own DOI, and gives the project a *concept DOI* that always points to the newest version. Cite the DOI of the **version you used**: another version can give different results or draw a figure differently.
+
+| Version | DOI |
+| --- | --- |
+| 0.3.0 (19 November 2026), the version described in the article | [10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709) |
+| All versions (concept DOI, resolves to the newest) | [10.5281/zenodo.24383708](https://doi.org/10.5281/zenodo.24383708) |
+
+The [Zenodo record](https://doi.org/10.5281/zenodo.24383708) lists every version with its own DOI; use it when you ran a later version.
 
 Fill in your version (see [below](#find-the-version-you-used)):
 
-> Batista B (2026). *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Version 0.3.0. https://github.com/BatistaB/gemsmap
-
-Once the DOI exists, add it at the end, for example "Zenodo. doi:10.5281/zenodo.…".
+> Batista B (2026). *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Version 0.3.0. Zenodo. [doi:10.5281/zenodo.24383709](https://doi.org/10.5281/zenodo.24383709)
 
 ```bibtex
 @software{gemsmap,
@@ -28,8 +33,9 @@ Once the DOI exists, add it at the end, for example "Zenodo. doi:10.5281/zenodo.
   title   = {{GEMsMAP}: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates},
   version = {0.3.0},
   year    = {2026},
-  url     = {https://github.com/BatistaB/gemsmap},
-  % publisher = {Zenodo}, doi = {10.5281/zenodo.…},  % added when the version is archived
+  publisher = {Zenodo},
+  doi     = {10.5281/zenodo.24383709},
+  url     = {https://doi.org/10.5281/zenodo.24383709},
 }
 ```
 

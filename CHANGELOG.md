@@ -5,6 +5,10 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 
 ## [Unreleased]
 
+### Changed
+- The Zenodo DOIs are in *How to cite*, the FAQ, the README and `CITATION.cff`: GEMsMAP 0.3.0 is
+  doi:10.5281/zenodo.24383709; all versions (concept DOI) doi:10.5281/zenodo.24383708.
+
 ## [0.3.0] — 2026-11-19
 
 First stable version, the one described in the GEMsMAP article (README, PyPI page, documentation and zip no longer

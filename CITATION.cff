@@ -1,7 +1,7 @@
 # How to cite GEMsMAP: https://gemsmap.readthedocs.io/en/latest/reference/how-to-cite/
 # Keep `version` and `date-released` in step with backend/gemsmap/__init__.py (tools/release/build.py checks the version).
-# When the version is archived on Zenodo, add its DOI under `identifiers`; when the article is published, add it
-# as `preferred-citation`.
+# After each release, set `doi` and the first `identifiers` entry to that version's Zenodo DOI; when the article is
+# published, add it as `preferred-citation`.
 cff-version: 1.2.0
 message: "If you use GEMsMAP, please cite the version you used, and the tools it builds on (COBRApy and, when used, MetaNetX, BiGG and KEGG)."
 type: software
@@ -13,6 +13,14 @@ authors:
     orcid: "https://orcid.org/0000-0002-2449-8304"
 version: 0.3.0
 date-released: 2026-11-19
+doi: 10.5281/zenodo.24383709
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24383709
+    description: "GEMsMAP 0.3.0 on Zenodo"
+  - type: doi
+    value: 10.5281/zenodo.24383708
+    description: "All versions of GEMsMAP on Zenodo (concept DOI, resolves to the newest)"
 license: MIT
 repository-code: "https://github.com/BatistaB/gemsmap"
 url: "https://gemsmap.readthedocs.io/"
