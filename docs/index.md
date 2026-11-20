@@ -1,6 +1,6 @@
 ---
 title: GEMsMAP
-description: An Interactive Workbench for Genome-Scale Metabolic Models — COBRApy analyses, editable metabolic maps and reusable, identity-aware pathway templates in one application.
+description: "GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates."
 hide:
   - navigation
 ---
@@ -10,7 +10,7 @@ hide:
 <img class="gm-hero__logo" src="brand/gemsmap-logo.png#only-light" alt="GEMsMAP logo: a gem drawn as a metabolic network">
 <img class="gm-hero__logo" src="brand/gemsmap-logo-dark.png#only-dark" alt="GEMsMAP logo: a gem drawn as a metabolic network">
 
-<h1 class="gm-hero__tagline">An Interactive Workbench for Genome-Scale Metabolic Models</h1>
+<h1 class="gm-hero__tagline">Integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates</h1>
 
 <p class="gm-hero__lead">GEMsMAP connects constraint-based computation, reaction and metabolite exploration, and editable metabolic maps in one application. Load a genome-scale model, simulate it with COBRApy, follow how individual metabolites participate in the network, and turn the results into a clear pathway figure, without writing every step as code.</p>
 

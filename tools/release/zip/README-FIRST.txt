@@ -1,4 +1,4 @@
-GEMsMAP {{VERSION}} - An Interactive Workbench for Genome-Scale Metabolic Models
+GEMsMAP {{VERSION}} - Integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates
 ==================================================================================
 
 BETA: this version is being tested. It works, but features and file formats can

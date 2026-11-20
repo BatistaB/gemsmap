@@ -2,7 +2,7 @@
 # Local preview:  pip install -r docs/requirements.txt  &&  mkdocs serve
 # Release check:  mkdocs build --strict
 site_name: GEMsMAP
-site_description: An Interactive Workbench for Genome-Scale Metabolic Models
+site_description: "GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates"
 site_author: Bruno Batista
 # Read the Docs sets the canonical URL of each build; it stays empty in local builds.
 site_url: !ENV [READTHEDOCS_CANONICAL_URL, ""]

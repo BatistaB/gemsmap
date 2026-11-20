@@ -12,7 +12,7 @@ space), *GEMSMAP*, *GemsMap* and *GEMsMap*. The logo sets the two parts on two l
 Where a lowercase or code token is needed (package name, file extension, storage keys, environment variables) use
 `gemsmap` or `GEMSMAP_…`.
 
-Tagline: *An interactive workbench for visualization and constraint-based analysis of genome-scale metabolic models.*
+Full name (the title of the article): *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Tagline, where the name already stands above it: *Integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*.
 
 ## The logo
 

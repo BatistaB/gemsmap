@@ -59,8 +59,8 @@ def cover(version: str, form_url: str, site: Path) -> str:
     <img src="{logo}" alt="">
     <h1>GEMsMAP {html.escape(version)}</h1>
     <div class="sub">Beta test guide · {today}</div>
-    <p>Thank you for testing GEMsMAP, an interactive workbench for genome-scale metabolic models: COBRApy analyses,
-    editable metabolic maps and pathway templates in one application.</p>
+    <p>Thank you for testing GEMsMAP: integrating constraint-based modeling, metabolic visualization and
+    identity-aware pathway templates in one application.</p>
     <div class="beta"><b>This is a beta.</b> It works, but features and file formats can still change. Save your work
     as <code>.gemsmap</code> files. Everything runs on your computer; your models are not uploaded anywhere.</div>
     <h2>What we ask of you (about one hour)</h2>

@@ -1,6 +1,6 @@
 # GEMsMAP
 
-**An Interactive Workbench for Genome-Scale Metabolic Models.**
+**Integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates.**
 
 > **Beta.** GEMsMAP 0.3 is in beta testing. It works, but features, file formats and the interface can still
 > change before the first stable release. Save your work as `.gemsmap` project files and report problems.

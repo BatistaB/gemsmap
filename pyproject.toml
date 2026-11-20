@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 [project]
 name = "gemsmap"
 dynamic = ["version"]
-description = "GEMsMAP: an interactive workbench for genome-scale metabolic models (COBRApy analyses, editable metabolic maps, identity-aware pathway templates)"
+description = "GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates"
 readme = "PYPI_README.md"
 license = "MIT"
 license-files = ["LICENSE"]

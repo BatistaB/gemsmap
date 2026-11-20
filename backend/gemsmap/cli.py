@@ -151,7 +151,7 @@ def main(argv: Optional[list[str]] = None) -> int:
             stream.reconfigure(errors="backslashreplace")
         except (AttributeError, ValueError):
             pass
-    ap = argparse.ArgumentParser(prog="gemsmap", description="GEMsMAP: an interactive workbench for genome-scale metabolic models.")
+    ap = argparse.ArgumentParser(prog="gemsmap", description="GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates.")
     ap.add_argument("--version", action="version", version=f"GEMsMAP {__version__}")
     ap.add_argument("--host", default="127.0.0.1", help="address to listen on (default 127.0.0.1: this computer only)")
     ap.add_argument("--port", type=int, default=DEFAULT_PORT, help=f"port (default {DEFAULT_PORT})")

@@ -18,14 +18,14 @@ Each released version of GEMsMAP will be archived on [Zenodo](https://zenodo.org
 
 Fill in your version (see [below](#find-the-version-you-used)):
 
-> Batista B (2026). *GEMsMAP: an interactive workbench for genome-scale metabolic models*. Version 0.3.0b1. https://github.com/BatistaB/gemsmap
+> Batista B (2026). *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Version 0.3.0b1. https://github.com/BatistaB/gemsmap
 
 Once the DOI exists, add it at the end, for example "Zenodo. doi:10.5281/zenodo.…".
 
 ```bibtex
 @software{gemsmap,
   author  = {Batista, Bruno},
-  title   = {{GEMsMAP}: an interactive workbench for genome-scale metabolic models},
+  title   = {{GEMsMAP}: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates},
   version = {0.3.0b1},
   year    = {2026},
   url     = {https://github.com/BatistaB/gemsmap},

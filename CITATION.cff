@@ -5,7 +5,7 @@
 cff-version: 1.2.0
 message: "If you use GEMsMAP, please cite the version you used, and the tools it builds on (COBRApy and, when used, MetaNetX, BiGG and KEGG)."
 type: software
-title: "GEMsMAP: an interactive workbench for genome-scale metabolic models"
+title: "GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates"
 abstract: "GEMsMAP connects constraint-based computation with COBRApy, reaction and metabolite exploration, and editable metabolic maps in one application, with identity-aware pathway templates that can be applied to different genome-scale metabolic models."
 authors:
   - family-names: Batista

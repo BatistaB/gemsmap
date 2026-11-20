@@ -53,6 +53,10 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
   queries, so they follow the chosen size.
 
 ### Changed
+- **Full name:** *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware
+  pathway templates*, the title of the article, in the README, the PyPI page, the documentation, `CITATION.cff`,
+  the package descriptions, `gemsmap --help` and the zip's README-FIRST.txt (it replaces "an interactive workbench
+  for genome-scale metabolic models").
 - **The name is written GEMsMAP**, one word, everywhere: interface, documentation, README, package descriptions,
   command-line messages, model notes and the zip launchers (*Start GEMsMAP (Windows).bat*, *Start GEMsMAP
   (macOS).command*). Lowercase identifiers (`gemsmap`, `.gemsmap`, `GEMSMAP_*`) do not change.
