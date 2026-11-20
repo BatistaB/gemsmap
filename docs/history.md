@@ -84,13 +84,30 @@ Thank you for reading!
 
 ### Other tools worth knowing
 
-The GEM community has built many tools to analyse and visualise metabolic networks. This list is far from complete; each tool has its own strengths.
+The GEM community has built many tools to analyse and visualise metabolic networks, each with its own strengths. The article that describes GEMsMAP compares its features with the fourteen tools below; for ten of them, from CytoSEED to NAViFluX, it reuses the feature comparison published with NAViFluX (Krishnamurthy *et al.*, 2026).
 
 | Tool | What it does | Reference |
 | --- | --- | --- |
+| CAVE | A cloud-based platform for the analysis and visualisation of metabolic pathways. | Mao Z, Yuan Q, Li H, *et al.* (2023). *Nucleic Acids Research* 51:W70–W77. [doi:10.1093/nar/gkad360](https://doi.org/10.1093/nar/gkad360) |
+| [CNApy](https://github.com/cnapy-org/CNApy) | A graphical interface in Python for CellNetAnalyzer: analysis and design of metabolic networks. | Thiele S, *et al.* (2022), [above](#cited-in-this-story). |
+| CytoSEED | A Cytoscape plugin to view, edit and analyse metabolic models built with the Model SEED. | DeJongh M, Bockstege B, Frybarger P, *et al.* (2012). *Bioinformatics* 28:891–892. [doi:10.1093/bioinformatics/btr719](https://doi.org/10.1093/bioinformatics/btr719) |
+| [Escher](https://escher.github.io) | Builds, shares and embeds pathway maps that carry data. | King ZA, *et al.* (2015), [above](#cited-in-this-story). |
 | [Escher-FBA](https://sbrg.github.io/escher-fba) | Runs FBA in the browser on Escher maps: change bounds, knock out reactions, change the objective. | Rowe E, Palsson BO, King ZA (2018). *BMC Systems Biology* 12:84. [doi:10.1186/s12918-018-0607-5](https://doi.org/10.1186/s12918-018-0607-5) |
+| FLUXestimator | A web server that predicts metabolic fluxes and their variation from transcriptomics data. | Zhang Z, Zhu H, Dang P, *et al.* (2023). *Nucleic Acids Research* 51:W180–W190. [doi:10.1093/nar/gkad444](https://doi.org/10.1093/nar/gkad444) |
+| [Fluxer](https://fluxer.umbc.edu) | Computes, analyses and visualises genome-scale flux networks on the web. | Hari A, Lobo D (2020), [above](#cited-in-this-story). |
+| Grohar | Draws genome-scale metabolic models and their pathways automatically. | Moškon M, Zimic N, Mraz M (2018). *Journal of Computational Biology* 25:505–508. [doi:10.1089/cmb.2017.0209](https://doi.org/10.1089/cmb.2017.0209) |
+| IMFLer | A web application for interactive metabolic flux analysis and visualisation. | Petrovs R, Stalidzans E, Pentjuss A (2021). *Journal of Computational Biology* 28:1021–1032. [doi:10.1089/cmb.2021.0056](https://doi.org/10.1089/cmb.2021.0056) |
+| MetExplore | A web server for the collaborative editing and exploration of metabolic networks; its viewer is MetExploreViz. | Cottret L, Frainay C, Chazalviel M, *et al.* (2018). *Nucleic Acids Research* 46:W495–W502. [doi:10.1093/nar/gky301](https://doi.org/10.1093/nar/gky301) |
+| ModelExplorer | Visual inspection of genome-scale reconstructions and correction of their inconsistencies. | Martyushenko N, Almaas E (2019). *BMC Bioinformatics* 20:56. [doi:10.1186/s12859-019-2615-x](https://doi.org/10.1186/s12859-019-2615-x) |
+| NAViFluX | A visualisation-centred platform to analyse, refine and design genome-scale metabolic networks interactively. | Krishnamurthy MB, Harish PS, Subramanian A (2026). *Bioinformatics* 42:btag191. [doi:10.1093/bioinformatics/btag191](https://doi.org/10.1093/bioinformatics/btag191) |
+| SAMMI | Semi-automated visualisation of metabolic networks. | Schultz A, Akbani R (2020). *Bioinformatics* 36:2616–2617. [doi:10.1093/bioinformatics/btz927](https://doi.org/10.1093/bioinformatics/btz927) |
 | [Shu](https://biosustain.github.io/shu) | Plots multi-omics data on Escher-format maps, with several conditions and distributions instead of single values. | Carrasco Muriel J, Cowie N, Taylor Parkins S, Mansouvar M, Groves T, Nielsen LK (2024). *Bioinformatics* 40(3):btae140. [doi:10.1093/bioinformatics/btae140](https://doi.org/10.1093/bioinformatics/btae140) |
-| MetExploreViz | A web component for interactive visualisation of metabolic networks, used in the MetExplore server. | Chazalviel M, *et al.* (2018). *Bioinformatics* 34(2):312–313. [doi:10.1093/bioinformatics/btx588](https://doi.org/10.1093/bioinformatics/btx588) |
+
+Also useful, though not part of that comparison:
+
+| Tool | What it does | Reference |
+| --- | --- | --- |
+| MetExploreViz | The web component that draws the networks of MetExplore, also usable on its own. | Chazalviel M, *et al.* (2018). *Bioinformatics* 34(2):312–313. [doi:10.1093/bioinformatics/btx588](https://doi.org/10.1093/bioinformatics/btx588) |
 | OptFlux | A desktop platform for metabolic engineering: phenotype simulation (FBA, MOMA, ROOM), strain optimisation, and results drawn over the network. | Rocha I, *et al.* (2010). *BMC Systems Biology* 4:45. [doi:10.1186/1752-0509-4-45](https://doi.org/10.1186/1752-0509-4-45) |
 | [iPath3.0](https://pathways.embl.de) | Web tool to visualise and customise KEGG-based global metabolic maps. | Darzi Y, Letunic I, Bork P, Yamada T (2018). *Nucleic Acids Research* 46(W1):W510–W513. [doi:10.1093/nar/gky299](https://doi.org/10.1093/nar/gky299) |
 | [Cytoscape](https://cytoscape.org) | General-purpose software for network visualisation and analysis, with many plugins. | Shannon P, *et al.* (2003). *Genome Research* 13:2498–2504. [doi:10.1101/gr.1239303](https://doi.org/10.1101/gr.1239303) |
