@@ -16,7 +16,7 @@ authors = [{ name = "Bruno Batista" }]
 requires-python = ">=3.10"
 keywords = ["genome-scale metabolic model", "GEM", "COBRApy", "flux balance analysis", "metabolic map", "systems biology"]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Web Environment",
   "Intended Audience :: Science/Research",
   "Operating System :: OS Independent",

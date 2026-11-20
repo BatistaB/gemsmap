@@ -1,8 +1,8 @@
 GEMsMAP {{VERSION}} - Integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates
 ==================================================================================
 
-BETA: this version is being tested. It works, but features and file formats can
-still change. Save your work as .gemsmap project files and report problems.
+Save your work as .gemsmap project files and report problems at
+https://github.com/BatistaB/gemsmap/issues
 
 START
 -----

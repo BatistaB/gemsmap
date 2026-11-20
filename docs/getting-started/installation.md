@@ -1,7 +1,7 @@
 # Installation
 
-!!! warning "Beta"
-    GEMsMAP 0.3 is in beta testing. It works, but features, file formats and the interface can still change before the first stable release. Save your work as `.gemsmap` project files, and please [report problems](https://github.com/BatistaB/gemsmap/issues/new/choose).
+!!! info "Version"
+    GEMsMAP 0.3.0 is the first stable version. Save your work as `.gemsmap` project files, and please [report problems](https://github.com/BatistaB/gemsmap/issues/new/choose).
 
 GEMsMAP runs on your own computer. One command starts a small local server and opens the application in your web browser. Your models are not uploaded anywhere; the internet is needed only to install, and for the identifier lookups of the [metabolite analysis](../cobra-gui/metabolite-analysis.md) (MetaNetX).
 
@@ -299,7 +299,7 @@ If the `gemsmap` command is not found, `python -m gemsmap` does the same.
 | uv | `uv tool upgrade gemsmap`, or `uvx gemsmap@latest` |
 | zip | Download the new zip and extract it to a new folder (its first start prepares it again). |
 
-While GEMsMAP has only beta versions, these commands install the newest beta. Once a stable version exists, a newer beta has to be named explicitly, for example `pip install gemsmap==0.4.0b1`.
+These commands install the newest stable version. A beta has to be named explicitly, for example `pip install gemsmap==0.4.0b1`.
 
 ## Uninstall
 

@@ -5,6 +5,11 @@ versioning: [SemVer](https://semver.org/), written the Python way for the packag
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-11-19
+
+First stable version, the one described in the GEMsMAP article (README, PyPI page, documentation and zip no longer
+call it a beta). Everything below was added since 0.3.0b1.
+
 ### Added
 - **Resize a selection proportionally**: two or more selected metabolites or reactions get a box with corner
   handles; dragging one scales the drawing about the opposite corner (proportions kept, arrow curvature and label
@@ -382,5 +387,6 @@ First beta, and the first public version: installable with `pip install gemsmap`
   width / colour / size mappings, condition comparison and animation, linked mini-plots, legend,
   SVG / PNG / PDF export, `.metmap` projects with autosave.
 
-[Unreleased]: https://github.com/BatistaB/gemsmap/compare/v0.3.0b1...HEAD
+[Unreleased]: https://github.com/BatistaB/gemsmap/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/BatistaB/gemsmap/compare/v0.3.0b1...v0.3.0
 [0.3.0b1]: https://github.com/BatistaB/gemsmap/releases/tag/v0.3.0b1

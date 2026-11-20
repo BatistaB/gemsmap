@@ -10,7 +10,7 @@ If GEMsMAP helped your work, please cite it, so that others can find it and repe
 When both exist, cite both: the article where you introduce the tool, and the software version in your methods.
 
 !!! info "Where this stands today"
-    Neither DOI exists yet: GEMsMAP 0.3.0b1 is a public beta. Until the software DOI exists, cite the version and the repository address as shown below. This page will give both DOIs as soon as they are assigned.
+    The DOIs are being assigned: GEMsMAP 0.3.0 is the version described in the article. Until the software DOI exists, cite the version and the repository address as shown below. This page will give both DOIs as soon as they are assigned.
 
 ## Cite the software
 
@@ -18,7 +18,7 @@ Each released version of GEMsMAP will be archived on [Zenodo](https://zenodo.org
 
 Fill in your version (see [below](#find-the-version-you-used)):
 
-> Batista B (2026). *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Version 0.3.0b1. https://github.com/BatistaB/gemsmap
+> Batista B (2026). *GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates*. Version 0.3.0. https://github.com/BatistaB/gemsmap
 
 Once the DOI exists, add it at the end, for example "Zenodo. doi:10.5281/zenodo.…".
 
@@ -26,7 +26,7 @@ Once the DOI exists, add it at the end, for example "Zenodo. doi:10.5281/zenodo.
 @software{gemsmap,
   author  = {Batista, Bruno},
   title   = {{GEMsMAP}: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates},
-  version = {0.3.0b1},
+  version = {0.3.0},
   year    = {2026},
   url     = {https://github.com/BatistaB/gemsmap},
   % publisher = {Zenodo}, doi = {10.5281/zenodo.…},  % added when the version is archived
@@ -49,7 +49,7 @@ To point a reader to one page, give its address and the date you read it, becaus
 
 ## Find the version you used
 
-- In a terminal, `gemsmap --version` prints the version, for example `GEMsMAP 0.3.0b1`.
+- In a terminal, `gemsmap --version` prints the version, for example `GEMsMAP 0.3.0`.
 - In COBRAGUI, the version is shown at the right of the status bar. Click it, then *Copy diagnostics*, to copy it together with the versions of Python and COBRApy and the solvers that are installed.
 - Each result records the model checksum, the model state, the medium, the objective, the method and its parameters, and the solver. Report these with the version in your methods, so that the analysis can be repeated.
 

@@ -1,6 +1,6 @@
 {
   "name": "gemsmap",
-  "version": "0.3.0-beta.1",
+  "version": "0.3.0",
   "private": true,
   "description": "GEMsMAP: integrating constraint-based modeling, metabolic visualization and identity-aware pathway templates",
   "license": "MIT",

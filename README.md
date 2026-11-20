@@ -84,8 +84,8 @@ asks you to review uncertain cases. [More about templates](https://gemsmap.readt
 
 ## Install
 
-> **GEMsMAP 0.3 is in beta.** It works, but features and file formats can still change before the first stable
-> release. Save your work as `.gemsmap` project files, and please [report problems](https://github.com/BatistaB/gemsmap/issues).
+> **GEMsMAP 0.3.0** is the first stable version. Save your work as `.gemsmap` project files, and please
+> [report problems](https://github.com/BatistaB/gemsmap/issues).
 
 With Python 3.10 or newer, on Windows, macOS or Linux:
 
@@ -152,8 +152,9 @@ The user guide is published at **<https://gemsmap.readthedocs.io/>**:
 
 ## Project status
 
-GEMsMAP 0.3 is a beta. Model import and editing, FBA, pFBA, loopless FBA and FVA, result comparison, the Map
-Builder and template matching are implemented. Solver selection, flux sampling and gene knockouts are planned; see
+GEMsMAP 0.3.0 is the first stable version. Model import and editing, FBA, pFBA, loopless FBA, FVA, flux sampling
+(OptGP or ACHR), result comparison, the Map Builder and template matching are implemented. Solver selection and gene
+knockouts are planned; see
 the [roadmap](https://gemsmap.readthedocs.io/en/latest/reference/roadmap/). Changes between versions are listed in [CHANGELOG.md](CHANGELOG.md).
 
 Projects from version 0.2 and earlier, when the application was called *MetMap*, still open: `.metmap` projects,
